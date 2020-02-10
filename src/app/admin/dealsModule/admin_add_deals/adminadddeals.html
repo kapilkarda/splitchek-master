@@ -1,0 +1,81 @@
+<div id="page-wrapper">
+	<div class="row">
+   	<div class="col-lg-12">
+      	<h3 class="page-header">
+				<ng-container *ngIf="dealId;else childHeader">Edit Deal</ng-container>
+				<ng-template #childHeader>Add Deal</ng-template>
+			</h3>
+      </div>
+   </div>
+   <div class="row">
+   	<div class="col-md-8 col-md-offset-2">
+      	<div class="login-panel panel panel-default">
+         	<div class="panel-heading">
+            	<h3 class="panel-title">
+						<ng-container *ngIf="dealId;else childTitle">Edit Deal</ng-container>
+						<ng-template #childTitle>Add Deal</ng-template>
+					</h3>
+         	</div>
+            <div class="panel-body">
+            	<form name="adddealform" (ngSubmit)="add_deal()" #adddealForm="ngForm">
+							<input type="hidden"  name="_id" [(ngModel)]="model._id" #id="ngModel" enctype="multipart/form-data"/>
+               	<fieldset>
+                  	<div class="form-group">
+                     	<input type="text" class="form-control" name="rName" id="Rname" placeholder="Restaurant Name..." [(ngModel)]="model.rName" #rName="ngModel" required  [maxlength]="50"/>
+                     	<div *ngIf="rName.errors && rName.touched">   
+                        	<span class="error" *ngIf="rName.errors?.required">Restaurant Name is mandatory.</span>
+                     	</div> 
+							</div>
+							<div class="form-group">
+								<!--<p-spinner name="discPer" id="discPer" placeholder="Discount Percentage..." [(ngModel)]="model.discPer" #discPer="ngModel" required [min]="0" [max]="100"></p-spinner>--->
+								<input type="text" class="form-control" name="discPer" id="discPer" placeholder="Offer Detail..." [(ngModel)]="model.discPer" #discPer="ngModel" required  [maxlength]="100"/>
+								<div *ngIf="discPer.errors && discPer.touched">   
+									<span class="error" *ngIf="discPer.errors?.required">Discount Percentage is mandatory.</span>
+								</div> 
+							</div>
+							<div class="form-group">
+                     	<input type="text" class="form-control" name="rAddress" id="Raddress" placeholder="Restaurant Address..." [(ngModel)]="model.rAddress" #rAddress="ngModel" required  [maxlength]="200"/>
+                     	<div *ngIf="rAddress.errors && rAddress.touched">   
+                        	<span class="error" *ngIf="rAddress.errors?.required">Restaurant Address is mandatory.</span>
+                     	</div> 
+							</div>
+							<div class="form-group">
+								<textarea class="form-control" name="description" id="Description" [(ngModel)]="model.description" #description="ngModel" required rows="10" cols="70" >            </textarea>
+                     	<div *ngIf="description.errors && description.touched">   
+                        	<span class="error" *ngIf="description.errors?.required">Page Description is mandatory.</span>
+                     	</div> 
+							</div>
+							<div class="form-group">
+								<p-calendar class="form-control1" name="expireOn" id="ExpireOn" [(ngModel)]="model.expireOn" #expireOn="ngModel" placeholder="Expire On Date..." [inline]="false" dateFormat="yy-mm-dd" appendTo="body" [minDate]="minimumDate"></p-calendar>
+							</div>
+							<div class="form-group">
+								<input type="file" id="file" multiple="multiple" (change)="handleFileInput($event)">
+							</div>
+							<div class="form-group" *ngIf="dealdata">
+								Images:
+								<ul>
+									<li *ngFor="let item of dealdata.dealImages"  style="
+										display:inline;  
+										list-style:none;
+										padding-right: 5px;">
+										<img src="{{imagePath}}{{item.name}}" height="60" width="60">
+										<i class="fa fa-times fa-1x" aria-hidden="true" (click)="deleteDealImages(model._id,item.name)"></i>
+									</li>
+								</ul>
+							</div>
+							<div class="form-group">
+								<input type="checkbox"  name="dod" id="Dod" [(ngModel)]="model.dod" #dod="ngModel"/> Deal of the Day
+							</div>
+							<button type="submit" class="btn btn-lg btn-success btn-block" [disabled]="! adddealForm.valid">
+								<ng-container *ngIf="dealId;else childButton">Edit Deal</ng-container> 
+								<ng-template #childButton>Add Deal</ng-template>
+								<i class="fa fa-angle-right"></i> 
+							</button>
+						</fieldset>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="500" height="120"></p-confirmDialog>
