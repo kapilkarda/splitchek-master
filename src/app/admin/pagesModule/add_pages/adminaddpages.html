@@ -37,7 +37,16 @@
                      		</div> 
 								</div>
 								<div class="form-group">
-									<textarea class="form-control" name="content" id="Content" [(ngModel)]="model.content" #content="ngModel" required rows="10" cols="70" >         </textarea>
+									<!-- <textarea class="form-control" name="content" id="Content" [(ngModel)]="model.content" #content="ngModel" required rows="10" cols="70" >         </textarea> -->
+									<ckeditor
+ 									name="content"
+ 									id="Content"
+ 									[(ngModel)]="model.content"
+ 									#content="ngModel"
+ 									[config]="{uiColor: '#669ED8'}"
+ 									[readonly]="false"
+ 									debounce="500">
+								</ckeditor>
                      		<div *ngIf="content.errors && content.touched">   
                         		<span class="error" *ngIf="content.errors?.required">Page Content is mandatory.</span>
                      		</div> 
