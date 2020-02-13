@@ -8,6 +8,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {CalendarModule} from 'primeng/calendar';
 import {SpinnerModule} from 'primeng/spinner';
 import {DialogModule} from 'primeng/dialog';
+import {CKEditorModule} from 'ng2-ckeditor';
 import {adminComponent} from './admin.component';
 import {adminloginComponent} from './login/adminlogin.component';
 import {adminheaderComponent} from './header/adminheader.component';
@@ -40,6 +41,7 @@ import { CustomFormsModule } from 'ng2-validation'
 		CalendarModule,
 		SpinnerModule,
 		DialogModule,
+		CKEditorModule,
 		routing
 	],
 	declarations: [
