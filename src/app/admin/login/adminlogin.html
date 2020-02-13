@@ -1,0 +1,87 @@
+<div class="wrapper">
+   <div class="login-content-wrapper">
+      <section class="content">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="card card-primary">
+                     <div class="card-header">
+                        <h3 class="card-title">Login</h3>
+                     </div>
+                     <form name="loginform" (ngSubmit)="login()" #loginForm="ngForm">
+                        <div class="card-body">
+                           <div class="form-group">
+                              <label for="Email">Email address</label>
+                              <!--<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">--->
+                              <input type="text" class="form-control" name="email" id="Email" placeholder="E-mail" [(ngModel)]="model.email" #email="ngModel" required pattern ="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" [maxlength]="50"/>
+                              <div *ngIf="email.errors && email.touched">   
+                                 <span class="error" *ngIf="email.errors?.required">Email is mandatory.</span>
+                                 <span class="error" *ngIf="email.errors?.pattern">Enter valid email pattern.</span>
+                              </div> 
+                           </div>
+                           <div class="form-group">
+                              <label for="Password">Password</label>
+                              <!--<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">--->
+                              <input type="password" class="form-control" name="password" id="Password" [(ngModel)]="model.password" #password="ngModel"  required [minlength]="6" [maxlength]="25" id="Password" placeholder="Password">
+                              <div *ngIf="password.errors && password.touched">   
+                                 <span class="error" *ngIf="password.errors?.required">Password is mandatory.</span>
+                                 <span class="error" *ngIf="password.errors?.minlength">Min 6 characters required.</span>
+                                 <span class="error" *ngIf="password.errors?.maxlength">Max 25 characters required.</span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="card-footer">
+                           <button type="submit" class="btn btn-primary" [disabled]="! loginForm.valid">LOGIN<i class="fa fa-angle-right"></i> </button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </div>
+</div>
+    
+
+
+
+
+
+
+
+
+<!--<div class="container">
+   <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+         <div class="login-panel panel panel-default">
+            <div class="panel-heading">
+         	   <h3 class="panel-title">LOGIN</h3>
+            </div>
+            <div class="panel-body">
+               <form name="loginform" (ngSubmit)="login()" #loginForm="ngForm">
+                  <fieldset>
+                     <div class="form-group">
+                		   <input type="text" class="form-control" name="email" id="Email" placeholder="E-mail" [(ngModel)]="model.email" #email="ngModel" required pattern ="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" [maxlength]="50"/>
+							   <div *ngIf="email.errors && email.touched">   
+							      <span class="error" *ngIf="email.errors?.required">Email is mandatory.</span>
+								   <span class="error" *ngIf="email.errors?.pattern">Enter valid email pattern.</span>
+							   </div> 
+						   </div>
+						   <div class="form-group">
+							   <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel"  required [minlength]="6" [maxlength]="25" id="Password" placeholder="Password">
+							   <div *ngIf="password.errors && password.touched">   
+							      <span class="error" *ngIf="password.errors?.required">Password is mandatory.</span>
+								   <span class="error" *ngIf="password.errors?.minlength">Min 6 characters required.</span>
+								   <span class="error" *ngIf="password.errors?.maxlength">Max 25 characters required.</span>
+							   </div> 
+						   </div>
+                     <button type="submit" class="btn btn-lg btn-success btn-block" [disabled]="! loginForm.valid">LOGIN<i class="fa fa-angle-right"></i> </button>
+                  </fieldset>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>-->
+
+

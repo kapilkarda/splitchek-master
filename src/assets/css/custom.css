@@ -1,0 +1,130 @@
+/*** Header CSS ***/
+.main-header{
+   z-index: 1038;
+   margin-left: 0px !important;
+   background: linear-gradient(45deg, #17f9da 0%,#6070f5 100%);
+   /*border-bottom:none;*/
+     
+}
+.content-header{
+   padding-top: 74px;
+   padding-left:25px;
+}
+.logo-image{
+   width: 60%;
+   height: 80%;
+   /*padding-top: 4px;
+   padding-left: 16px;*/
+}
+.nav-top-menu{
+   padding-left: 970px;
+}
+
+/*** Footer CSS ***/
+.main-footer{
+   background: #66AADF;
+   color: #ffffff;
+   margin-left: 0px !important;
+   position: fixed !important;
+   width: 100% !important;
+   z-index: 1038;
+   background: linear-gradient(45deg, #17f9da 0%,#6070f5 100%);
+   /*border-top:none;*/
+}
+
+/*** Navbar CSS ***/
+.navbar-green {
+   background-color:#66AADF;
+}
+.navbar{
+   position: fixed;
+   width: 100%;
+   display: inline;
+}
+
+/*** Sidebar CSS ***/
+.sidebar-light-blue{
+   background-color: #66AADF;
+}
+.layout-fixed .main-sidebar{
+   top: 59px !important;
+   /*background: linear-gradient(45deg, #17f9da 0%,#6070f5 100%);*/
+   background: linear-gradient(45deg, #6070f5 0%,#17f9da 100%);
+   min-height: 80% !important;
+   height: 83vh !important;
+}
+.layout-fixed .main-sidebar .nav-sidebar > .nav-item.menu-open > .nav-link{
+   color: #ffffff;
+}
+.layout-fixed .main-sidebar .nav-sidebar > .nav-item:hover > .nav-link{
+   color: #ffffff;
+}
+.layout-fixed .main-sidebar .nav-treeview > .nav-item > .nav-link{
+   color: #ffffff;
+}
+.sidebar-light-blue .sidebar a{
+   color: #ffffff;
+}
+.sidebar-light-blue .sidebar a:hover{
+   color: #4468B5;
+}
+
+/*** Page CSS ***/
+.content-wrapper{
+   min-height: 585px !important;
+}
+.content-wrapper-table{
+   min-height: 568px !important;
+}
+
+/*** Listing Table CSS ***/
+body .ui-table{
+   /*max-height: 400px;*/
+}
+body .ui-table .ui-table-caption{
+   background-color: #4195EA !important;
+
+   
+    /*border-bottom: 1px solid rgba(0,0,0,.125);
+    padding: .75rem 1.25rem !important;
+    position: relative !important;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;*/
+}
+.table-bordered{
+   border: none;
+}
+body .ui-table .ui-table-thead > tr > th{
+   background-color: #66AADF !important;
+   color: #ffffff !important;
+}
+body .ui-paginator{
+   background-color: #007AD4 !important;
+   border: #007AD4;
+   padding: 0;
+}
+body .ui-paginator .ui-paginator-element{
+   color: #ffffff !important;
+}
+body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active{
+   background-color: #66AADF !important;
+}
+.ui-paginator{
+   text-align: right !important;
+   padding-right: 50px !important;
+}
+
+/*.card-table-body{
+   height: 440px;
+   display: flex;
+   overflow: hidden;
+}
+
+.card-table-body .ui-table-wrapper > table > tbody{
+   height: 380px;
+   overflow: auto;
+}*/
+
+
+
+

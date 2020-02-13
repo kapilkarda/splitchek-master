@@ -1,0 +1,76 @@
+<div class="content-wrapper">
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-dark">Manage Pages</h1>
+				</div>
+			</div>
+		</div>
+	</section> 
+	<section class="content">   
+		<div class="card">
+			<div class="card-body table-responsive p-0">
+				<p-table #dt *ngIf="pagesData" [value]="pagesData" [paginator]="true" 
+				[rows]="10" [globalFilterFields]="['title']" [totalRecords]="totalRecords" [alwaysShowPaginator]="false" class="table table-striped table-bordered table-hover" >
+					<ng-template pTemplate="caption">
+						<div style="text-align: right">        
+							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+							<input type="text" pInputText size="50" placeholder=" " (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+						</div>
+					</ng-template>
+					<ng-template pTemplate="header" let-columns>
+						<tr>
+							<th style="width: 7%">#</th>
+							<th style="width: 20%" [pSortableColumn]="'title'">
+								Title
+								<p-sortIcon [field]="'title'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+							</th>
+							<th style="width: 15%" [pSortableColumn]="'link'">
+								Link
+								<p-sortIcon [field]="'link'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+							</th>
+							<th style="width: 28%" [pSortableColumn]="'content'">
+								Content
+								<p-sortIcon [field]="'content'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+							</th>
+							<th style="width: 15%">Status</th>
+							<th style="width: 15%">Action</th>
+						</tr>
+					</ng-template>
+					<ng-template pTemplate="body" let-rowData let-i="rowIndex">
+						<tr>
+							<td>{{i+1}}</td>
+							<td>{{rowData.title}}</td>
+							<td>{{rowData.link}}</td>
+							<td>{{rowData.content.substring(0,100)}}.....</td>
+							<td>
+								<ng-container *ngIf="rowData.status == '1'; else deactiveStatusText">
+										Active
+								</ng-container>
+								<ng-template #deactiveStatusText>Deactive</ng-template>
+							</td>
+							<td>
+								<button type="text" [routerLink]="['/admin/addpages']" [queryParams]="{ id: rowData._id }" class="btn btn-grey" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+								<button type="text" (click)=delete_page(rowData._id);  class="btn btn-grey" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								
+								<button type="text" (click)=status_change(rowData._id,rowData.status);  class="btn btn-grey">
+									<ng-container *ngIf="rowData.status == '1'; else deactiveStatus">
+										<!-- <span class="badge bg-danger">Deactivate</span> -->
+										<i class="fa fa-toggle-off" title="Deactivate User"></i>
+									</ng-container>
+									<ng-template #deactiveStatus>
+										<!-- <span class="badge bg-success">Activate</span> -->
+										<i class="fa fa-toggle-on" title="Activate User"></i>
+									</ng-template>
+								</button>
+							</td>
+						</tr>
+					</ng-template>
+				</p-table>
+			</div>
+		</div>
+	</section>
+</div>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="500" height="120"></p-confirmDialog>

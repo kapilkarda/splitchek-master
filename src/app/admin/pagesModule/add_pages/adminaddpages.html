@@ -1,0 +1,62 @@
+<div class="content-wrapper">
+	<section class="content-header">
+   	<div class="container-fluid">
+      	<div class="row mb-2">
+				<div class="col-sm-12">
+					<ng-container *ngIf="pageId;else childHeader"><h1 class="m-0 text-dark">Edit Pages</h1></ng-container>
+					<ng-template #childHeader><h1 class="m-0 text-dark">Add Pages</h1></ng-template>
+				</div>
+			</div>
+		</div>
+	</section>
+   <section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10">
+					<div class="card card-primary">
+						<div class="card-header">
+							<ng-container *ngIf="pageId;else childTitle"><h3 class="card-title">Edit Pages</h3></ng-container>
+							<ng-template #childTitle><h3 class="card-title">Add Pages</h3></ng-template>
+						</div>
+						<div class="card-body table-responsive p-0">
+						<form name="addpageform" (ngSubmit)="add_page()" #addpageForm="ngForm">
+							<input type="hidden"  name="id" [(ngModel)]="model.id" #id="ngModel"/>
+               		<div class="card-body">
+								<div class="form-group">
+									<label for="Title">Email address</label>
+                     		<input type="text" class="form-control" name="title" id="Title" placeholder="Page Title ..." [(ngModel)]="model.title" #title="ngModel" required  [maxlength]="50"/>
+                     		<div *ngIf="title.errors && title.touched">   
+                        		<span class="error" *ngIf="title.errors?.required">Page Name is mandatory.</span>
+                     		</div> 
+								</div>
+								<div class="form-group">
+									<label for="Link">Page Link</label>
+                     		<input type="text" class="form-control" name="link" id="Link" placeholder="Page Link ..." [(ngModel)]="model.link" #link="ngModel" required  [maxlength]="50"/>
+                     		<div *ngIf="link.errors && link.touched">   
+                        		<span class="error" *ngIf="link.errors?.required">Page Link is mandatory.</span>
+                     		</div> 
+								</div>
+								<div class="form-group">
+									<textarea class="form-control" name="content" id="Content" [(ngModel)]="model.content" #content="ngModel" required rows="10" cols="70" >         </textarea>
+                     		<div *ngIf="content.errors && content.touched">   
+                        		<span class="error" *ngIf="content.errors?.required">Page Content is mandatory.</span>
+                     		</div> 
+								</div>
+								<div class="card-footer">
+									<ng-container *ngIf="pageId;else childButton">
+										<button type="button" (click)="add_page()" class="btn btn-primary" [disabled]="! addpageForm.valid">Edit Page <i class="fa fa-angle-right"></i></button>
+									</ng-container>
+									<ng-template #childButton>
+										<button type="button" class="btn btn-primary" [disabled]="! addpageForm.valid">Add Page <i class="fa fa-angle-right"></i> </button>
+									</ng-template>
+									<button [routerLink]="['/admin/managepages']"  class="btn btn-default"  style="font-weight: bold;float:right;">Cancel</button>
+								</div>
+							</div>
+						</form>
+					</div>
+            	</div>
+         	</div>
+      	</div>
+		</div>
+	</section>
+</div>
