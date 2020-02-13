@@ -18,8 +18,8 @@ export class adminmanagesuspendedusersComponent {
 	result: any;
 	userData: any;
 	totalRecords: number;
-	display: boolean = false;
-	userdata:any;
+	//display: boolean = false;
+	//userdata:any;
 
 	constructor(
 		private router: Router,

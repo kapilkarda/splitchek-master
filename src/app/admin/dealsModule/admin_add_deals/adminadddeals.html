@@ -40,7 +40,16 @@
                      	</div> 
 							</div>
 							<div class="form-group">
-								<textarea class="form-control" name="description" id="Description" [(ngModel)]="model.description" #description="ngModel" required rows="10" cols="70" >            </textarea>
+								<!-- <textarea class="form-control" name="description" id="Description" [(ngModel)]="model.description" #description="ngModel" required rows="10" cols="70" >    </textarea> -->
+								<ckeditor
+ 									name="description"
+ 									id="Description"
+ 									[(ngModel)]="model.description"
+ 									#description="ngModel"
+ 									[config]="{uiColor: '#669ED8'}"
+ 									[readonly]="false"
+ 									debounce="500">
+								</ckeditor>
                      	<div *ngIf="description.errors && description.touched">   
                         	<span class="error" *ngIf="description.errors?.required">Page Description is mandatory.</span>
                      	</div> 
@@ -71,6 +80,7 @@
 								<ng-template #childButton>Add Deal</ng-template>
 								<i class="fa fa-angle-right"></i> 
 							</button>
+							<button [routerLink]="['/admin/managedeals']"  class="btn btn-lg btn-success btn-block"  style="font-weight: bold;float:right;">Cancel</button>
 						</fieldset>
                </form>
             </div>

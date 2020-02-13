@@ -55,7 +55,7 @@ export class adminmanageusersComponent {
 
 	delete_user(userId){
 		this.confirmationService.confirm({
-			message: 'Are you sure that you want to proceed?',
+			message: 'Are you sure that you want to delete this user?',
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
@@ -82,7 +82,7 @@ export class adminmanageusersComponent {
 
 	status_change(userId,currentStatus){ 
 		this.confirmationService.confirm({
-			message: 'Are you sure that you want to proceed?',
+			message: 'Are you sure that you want to activate/deactivate this user?',
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {

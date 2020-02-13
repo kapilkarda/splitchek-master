@@ -34,18 +34,30 @@
 							</div>
 							<div class="form-group">
 								<!--<input type="text" class="form-control" name="content" id="Content" placeholder="Page Content ..." [(ngModel)]="model.content" #content="ngModel" required  [maxlength]="50"/>-->
-								<textarea class="form-control" name="content" id="Content" [(ngModel)]="model.content" #content="ngModel" required rows="10" cols="70" >                             
-								</textarea>
-                     	<div *ngIf="content.errors && content.touched">   
+								<!-- <textarea class="form-control" name="content" id="Content" [(ngModel)]="model.content" #content="ngModel" required rows="10" cols="70" >           </textarea> -->
+								<!-- <p-editor name="content" id="Content" [(ngModel)]="model.content" #content="ngModel" required [style]="{'height':'20px'}"></p-editor>-->
+ 								<ckeditor
+ 									name="content"
+ 									id="Content"
+ 									[(ngModel)]="model.content"
+ 									#content="ngModel"
+ 									[config]="{uiColor: '#669ED8'}"
+ 									[readonly]="false"
+ 									debounce="500">
+								</ckeditor>
+								<div *ngIf="content.errors && content.touched">   
                         	<span class="error" *ngIf="content.errors?.required">Page Content is mandatory.</span>
                      	</div> 
 							</div>
 							<ng-container *ngIf="pageId;else childButton">
-								<button type="submit" (click)="edit_page()" class="btn btn-lg btn-success btn-block" [disabled]="! addpageForm.valid">Edit Trait <i class="fa fa-angle-right"></i></button>
+								<button type="button" (click)="add_page()" class="btn btn-lg btn-success btn-block" [disabled]="! addpageForm.valid">Edit Page <i class="fa fa-angle-right"></i></button>
 							</ng-container>
 							<ng-template #childButton>
-								<button type="submit" class="btn btn-lg btn-success btn-block" [disabled]="! addpageForm.valid">Add Page <i class="fa fa-angle-right"></i> </button>
+								<button type="button" (click)="add_page()" class="btn btn-lg btn-success btn-block" [disabled]="! addpageForm.valid">Add Page <i class="fa fa-angle-right"></i> </button>
+
+								
 							</ng-template>
+							<button [routerLink]="['/admin/managepages']"  class="btn btn-lg btn-success btn-block"  style="font-weight: bold;float:right;">Cancel</button>
 						</fieldset>
                </form>
             </div>

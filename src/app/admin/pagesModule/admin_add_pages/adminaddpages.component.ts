@@ -38,7 +38,7 @@ export class adminaddpagesComponent {
       }
    }
 
-   add_page() {
+   add_page() {  
       this.spinner.show();
       this.adminService.admin_add_page(this.model).subscribe(result => {
          this.result = result;
@@ -56,7 +56,7 @@ export class adminaddpagesComponent {
       });
    }
 
-   edit_page() {
+   /*edit_page() {
       this.spinner.show();
       this.adminService.admin_edit_page(this.model).subscribe(result => {
          this.result = result;
@@ -72,7 +72,7 @@ export class adminaddpagesComponent {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
          }
       });
-   }
+   }*/
 }
 
 

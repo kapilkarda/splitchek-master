@@ -62,13 +62,14 @@ export class adminadddealsComponent {
       this.adminService.admin_add_deal(this.model,this.filesToUpload).then(result => {
          this.result = result;
          if (this.result.status === 'success') {
-            this.spinner.hide();
+            //this.spinner.hide();
             this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
             this.router.navigate(['/admin/managedeals']);
          } else {
-            this.spinner.hide();
+           // this.spinner.hide();
             this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
          }
+         this.spinner.hide();
       });
    }
 

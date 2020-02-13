@@ -32,7 +32,7 @@ export class adminmanagepagesComponent {
 		this.loadPagesData();
 	}
 
-	loadPagesData() {
+	loadPagesData() { 
 		this.spinner.show();
 		this.adminService.admin_list_pages().subscribe((result) => {
 			this.result = result;
@@ -53,7 +53,7 @@ export class adminmanagepagesComponent {
 
 	delete_page(pageId){
 		this.confirmationService.confirm({
-			message: 'Are you sure that you want to proceed?',
+			message: 'Are you sure that you want to delete this page?',
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
@@ -81,7 +81,7 @@ export class adminmanagepagesComponent {
 
 	status_change(pageId,currentStatus){ 
 		this.confirmationService.confirm({
-			message: 'Are you sure that you want to proceed?',
+			message: 'Are you sure that you want to activate/deactivate this page?',
 			header: 'Confirm Change Status',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {

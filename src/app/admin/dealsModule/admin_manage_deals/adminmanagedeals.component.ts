@@ -64,7 +64,7 @@ export class adminmanagedealsComponent {
 
 	delete_deal(dealId){
 		this.confirmationService.confirm({
-			message: 'Are you sure that you want to proceed?',
+			message: 'Are you sure that you want to delete this deal?',
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
@@ -92,7 +92,7 @@ export class adminmanagedealsComponent {
 
 	status_change(dealId,currentStatus){ 
 		this.confirmationService.confirm({
-			message: 'Are you sure that you want to proceed?',
+			message: 'Are you sure that you want to activate/deactivate this deal?',
 			header: 'Confirm Change Status',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
