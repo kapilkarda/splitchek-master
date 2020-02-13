@@ -88,7 +88,7 @@
 										<button type="button" (click)="add_deal()" class="btn btn-primary" [disabled]="! adddealForm.valid">Edit Deal <i class="fa fa-angle-right"></i></button>
 									</ng-container>
 									<ng-template #childButton>
-										<button type="button" class="btn btn-primary" [disabled]="! adddealForm.valid">Add Deal<i class="fa fa-angle-right"></i> </button>
+										<button type="button" (click)="add_deal()" class="btn btn-primary" [disabled]="! adddealForm.valid">Add Deal<i class="fa fa-angle-right"></i> </button>
 									</ng-template>
 									<button [routerLink]="['/admin/managedeals']"  class="btn btn-default"  style="font-weight: bold;float:right;">Cancel</button>
 									<!--<button type="button" (click)="add_deal()" class="btn btn-primary" [disabled]="! adddealForm.valid">
