@@ -43,7 +43,8 @@
 } */
 .ui-paginator,
 .ui-table .ui-table-thead th{
-   background: linear-gradient(to right, #5971F0 20%,#5971F0 10%); 
+   /*background: linear-gradient(to right, #5971F0 20%,#5971F0 10%); */
+   background:#547AEF !important; 
    color: #ffffff !important;
 }
 .ui-paginator{
@@ -92,4 +93,21 @@
 .fa {
    color: #0031CD;
    cursor: pointer;
+}
+
+.p-calender, .fileup{
+   display: block;'
+   width: 100%;
+}
+.card-primary .card-header{
+   background-color:#4391EA!important;
+}
+.subBut {
+   float: right;
+}
+.cancelBut{
+   margin-right: 10px;
+}
+.error{
+   color: red;
 }

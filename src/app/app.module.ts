@@ -23,6 +23,7 @@ import {ConfirmationService} from 'primeng/api';
     HttpClientModule,
     AdminModule,
     AppRoutingModule,
+    NgxSpinnerModule,
     TableModule
   ],
   providers: [MessageService,ConfirmationService,DatePipe],

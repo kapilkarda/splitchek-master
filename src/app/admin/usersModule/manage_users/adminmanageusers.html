@@ -9,10 +9,9 @@
 		</div>
 	</section> 
 	<section class="content">   
-		<div class="card">
+		<div class="card" *ngIf="userData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
-				<p-table #dt *ngIf="userData" [value]="userData" [paginator]="true" 
-					[rows]="10" [scrollable]="false" [globalFilterFields]="['email','name']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+				<p-table #dt *ngIf="userData" [value]="userData" [paginator]="true" [alwaysShowPaginator]="false" [rows]="10" [scrollable]="false" [globalFilterFields]="['email','name']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
 						<div style="text-align: right">        
 							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -71,6 +70,7 @@
 			</div>
 	</section>
 </div>
+<ng-template #noRecord>No Record Found</ng-template>
 
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="500" height="120"></p-confirmDialog>
 

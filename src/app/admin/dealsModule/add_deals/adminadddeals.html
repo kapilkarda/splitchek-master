@@ -54,11 +54,11 @@
 								</div>
 								<div class="form-group">
 									<label for="ExpireOn">Expire On</label>
-									<p-calendar class="form-control" name="expireOn" id="ExpireOn" [(ngModel)]="model.expireOn" #expireOn="ngModel" placeholder="Expire On Date..." [inline]="false" dateFormat="yy-mm-dd" appendTo="body" [minDate]="minimumDate"></p-calendar>
+									<p-calendar class="p-calender" name="expireOn" id="ExpireOn" [(ngModel)]="model.expireOn" #expireOn="ngModel" placeholder="Expire On Date..." [inline]="false" dateFormat="yy-mm-dd" appendTo="body" [minDate]="minimumDate"></p-calendar>
 								</div>
 								<div class="form-group">
 									<label for="file">Upload Files</label>
-									<input type="file" id="file" multiple="multiple" (change)="handleFileInput($event)">
+									<input type="file" class="fileup" id="file" multiple="multiple" (change)="handleFileInput($event)">
 								</div>
 								<div class="form-group" *ngIf="dealdata">
 									Images:
@@ -80,9 +80,9 @@
 										<button type="button" (click)="add_deal()" class="btn btn-primary" [disabled]="! adddealForm.valid">Edit Deal <i class="fa fa-angle-right"></i></button>
 									</ng-container>
 									<ng-template #childButton>
-										<button type="button" (click)="add_deal()" class="btn btn-primary" [disabled]="! adddealForm.valid">Add Deal<i class="fa fa-angle-right"></i> </button>
+										<button type="button" (click)="add_deal()" class="btn btn-primary subBut" [disabled]="! adddealForm.valid">Add Deal</button>
 									</ng-template>
-									<button [routerLink]="['/admin/managedeals']"  class="btn btn-default"  style="font-weight: bold;float:right;">Cancel</button>
+									<button [routerLink]="['/admin/managedeals']"  class="btn btn-default cancelBut"  style="font-weight: bold;float:right;">Cancel</button>
 									<!--<button type="button" (click)="add_deal()" class="btn btn-primary" [disabled]="! adddealForm.valid">
 									<ng-container *ngIf="dealId;else childButton">Edit Deal</ng-container> 
 									<ng-template #childButton>Add Deal</ng-template>
