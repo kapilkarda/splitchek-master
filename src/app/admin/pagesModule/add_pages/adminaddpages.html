@@ -23,7 +23,7 @@
 							<input type="hidden"  name="id" [(ngModel)]="model.id" #id="ngModel"/>
                		<div class="card-body">
 								<div class="form-group">
-									<label for="Title">Email address</label>
+									<label for="Title">Page Title</label>
                      		<input type="text" class="form-control" name="title" id="Title" placeholder="Page Title ..." [(ngModel)]="model.title" #title="ngModel" required  [maxlength]="50"/>
                      		<div *ngIf="title.errors && title.touched">   
                         		<span class="error" *ngIf="title.errors?.required">Page Name is mandatory.</span>
@@ -56,9 +56,9 @@
 										<button type="button" (click)="add_page()" class="btn btn-primary" [disabled]="! addpageForm.valid">Edit Page <i class="fa fa-angle-right"></i></button>
 									</ng-container>
 									<ng-template #childButton>
-										<button type="button" class="btn btn-primary" [disabled]="! addpageForm.valid">Add Page <i class="fa fa-angle-right"></i> </button>
+										<button type="button" (click)="add_page()" class="btn btn-primary subBut" [disabled]="! addpageForm.valid">Add Page</button>
 									</ng-template>
-									<button [routerLink]="['/admin/managepages']"  class="btn btn-default"  style="font-weight: bold;float:right;">Cancel</button>
+									<button [routerLink]="['/admin/managepages']"  class="btn btn-default cancelBut"  style="font-weight: bold;float:right;">Cancel</button>
 								</div>
 							</div>
 						</form>
