@@ -51,7 +51,10 @@
 								<ng-template #deactiveStatusText>Deactive</ng-template>
 							</td>
 							<td>
-								<button type="text" [routerLink]="['/admin/addpages']" [queryParams]="{ id: rowData._id }" class="btn btn-grey" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+								<button type="text" [routerLink]="['/admin/addpages']" [queryParams]="{ id: rowData._id }" class="btn btn-grey" title="Edit">
+									<i class="fa fa-edit" aria-hidden="true"></i>
+								</button>
+
 								<button type="text" (click)=delete_page(rowData._id);  class="btn btn-grey" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
 								
 								<button type="text" (click)=status_change(rowData._id,rowData.status);  class="btn btn-grey">
