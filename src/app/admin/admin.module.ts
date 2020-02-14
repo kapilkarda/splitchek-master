@@ -23,6 +23,7 @@ import {adminmanagepagesComponent} from './pagesModule/manage_pages/adminmanagep
 import {adminadddealsComponent} from './dealsModule/add_deals/adminadddeals.component';
 import {adminmanagedealsComponent} from './dealsModule/manage_deals/adminmanagedeals.component';
 import {adminmanageinvitesComponent} from './invitesModule/manage_invites/adminmanageinvites.component';
+import {adminmanagereporteduserComponent} from './reporteduserModule/manage_reporteduser/adminmanagereporteduser.component';
 //import {adminaddtraitsComponent} from './traitsModule/admin_add_traits/adminaddtraits.component';
 //import {adminmanagetraitsComponent} from './traitsModule/admin_manage_traits/adminmanagetraits.component';
 import {AdminService} from '../services/admin.service';
@@ -59,6 +60,7 @@ import { CustomFormsModule } from 'ng2-validation'
 		adminadddealsComponent,
 		adminmanagedealsComponent,
 		adminmanageinvitesComponent,
+		adminmanagereporteduserComponent,
 		//adminaddtraitsComponent,
 		//adminmanagetraitsComponent,
 	],

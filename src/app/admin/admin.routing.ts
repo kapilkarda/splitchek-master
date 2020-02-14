@@ -9,6 +9,7 @@ import {adminmanagepagesComponent} from './pagesModule/manage_pages/adminmanagep
 import {adminadddealsComponent} from './dealsModule/add_deals/adminadddeals.component';
 import {adminmanagedealsComponent} from './dealsModule/manage_deals/adminmanagedeals.component';
 import {adminmanageinvitesComponent} from './invitesModule/manage_invites/adminmanageinvites.component';
+import {adminmanagereporteduserComponent} from './reporteduserModule/manage_reporteduser/adminmanagereporteduser.component';
 import {adminmanageusersComponent} from './usersModule/manage_users/adminmanageusers.component';
 import {adminmanagesuspendedusersComponent} from './usersModule/manage_suspended_users/adminmanagesuspendedusers.component';
 import {adminuserdetailComponent} from './usersModule/user_detail/adminuserdetail.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
          {path: 'adddeals', component: adminadddealsComponent}, 
          {path: 'managedeals', component: adminmanagedealsComponent},
          {path: 'manageinvites', component: adminmanageinvitesComponent},
+         {path: 'managereportedusers', component: adminmanagereporteduserComponent},
          {path: 'viewdetail/:id', component: adminuserdetailComponent},
          //{path: 'addtraits', component: adminaddtraitsComponent}, 
          //{path: 'managetraits', component: adminmanagetraitsComponent},

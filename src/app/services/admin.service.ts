@@ -157,6 +157,14 @@ export class AdminService {
       let options = { headers: headers };
       return this.http.get(AppSettings.API_ENDPOINT + 'adminManageInviteUser', options).map(res => <any>res);
    }
+   admin_list_reportedusers() {
+      let headers = new HttpHeaders({
+         'Content-Type': 'application/json',
+         'Authorization': localStorage.getItem('token')
+      });
+      let options = { headers: headers };
+      return this.http.get(AppSettings.API_ENDPOINT + 'adminManageReportedUser', options).map(res => <any>res);
+   }
    admin_dashboard() {
       let headers = new HttpHeaders({
          'Content-Type': 'application/json',

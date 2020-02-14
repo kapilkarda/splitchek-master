@@ -22,92 +22,95 @@
 				 		<i class="nav-icon fas fa-tachometer-alt"></i>
 				 		<p>Dashboard</p>
 					</a>
-					<li class="nav-item has-treeview">
-						<a href="#" class="nav-link">
-					  		<i class="nav-icon fas fa-user"></i>
-					  		<p>Users<i class="right fas fa-angle-left"></i></p>
-						</a>
-						<ul class="nav nav-treeview">
-					  		<li class="nav-item">
-						 		<a [routerLinkActive]="['active']" [routerLink]="['/admin/manageusers']" class="nav-link">
-									<i class="far fa-circle nav-icon"></i>
-									<p>Manage Users</p>
-						 		</a>
-							</li>
-					  		<li class="nav-item">
-						 		<a [routerLinkActive]="['active']" [routerLink]="['/admin/suspendedusers']" class="nav-link">
-									<i class="far fa-circle nav-icon"></i>
-									<p>Suspended Users</p>
-						 		</a>
-						 	</li>
-					  	</ul>
-					</li>
-
-
-					<li class="nav-item has-treeview">
-						<a href="#" class="nav-link">
-					  		<i class="nav-icon fas fa-user"></i>
-					  		<p>Pages<i class="right fas fa-angle-left"></i></p>
-						</a>
-						<ul class="nav nav-treeview">
-					  		<li class="nav-item">
-						 		<a [routerLinkActive]="['active']" [routerLink]="['/admin/managepages']" class="nav-link">
-									<i class="far fa-circle nav-icon"></i>
-									<p>Manage Pages</p>
-						 		</a>
-							</li>
-					  		<li class="nav-item">
-						 		<a [routerLinkActive]="['active']" [routerLink]="['/admin/addpages']" class="nav-link">
-									<i class="far fa-circle nav-icon"></i>
-									<p>Add Page</p>
-						 		</a>
-						 	</li>
-					  	</ul>
-					</li>
-
-					<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
-								  <i class="nav-icon fas fa-user"></i>
-								  <p>Deals<i class="right fas fa-angle-left"></i></p>
+				</li>
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-user"></i>
+						<p>Users<i class="right fas fa-angle-left"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/manageusers']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage Users</p>
 							</a>
-							<ul class="nav nav-treeview">
-								  <li class="nav-item">
-									 <a [routerLinkActive]="['active']" [routerLink]="['/admin/managedeals']" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Manage Deals</p>
-									 </a>
-								</li>
-								  <li class="nav-item">
-									 <a [routerLinkActive]="['active']" [routerLink]="['/admin/adddeals']" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Add Deals</p>
-									 </a>
-								 </li>
-							  </ul>
 						</li>
-
-					<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
-								  <i class="nav-icon fas fa-user"></i>
-								  <p>Invites<i class="right fas fa-angle-left"></i></p>
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/suspendedusers']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Suspended Users</p>
 							</a>
-							<ul class="nav nav-treeview">
-								  <li class="nav-item">
-									 <a [routerLinkActive]="['active']" [routerLink]="['/admin/manageinvites']" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Manage Invites</p>
-									 </a>
-								</li>
-								  
-							  </ul>
 						</li>
-	
-						
-
-
-						
-
-				
+					</ul>
+				</li>
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-user"></i>
+						<p>Pages<i class="right fas fa-angle-left"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managepages']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage Pages</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/addpages']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add Page</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-user"></i>
+						<p>Deals<i class="right fas fa-angle-left"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managedeals']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage Deals</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/adddeals']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add Deals</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-user"></i>
+						<p>Invites<i class="right fas fa-angle-left"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/manageinvites']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage Invites</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-user"></i>
+						<p>Reported Users<i class="right fas fa-angle-left"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managereportedusers']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage Reported Users</p>
+							</a>
+						</li>
+					</ul>
+				</li>
 			</ul>
 	  	</nav>
 	</div>
