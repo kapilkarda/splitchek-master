@@ -9,7 +9,7 @@
 		</div>
 	</section> 
 	<section class="content">   
-		<div class="card" *ngIf="userData.length > 0; else noRecord">
+		<div class="card" *ngIf="userData && userData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
 				<p-table #dt *ngIf="userData" [value]="userData" [paginator]="true" [alwaysShowPaginator]="false" [rows]="10" [scrollable]="false" [globalFilterFields]="['email','name']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
