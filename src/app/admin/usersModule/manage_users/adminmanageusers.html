@@ -97,7 +97,7 @@
 		<div class="col-md-12">
 			<div class="login-panel panel panel-default">
 				<div class="panel-body">
-						<form name="suspendUserform" (ngSubmit)="suspend_user()" #suspendUserForm="ngForm">
+						<form name="suspendUserform" #suspendUserForm="ngForm">
 						<input type="hidden"  name="_id" [(ngModel)]="model._id" #id="ngModel"/>
 						<fieldset>
 							<div class="form-group">
@@ -107,8 +107,10 @@
 									<span class="error" *ngIf="suspendDays.errors?.number">Only numbers allowed.</span>
 								</div> 
 							</div>
-							<button type="submit" class="btn btn-lg btn-success btn-block" [disabled]="! suspendUserForm.valid">Suspend User<i class="fa fa-angle-right"></i> 
-							</button>
+							
+							
+							<button type="button" (click)="suspend_user()" class="btn btn-primary subBut" [disabled]="! suspendUserForm.valid">Suspend User</button>
+							
 						</fieldset>
 					</form>
 				</div>
