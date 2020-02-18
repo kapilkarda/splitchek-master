@@ -29,11 +29,15 @@
 								Email
 								<p-sortIcon [field]="'email'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 							</th>
-							<th style="width: 15%" [pSortableColumn]="'email'">
+							<th style="width: 11%" [pSortableColumn]="'gender'">
 								Gender
 								<p-sortIcon [field]="'gender'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 							</th>
-							<th style="width: 12%">Status</th>
+							<th style="width: 14%" [pSortableColumn]="'loginType'">
+								Login From
+								<p-sortIcon [field]="'loginType'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+							</th>
+							<th style="width: 10%">Status</th>
 							<th style="width: 22%">Action</th>
 						</tr>
 					</ng-template>
@@ -43,6 +47,18 @@
 								<td>{{rowData.name}}</td>
 								<td>{{rowData.email}}</td>
 								<td>{{rowData.gender}}</td>
+								<td>
+									<ng-container *ngIf="rowData.loginType == 1">
+											Mobile
+									</ng-container>
+									<ng-container *ngIf="rowData.loginType == 2">
+										Email
+									</ng-container>
+									<ng-container *ngIf="rowData.loginType == 3">
+										FaceBook
+									</ng-container>
+									
+								</td>
 								<td>
 									<ng-container *ngIf="rowData.status == 1; else deactiveStatusText">
 											Active
