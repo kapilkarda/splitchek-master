@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService} from 'primeng/api';
 import { AdminService } from '../../../services/admin.service';
-//import { NotificationsService } from '../../services/notifications.service';
 
 @Component({
     selector: 'admindashboard',
@@ -22,7 +21,6 @@ export class admindashboardComponent {
       private adminService: AdminService,
       private spinner: NgxSpinnerService,
       private messageService: MessageService,
-      //private notificationsService: NotificationsService
    ) {
       this.spinner.hide();
    }
@@ -38,10 +36,6 @@ export class admindashboardComponent {
 		(err) => this.spinner.hide(),
 		() => {
 			if (this.result.status === 'success') {
-				//this.invitesData = this.result.data;
-				//console.log("invitesData ",this.invitesData)
-				//this.totalRecords = this.result.data.length;
-				console.log("result ",this.result)
 				this.spinner.hide();
 			} else {
 				this.spinner.hide();
@@ -50,5 +44,3 @@ export class admindashboardComponent {
 		});
 	}
 }
-
-

@@ -70,13 +70,12 @@
 									<button type="text" (click)=delete_user(rowData._id);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
 									<button type="button" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
 										<ng-container *ngIf="rowData.status == 1; else deactiveStatus">
-												<!-- <span class="badge bg-danger">Deactivate </span> -->
-												<i class="fa fa-toggle-off" title="Deactivate User"></i>
+											<i class="fa fa-toggle-off" title="Deactivate User"></i>
 										</ng-container>
-										<ng-template #deactiveStatus><!-- <span class="badge bg-success">Activate</span> -->
-											<i class="fa fa-toggle-on" title="Activate User"></i></ng-template>
+										<ng-template #deactiveStatus>
+											<i class="fa fa-toggle-on" title="Activate User"></i>
+										</ng-template>
 									</button>
-									<!-- <span  (click)="showDialog(rowData._id)" class="badge bg-warning">Suspend</span> -->
 									<button type="button"  (click)="showDialog(rowData._id)" class="btn btn-blue" title="Suspend User"><i class="fa fa-ban"></i></button>
 								</td>
 							</tr>
@@ -87,11 +86,7 @@
 	</section>
 </div>
 <ng-template #noRecord>No Record Found</ng-template>
-
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="500" height="120"></p-confirmDialog>
-
-
-
 <p-dialog header="Suspend User" [(visible)]="display" [style]="{width: '40%', height: '40%'}">
 	<div class="row">
 		<div class="col-md-12">

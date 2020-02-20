@@ -18,9 +18,7 @@ export class adminmanagesuspendedusersComponent {
 	result: any;
 	userData: any;
 	totalRecords: number;
-	//display: boolean = false;
-	//userdata:any;
-
+	
 	constructor(
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
@@ -28,9 +26,8 @@ export class adminmanagesuspendedusersComponent {
 		private spinner: NgxSpinnerService,
 		private messageService: MessageService,
 		private confirmationService: ConfirmationService,
-	) {
-		
-	}
+	) { }
+	
 	ngOnInit() {
 		this.loadSuspendedUsersData();
 	}

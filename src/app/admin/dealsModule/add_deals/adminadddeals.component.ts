@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { Router, ActivatedRoute, Params, Data } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { MessageService, ConfirmationService } from 'primeng/api';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { AdminService } from '../../../services/admin.service';
-import { AppSettings } from '../../../../../appSettings';
+import {Component} from '@angular/core';
+import {DatePipe} from '@angular/common';
+import {Router, ActivatedRoute, Params, Data} from '@angular/router';
+import {NgForm} from '@angular/forms';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {MessageService, ConfirmationService} from 'primeng/api';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {AdminService} from '../../../services/admin.service';
+import {AppSettings} from '../../../../../appSettings';
 
 @Component({
    selector: 'adminadddeals',
@@ -32,8 +32,7 @@ export class adminadddealsComponent {
       private messageService: MessageService,
       private confirmationService: ConfirmationService,
       private datePipe: DatePipe
-   ) {
-   }
+   ) { }
 
    ngOnInit() {
       this.loadDeals();
@@ -53,6 +52,7 @@ export class adminadddealsComponent {
          });
       }
    }
+   
    handleFileInput(fileInput: any) {
       this.filesToUpload = <Array<File>> fileInput.target.files;
    }
@@ -62,12 +62,10 @@ export class adminadddealsComponent {
       this.adminService.admin_add_deal(this.model,this.filesToUpload).then(result => {
          this.result = result;
          if (this.result.status === 'success') {
-            //this.spinner.hide();
             this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
             this.router.navigate(['/admin/managedeals']);
          } else {
-           // this.spinner.hide();
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
+           this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
          }
          this.spinner.hide();
       });
@@ -81,9 +79,9 @@ export class adminadddealsComponent {
       (err) => console.log(err),
       () => {
          if (this.result.status === 'success') {
-            this.spinner.hide();
             this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
             this.router.navigate(['/admin/managedeals']);
+            this.spinner.hide();
          } else {
             this.spinner.hide();
             this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
@@ -106,7 +104,6 @@ export class adminadddealsComponent {
 				   if (this.result.status === 'success') {
 					   this.spinner.hide();
 					   this.messageService.add({severity:'success', summary: 'Success', detail:this.result.message});
-                  //this.router.navigate(['/admin/managedeals']);
                   this.loadDeals();
 				   } else {
 					   this.spinner.hide();
@@ -120,5 +117,3 @@ export class adminadddealsComponent {
 	   });
    }
 }
-
-

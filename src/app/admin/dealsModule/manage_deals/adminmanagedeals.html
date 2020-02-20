@@ -4,7 +4,6 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<h1 class="m-0 text-dark">Manage Deals</h1>
-					<!--<button type="text" [routerLink]="['/admin/adddeals']"  class="btn btn-grey" title="Add Deals" style="color:#007AD4;font-weight: bold;float:right;"><i class="fa fa-plus" aria-hidden="true"></i>Add Deal</button>--->
 				</div>
 			</div>
 		</div>
@@ -28,15 +27,12 @@
 							</th>
 							<th style="width: 10%" [pSortableColumn]="'discPer'">
 								Offer
-								<!--<p-sortIcon [field]="'discPer'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>-->
 							</th>
 							<th style="width: 22%" [pSortableColumn]="'content'">
 								Description
-								<!--<p-sortIcon [field]="'content'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>-->
 							</th>
 							<th style="width: 10%" [pSortableColumn]="'expireOn'">
 								Expire On
-								<!--<p-sortIcon [field]="'expireOn'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>-->
 							</th>
 							<th style="width: 7%">Order</th>
 							<th style="width: 8%">Status</th>
@@ -49,7 +45,6 @@
 							<td>{{rowData.rName}}</td>
 							<td>{{rowData.discPer}}</td>
 							<td>{{rowData.description.substring(0,100)}}.....</td>
-							
 							<td>
 								<ng-container *ngIf="rowData.expireOn;">
 									{{rowData.expireOn | date:'mediumDate'}}
@@ -63,7 +58,7 @@
 								<ng-template #deactiveStatusText>Deactive</ng-template>
 							</td>
 							<td>
-								<button type="text" [routerLink]="['/admin/adddeals']" [queryParams]="{ id: rowData._id }" class="btn btn-grey" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+								<button type="text" [routerLink]="['/admin/adddeals']" [queryParams]="{ id: rowData._id }" class="btn btn-grey" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i></button>
 								<button type="text" (click)=delete_deal(rowData._id);  class="btn btn-grey" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
 								<button type="text" (click)=status_change(rowData._id,rowData.status);  class="btn btn-grey">
 									<ng-container *ngIf="rowData.status == 1; else deactiveStatus">
@@ -71,25 +66,22 @@
 									</ng-container>
 									<ng-template #deactiveStatus><i class="fa fa-toggle-on" title="Activate User"></i></ng-template>
 								</button>
-								<!-- <button type="button" (click)="showDialog(rowData._id)" pButton  label="Change Order"></button> -->
 								<i class="fa fa-bars" aria-hidden="true" (click)=showDialog(rowData._id); title="Reorder"></i>
-								<!-- <button type="text" (click)=showDialog(rowData._id);  class="btn btn-grey" title="Delete"><i class="fa fa-bars" aria-hidden="true"></i></button> -->
 							</td>
 						</tr>
 					</ng-template>
 				</p-table>
 			</div>
 		</div>
-</section>
+	</section>
 </div>
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="500" height="120"></p-confirmDialog>
-
 <p-dialog header="Update Deal Order" [(visible)]="display" [style]="{width: '40%', height: '40%'}">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="login-panel panel panel-default">
 				<div class="panel-body">
-					<form name="updateDealOrderform" (ngSubmit)="update_order()" #updateDealOrderForm="ngForm">
+					<form name="updateDealOrderform" #updateDealOrderForm="ngForm">
 						<input type="hidden"  name="_id" [(ngModel)]="model._id" #id="ngModel"/>
 						<fieldset>
 							<div class="form-group">
@@ -99,8 +91,7 @@
 									<span class="error" *ngIf="dealOrder.errors?.number">Only numbers allowed.</span>
 								</div> 
 							</div>
-							<button type="submit" class="btn btn-lg btn-success btn-block" [disabled]="! updateDealOrderForm.valid">Update Deal Order<i class="fa fa-angle-right"></i> 
-							</button>
+							<button type="button" (click)="update_order()" class="btn btn-primary subBut" [disabled]="! updateDealOrderForm.valid">Update Deal Order</button>
 						</fieldset>
 					</form>
 				</div>

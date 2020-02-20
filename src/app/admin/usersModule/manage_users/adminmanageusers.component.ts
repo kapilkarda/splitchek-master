@@ -107,40 +107,34 @@ export class adminmanageusersComponent {
 	  });
 	}
 	loadUser(userId){ 
-		//this.dealId = this.activatedRoute.snapshot.queryParams['id'];
 		if (userId !== undefined) {
 			this.adminService.admin_load_userData(userId).subscribe(userdata => {
 				if (userdata.status === 'success') {
 					this.userdata = userdata.data;
-					//this.dealdata.expireOn = this.datePipe.transform(this.dealdata.expireOn, 'yyyy-MM-dd');
 					this.model = this.userdata;
-					//this.dealImages = this.dealdata.dealImages;
-					//this.imagePath = AppSettings.API_ENDPOINT+'/images/admin/dealsPics/';
-					//console.log("dataaaaaaaaaaaaa")
 				}
 			});
 		}
 	}
+	
 	showDialog(userId) { 
 		this.loadUser(userId);
 		this.display = true;
-  }
+  	}
 
-  suspend_user() {
-	this.spinner.show();
-	this.adminService.admin_suspend_user(this.model).subscribe(result => {
-		this.result = result;
-		if (this.result.status === 'success') {
-			this.spinner.hide();
-			this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
-			//this.router.navigate(['/admin/managedeals']);
-			this.display = false;
-			this.loadUsersData();
-		} else {
-			this.spinner.hide();
-			this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
-		}
-	});
-}
-
+  	suspend_user() {
+		this.spinner.show();
+		this.adminService.admin_suspend_user(this.model).subscribe(result => {
+			this.result = result;
+			if (this.result.status === 'success') {
+				this.spinner.hide();
+				this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
+				this.display = false;
+				this.loadUsersData();
+			} else {
+				this.spinner.hide();
+				this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
+			}
+		});
+	}
 }
