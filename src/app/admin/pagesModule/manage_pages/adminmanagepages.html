@@ -9,7 +9,7 @@
 		</div>
 	</section> 
 	<section class="content">   
-		<div class="card" *ngIf="pagesData.length > 0;  else noRecord ">
+		<div class="card" *ngIf="pagesData && pagesData.length > 0;  else noRecord ">
 			<div class="card-body table-responsive p-0">
 				<p-table #dt *ngIf="pagesData" [value]="pagesData" [paginator]="true" 
 				[rows]="10" [globalFilterFields]="['title']" [totalRecords]="totalRecords" [alwaysShowPaginator]="false" class="table table-striped table-bordered table-hover" >
@@ -59,11 +59,9 @@
 								
 								<button type="text" (click)=status_change(rowData._id,rowData.status);  class="btn btn-grey">
 									<ng-container *ngIf="rowData.status == '1'; else deactiveStatus">
-										<!-- <span class="badge bg-danger">Deactivate</span> -->
 										<i class="fa fa-toggle-off" title="Deactivate User"></i>
 									</ng-container>
 									<ng-template #deactiveStatus>
-										<!-- <span class="badge bg-success">Activate</span> -->
 										<i class="fa fa-toggle-on" title="Activate User"></i>
 									</ng-template>
 								</button>

@@ -41,7 +41,6 @@ export class adminmanagepagesComponent {
 		() => {
 			if (this.result.status === 'success') {
 				this.pagesData = this.result.data;
-				console.log("pagesData ",this.pagesData)
 				this.totalRecords = this.result.data.length;
 				this.spinner.hide();
 			} else {

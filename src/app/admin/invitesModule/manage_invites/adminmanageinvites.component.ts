@@ -41,7 +41,6 @@ export class adminmanageinvitesComponent {
 		() => {
 			if (this.result.status === 'success') {
 				this.invitesData = this.result.data;
-				console.log("invitesData ",this.invitesData)
 				this.totalRecords = this.result.data.length;
 				this.spinner.hide();
 			} else {

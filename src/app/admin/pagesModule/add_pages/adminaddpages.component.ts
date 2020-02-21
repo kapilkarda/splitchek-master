@@ -29,10 +29,12 @@ export class adminaddpagesComponent {
    ngOnInit() {
       this.pageId = this.activatedRoute.snapshot.queryParams['id'];
       if (this.pageId !== undefined) {
+         this.spinner.show();
          this.adminService.admin_load_pageData(this.pageId).subscribe(pagedata => {
             if (pagedata.status === 'success') {
                this.pagedata = pagedata.data;
                this.model = this.pagedata;
+               this.spinner.hide();
             }
          });
       }

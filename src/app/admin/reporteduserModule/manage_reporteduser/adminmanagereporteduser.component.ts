@@ -41,7 +41,6 @@ export class adminmanagereporteduserComponent {
 		() => {
 			if (this.result.status === 'success') {
 				this.reportedData = this.result.data;
-				console.log("reportedData ",this.reportedData)
 				this.totalRecords = this.result.data.length;
 				this.spinner.hide();
 			} else {

@@ -53,7 +53,7 @@
 								</div>
 								<div class="card-footer">
 									<ng-container *ngIf="pageId;else childButton">
-										<button type="button" (click)="add_page()" class="btn btn-primary" [disabled]="! addpageForm.valid">Edit Page <i class="fa fa-angle-right"></i></button>
+										<button type="button" (click)="add_page()" class="btn btn-primary subBut" [disabled]="! addpageForm.valid">Edit Page </button>
 									</ng-container>
 									<ng-template #childButton>
 										<button type="button" (click)="add_page()" class="btn btn-primary subBut" [disabled]="! addpageForm.valid">Add Page</button>
