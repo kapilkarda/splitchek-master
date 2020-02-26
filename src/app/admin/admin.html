@@ -1,8 +1,6 @@
 <div class="wrapper">
-	<!--<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">-->
-		<adminheader *ngIf="isLoginPage() "></adminheader>
-		<adminsidebar *ngIf="isLoginPage()"></adminsidebar>
-	<!--</nav>-->
+	<adminheader *ngIf="isLoginPage() "></adminheader>
+	<adminsidebar *ngIf="isLoginPage()"></adminsidebar>
 	<router-outlet></router-outlet>
 	<adminfooter *ngIf="isLoginPage()"></adminfooter>
 </div>

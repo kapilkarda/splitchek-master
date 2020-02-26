@@ -49,8 +49,4 @@ export class adminmanagereporteduserComponent {
 			}
 		});
 	}
-
-	
-
-	
 }

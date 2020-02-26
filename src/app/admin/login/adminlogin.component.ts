@@ -6,9 +6,9 @@ import {MessageService} from 'primeng/api';
 import { AdminService } from '../../services/admin.service';
 
 @Component({
-    selector: 'adminlogin',
-    templateUrl: './adminlogin.html',
-    styleUrls: ['adminlogin.css'],
+   selector: 'adminlogin',
+   templateUrl: './adminlogin.html',
+   styleUrls: ['adminlogin.css'],
 })
 
 export class adminloginComponent {
@@ -21,9 +21,7 @@ export class adminloginComponent {
       private adminService: AdminService,
       private spinner: NgxSpinnerService,
       private messageService: MessageService,
-   ) {
-
-   }
+   ) { }
 
 	ngOnInit() {
    	if(localStorage.getItem('token') != null && localStorage.getItem('token') !='null'){
@@ -50,5 +48,3 @@ export class adminloginComponent {
       });
    }
 }
-
-

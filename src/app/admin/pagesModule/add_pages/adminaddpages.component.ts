@@ -57,24 +57,4 @@ export class adminaddpagesComponent {
          }
       });
    }
-
-   /*edit_page() {
-      this.spinner.show();
-      this.adminService.admin_edit_page(this.model).subscribe(result => {
-         this.result = result;
-      },
-      (err) => console.log(err),
-      () => {
-         if (this.result.status === 'success') {
-            this.spinner.hide();
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
-            this.router.navigate(['/admin/managepages']);
-         } else {
-            this.spinner.hide();
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
-         }
-      });
-   }*/
 }
-
-

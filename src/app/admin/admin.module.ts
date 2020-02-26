@@ -9,6 +9,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {SpinnerModule} from 'primeng/spinner';
 import {DialogModule} from 'primeng/dialog';
 import {CKEditorModule} from 'ng2-ckeditor';
+import { CustomFormsModule } from 'ng2-validation'
 import {adminComponent} from './admin.component';
 import {adminloginComponent} from './login/adminlogin.component';
 import {adminheaderComponent} from './header/adminheader.component';
@@ -24,12 +25,9 @@ import {adminadddealsComponent} from './dealsModule/add_deals/adminadddeals.comp
 import {adminmanagedealsComponent} from './dealsModule/manage_deals/adminmanagedeals.component';
 import {adminmanageinvitesComponent} from './invitesModule/manage_invites/adminmanageinvites.component';
 import {adminmanagereporteduserComponent} from './reporteduserModule/manage_reporteduser/adminmanagereporteduser.component';
-//import {adminaddtraitsComponent} from './traitsModule/admin_add_traits/adminaddtraits.component';
-//import {adminmanagetraitsComponent} from './traitsModule/admin_manage_traits/adminmanagetraits.component';
+import {adminmanageblockeduserComponent} from './blockeduserModule/manage_blockeduser/adminmanageblockeduser.component';
 import {AdminService} from '../services/admin.service';
 import {routing} from './admin.routing';
-
-import { CustomFormsModule } from 'ng2-validation'
 @NgModule({
 	imports: [
 		BrowserAnimationsModule,
@@ -61,8 +59,7 @@ import { CustomFormsModule } from 'ng2-validation'
 		adminmanagedealsComponent,
 		adminmanageinvitesComponent,
 		adminmanagereporteduserComponent,
-		//adminaddtraitsComponent,
-		//adminmanagetraitsComponent,
+		adminmanageblockeduserComponent,
 	],
 	providers: [AdminService]
 })

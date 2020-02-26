@@ -8,15 +8,15 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AdminService } from '../../../services/admin.service';
 
 @Component({
-	selector: 'adminmanageinvites',
-	templateUrl: './adminmanageinvites.html',
-	styleUrls: ['adminmanageinvites.css'],
+	selector: 'adminmanageblockeduser',
+	templateUrl: './adminmanageblockeduser.html',
+	styleUrls: ['adminmanageblockeduser.css'],
 })
 
-export class adminmanageinvitesComponent {
+export class adminmanageblockeduserComponent {
 	model: any = {};
 	result: any;
-	invitesData: any;
+	reportedData: any;
 	totalRecords: number;
 
 	constructor(
@@ -29,18 +29,18 @@ export class adminmanageinvitesComponent {
 	) {
 	}
 	ngOnInit() {
-		this.loadinvitesData();
+		this.loadblockedusersData();
 	}
 
-	loadinvitesData() {
+	loadblockedusersData() {
 		this.spinner.show();
-		this.adminService.admin_list_invites().subscribe((result) => {
+		this.adminService.admin_list_blockedusers().subscribe((result) => {
 			this.result = result;
 		},
 		(err) => this.spinner.hide(),
 		() => {
 			if (this.result.status === 'success') {
-				this.invitesData = this.result.data;
+				this.reportedData = this.result.data;
 				this.totalRecords = this.result.data.length;
 				this.spinner.hide();
 			} else {
@@ -49,4 +49,8 @@ export class adminmanageinvitesComponent {
 			}
 		});
 	}
+
+	
+
+	
 }
