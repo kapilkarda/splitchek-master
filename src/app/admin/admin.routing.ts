@@ -13,6 +13,7 @@ import {adminmanageblockeduserComponent} from './blockeduserModule/manage_blocke
 import {adminmanageusersComponent} from './usersModule/manage_users/adminmanageusers.component';
 import {adminmanagesuspendedusersComponent} from './usersModule/manage_suspended_users/adminmanagesuspendedusers.component';
 import {adminuserdetailComponent} from './usersModule/user_detail/adminuserdetail.component';
+import {admincharmrdetailComponent} from './usersModule/charmr_detail/admincharmrdetail.component';
 
 const routes: Routes = [
 	{ 
@@ -30,6 +31,8 @@ const routes: Routes = [
          {path: 'managereportedusers', component: adminmanagereporteduserComponent},
          {path: 'manageblockedusers', component: adminmanageblockeduserComponent},
          {path: 'viewdetail/:id', component: adminuserdetailComponent},
+         {path: 'viewcharmrdetail/:id', component: admincharmrdetailComponent},
+         
          {path: '**', redirectTo: 'dashboard'},
      	]
    }

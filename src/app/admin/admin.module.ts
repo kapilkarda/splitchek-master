@@ -19,6 +19,7 @@ import {adminfooterComponent} from './footer/adminfooter.component';
 import {adminmanageusersComponent} from './usersModule/manage_users/adminmanageusers.component';
 import {adminmanagesuspendedusersComponent} from './usersModule/manage_suspended_users/adminmanagesuspendedusers.component';
 import {adminuserdetailComponent} from './usersModule/user_detail/adminuserdetail.component';
+import {admincharmrdetailComponent} from './usersModule/charmr_detail/admincharmrdetail.component';
 import {adminaddpagesComponent} from './pagesModule/add_pages/adminaddpages.component';
 import {adminmanagepagesComponent} from './pagesModule/manage_pages/adminmanagepages.component';
 import {adminadddealsComponent} from './dealsModule/add_deals/adminadddeals.component';
@@ -53,6 +54,7 @@ import {routing} from './admin.routing';
 		adminmanageusersComponent,
 		adminmanagesuspendedusersComponent,
 		adminuserdetailComponent,
+		admincharmrdetailComponent,
 		adminaddpagesComponent,
 		adminmanagepagesComponent,
 		adminadddealsComponent,

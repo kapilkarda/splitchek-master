@@ -198,6 +198,15 @@ export class AdminService {
       let options = { headers: headers };
       return this.http.get(AppSettings.API_ENDPOINT + 'getUserById', options).map(res => <any>res);
    }
+   admin_load_petsByuserId(userId) {
+      let headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('token'),
+          'userid': userId
+      });
+      let options = { headers: headers };
+      return this.http.get(AppSettings.API_ENDPOINT + 'getUserPetDetail', options).map(res => <any>res);
+   }
    
    admin_delete_user(user) { 
       let headers = new HttpHeaders({
