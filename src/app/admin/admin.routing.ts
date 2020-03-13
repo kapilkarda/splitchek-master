@@ -14,6 +14,8 @@ import {adminmanageusersComponent} from './usersModule/manage_users/adminmanageu
 import {adminmanagesuspendedusersComponent} from './usersModule/manage_suspended_users/adminmanagesuspendedusers.component';
 import {adminuserdetailComponent} from './usersModule/user_detail/adminuserdetail.component';
 import {admincharmrdetailComponent} from './usersModule/charmr_detail/admincharmrdetail.component';
+import {adminmanagefeedbacksComponent} from './feedbackModule/manage_feedbacks/adminmanagefeedbacks.component';
+import {adminmanageuserdownloadsComponent} from './downloadModule/manage_downloads/adminmanageuserdownloads.component';
 
 const routes: Routes = [
 	{ 
@@ -22,6 +24,8 @@ const routes: Routes = [
    		{path: '', component: adminloginComponent},
          {path: 'dashboard', component: admindashboardComponent},
          {path: 'manageusers', component: adminmanageusersComponent},
+         {path: 'managedownloads', component: adminmanageuserdownloadsComponent},
+         
          {path: 'suspendedusers', component: adminmanagesuspendedusersComponent},
          {path: 'addpages', component: adminaddpagesComponent}, 
          {path: 'managepages', component: adminmanagepagesComponent},
@@ -30,6 +34,7 @@ const routes: Routes = [
          {path: 'manageinvites', component: adminmanageinvitesComponent},
          {path: 'managereportedusers', component: adminmanagereporteduserComponent},
          {path: 'manageblockedusers', component: adminmanageblockeduserComponent},
+         {path: 'managefeedbacks', component: adminmanagefeedbacksComponent},
          {path: 'viewdetail/:id', component: adminuserdetailComponent},
          {path: 'viewcharmrdetail/:id', component: admincharmrdetailComponent},
          

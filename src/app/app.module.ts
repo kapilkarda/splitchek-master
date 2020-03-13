@@ -24,7 +24,8 @@ import {ConfirmationService} from 'primeng/api';
     AdminModule,
     AppRoutingModule,
     NgxSpinnerModule,
-    TableModule
+    TableModule,
+    ToastModule
   ],
   providers: [MessageService,ConfirmationService,DatePipe],
   bootstrap: [AppComponent]

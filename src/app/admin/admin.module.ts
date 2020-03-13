@@ -9,17 +9,20 @@ import {CalendarModule} from 'primeng/calendar';
 import {SpinnerModule} from 'primeng/spinner';
 import {DialogModule} from 'primeng/dialog';
 import {CKEditorModule} from 'ng2-ckeditor';
-import { CustomFormsModule } from 'ng2-validation'
+import {CustomFormsModule} from 'ng2-validation';
+import {MultiSelectModule} from 'primeng/multiselect';
 import {adminComponent} from './admin.component';
 import {adminloginComponent} from './login/adminlogin.component';
 import {adminheaderComponent} from './header/adminheader.component';
 import {adminsidebarComponent} from './sidebar/adminsidebar.component';
 import {admindashboardComponent} from './dashboardModule/admin_dashboard/admindashboard.component';
 import {adminfooterComponent} from './footer/adminfooter.component';
+import {adminmanagefeedbacksComponent} from './feedbackModule/manage_feedbacks/adminmanagefeedbacks.component';
 import {adminmanageusersComponent} from './usersModule/manage_users/adminmanageusers.component';
 import {adminmanagesuspendedusersComponent} from './usersModule/manage_suspended_users/adminmanagesuspendedusers.component';
 import {adminuserdetailComponent} from './usersModule/user_detail/adminuserdetail.component';
 import {admincharmrdetailComponent} from './usersModule/charmr_detail/admincharmrdetail.component';
+import {adminmanageuserdownloadsComponent} from './downloadModule/manage_downloads/adminmanageuserdownloads.component';
 import {adminaddpagesComponent} from './pagesModule/add_pages/adminaddpages.component';
 import {adminmanagepagesComponent} from './pagesModule/manage_pages/adminmanagepages.component';
 import {adminadddealsComponent} from './dealsModule/add_deals/adminadddeals.component';
@@ -42,6 +45,7 @@ import {routing} from './admin.routing';
 		SpinnerModule,
 		DialogModule,
 		CKEditorModule,
+		MultiSelectModule,
 		routing
 	],
 	declarations: [
@@ -51,7 +55,9 @@ import {routing} from './admin.routing';
 		adminsidebarComponent,
 		admindashboardComponent,
 		adminfooterComponent,
+		adminmanagefeedbacksComponent,
 		adminmanageusersComponent,
+		adminmanageuserdownloadsComponent,
 		adminmanagesuspendedusersComponent,
 		adminuserdetailComponent,
 		admincharmrdetailComponent,

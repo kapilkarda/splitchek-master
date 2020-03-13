@@ -295,4 +295,22 @@ export class AdminService {
       let options = { headers: headers };
       return this.http.get(AppSettings.API_ENDPOINT + 'getTraitById', options).map(res => <any>res);
    }
+   admin_list_feedbacks() {
+      let headers = new HttpHeaders({
+         'Content-Type': 'application/json',
+         'Authorization': localStorage.getItem('token')
+      });
+      let options = { headers: headers };
+      return this.http.get(AppSettings.API_ENDPOINT + 'adminListFeedbacks', options).map(res => <any>res);
+   }
+   admin_filterdata(user) {
+      let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      let options = { headers: headers, method: 'post' };
+      return this.http.post(AppSettings.API_ENDPOINT + 'adminFilterUsers', user, options).map(res => <any>res);
+   }
+    admin_downloaddata(user) {
+      let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      let options = { headers: headers, method: 'post' };
+      return this.http.post(AppSettings.API_ENDPOINT + 'adminDownloadData', user, options).map(res => <any>res);
+   } 
 }
