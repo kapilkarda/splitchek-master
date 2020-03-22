@@ -29,6 +29,10 @@ export class adminmanageuserdownloadsComponent {
 	filter:boolean = false;
 	data:any = [];
 	dataObject:any = {};
+	dogCount:number = 0;
+	catCount:number = 0;
+	fishCount:number = 0;
+	birdCount:number = 0;
 	
 	constructor(
 		private router: Router,
@@ -60,6 +64,7 @@ export class adminmanageuserdownloadsComponent {
 		() => {
 			if (this.result.status === 'success') {
 				this.userData = this.result.data;
+				console.log("userData ", this.userData.length);
 				this.totalRecords = this.result.data.length;
 				this.spinner.hide();
 			} else {
@@ -140,7 +145,11 @@ export class adminmanageuserdownloadsComponent {
 					}
 					if(this.model.fielddata.includes('status')){
 						if(item.status!=undefined){
-							objects["status"] = item.status;
+							if(item.status==1){
+								objects["status"] = 'Active';
+							}else if(item.status==1){
+								objects["status"] = 'Deactive';
+							}
 						}else{
 							objects["status"] = "";
 						}
@@ -161,11 +170,67 @@ export class adminmanageuserdownloadsComponent {
 					}
 					if(this.model.fielddata.includes('loginType')){
 						if(item.loginType!=undefined){
-							objects["loginType"] = item.loginType;
+							if(item.loginType == 1){
+								objects["loginType"] = 'Mobile';
+							}else if(item.loginType == 2){
+								objects["loginType"] = 'Email';
+							}else if(item.loginType == 3){
+								objects["loginType"] = 'FaceBook';
+							}
 						}else{
 							objects["loginType"] = "";
 						}
 					}
+					//let dogCount = 0;
+					//let dogCount: number = 0;
+					//let catCount = 0;
+					//let fishCount = 0;
+					this.dogCount = 0;
+					this.catCount = 0;
+					this.fishCount = 0;
+					this.birdCount = 0;
+					if(item.pets.length>0){ 
+						for(let i=0;i<item.pets.length;i++){
+							if(item.pets[i].petType == "Dog"){
+								this.dogCount = this.dogCount + 1;
+								//objects["Dog"] = dogCount;
+							}
+							if(item.pets[i].petType == "Cat"){
+								this.catCount = this.catCount + 1;
+								//objects["Cat"] = catCount;
+							}
+							if(item.pets[i].petType == "Fish"){
+								this.fishCount = this.fishCount + 1;
+								//objects["Cat"] = catCount;
+							}
+							if(item.pets[i].petType == "Bird"){
+								this.birdCount = this.birdCount + 1;
+								//objects["Cat"] = catCount;
+							}
+						}
+						objects["Dog"] = this.dogCount;
+						objects["Cat"] = this.catCount;
+						objects["Fish"] = this.fishCount;
+						objects["Bird"] = this.birdCount;
+					}else{
+						objects["Dog"] = this.dogCount;
+						objects["Cat"] = this.catCount;
+						objects["Fish"] = this.fishCount;
+						objects["Bird"] = this.birdCount;
+					}
+					
+					/*let catCount = 0;
+					if(item.pets.length>0){ 
+						for(let i=0;i<item.pets.length;i++){
+							if(item.pets[i].petType == "Dog"){
+								dogCount = parseInt(dogCount) + 1;
+								objects["Dog"] = dogCount;
+							}
+						}
+					}else{
+						objects["Dog"] = dogCount;
+					}*/
+					
 
 					/* if(this.model.fielddata[i] == 'email'){
 						if(item.email!=undefined){ 
