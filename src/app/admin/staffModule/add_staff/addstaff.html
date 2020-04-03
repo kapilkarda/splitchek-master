@@ -1,0 +1,81 @@
+<div class="content-wrapper">
+	<section class="content-header">
+   	<div class="container-fluid">
+      	<div class="row mb-2">
+				<div class="col-sm-12">
+					<h1 class="m-0 text-dark">Add Staff</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+   <section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10">
+					<div class="card card-primary">
+						<div class="card-header">
+							<h3 class="card-title">Add Staff</h3>
+						</div>
+						<div class="card-body table-responsive p-0">
+						<form name="addstaffform" (ngSubmit)="add_staff()" #addstaffForm="ngForm">
+							<input type="hidden"  name="id" [(ngModel)]="model.id" #id="ngModel"/>
+               		<div class="card-body">
+								<div class="form-group">
+									<label for="Name">Staff Name </label>
+                     		<input type="text" class="form-control" name="name" id="Name" placeholder="Staff Name ..." [(ngModel)]="model.name" #name="ngModel" required  [maxlength]="50"/>
+                     		<div *ngIf="name.errors && name.touched">   
+                        		<span class="error" *ngIf="name.errors?.required">Staff Name is mandatory.</span>
+                     		</div> 
+								</div>
+								<div class="form-group">
+									<label for="Email">Staff Email </label>
+                     		<input type="text" class="form-control" name="email" id="Email" placeholder="Enter Staff Email ..." [(ngModel)]="model.email" #email="ngModel" required  [maxlength]="50"/>
+                     		<div *ngIf="email.errors && email.touched">   
+                        		<span class="error" *ngIf="name.errors?.required">Staff Email is mandatory.</span>
+                     		</div> 
+								</div>
+								<div class="form-group">
+									<label for="Password">Password </label>
+                     		<input type="password" class="form-control" name="password" id="Password" placeholder="Enter Password ..." [(ngModel)]="model.password" #password="ngModel" required  [maxlength]="50"/>
+                     		<div *ngIf="password.errors && password.touched">   
+                        		<span class="error" *ngIf="password.errors?.required">Password is mandatory.</span>
+                     		</div> 
+								</div>
+
+								<div class="form-group">
+									<label>Select Role</label>
+									<select class="form-control" [(ngModel)]="model.role" name="role">
+										<option value="">No Role</option>
+										<option *ngFor="let role of roleList" [value]="role._id">
+											{{role.rolename}}
+										 </option>
+									</select>
+								 </div>
+
+								
+							 
+
+								
+
+
+								
+								
+								
+								<div class="card-footer">
+									<!-- <ng-container *ngIf="pageId;else childButton">
+										<button type="button" (click)="add_page()" class="btn btn-primary subBut" [disabled]="! addpageForm.valid">Edit Page </button>
+									</ng-container>
+									<ng-template #childButton> -->
+										<button type="button" (click)="add_staff()" class="btn btn-primary subBut" [disabled]="! addstaffForm.valid">Add Staff</button>
+									<!-- </ng-template> -->
+									<button [routerLink]="['/admin/managepages']"  class="btn btn-default cancelBut"  style="font-weight: bold;float:right;">Cancel</button>
+								</div>
+							</div>
+						</form>
+					</div>
+            	</div>
+         	</div>
+      	</div>
+		</div>
+	</section>
+</div>

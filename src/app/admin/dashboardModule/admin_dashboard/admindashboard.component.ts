@@ -25,10 +25,10 @@ export class admindashboardComponent {
       this.spinner.hide();
    }
    ngOnInit() {
-   	this.registeredUsersCount();
+   	//this.registeredUsersCount();
 	}
 
-   registeredUsersCount() {
+   /*registeredUsersCount() {
 		this.spinner.show();
 		this.adminService.admin_dashboard().subscribe((result) => {
 			this.result = result;
@@ -42,5 +42,5 @@ export class admindashboardComponent {
 				this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
 			}
 		});
-	}
+	}*/
 }

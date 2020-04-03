@@ -1,0 +1,73 @@
+<div class="content-wrapper">
+	<section class="content-header">
+   	<div class="container-fluid">
+      	<div class="row mb-2">
+				<div class="col-sm-12">
+					<h1 class="m-0 text-dark">Add Category</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10">
+					<div class="card card-primary">
+						<div class="card-header">
+							<h3 class="card-title">Add Category</h3>
+						</div>
+						<div class="card-body table-responsive p-0">
+							<form name="addcategoryform" (ngSubmit)="add_category()" #addcategoryForm="ngForm">
+								<input type="hidden"  name="id" [(ngModel)]="model.id" #id="ngModel"/>
+
+
+								<!--<ngx-treeview
+									[config]="config"
+									[items]="items"
+									(selectedChange)="onSelectedChange($event)"
+									(filterChange)="onFilterChange($event)">
+								</ngx-treeview>-->
+
+
+
+
+								<div class="card-body">
+									<div class="form-group ">
+										<label for="Name">Parent Category Name </label>
+										<select class="form-control" name="parent" placeholder="Category Parent ..." [(ngModel)]="model.parent" #parent="ngModel" required>
+                      <option *ngFor="let i of categories" [value]="i._id">{{i.catname}}</option>
+                    </select>
+
+
+									</div>
+
+									<div class="form-group ">
+										<label for="Name">Category Name </label>
+										<input type="text" class="form-control" name="catname" id="CatName" placeholder="Category Name ..." [(ngModel)]="model.catname" #catname="ngModel" required  [maxlength]="50"/>
+										<div *ngIf="catname.errors && catname.touched">
+											<span class="error" *ngIf="catname.errors?.required">Category Name is mandatory.</span>
+										</div>
+                  </div>
+
+                  <div class="form-group ">
+										<label for="Name">Category Form</label>
+										<select class="form-control" name="form" placeholder="Select Form ..." [(ngModel)]="model.form" #form="ngModel" required>
+                      <option *ngFor="let i of items" [value]="i.id">{{i.value}}</option>
+                    </select>
+
+
+                  </div>
+
+									<div class="card-footer">
+										<button type="button" (click)="add_category()" class="btn btn-primary subBut" [disabled]="! addcategoryForm.valid">Add Category</button>
+										<button [routerLink]="['/admin/managecategory']"  class="btn btn-default cancelBut"  style="font-weight: bold;float:right;">Cancel</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

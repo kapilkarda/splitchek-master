@@ -1,7 +1,7 @@
 <aside class="main-sidebar custom-sidebar sidebar-dark-primary elevation-4">
 	<a [routerLink]="['/']" class="brand-link">
 		<img  src="../../../assets/img/logo.png" 
-				alt="Charmr" 
+				alt="Classified App" 
 				class="logo-image"
 				 />
 		<span class="brand-text font-weight-light"></span>
@@ -12,7 +12,7 @@
 				<img src="../../assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
-				<a href="#" class="d-block">Admin</a>
+				<a href="#" class="d-block">Super Admin</a>
 			</div>
 		</div>
 		<nav class="mt-2">
@@ -25,130 +25,60 @@
 				</li>
 				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-tasks"></i>
+						<p>Roles<i class="right fas fa-angle-left"></i></p> 
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/manageroles']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage Roles</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/addroles']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add Roles</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-user"></i>
-						<p>Users<i class="right fas fa-angle-left"></i></p>
+						<p>Staff<i class="right fas fa-angle-left"></i></p> 
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/manageusers']" class="nav-link">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managestaff']" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Manage Users</p>
+								<p>Manage Staff</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/suspendedusers']" class="nav-link">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/addstaff']" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Suspended Users</p>
+								<p>Add Staff</p>
 							</a>
 						</li>
 					</ul>
 				</li>
 				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-file"></i>
-						<p>Pages<i class="right fas fa-angle-left"></i></p>
+						<i class="nav-icon fas fa-user"></i>
+						<p>Category<i class="right fas fa-angle-left"></i></p> 
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managepages']" class="nav-link">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managecategory']" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Manage Pages</p>
+								<p>Manage category</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/addpages']" class="nav-link">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/addcategory']" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Add Page</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-utensils"></i>
-						<p>Deals<i class="right fas fa-angle-left"></i></p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managedeals']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Manage Deals</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/adddeals']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add Deals</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-user-friends"></i>
-						<p>Invites<i class="right fas fa-angle-left"></i></p> 
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/manageinvites']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Manage Invites</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-user-slash"></i>
-						<p>Reported Users<i class="right fas fa-angle-left"></i></p> 
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managereportedusers']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Manage Reported Users</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-ban"></i>
-						<p>Blocked Users<i class="right fas fa-angle-left"></i></p> 
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/manageblockedusers']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Manage Blocked Users</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-ban"></i>
-						<p>Feedbacks<i class="right fas fa-angle-left"></i></p> 
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managefeedbacks']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Manage Feedbacks</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-download"></i>
-						<p>Downloads<i class="right fas fa-angle-left"></i></p> 
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managedownloads']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>User Emails</p>
+								<p>Add Category</p>
 							</a>
 						</li>
 					</ul>

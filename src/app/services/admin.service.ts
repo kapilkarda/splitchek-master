@@ -6,12 +6,301 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AdminService {
-   constructor(private http: HttpClient) { }
-   admin_login(user) {
-      let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      let options = { headers: headers, method: 'post' };
-      return this.http.post(AppSettings.API_ENDPOINT + 'adminLogin', user, options).map(res => <any>res);
-   }
+	constructor(private http: HttpClient) { }
+
+	admin_login(user) {
+		let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+		let options = { headers: headers, method: 'post' };
+		return this.http.post(AppSettings.API_ENDPOINT + 'adminLogin', user, options).map(res => <any>res);
+	}
+
+	adminGetRolesList() {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+		});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'getRoles', options).map(res => <any>res);
+	}
+
+	adminGetModuleList() {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+		});
+    	let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'getModules', options).map(res => <any>res);
+	}
+
+	admin_load_roleData(roleId) {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token'),
+			'roleid': roleId.toString()
+		});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'getrolebyid', options).map(res => <any>res);
+	}
+
+	admin_add_role(role) {
+		let headers = new HttpHeaders({
+			'Content-Type':'application/json',
+			'Authorization': localStorage.getItem('token')
+		});
+    	let options = { headers: headers, method: 'post' };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'adminAddRole',role,options).map(res => <any>res);
+	}
+
+	admin_edit_role(role) {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+		});
+    	let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'adminAddRole',role,options).map(res => <any>res);
+	}
+
+	admin_change_role_status(roleId,currentStatus) {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token'),
+			'roleid': roleId.toString(),
+			'status': currentStatus.toString()
+		});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'adminChangeRoleStatus', options).map(res => <any>res);
+	}
+
+	admin_delete_role(roleId) {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token'),
+			'roleid': roleId.toString()
+		});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'adminDeleteRole', options).map(res => <any>res);
+	}
+
+	admin_add_staff(staff) {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+		});
+    	let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'adminAddStaff', staff,options).map(res => <any>res);
+	}
+
+	admin_load_staffData(staffId) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token'),
+      	'staffid': staffId.toString()
+    	});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'getstaffbyid', options).map(res => <any>res);
+	}
+
+	adminGetStaffList() {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+    	});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'getStaff', options).map(res => <any>res);
+	}
+
+	admin_delete_staff(staffId) {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token'),
+			'staffid': staffId.toString()
+    	});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'adminDeleteStaff', options).map(res => <any>res);
+	}
+
+	admin_change_staff_status(staffId,currentStatus) {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token'),
+			'roleid': staffId.toString(),
+			'status': currentStatus.toString()
+		});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'adminChangeStaffStatus', options).map(res => <any>res);
+	}
+
+	admin_add_category(data) {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+		});
+    	let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'addCategory', data,options).map(res => <any>res);
+	}
+  admin_edit_category(data) {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+		});
+    	let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'editCategory', data,options).map(res => <any>res);
+	}
+	adminGetCategoryList() {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+    	});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'listCategory', options).map(res => <any>res);
+	}
+
+	admin_delete_category(categoryId) {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token'),
+      });
+    let data={
+      "id":categoryId
+    }
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'deleteCategory',data, options).map(res => <any>res);
+	}
+
+	admin_change_category_status(categoryId,currentStatus) {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token'),
+			'categoryid': categoryId.toString(),
+			'status': currentStatus.toString()
+		});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'adminChangeCategoryStatus', options).map(res => <any>res);
+	}
+
+	admin_load_categoryData(categoryId) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token'),
+      	'categoryid': categoryId.toString()
+      });
+      let data = {
+        id:categoryId
+      }
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'categoryById',data, options).map(res => <any>res);
+	}
+
+	/*admin_load_roleData(roleId) {
+
+
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+   	});
+    	let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'getrolebyid', options).map(res => <any>res);
+
+
+
+
+	}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /*
    admin_add_page(page) {
    	let headers = new HttpHeaders({
          'Content-Type': 'application/json',
@@ -28,7 +317,7 @@ export class AdminService {
     	let options = { headers: headers };
     	return this.http.get(AppSettings.API_ENDPOINT + 'adminListPages', options).map(res => <any>res);
    }
-   admin_change_page_status(pageId,currentStatus) { 
+   admin_change_page_status(pageId,currentStatus) {
       let headers = new HttpHeaders({
       	'Content-Type': 'application/json',
       	'Authorization': localStorage.getItem('token'),
@@ -38,7 +327,7 @@ export class AdminService {
     	let options = { headers: headers };
     	return this.http.get(AppSettings.API_ENDPOINT + 'adminChangePageStatus',  options).map(res => <any>res);
    }
-   admin_load_pageData(pageId) { 
+   admin_load_pageData(pageId) {
    	let headers = new HttpHeaders({
       	'Content-Type': 'application/json',
       	'Authorization': localStorage.getItem('token'),
@@ -47,7 +336,7 @@ export class AdminService {
     	let options = { headers: headers };
     	return this.http.get(AppSettings.API_ENDPOINT + 'getPageById', options).map(res => <any>res);
    }
-   admin_edit_page(page) { 
+   admin_edit_page(page) {
    	let headers = new HttpHeaders({
       	'Content-Type': 'application/json',
       	'Authorization': localStorage.getItem('token'),
@@ -55,7 +344,7 @@ export class AdminService {
     	let options = { headers: headers, method: 'post' };
     	return this.http.post(AppSettings.API_ENDPOINT + 'adminAddPage', page, options).map(res => <any>res);
    }
-   admin_delete_page(pageId) { 
+   admin_delete_page(pageId) {
    	let headers = new HttpHeaders({
       	'Content-Type': 'application/json',
       	'Authorization': localStorage.getItem('token'),
@@ -103,7 +392,7 @@ export class AdminService {
     	let options = { headers: headers };
     	return this.http.get(AppSettings.API_ENDPOINT + 'adminListDeals', options).map(res => <any>res);
  	}
-	admin_load_dealData(dealId) { 
+	admin_load_dealData(dealId) {
    	let headers = new HttpHeaders({
       	'Content-Type': 'application/json',
       	'Authorization': localStorage.getItem('token'),
@@ -112,7 +401,7 @@ export class AdminService {
     	let options = { headers: headers };
     	return this.http.get(AppSettings.API_ENDPOINT + 'getDealById', options).map(res => <any>res);
    }
-   admin_delete_deal_image(dealId,imageName) { 
+   admin_delete_deal_image(dealId,imageName) {
       let headers = new HttpHeaders({
          'Content-Type': 'application/json',
          'Authorization': localStorage.getItem('token'),
@@ -122,7 +411,7 @@ export class AdminService {
       let options = { headers: headers };
       return this.http.get(AppSettings.API_ENDPOINT + 'adminDeleteDealImage',  options).map(res => <any>res);
    }
-   admin_delete_deal(dealId) { 
+   admin_delete_deal(dealId) {
       let headers = new HttpHeaders({
          'Content-Type': 'application/json',
          'Authorization': localStorage.getItem('token'),
@@ -131,7 +420,7 @@ export class AdminService {
       let options = { headers: headers };
       return this.http.get(AppSettings.API_ENDPOINT + 'adminDeleteDeal',  options).map(res => <any>res);
    }
-   admin_change_deal_status(dealId,currentStatus) { 
+   admin_change_deal_status(dealId,currentStatus) {
       let headers = new HttpHeaders({
          'Content-Type': 'application/json',
          'Authorization': localStorage.getItem('token'),
@@ -141,7 +430,7 @@ export class AdminService {
       let options = { headers: headers };
       return this.http.get(AppSettings.API_ENDPOINT + 'adminChangeDealStatus',  options).map(res => <any>res);
    }
-   admin_update_deal_order(dealData) { 
+   admin_update_deal_order(dealData) {
    	let headers = new HttpHeaders({
       	'Content-Type': 'application/json',
       	'Authorization': localStorage.getItem('token'),
@@ -207,8 +496,8 @@ export class AdminService {
       let options = { headers: headers };
       return this.http.get(AppSettings.API_ENDPOINT + 'getUserPetDetail', options).map(res => <any>res);
    }
-   
-   admin_delete_user(user) { 
+
+   admin_delete_user(user) {
       let headers = new HttpHeaders({
          'Content-Type': 'application/json',
          'Authorization': localStorage.getItem('token'),
@@ -216,8 +505,8 @@ export class AdminService {
       });
       let options = { headers: headers };
       return this.http.get(AppSettings.API_ENDPOINT + 'adminDeleteUser',  options).map(res => <any>res);
-   }
-   admin_change_status(user,currentStatus) { 
+   }*/
+   /*admin_change_status(user,currentStatus) {
       let headers = new HttpHeaders({
          'Content-Type': 'application/json',
          'Authorization': localStorage.getItem('token'),
@@ -226,8 +515,8 @@ export class AdminService {
       });
       let options = { headers: headers };
       return this.http.get(AppSettings.API_ENDPOINT + 'adminChangeStatus',  options).map(res => <any>res);
-   }
-   admin_load_userData(userId) { 
+   }*/
+  /* admin_load_userData(userId) {
    	let headers = new HttpHeaders({
       	'Content-Type': 'application/json',
       	'Authorization': localStorage.getItem('token'),
@@ -236,7 +525,7 @@ export class AdminService {
     	let options = { headers: headers };
     	return this.http.get(AppSettings.API_ENDPOINT + 'getUserById', options).map(res => <any>res);
    }
-   admin_suspend_user(userData) { 
+   admin_suspend_user(userData) {
    	let headers = new HttpHeaders({
       	'Content-Type': 'application/json',
       	'Authorization': localStorage.getItem('token'),
@@ -260,7 +549,7 @@ export class AdminService {
       let options = { headers: headers, method: 'post' };
       return this.http.post(AppSettings.API_ENDPOINT + 'adminAddTrait', trait, options).map(res => <any>res);
    }
-   admin_edit_traits(trait) { 
+   admin_edit_traits(trait) {
       let headers = new HttpHeaders({
          'Content-Type': 'application/json',
          'Authorization': localStorage.getItem('token'),
@@ -269,7 +558,7 @@ export class AdminService {
       let options = { headers: headers, method: 'post' };
       return this.http.post(AppSettings.API_ENDPOINT + 'adminAddTrait', trait, options).map(res => <any>res);
    }
-   admin_delete_traits(trait) { 
+   admin_delete_traits(trait) {
       let headers = new HttpHeaders({
          'Content-Type': 'application/json',
          'Authorization': localStorage.getItem('token'),
@@ -312,5 +601,5 @@ export class AdminService {
       let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
       let options = { headers: headers, method: 'post' };
       return this.http.post(AppSettings.API_ENDPOINT + 'adminDownloadData', user, options).map(res => <any>res);
-   } 
+   } */
 }

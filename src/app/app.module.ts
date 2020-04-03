@@ -13,6 +13,7 @@ import {TableModule} from 'primeng/table';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {CalendarModule} from 'primeng/calendar';
 import {ConfirmationService} from 'primeng/api';
+import {TreeviewModule} from 'ngx-treeview';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {ConfirmationService} from 'primeng/api';
     AppRoutingModule,
     NgxSpinnerModule,
     TableModule,
-    ToastModule
+    ToastModule,
+	TreeviewModule.forRoot()
   ],
   providers: [MessageService,ConfirmationService,DatePipe],
   bootstrap: [AppComponent]

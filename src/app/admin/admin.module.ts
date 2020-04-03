@@ -11,13 +11,25 @@ import {DialogModule} from 'primeng/dialog';
 import {CKEditorModule} from 'ng2-ckeditor';
 import {CustomFormsModule} from 'ng2-validation';
 import {MultiSelectModule} from 'primeng/multiselect';
+import { TreeviewModule } from 'ngx-treeview';
 import {adminComponent} from './admin.component';
 import {adminloginComponent} from './login/adminlogin.component';
 import {adminheaderComponent} from './header/adminheader.component';
 import {adminsidebarComponent} from './sidebar/adminsidebar.component';
 import {admindashboardComponent} from './dashboardModule/admin_dashboard/admindashboard.component';
 import {adminfooterComponent} from './footer/adminfooter.component';
-import {adminmanagefeedbacksComponent} from './feedbackModule/manage_feedbacks/adminmanagefeedbacks.component';
+import {managerolesComponent} from './rolesModule/manage_roles/manageroles.component';
+import {addrolesComponent} from './rolesModule/add_roles/addroles.component';
+import {editrolesComponent} from './rolesModule/edit_roles/editroles.component';
+import {addstaffComponent} from './staffModule/add_staff/addstaff.component';
+import {editstaffComponent} from './staffModule/edit_staff/editstaff.component';
+import {managestaffComponent} from './staffModule/manage_staff/managestaff.component';
+import {addcategoryComponent} from './categoryModule/add_category/addcategory.component';
+import {managecategoryComponent} from './categoryModule/manage_category/managecategory.component';
+import {editcategoryComponent} from './categoryModule/edit_category/editcategory.component';
+
+
+/*import {adminmanagefeedbacksComponent} from './feedbackModule/manage_feedbacks/adminmanagefeedbacks.component';
 import {adminmanageusersComponent} from './usersModule/manage_users/adminmanageusers.component';
 import {adminmanagesuspendedusersComponent} from './usersModule/manage_suspended_users/adminmanagesuspendedusers.component';
 import {adminuserdetailComponent} from './usersModule/user_detail/adminuserdetail.component';
@@ -29,7 +41,7 @@ import {adminadddealsComponent} from './dealsModule/add_deals/adminadddeals.comp
 import {adminmanagedealsComponent} from './dealsModule/manage_deals/adminmanagedeals.component';
 import {adminmanageinvitesComponent} from './invitesModule/manage_invites/adminmanageinvites.component';
 import {adminmanagereporteduserComponent} from './reporteduserModule/manage_reporteduser/adminmanagereporteduser.component';
-import {adminmanageblockeduserComponent} from './blockeduserModule/manage_blockeduser/adminmanageblockeduser.component';
+import {adminmanageblockeduserComponent} from './blockeduserModule/manage_blockeduser/adminmanageblockeduser.component';*/
 import {AdminService} from '../services/admin.service';
 import {routing} from './admin.routing';
 @NgModule({
@@ -46,6 +58,7 @@ import {routing} from './admin.routing';
 		DialogModule,
 		CKEditorModule,
 		MultiSelectModule,
+		TreeviewModule,
 		routing
 	],
 	declarations: [
@@ -55,19 +68,29 @@ import {routing} from './admin.routing';
 		adminsidebarComponent,
 		admindashboardComponent,
 		adminfooterComponent,
-		adminmanagefeedbacksComponent,
-		adminmanageusersComponent,
-		adminmanageuserdownloadsComponent,
-		adminmanagesuspendedusersComponent,
-		adminuserdetailComponent,
-		admincharmrdetailComponent,
-		adminaddpagesComponent,
-		adminmanagepagesComponent,
-		adminadddealsComponent,
-		adminmanagedealsComponent,
-		adminmanageinvitesComponent,
-		adminmanagereporteduserComponent,
-		adminmanageblockeduserComponent,
+		managerolesComponent,
+		addrolesComponent,
+		editrolesComponent,
+		addstaffComponent,
+		editstaffComponent,
+		managestaffComponent,
+		addcategoryComponent,
+		managecategoryComponent,
+		editcategoryComponent,
+		
+		//adminmanagefeedbacksComponent,
+		//adminmanageusersComponent,
+		//adminmanageuserdownloadsComponent,
+		//adminmanagesuspendedusersComponent,
+		//adminuserdetailComponent,
+		//admincharmrdetailComponent,
+		//adminaddpagesComponent,
+		//adminmanagepagesComponent,
+		//adminadddealsComponent,
+		//adminmanagedealsComponent,
+		//adminmanageinvitesComponent,
+		//adminmanagereporteduserComponent,
+		//adminmanageblockeduserComponent,
 	],
 	providers: [AdminService]
 })
