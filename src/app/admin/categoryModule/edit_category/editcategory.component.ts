@@ -13,7 +13,7 @@ import {AdminService} from '../../../services/admin.service';
 })
 
 export class editcategoryComponent {
-	model: any = {parentId:'',catname:'',form:''};
+	model: any = {parentId:'0',catname:'',form:''};
 	categoryId: any;
 	categorydata: any;
 	selectedModuleList:any;

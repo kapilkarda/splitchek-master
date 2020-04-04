@@ -3,7 +3,7 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Manage Category</h1>
+					<h1>Manage Sub Category</h1>
 				</div>
 			</div>
 		</div>
@@ -22,10 +22,9 @@
 						<tr>
 							<th style="width: 8%">#</th>
 							<th style="width: 18%" [pSortableColumn]="'catname'">
-								Category Name
+								Sub Category Name
 								<p-sortIcon [field]="'name'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-              </th>
-              <th>Sub Category</th>
+							</th>
 							<th style="width: 10%">Status</th>
 							<th style="width: 22%">Action</th>
 						</tr>
@@ -33,10 +32,7 @@
 					<ng-template pTemplate="body" let-rowData let-i="rowIndex">
 						<tr>
 							<td>{{i+1}}</td>
-              <td>{{rowData.catname}}</td>
-              <td>
-                <button type="text" [routerLink]="['/admin/subcategory',rowData._id]"   class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>
-              </td>
+							<td>{{rowData.catname}}</td>
 							<td>
 								<ng-container *ngIf="rowData.status == 1; else deactiveStatusText">
 									Active
@@ -56,6 +52,19 @@
 								<button type="text" [routerLink]="['/admin/editcategory',rowData._id]"   class="btn btn-grey" title="edit"><i class="fa fa-edit" aria-hidden="true"></i></button>
 							</td>
 						</tr>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <tr>
+              <td colspan="4">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <li class="page-item" (click)="getPrev()" [ngClass]="{disabled:pageno == 1}"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"  *ngFor="let p of pagination" [ngClass]="{active:pageno == p}" (click)="getPageData(p)"><a class="page-link" href="#">{{p}}</a></li>
+                    <li class="page-item" (click)="getNext()" [ngClass]="{disabled:pageno == lastPage}"><a class="page-link" href="#">Next</a></li>
+                  </ul>
+                </nav>
+              </td>
+            </tr>
           </ng-template>
 				</p-table>
 			</div>

@@ -152,9 +152,24 @@ export class AdminService {
 			'Authorization': localStorage.getItem('token')
     	});
 		let options = { headers: headers };
-    	return this.http.get(AppSettings.API_ENDPOINT + 'listCategory', options).map(res => <any>res);
+    	return this.http.get(AppSettings.API_ENDPOINT + 'category', options).map(res => <any>res);
 	}
-
+  adminGetPagedCategoryList(){
+    let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token'),
+      });
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'listcategory', options).map(res => <any>res);
+  }
+  adminGetSubCategoryList(data){
+    let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token'),
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'subCategory',data, options).map(res => <any>res);
+  }
 	admin_delete_category(categoryId) {
 		let headers = new HttpHeaders({
 			'Content-Type': 'application/json',
@@ -171,11 +186,14 @@ export class AdminService {
 		let headers = new HttpHeaders({
 			'Content-Type': 'application/json',
 			'Authorization': localStorage.getItem('token'),
-			'categoryid': categoryId.toString(),
+    });
+    let data = {
+
+			'id': categoryId.toString(),
 			'status': currentStatus.toString()
-		});
+    }
 		let options = { headers: headers };
-    	return this.http.get(AppSettings.API_ENDPOINT + 'adminChangeCategoryStatus', options).map(res => <any>res);
+    	return this.http.post(AppSettings.API_ENDPOINT + 'categoryStatus',data, options).map(res => <any>res);
 	}
 
 	admin_load_categoryData(categoryId) {

@@ -14,6 +14,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {CalendarModule} from 'primeng/calendar';
 import {ConfirmationService} from 'primeng/api';
 import {TreeviewModule} from 'ngx-treeview';
+import { NgSelect2Module } from 'ng-select2';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {TreeviewModule} from 'ngx-treeview';
     AdminModule,
     AppRoutingModule,
     NgxSpinnerModule,
+    NgSelect2Module,
     TableModule,
     ToastModule,
 	TreeviewModule.forRoot()

@@ -27,6 +27,7 @@ import {managestaffComponent} from './staffModule/manage_staff/managestaff.compo
 import {addcategoryComponent} from './categoryModule/add_category/addcategory.component';
 import {managecategoryComponent} from './categoryModule/manage_category/managecategory.component';
 import {editcategoryComponent} from './categoryModule/edit_category/editcategory.component';
+import { NgSelect2Module } from 'ng-select2';
 
 
 /*import {adminmanagefeedbacksComponent} from './feedbackModule/manage_feedbacks/adminmanagefeedbacks.component';
@@ -44,6 +45,8 @@ import {adminmanagereporteduserComponent} from './reporteduserModule/manage_repo
 import {adminmanageblockeduserComponent} from './blockeduserModule/manage_blockeduser/adminmanageblockeduser.component';*/
 import {AdminService} from '../services/admin.service';
 import {routing} from './admin.routing';
+import { SubCategoryComponent } from './categoryModule/sub-category/sub-category.component';
+import {DropdownModule} from 'primeng/dropdown';
 @NgModule({
 	imports: [
 		BrowserAnimationsModule,
@@ -59,7 +62,9 @@ import {routing} from './admin.routing';
 		CKEditorModule,
 		MultiSelectModule,
 		TreeviewModule,
-		routing
+    routing,
+    NgSelect2Module,
+    DropdownModule
 	],
 	declarations: [
 		adminComponent,
@@ -77,7 +82,8 @@ import {routing} from './admin.routing';
 		addcategoryComponent,
 		managecategoryComponent,
 		editcategoryComponent,
-		
+		SubCategoryComponent,
+
 		//adminmanagefeedbacksComponent,
 		//adminmanageusersComponent,
 		//adminmanageuserdownloadsComponent,

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router,ActivatedRoute,Params,Data} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
@@ -10,17 +10,18 @@ import {AdminService} from '../../../services/admin.service';
 //import {UserService} from '../../../_services/user.service';
 //import { Subject } from 'rxjs';
 
-@Component({
-	selector: 'managecategory',
-	templateUrl: './managecategory.html',
-	styleUrls: ['managecategory.css'],
-})
 
-export class managecategoryComponent {
+@Component({
+  selector: 'app-sub-category',
+  templateUrl: './sub-category.component.html',
+  styleUrls: ['./sub-category.component.css']
+})
+export class SubCategoryComponent implements OnInit {
 	model: any = {};
 	result: any;
 	categoryData: any;
   totalRecords: number;
+  categoryId:any;
 
 	//private unsubscribe$: Subject<any> = new Subject<any>();
 	constructor(
@@ -36,16 +37,25 @@ export class managecategoryComponent {
 	) {
 
 	}
-	ngOnInit() {
-		this.loadCategoryData();
+	ngOnInit() {this.activatedRoute.params
+    .subscribe(
+          (params: Params) => {
+      this.categoryId = params['id'];
+      this.loadCategoryData(this.categoryId);
+          }
+  );
+
 	}
 
 
   
-	loadCategoryData() {
+	loadCategoryData(catId) {
 		console.log("hhhhhhhhhhhh")
     this.spinner.show();
-		  this.adminService.adminGetPagedCategoryList().subscribe((result) => {
+    let data ={
+      "parent":catId,
+    }
+		  this.adminService.adminGetSubCategoryList(data).subscribe((result) => {
 			this.result = result;
 		},
 		(err) => this.spinner.hide(),
@@ -53,6 +63,7 @@ export class managecategoryComponent {
 			if (this.result.status === 'success') {
 				this.categoryData = this.result.data;
         this.totalRecords = this.result.data.length;
+        
 
 				this.spinner.hide();
 			} else {
@@ -76,7 +87,7 @@ export class managecategoryComponent {
 				() => {
 				if (this.result.status === 'success') {
 					this.spinner.hide();
-					this.loadCategoryData();
+					this.loadCategoryData(this.categoryId);
 					this.messageService.add({severity:'success', summary: 'Success', detail:this.result.message});
 				} else {
 					this.spinner.hide();
@@ -103,7 +114,7 @@ export class managecategoryComponent {
 				() => {
 				if (this.result.status === 'success') {
 					this.spinner.hide();
-					this.loadCategoryData();
+					this.loadCategoryData(this.categoryId);
 					this.messageService.add({severity:'success', summary: 'Success', detail:this.result.message});
 				} else {
 					this.spinner.hide();

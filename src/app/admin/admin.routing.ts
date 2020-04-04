@@ -14,6 +14,7 @@ import {editstaffComponent} from './staffModule/edit_staff/editstaff.component';
 import {addcategoryComponent} from './categoryModule/add_category/addcategory.component';
 import {managecategoryComponent} from './categoryModule/manage_category/managecategory.component';
 import {editcategoryComponent} from './categoryModule/edit_category/editcategory.component';
+import { SubCategoryComponent } from './categoryModule/sub-category/sub-category.component';
 
 
 /*import {adminaddpagesComponent} from './pagesModule/add_pages/adminaddpages.component';
@@ -31,68 +32,73 @@ import {adminmanagefeedbacksComponent} from './feedbackModule/manage_feedbacks/a
 import {adminmanageuserdownloadsComponent} from './downloadModule/manage_downloads/adminmanageuserdownloads.component';*/
 
 const routes: Routes = [
-	{ 
+	{
       path: 'admin', component: adminComponent ,
       children: [
    		{path: '', component: adminloginComponent},
          {path: 'dashboard', component: admindashboardComponent},
 		 {
-				path: 'addroles', 
+				path: 'addroles',
 				component: addrolesComponent,
 				//canActivate: [AuthGuard]
 			},
 			{
-				path: 'editroles/:id',  
+				path: 'editroles/:id',
 				component: editrolesComponent,
 				//canActivate: [AuthGuard]
 			},
 		 {
-				path: 'manageroles', 
+				path: 'manageroles',
 				component: managerolesComponent,
 				//canActivate: [AuthGuard]
 			},
-			
+
 			{
-				path: 'addstaff', 
+				path: 'addstaff',
 				component: addstaffComponent,
 				//canActivate: [AuthGuard]
 			},
 			{
-				path: 'editstaff/:id',  
+				path: 'editstaff/:id',
 				component: editstaffComponent,
 				//canActivate: [AuthGuard]
 			},
 		 {
-				path: 'managestaff', 
+				path: 'managestaff',
 				component: managestaffComponent,
 				//canActivate: [AuthGuard]
 			},
-			
+
 			{
-				path: 'addcategory', 
+				path: 'addcategory',
 				component: addcategoryComponent,
 				//canActivate: [AuthGuard]
 			},
-			
+
 			{
-				path: 'managecategory', 
+				path: 'managecategory',
 				component: managecategoryComponent,
 				//canActivate: [AuthGuard]
 			},
 			{
-				path: 'editcategory/:id',  
+				path: 'editcategory/:id',
 				component: editcategoryComponent,
 				//canActivate: [AuthGuard]
 			},
-		 
-		 
+			{
+				path: 'subcategory/:id',
+				component: SubCategoryComponent,
+				//canActivate: [AuthGuard]
+			},
+
+
          /*{path: 'manageusers', component: adminmanageusersComponent},
          {path: 'managedownloads', component: adminmanageuserdownloadsComponent},
-         
+
          {path: 'suspendedusers', component: adminmanagesuspendedusersComponent},
-         {path: 'addpages', component: adminaddpagesComponent}, 
+         {path: 'addpages', component: adminaddpagesComponent},
          {path: 'managepages', component: adminmanagepagesComponent},
-         {path: 'adddeals', component: adminadddealsComponent}, 
+         {path: 'adddeals', component: adminadddealsComponent},
          {path: 'managedeals', component: adminmanagedealsComponent},
          {path: 'manageinvites', component: adminmanageinvitesComponent},
          {path: 'managereportedusers', component: adminmanagereporteduserComponent},
@@ -100,7 +106,7 @@ const routes: Routes = [
          {path: 'managefeedbacks', component: adminmanagefeedbacksComponent},
          {path: 'viewdetail/:id', component: adminuserdetailComponent},
          {path: 'viewcharmrdetail/:id', component: admincharmrdetailComponent},*/
-         
+
          {path: '**', redirectTo: 'dashboard'},
      	]
    }

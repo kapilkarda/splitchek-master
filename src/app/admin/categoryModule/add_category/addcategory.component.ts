@@ -13,7 +13,7 @@ import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
 })
 
 export class addcategoryComponent {
-   model: any = {};
+  model: any = {parentId:'0',catname:'',form:''};
    result: any;
    roleList:any;
    moduleArr: any = { "modules": [] };
@@ -44,7 +44,17 @@ export class addcategoryComponent {
 		(err) => this.spinner.hide(),
 		() => {
 			if (this.result.status === 'success') {
-				this.categories = this.result.data;
+        this.categories = this.result.data;
+        let datCat = []
+        for(let d of this.categories){
+          let obj = {
+            id:d._id,
+            text:d.catname
+          }
+          datCat.push(obj)
+        }
+
+        // console.log(this.catList)
 				this.spinner.hide();
 			} else {
 				this.spinner.hide();
