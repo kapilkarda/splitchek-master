@@ -32,8 +32,26 @@ export class addcategoryComponent {
 
 	ngOnInit() {
 
-    this.items = [{"id":'1',value:'form1'},{"id":'2',value:'form2'}];
   this.loadCategoryData();
+  this.loadFormData();
+  }
+  loadFormData() {
+		console.log("hhhhhhhhhhhh")
+    this.spinner.show();
+		  this.adminService.getFormList().subscribe((result) => {
+			this.result = result;
+		},
+		(err) => this.spinner.hide(),
+		() => {
+			if (this.result.status === 'success') {
+				this.items = this.result.data;
+        console.log(this.items)
+				this.spinner.hide();
+			} else {
+				this.spinner.hide();
+				this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
+			}
+		});
 	}
   loadCategoryData() {
 		console.log("hhhhhhhhhhhh")

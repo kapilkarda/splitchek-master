@@ -1,5 +1,5 @@
 export class AppSettings {
-  public static API_ENDPOINT='http://53396c58.ngrok.io/';
+  public static API_ENDPOINT='http://470bee21.ngrok.io/';
   // public static API_ENDPOINT='http://54.190.192.105:6006/';
   // public static API_ENDPOINT='http://localhost:4000/';
   //public static API_ENDPOINT='http://54.71.18.74:4611/';

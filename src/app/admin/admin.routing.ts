@@ -15,6 +15,9 @@ import {addcategoryComponent} from './categoryModule/add_category/addcategory.co
 import {managecategoryComponent} from './categoryModule/manage_category/managecategory.component';
 import {editcategoryComponent} from './categoryModule/edit_category/editcategory.component';
 import { SubCategoryComponent } from './categoryModule/sub-category/sub-category.component';
+import { CreateFormComponent } from './postFormModule/createForm/create-form/create-form.component';
+import { EditFormComponent } from './postFormModule/editForm/edit-form/edit-form.component';
+import { ListFormComponent } from './postFormModule/listForm/list-form/list-form.component';
 
 
 /*import {adminaddpagesComponent} from './pagesModule/add_pages/adminaddpages.component';
@@ -88,6 +91,21 @@ const routes: Routes = [
 			{
 				path: 'subcategory/:id',
 				component: SubCategoryComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'createForm',
+				component: CreateFormComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'listForm',
+				component: ListFormComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'editForm/:id',
+				component: EditFormComponent,
 				//canActivate: [AuthGuard]
 			},
 

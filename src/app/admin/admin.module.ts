@@ -47,6 +47,11 @@ import {AdminService} from '../services/admin.service';
 import {routing} from './admin.routing';
 import { SubCategoryComponent } from './categoryModule/sub-category/sub-category.component';
 import {DropdownModule} from 'primeng/dropdown';
+import { CreateFormComponent } from './postFormModule/createForm/create-form/create-form.component';
+import {FieldsetModule} from 'primeng/fieldset';
+import { EditFormComponent } from './postFormModule/editForm/edit-form/edit-form.component';
+import { ListFormComponent } from './postFormModule/listForm/list-form/list-form.component';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 @NgModule({
 	imports: [
 		BrowserAnimationsModule,
@@ -64,7 +69,9 @@ import {DropdownModule} from 'primeng/dropdown';
 		TreeviewModule,
     routing,
     NgSelect2Module,
-    DropdownModule
+		DropdownModule,
+		FieldsetModule,
+		DynamicDialogModule
 	],
 	declarations: [
 		adminComponent,
@@ -83,6 +90,9 @@ import {DropdownModule} from 'primeng/dropdown';
 		managecategoryComponent,
 		editcategoryComponent,
 		SubCategoryComponent,
+		CreateFormComponent,
+		EditFormComponent,
+		ListFormComponent,
 
 		//adminmanagefeedbacksComponent,
 		//adminmanageusersComponent,
@@ -98,6 +108,6 @@ import {DropdownModule} from 'primeng/dropdown';
 		//adminmanagereporteduserComponent,
 		//adminmanageblockeduserComponent,
 	],
-	providers: [AdminService]
+  providers: [AdminService]
 })
 export class AdminModule {}

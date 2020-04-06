@@ -10,3 +10,16 @@ body .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item.ui-state-highlight,
   color: #ffffff;
   background-color: #4391ea;
 }
+legend.ui-fieldset-legend {
+    font-size: 12px;
+}
+.pDialog{
+  max-width: 500px;max-height: 300px;overflow: auto;
+  z-index: 10000;
+}
+.pDialog .ui-widget {
+  max-width: 600px;
+  max-height: 350px;
+  overflow: auto;
+  left: 28% !important;
+}

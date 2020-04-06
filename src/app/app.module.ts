@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule } from './app-routing.module';
-import {MessageService} from 'primeng/api';
+import {MessageService, DialogService, DynamicDialogRef} from 'primeng/api';
 import {AppComponent} from './app.component';
 import {AdminModule} from './admin/admin.module';
 import {DatePipe} from '@angular/common';
@@ -18,7 +18,7 @@ import { NgSelect2Module } from 'ng-select2';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +31,7 @@ import { NgSelect2Module } from 'ng-select2';
     ToastModule,
 	TreeviewModule.forRoot()
   ],
-  providers: [MessageService,ConfirmationService,DatePipe],
+  providers: [MessageService,ConfirmationService,DatePipe,DialogService,DynamicDialogRef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

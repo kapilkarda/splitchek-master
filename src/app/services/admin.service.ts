@@ -207,7 +207,49 @@ export class AdminService {
       }
 		let options = { headers: headers };
     	return this.http.post(AppSettings.API_ENDPOINT + 'categoryById',data, options).map(res => <any>res);
+  }
+
+
+  admin_add_form(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'addForm',data, options).map(res => <any>res);
 	}
+	getFormList() {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+    	});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'viewForm', options).map(res => <any>res);
+  }
+  admin_delete_form(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'deleteForm',data, options).map(res => <any>res);
+  }
+  admin_update_form(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'updateStatusForm',data, options).map(res => <any>res);
+  }
+  admin_load_formData(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'formById',data, options).map(res => <any>res);
+  }
 
 	/*admin_load_roleData(roleId) {
 
