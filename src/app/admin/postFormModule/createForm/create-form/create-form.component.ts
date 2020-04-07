@@ -32,6 +32,8 @@ export class CreateFormComponent implements OnInit {
     this.items = [{"id":'1',value:'customer1'},{"id":'2',value:'customer2'}];
     this.typeItem = [{id:'',value:'Please Select'},
                     {id:'text',value:'Text'},
+                    {id:'number',value:'Number'},
+                    {id:'tel',value:'Tel'},
                     {id:'select',value:'Select'},
                     {id:'radio',value:'Radio'},
                     {id:'checkbox',value:'Checkbox'},
@@ -39,8 +41,10 @@ export class CreateFormComponent implements OnInit {
                     {id:'editor',value:'Editor'},
                     {id:'multiselect',value:'Multiselect'},
                     {id:'datepicker',value:'Datepicker'},
-                    {id:'textarea',value:'Textarea'},
-                    {id:'colorpicker',value:'Color Picker'},]
+                    {id:'daterangepicker',value:'DateRangePicker'},
+                    {id:'timepicker',value:'timePicker'},
+                    {id:'datetimepicker',value:'DateTimePicker'},
+                    {id:'textarea',value:'Textarea'},]
     this.step[0].field = this.fields;
   }
 	add_form() {

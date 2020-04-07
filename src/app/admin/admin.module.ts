@@ -28,6 +28,11 @@ import {addcategoryComponent} from './categoryModule/add_category/addcategory.co
 import {managecategoryComponent} from './categoryModule/manage_category/managecategory.component';
 import {editcategoryComponent} from './categoryModule/edit_category/editcategory.component';
 import { NgSelect2Module } from 'ng-select2';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {CheckboxModule} from 'primeng/checkbox';
+import {FileUploadModule} from 'primeng/fileupload';
+import {EditorModule} from 'primeng/editor';
+
 
 
 /*import {adminmanagefeedbacksComponent} from './feedbackModule/manage_feedbacks/adminmanagefeedbacks.component';
@@ -52,6 +57,10 @@ import {FieldsetModule} from 'primeng/fieldset';
 import { EditFormComponent } from './postFormModule/editForm/edit-form/edit-form.component';
 import { ListFormComponent } from './postFormModule/listForm/list-form/list-form.component';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import { CreatePostComponent } from './adPost/createPost/create-post/create-post.component';
+import { ListPostComponent } from './adPost/listPost/list-post/list-post.component';
+import { EditPostComponent } from './adPost/editPost/edit-post/edit-post.component';
+
 @NgModule({
 	imports: [
 		BrowserAnimationsModule,
@@ -71,7 +80,11 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
     NgSelect2Module,
 		DropdownModule,
 		FieldsetModule,
-		DynamicDialogModule
+    DynamicDialogModule,
+    RadioButtonModule,
+    CheckboxModule,
+    FileUploadModule,
+    EditorModule
 	],
 	declarations: [
 		adminComponent,
@@ -93,6 +106,9 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 		CreateFormComponent,
 		EditFormComponent,
 		ListFormComponent,
+		CreatePostComponent,
+		ListPostComponent,
+		EditPostComponent,
 
 		//adminmanagefeedbacksComponent,
 		//adminmanageusersComponent,

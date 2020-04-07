@@ -13,7 +13,7 @@ import {AdminService} from '../../../services/admin.service';
 })
 
 export class editcategoryComponent {
-	model: any = {parentId:'0',catname:'',form:''};
+	model: any = {parent:'0',catname:'',form:''};
 	categoryId: any;
 	categorydata: any;
 	selectedModuleList:any;
@@ -95,7 +95,13 @@ export class editcategoryComponent {
 		(err) => this.spinner.hide(),
 		() => {
 			if (this.result.status === 'success') {
-				this.items = this.result.data;
+        this.items = this.result.data;
+        let objectName = {
+          form_name:'Select Form',
+          _id:'0'
+        }
+        this.items.splice(0, 0, objectName)
+				this.spinner.hide();
         console.log(this.items)
 				this.spinner.hide();
 			} else {
@@ -123,8 +129,13 @@ export class editcategoryComponent {
 		(err) => this.spinner.hide(),
 		() => {
 			if (this.result.status === 'success') {
-				this.categories = this.result.data;
-				this.spinner.hide();
+        this.categories = this.result.data;
+        let objectName = {
+          catname:'Select Category',
+          _id:'0'
+        }
+        this.categories.splice(0, 0, objectName)
+
 			} else {
 				this.spinner.hide();
 				this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
@@ -132,6 +143,7 @@ export class editcategoryComponent {
 		});
 	}
      edit_category() {
+       this.model.form = this.model.form._id;
       //this.model.modules = this.moduleArr.modules;
       console.log("model ",this.model)
       this.spinner.show();

@@ -1,0 +1,14 @@
+form .card-body {
+  min-height: 300px;
+}
+.imageUploadContainer, .editorDiv {
+    width: 100%;
+    text-align: center;
+    border: 1px solid #000;
+    margin: 9px;
+    padding: 20px;
+    border-radius: 5px;
+}
+.imgView{
+  max-width: 250px;
+}

@@ -251,6 +251,55 @@ export class AdminService {
     	return this.http.post(AppSettings.API_ENDPOINT + 'formById',data, options).map(res => <any>res);
   }
 
+  getFormData(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'fetchFormAdverPost',data, options).map(res => <any>res);
+  }
+
+  addAdminPost(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'addAdverPost',data, options).map(res => <any>res);
+  }
+  admin_load_postData(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'formById',data, options).map(res => <any>res);
+  }
+  editAdminPost(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'editAdverPost',data, options).map(res => <any>res);
+  }
+  adminGetPostList() {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+    	});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'showAdverPost', options).map(res => <any>res);
+  }
+  admin_delete_post(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'deleteAdverPost',data, options).map(res => <any>res);
+  }
 	/*admin_load_roleData(roleId) {
 
 
