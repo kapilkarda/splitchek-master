@@ -61,7 +61,7 @@ export class EditPostComponent implements OnInit {
                this.model.field = this.postData.field;
                this.items = this.postData.field;
                for(let k of this.Customer){
-                 if(k._id == thiss.postData.userId){
+                 if(k._id == this.postData.userId){
                    this.userName = k.name
                  }
                }

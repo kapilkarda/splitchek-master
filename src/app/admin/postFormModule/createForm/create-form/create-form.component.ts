@@ -77,8 +77,8 @@ export class CreateFormComponent implements OnInit {
     let obj = {name:'',type:'',icon:'',value:'',option:[],optionShow:false}
     this.step[i].field.push(obj)
   }
-  RemoveField(i){
-    this.step[i].field.splice(i,1)
+  RemoveField(i,j){
+    this.step[i].field.splice(j,1)
   }
   addOptions(j,i){
     let obj = {label:'',value:''}
