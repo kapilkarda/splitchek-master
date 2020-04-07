@@ -274,7 +274,7 @@ export class AdminService {
       	'Authorization': localStorage.getItem('token')
       });
 		let options = { headers: headers };
-    	return this.http.post(AppSettings.API_ENDPOINT + 'formById',data, options).map(res => <any>res);
+    	return this.http.post(AppSettings.API_ENDPOINT + 'byIdAdverPost',data, options).map(res => <any>res);
   }
   editAdminPost(data) {
 		let headers = new HttpHeaders({
