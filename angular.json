@@ -28,7 +28,7 @@
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/nova-colored/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/select2/dist/css/select2.min.css",
+              "node_modules/select2/dist/css/select2.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",

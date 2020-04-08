@@ -80,9 +80,10 @@ export class CreatePostComponent implements OnInit {
    () => {
      if (this.result.status === 'success') {
        const categories = this.result.data;
+       console.log(categories)
        let datCat = []
        for(let d of categories){
-         if(d.form != 0){
+         if(d.form && d.form != 0){
            datCat.push(d)
          }
        }

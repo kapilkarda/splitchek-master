@@ -85,6 +85,7 @@ export class addcategoryComponent {
 
 	add_category() {
     this.model.form = this.model.form._id;
+    this.model.parent = this.model.parent._id
 		this.spinner.show();
 		this.adminService.admin_add_category(this.model).subscribe(result => {
 			this.result = result;

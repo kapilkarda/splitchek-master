@@ -144,6 +144,7 @@ export class editcategoryComponent {
 	}
      edit_category() {
        this.model.form = this.model.form._id;
+       this.model.parent = this.model.parent._id
       //this.model.modules = this.moduleArr.modules;
       console.log("model ",this.model)
       this.spinner.show();

@@ -69,10 +69,9 @@ export class ListPostComponent implements OnInit {
 	delete_category(id,isdeleted){
     let data = {
       "id":id,
-	    "isDeleted":isdeleted
     }
 		this.confirmationService.confirm({
-			message: 'Are you sure that you want to delete this category?',
+			message: 'Are you sure that you want to delete this post?',
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
@@ -104,7 +103,7 @@ export class ListPostComponent implements OnInit {
   }
 	// status_change(categoryId,currentStatus){
 	// 	this.confirmationService.confirm({
-	// 		message: 'Are you sure that you want to activate/deactivate this category?',
+	// 		message: 'Are you sure that you want to activate/deactivate this post?',
 	// 		header: 'Confirm Delete',
 	// 		icon: 'pi pi-exclamation-triangle',
 	// 		accept: () => {

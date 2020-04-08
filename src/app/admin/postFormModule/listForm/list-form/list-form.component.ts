@@ -70,7 +70,7 @@ export class ListFormComponent implements OnInit, OnDestroy {
 
 	delete_form(id,isDeleted){
 		this.confirmationService.confirm({
-			message: 'Are you sure that you want to delete this category?',
+			message: 'Are you sure that you want to delete this Form?',
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
@@ -100,7 +100,7 @@ export class ListFormComponent implements OnInit, OnDestroy {
 
 	status_change(id,status){
 		this.confirmationService.confirm({
-			message: 'Are you sure that you want to activate/deactivate this category?',
+			message: 'Are you sure that you want to activate/deactivate this Form?',
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
