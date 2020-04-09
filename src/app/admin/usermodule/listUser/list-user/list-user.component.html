@@ -3,15 +3,15 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Manage Form</h1>
+					<h1>Manage User</h1>
 				</div>
 			</div>
 		</div>
 	</section>
 	<section class="content">
-		<div class="card" *ngIf="formalistData && formalistData.length > 0; else noRecord">
+		<div class="card" *ngIf="userlistData && userlistData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
-				<p-table #dt *ngIf="formalistData" [value]="formalistData" [paginator]="true" [alwaysShowPaginator]="false" [rows]="10" [scrollable]="false" [globalFilterFields]="['form_name','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+				<p-table #dt *ngIf="userlistData" [value]="userlistData" [paginator]="true" [alwaysShowPaginator]="false" [rows]="10" [scrollable]="false" [globalFilterFields]="['name','email','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
 						<div style="text-align: right">
 							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -21,25 +21,30 @@
 					<ng-template pTemplate="header" let-columns>
 						<tr>
 							<th style="width: 8%">#</th>
-							<th style="width: 18%" [pSortableColumn]="'form_name'">
-								Form Name
-								<p-sortIcon [field]="'form_name'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-              </th>
-              <th>View Fields</th>
-							<th style="width: 10%" [pSortableColumn]="'status'">
+							<th style="width: 18%" [pSortableColumn]="'name'">
+								Name
+								<p-sortIcon [field]="'name'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+							</th>
+							<th  [pSortableColumn]="'email'">
+								Email
+								<p-sortIcon [field]="'email'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+							
+							</th>
+							<th>contact</th>
+							<th style="width: 10%"   [pSortableColumn]="'status'">
 								Status
 								<p-sortIcon [field]="'status'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-              </th>
+							
+							</th>
 							<th style="width: 22%">Action</th>
 						</tr>
 					</ng-template>
 					<ng-template pTemplate="body" let-rowData let-i="rowIndex">
 						<tr>
 							<td>{{i+1}}</td>
-              <td>{{rowData.form_name}}</td>
-              <td>
-                <button type="text" (click) ="show(rowData)"  class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>
-              </td>
+							<td>{{rowData.name}}</td>
+							<td>{{rowData.email}}</td>
+							<td>{{rowData.phoneNumber}}</td>
 							<td>
 								<ng-container *ngIf="rowData.status == 1; else deactiveStatusText">
 									Active
@@ -56,7 +61,7 @@
 										<i class="fa fa-toggle-on" title="Activate User"></i>
 									</ng-template>
 								</button>
-								<button type="text" [routerLink]="['/admin/editForm',rowData._id]"   class="btn btn-grey" title="edit"><i class="fa fa-edit" aria-hidden="true"></i></button>
+								<button type="text" [routerLink]="['/admin/editUser',rowData._id]"   class="btn btn-grey" title="edit"><i class="fa fa-edit" aria-hidden="true"></i></button>
 							</td>
 						</tr>
           </ng-template>
@@ -65,22 +70,7 @@
 		</div>
   </section>
   <p-dialog [header]="fieldTitle" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000"  class="pDialog">
-    <p-fieldset *ngFor="let s of fieldData;let i = index" legend="Step {{i+1}}">
-      <ul class="fieldList">
-        <li *ngFor="let f of s.field">
-          <span class="fieldTitle">{{f.name}}</span>
-          <span class="fieldIcon"><i class="fa {{f.icon}}"></i></span>
-          <span class="fieldType">{{f.type.value}}</span>
-          <ul class="subFieldList" *ngIf="f.optionShow">
-            <li *ngFor="let o of f.option">
-              <span class="fieldTitle">{{o.label}}</span>
-              <span class="fieldType">{{o.value}}</span>
-            </li>
-          </ul>
-        </li>
-
-      </ul>
-    </p-fieldset>
+    <p>{{fieldData}}</p>
   </p-dialog>
 </div>
 

@@ -65,6 +65,26 @@
         </li>
         <li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-user"></i>
+						<p>User<i class="right fas fa-angle-left"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listUser']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage User</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createUser']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add User</p>
+							</a>
+						</li>
+					</ul>
+        </li>
+        <li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-file-signature"></i>
 						<p>Post<i class="right fas fa-angle-left"></i></p>
 					</a>
@@ -119,6 +139,27 @@
 							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createForm']" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Add Form</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+
+        <li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-network-wired"></i>
+						<p>Plans<i class="right fas fa-angle-left"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listPlan']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage Plan</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createPlan']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add Plan</p>
 							</a>
 						</li>
 					</ul>

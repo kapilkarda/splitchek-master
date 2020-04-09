@@ -37,6 +37,7 @@ export class adminloginComponent {
       (err) => console.log(err),
       () => {
       	if (this.result.status === 'success') { 
+            localStorage.setItem('userInfo',JSON.stringify(this.result.userData))
          	localStorage.setItem('token', this.result.token);
             localStorage.setItem('email', this.result.email);
             this.router.navigate(['/admin/dashboard']);

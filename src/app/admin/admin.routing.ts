@@ -21,6 +21,12 @@ import { ListFormComponent } from './postFormModule/listForm/list-form/list-form
 import { CreatePostComponent } from './adPost/createPost/create-post/create-post.component';
 import { ListPostComponent } from './adPost/listPost/list-post/list-post.component';
 import { EditPostComponent } from './adPost/editPost/edit-post/edit-post.component';
+import { AddPlanComponent } from './plansModule/addPlan/add-plan/add-plan.component';
+import { ListPlanComponent } from './plansModule/listPlan/list-plan/list-plan.component';
+import { EditPlanComponent } from './plansModule/editPlan/edit-plan/edit-plan.component';
+import { AddUserComponent } from './usermodule/addUser/add-user/add-user.component';
+import { ListUserComponent } from './usermodule/listUser/list-user/list-user.component';
+import { EditUserComponent } from './usermodule/editUser/edit-user/edit-user.component';
 
 
 /*import {adminaddpagesComponent} from './pagesModule/add_pages/adminaddpages.component';
@@ -124,6 +130,36 @@ const routes: Routes = [
 			{
 				path: 'editPost/:id',
 				component: EditPostComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'createPlan',
+				component: AddPlanComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'listPlan',
+				component: ListPlanComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'editPlan/:id',
+				component: EditPlanComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'createUser',
+				component: AddUserComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'listUser',
+				component: ListUserComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'editPlan/:id',
+				component: EditUserComponent,
 				//canActivate: [AuthGuard]
 			},
 

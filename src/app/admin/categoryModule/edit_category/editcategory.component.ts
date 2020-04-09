@@ -13,7 +13,7 @@ import {AdminService} from '../../../services/admin.service';
 })
 
 export class editcategoryComponent {
-	model: any = {parent:'0',catname:'',form:''};
+	model: any = {id:'',parent:'0',catname:'',form:''};
 	categoryId: any;
 	categorydata: any;
 	selectedModuleList:any;
@@ -38,7 +38,8 @@ export class editcategoryComponent {
 		this.activatedRoute.params
 			.subscribe(
             (params: Params) => {
-				this.categoryId = params['id'];
+            this.categoryId = params['id'];
+            this.model.id = this.categoryId;
             }
 		);
         if (this.categoryId) {

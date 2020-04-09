@@ -11,4 +11,6 @@ form .card-body {
 }
 .imgView{
   max-width: 250px;
+  display: block;
+  margin: 10px auto;
 }

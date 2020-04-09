@@ -300,6 +300,103 @@ export class AdminService {
 		let options = { headers: headers };
     	return this.http.post(AppSettings.API_ENDPOINT + 'deleteAdverPost',data, options).map(res => <any>res);
   }
+
+  admin_add_plan(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'advertisementPack/addNewPlan',data, options).map(res => <any>res);
+  }
+  getPlanList() {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+    	});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'advertisementPack/listPlan', options).map(res => <any>res);
+  }
+  admin_update_plan(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'advertisementPack/updateStatus',data, options).map(res => <any>res);
+  }
+  admin_delete_plan(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'advertisementPack/deletePlans',data, options).map(res => <any>res);
+  }
+  admin_load_planData(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'advertisementPack/planById',data, options).map(res => <any>res);
+  }
+  admin_edit_planData(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'advertisementPack/editExistingPlans',data, options).map(res => <any>res);
+  }
+  admin_add_user(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'AdminManageUser/addUser',data, options).map(res => <any>res);
+  }
+  getUserList() {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+    	});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'AdminManageUser/listUser', options).map(res => <any>res);
+  }
+  admin_delete_user(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'AdminManageUser/deleteUser',data, options).map(res => <any>res);
+  }
+  admin_update_user(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'AdminManageUser/updateStatusUser',data, options).map(res => <any>res);
+  }
+  admin_load_userData(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'AdminManageUser/userById',data, options).map(res => <any>res);
+  }
+  admin_edit_user(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'AdminManageUser/editUser',data, options).map(res => <any>res);
+  }
 	/*admin_load_roleData(roleId) {
 
 

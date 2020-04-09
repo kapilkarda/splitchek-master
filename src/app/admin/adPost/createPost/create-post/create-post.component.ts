@@ -37,7 +37,7 @@ export class CreatePostComponent implements OnInit {
 
  ngOnInit() {
   this.user = JSON.parse(localStorage.getItem('userInfo'))
-  this.model.adminId = this.user.id;
+  this.model.adminId = this.user._id;
  this.loadCategoryData();
 
  }
