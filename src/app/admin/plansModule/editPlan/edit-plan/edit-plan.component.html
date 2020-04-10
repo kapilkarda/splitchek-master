@@ -47,7 +47,7 @@
                       <label for="no_day">No of Days </label>
                       <input type="number" class="form-control" name="no_day" placeholder="No of Days" [(ngModel)]="model.no_day" required #no_day="ngModel"  [maxlength]="50"/>
                       <div *ngIf="no_day.errors && no_day.touched">
-                        <span class="error" *ngIf="no_date.errors?.required">No of days is mandatory.</span>
+                        <span class="error" *ngIf="no_day.errors?.required">No of days is mandatory.</span>
                       </div>
                     </div>
                   </div>

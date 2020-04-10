@@ -105,7 +105,7 @@
 				</li>
 				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-user"></i>
+						<i class="nav-icon fas fa-boxes"></i>
 						<p>Category<i class="right fas fa-angle-left"></i></p>
 					</a>
 					<ul class="nav nav-treeview">
@@ -160,6 +160,26 @@
 							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createPlan']" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Add Plan</p>
+							</a>
+						</li>
+					</ul>
+        </li>
+        <li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-question-circle"></i>
+						<p>FAQ<i class="right fas fa-angle-left"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listFaq']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage FAQ</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createFaq']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add FAQ</p>
 							</a>
 						</li>
 					</ul>

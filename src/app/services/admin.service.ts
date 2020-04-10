@@ -397,6 +397,58 @@ export class AdminService {
 		let options = { headers: headers };
     	return this.http.post(AppSettings.API_ENDPOINT + 'AdminManageUser/editUser',data, options).map(res => <any>res);
   }
+  admin_add_faq(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'faq/addFAQ',data, options).map(res => <any>res);
+  }
+  getFaqList() {
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+    	});
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'faq/listFAQ', options).map(res => <any>res);
+  }
+  admin_delete_Faq(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'faq/deleteFAQ',data, options).map(res => <any>res);
+  }
+  admin_update_Faq(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'faq/deleteFAQ',data, options).map(res => <any>res);
+  }
+  admin_load_faqData(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+    let datas = {
+      id:data
+    }
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'faq/faqById',datas, options).map(res => <any>res);
+  }
+
+  admin_edit_faqData(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'faq/editFAQ',data, options).map(res => <any>res);
+  }
 	/*admin_load_roleData(roleId) {
 
 

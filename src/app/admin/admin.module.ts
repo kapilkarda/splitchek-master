@@ -66,6 +66,9 @@ import { EditPlanComponent } from './plansModule/editPlan/edit-plan/edit-plan.co
 import { AddUserComponent } from './usermodule/addUser/add-user/add-user.component';
 import { ListUserComponent } from './usermodule/listUser/list-user/list-user.component';
 import { EditUserComponent } from './usermodule/editUser/edit-user/edit-user.component';
+import { AddFaqComponent } from './faqmodule/addFaq/add-faq/add-faq.component';
+import { ListFaqComponent } from './faqmodule/listFaq/list-faq/list-faq.component';
+import { EditFaqComponent } from './faqmodule/editFaq/edit-faq/edit-faq.component';
 
 @NgModule({
 	imports: [
@@ -121,6 +124,9 @@ import { EditUserComponent } from './usermodule/editUser/edit-user/edit-user.com
 		AddUserComponent,
 		ListUserComponent,
 		EditUserComponent,
+		AddFaqComponent,
+		ListFaqComponent,
+		EditFaqComponent,
 
 		//adminmanagefeedbacksComponent,
 		//adminmanageusersComponent,
