@@ -26,7 +26,7 @@ export class CreatePostComponent implements OnInit {
   uploadUrl = AppSettings.API_ENDPOINT;
   upImage ='../../../../../assets/img/dummy.png';
   user:any;
-
+  userlistData:any;
  constructor(
    private router: Router,
    private activatedRoute: ActivatedRoute,
@@ -40,12 +40,31 @@ export class CreatePostComponent implements OnInit {
   this.model.adminId = this.user._id;
  this.loadCategoryData();
 
+ this.loadUserData()
+
  }
  getCatValue(e){
    console.log(e.form)
    this.loadFormData(e.form);
  }
-
+ loadUserData() {
+  console.log("hhhhhhhhhhhh")
+  this.spinner.show();
+    this.adminService.getUserList().subscribe((result) => {
+    this.result = result;
+  },
+  (err) => this.spinner.hide(),
+  () => {
+    if (this.result.status === 'success') {
+      this.userlistData = this.result.data;
+      console.log(this.userlistData)
+      this.spinner.hide();
+    } else {
+      this.spinner.hide();
+      this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
+    }
+  });
+}
 
  loadFormData(form) {
    let data = {
