@@ -5,6 +5,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {MessageService} from 'primeng/api';
 import {AdminService} from '../../../services/admin.service';
 import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
+import {AppSettings} from '../../../../../appSettings';
 
 @Component({
    selector: 'addcategory',
@@ -13,13 +14,15 @@ import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
 })
 
 export class addcategoryComponent {
-  model: any = {parent:'0',catname:'',form:''};
+  model: any = {parent:'0',catname:'',form:'',image:''};
    result: any;
    roleList:any;
    moduleArr: any = { "modules": [] };
    categories:any;
    items:any=[];
+   upImage ='../../../../assets/img/dummy.png';
 
+   uploadUrl = AppSettings.API_ENDPOINT;
 
 
 	constructor(
@@ -101,5 +104,15 @@ export class addcategoryComponent {
 				this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
 			}
 		});
-	}
+  }
+  uploadProgress(){
+    this.spinner.show();
+   }
+   onBasicUploadAuto(e){
+    this.spinner.hide();
+     console.log(e)
+     let path = e.originalEvent.body.data[0].filename;
+     this.model.image = path;
+     this.upImage = path;
+   }
 }

@@ -38,6 +38,13 @@
 
 
                   </div>
+
+                  <div class="form-group">
+                    <h5>Upload Image</h5>
+                    <img [src]="upImage"  class="imgView" />
+                    <p-fileUpload #fubauto mode="basic" name="image[]" [url]="uploadUrl+'imageuploadadverpost'" accept="image/*" maxFileSize="1000000" (onProgress)="uploadProgress()" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
+
+                  </div>
 									<div class="card-footer">
 										<button type="button" (click)="edit_category()" class="btn btn-primary subBut" [disabled]="! addcategoryForm.valid">Edit Category</button>
 										<button [routerLink]="['/admin/managecategory']"  class="btn btn-default cancelBut"  style="font-weight: bold;float:right;">Cancel</button>

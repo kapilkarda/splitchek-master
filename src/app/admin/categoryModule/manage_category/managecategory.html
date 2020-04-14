@@ -20,7 +20,8 @@
 					</ng-template>
 					<ng-template pTemplate="header" let-columns>
 						<tr>
-							<th style="width: 8%">#</th>
+              <th style="width: 8%">#</th>
+              <th>Icon</th>
 							<th style="width: 18%" [pSortableColumn]="'catname'">
 								Category Name
 								<p-sortIcon [field]="'name'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
@@ -32,7 +33,11 @@
 					</ng-template>
 					<ng-template pTemplate="body" let-rowData let-i="rowIndex">
 						<tr>
-							<td>{{i+1}}</td>
+              <td>{{i+1}}</td>
+              <td>
+                <img [src]="rowData.image" *ngIf="rowData.image && rowData.image != ''" width="50px"/>
+                <img src="../../../../assets/img/logo.png" *ngIf="!rowData.image " width="50px" />
+              </td>
               <td>{{rowData.catname}}</td>
               <td>
                 <button type="text" [routerLink]="['/admin/subcategory',rowData._id]"   class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>

@@ -5,6 +5,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {MessageService} from 'primeng/api';
 import {AdminService} from '../../../services/admin.service';
 //import {UserService} from '../../../_services/user.service';
+import {AppSettings} from '../../../../../appSettings';
 
 @Component({
    selector: 'editcategory',
@@ -13,7 +14,7 @@ import {AdminService} from '../../../services/admin.service';
 })
 
 export class editcategoryComponent {
-	model: any = {id:'',parent:'0',catname:'',form:''};
+	model: any = {id:'',parent:'0',catname:'',form:'',image:''};
 	categoryId: any;
 	categorydata: any;
 	selectedModuleList:any;
@@ -21,6 +22,9 @@ export class editcategoryComponent {
   items:any;
     result: any;
     categories:any;
+    upImage ='../../../../assets/img/dummy.png';
+
+   uploadUrl = AppSettings.API_ENDPOINT;
 	/*moduleList:any;
 	moduleArr: any = { "modules": [] }; */
     /*pagedata: any; */
@@ -56,6 +60,11 @@ export class editcategoryComponent {
                this.model.catname = this.categorydata.catname;
                this.model.parent = this.categorydata.parent;
                this.model.form = this.categorydata.form;
+               this.model.image = this.categorydata.image;
+               if(this.categorydata.image && this.categorydata.image != ''){
+                this.upImage = this.categorydata.image;
+               }
+
                console.log("modellll ",this.model)
                this.spinner.hide();
             }
@@ -168,9 +177,14 @@ export class editcategoryComponent {
 
 
 
-    /* onChangeModule(event, module: any){
-      console.log("event ",event)
-      console.log("module ",module)
-      this.moduleArr.modules.push(module);
-   } */
+   uploadProgress(){
+    this.spinner.show();
+   }
+   onBasicUploadAuto(e){
+    this.spinner.hide();
+     console.log(e)
+     let path = e.originalEvent.body.data[0].filename;
+     this.model.image = path;
+     this.upImage = path;
+   }
 }
