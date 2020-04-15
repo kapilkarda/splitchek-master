@@ -160,7 +160,7 @@ export class AdminService {
 			'Authorization': localStorage.getItem('token'),
       });
 		let options = { headers: headers };
-    	return this.http.get(AppSettings.API_ENDPOINT + 'listcategory', options).map(res => <any>res);
+    	return this.http.get(AppSettings.API_ENDPOINT + 'sub_cat_form_category', options).map(res => <any>res);
   }
   adminGetSubCategoryList(data){
     let headers = new HttpHeaders({
@@ -170,28 +170,22 @@ export class AdminService {
 		let options = { headers: headers };
     	return this.http.post(AppSettings.API_ENDPOINT + 'subCategory',data, options).map(res => <any>res);
   }
-	admin_delete_category(categoryId) {
+	admin_delete_category(data1) {
 		let headers = new HttpHeaders({
 			'Content-Type': 'application/json',
 			'Authorization': localStorage.getItem('token'),
       });
-    let data={
-      "id":categoryId
-    }
 		let options = { headers: headers };
+		let data = {data:data1}
     	return this.http.post(AppSettings.API_ENDPOINT + 'deleteCategory',data, options).map(res => <any>res);
 	}
 
-	admin_change_category_status(categoryId,currentStatus) {
+	admin_change_category_status(data1) {
 		let headers = new HttpHeaders({
 			'Content-Type': 'application/json',
 			'Authorization': localStorage.getItem('token'),
-    });
-    let data = {
-
-			'id': categoryId.toString(),
-			'status': currentStatus.toString()
-    }
+		});
+		let data = {data:data1}
 		let options = { headers: headers };
     	return this.http.post(AppSettings.API_ENDPOINT + 'categoryStatus',data, options).map(res => <any>res);
 	}
@@ -199,8 +193,7 @@ export class AdminService {
 	admin_load_categoryData(categoryId) {
 		let headers = new HttpHeaders({
       	'Content-Type': 'application/json',
-      	'Authorization': localStorage.getItem('token'),
-      	'categoryid': categoryId.toString()
+      	'Authorization': localStorage.getItem('token')
       });
       let data = {
         id:categoryId

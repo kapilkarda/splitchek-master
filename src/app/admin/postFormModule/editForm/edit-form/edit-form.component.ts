@@ -75,7 +75,7 @@ export class EditFormComponent implements OnInit {
                     {id:'datepicker',value:'Datepicker'},
                     {id:'textarea',value:'Textarea'},
                     {id:'colorpicker',value:'Color Picker'},]
-    this.step[0].field = this.fields;
+    // this.step[0].field = this.fields;
   }
 	update_form() {
     console.log(this.fields)

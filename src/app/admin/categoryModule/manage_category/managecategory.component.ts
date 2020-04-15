@@ -46,13 +46,27 @@ export class managecategoryComponent {
 		console.log("hhhhhhhhhhhh")
     this.spinner.show();
 		  this.adminService.adminGetPagedCategoryList().subscribe((result) => {
-			this.result = result;
+      this.result = result;
+      console.log(this.result.data)
 		},
 		(err) => this.spinner.hide(),
 		() => {
 			if (this.result.status === 'success') {
+				this.totalRecords = this.result.data.length;
+				for(let item of this.result.data){
+					let mobj = []
+					item['child'] = this.ShowSubCatData(item.subCat);
+					mobj = this.getIDArr(item.subCat);
+					let obj = {
+						id:item._id,
+						status:item.status
+					}
+					console.log(mobj)
+					mobj.push(obj)
+					item['idArr'] = mobj;
+				}
+				
 				this.categoryData = this.result.data;
-        this.totalRecords = this.result.data.length;
 
 				this.spinner.hide();
 			} else {
@@ -89,14 +103,14 @@ export class managecategoryComponent {
 	  });
 	}
 
-	status_change(categoryId,currentStatus){
+	status_change(categoryId){
 		this.confirmationService.confirm({
 			message: 'Are you sure that you want to activate/deactivate this category?',
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
 				this.spinner.show();
-				this.adminService.admin_change_category_status(categoryId,currentStatus).subscribe((result) => {
+				this.adminService.admin_change_category_status(categoryId).subscribe((result) => {
 					this.result = result;
 				},
 				(err) => this.spinner.hide(),
@@ -114,6 +128,73 @@ export class managecategoryComponent {
 			reject: () => {
 			}
 	  });
-  }
-
+	}
+	ShowSubCatData(data){
+		let arr = [];
+		for(let item of data){
+			let obj = {
+				"label":item.name,
+				"data":item.name,
+				"children":[]
+			}
+			if(item.subCat){
+				let d = this.showSubtosub(item.subCat)
+				obj.children = d;
+			}
+			
+			arr.push(obj)
+		}
+		let vs = arr;
+		console.log(vs)
+		return vs;
+	}
+	showSubtosub(data){
+		let arr = [];
+		for(let item of data){
+			let obj = {
+				"label":item.name,
+				"data":item.name,
+				"children":[]
+			}
+			if(item.subCat){
+				let d = this.showSubtosub(item.subCat)
+				obj.children = d;
+			}
+			
+			arr.push(obj)
+		}
+		return arr;
+	}
+	getIDArr(data){
+		let arr =[];
+		for(let item of data){
+			let obj = {
+				id:item._id,
+				status:item.status
+			}
+			
+			arr.push(item._id);
+			if(item.subCat){
+				let d = this.getSubId(item.subCat)
+				arr.push(d);
+			}
+		}
+		return arr;
+	}
+	getSubId(data){
+		let arr =[];
+		for(let item of data){
+			let obj = {
+				id:item._id,
+				status:item.status
+			}
+			
+			arr.push(item._id);
+			if(item.subCat){
+				let d = this.getSubId(item.subCat)
+				arr.push(d);
+			}
+		}
+		return arr;
+	}
 }

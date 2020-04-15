@@ -2,7 +2,12 @@
 	<section class="content-header">
    	<div class="container-fluid">
       	<div class="row mb-2">
-				<div class="col-sm-12">
+          <div class="col-sm-1">
+            <button (click)="back()" class="btn btn-grey back-btn">
+              <i class="fa fa-angle-left"></i>
+            </button>
+          </div>
+				<div class="col-sm-6">
 					<h1 class="m-0 text-dark">Edit Category</h1>
 				</div>
 			</div>
@@ -20,9 +25,10 @@
 							<form name="addcategoryform" (ngSubmit)="edit_category()" #addcategoryForm="ngForm">
 								<input type="hidden"  name="id" [(ngModel)]="model.id" #id="ngModel"/>
 								<div class="card-body">
-                  <div class="form-group ">
+                  <div class="form-group " *ngIf="parentName != '0'">  
 										<label for="Name">Parent Category Name </label>
-                    <p-dropdown class="pDropdwon" filterBy="label,value"  [filter]="true" [options]="categories" optionLabel="catname" optionValue="_id" [(ngModel)]="model.parent" name="parent"></p-dropdown>
+										<h6>{{parentName}}</h6>
+
 									</div>
 									<div class="form-group">
 										<label for="Name">Category Name </label>

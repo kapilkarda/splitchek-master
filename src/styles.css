@@ -12,3 +12,9 @@ legend.ui-fieldset-legend {
     font-size: 12px;
 }
 
+.pull-right {
+  float: right;
+}
+button.btn.btn-grey.back-btn {
+  background: lightgray;
+}

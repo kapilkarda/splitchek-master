@@ -27,30 +27,31 @@
                     </div>
                   </div>
                   <p-fieldset *ngFor="let s of step;let j = index" legend="Step {{j+1}}">
-                    <p-fieldset *ngFor="let f of s.field;let i=index"  legend="Field {{i+1}}">
+                    <p-fieldset *ngFor="let f of s.field;let i=index"  legend="Field {{j+1}}-{{i+1}}">
                       <div class="row">
                         <div class="form-group col-4">
                           <label for="Name">Name</label>
-                          <input type="text" class="form-control" name="name_{{j}}{{i}}"  placeholder="Field Name" [(ngModel)]="f.name" #name="ngModel" required  [maxlength]="50"/>
+                          <input type="text" class="form-control" name="name_{{j}}_{{i}}"  placeholder="Field Name" [(ngModel)]="f.name" #name="ngModel" required  [maxlength]="50"/>
                         </div>
                         <div class="form-group col-4">
                           <label for="Name">Type</label>
-                          <p-dropdown class="pDropdwon" name="type_{{j}}{{i}}" filterBy="label,value" (ngModelChange)="showOption(j,i,$event)"  [filter]="true" [options]="typeItem" optionLabel="value" optionValue="id" [(ngModel)]="f.type" name="type"></p-dropdown>
+                          <p-dropdown class="pDropdwon" name="type_{{j}}_{{i}}" filterBy="label,value" (ngModelChange)="showOption(j,i,$event)"  [filter]="true" [options]="typeItem" optionLabel="value" optionValue="id" [(ngModel)]="f.type" name="type"></p-dropdown>
                         </div>
                         <div class="form-group col-4">
                           <label for="Name">Icon</label>
-                          <input type="text" class="form-control" name="icon_{{j}}{{i}}"  placeholder="Ex. fa-check" [(ngModel)]="f.icon" #icon="ngModel"/>
+                          <input type="text" class="form-control" name="icon_{{j}}_{{i}}"  placeholder="Ex. fa-check" [(ngModel)]="f.icon" #icon="ngModel"/>
                         </div>
                       </div>
-                      <p-fieldset *ngIf="f.optionShow" legend="Options {{j}}{{i+1}}">
-                        <div class="row" *ngFor="let o of f.option;let ix=index"  >
+                      <p-fieldset *ngIf="f.optionShow" legend="Options {{j+1}}-{{i+1}}">
+                        <div class="row" *ngFor="let o of f.option;let ix =index"  >
+                        
                           <div class="form-group col-5">
                             <label for="Name">Option label</label>
-                            <input type="text" class="form-control" name="label_{{j}}{{i}}{{ix}}" placeholder="Label" [(ngModel)]="o.label" #label="ngModel" [maxlength]="50"/>
+                            <input type="text" class="form-control" name="label_{{j}}_{{i}}_{{ix}}" placeholder="Label" [(ngModel)]="o.label" #label="ngModel" [maxlength]="50"/>
                           </div>
                           <div class="form-group col-5">
                             <label for="Name">Option Value</label>
-                            <input type="text" class="form-control" name="value_{{j}}{{i}}{{ix}}" placeholder="Value" [(ngModel)]="o.value" #value="ngModel" [maxlength]="50"/>
+                            <input type="text" class="form-control" name="value_{{j}}_{{i}}_{{ix}}" placeholder="Value" [(ngModel)]="o.value" #value="ngModel" [maxlength]="50"/>
                           </div>
                           <div class="form-group col-1">
                             <p-button label="" icon="pi pi-minus"  styleClass="ui-button-danger" class="removeButtonOption" (onClick)="removeOptions(j,i,ix)"></p-button>

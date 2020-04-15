@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Location} from '@angular/common';
 import {Router, ActivatedRoute, Params, Data} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -20,11 +21,15 @@ export class editcategoryComponent {
 	selectedModuleList:any;
   roleList:any;
   items:any;
+  catName:any;
     result: any;
     categories:any;
+    pageTitle = 'Add Category';
     upImage ='../../../../assets/img/dummy.png';
-
+   parentId:any ='0';
+   parentName:any='0';
    uploadUrl = AppSettings.API_ENDPOINT;
+
 	/*moduleList:any;
 	moduleArr: any = { "modules": [] }; */
     /*pagedata: any; */
@@ -35,6 +40,7 @@ export class editcategoryComponent {
 		private adminService: AdminService,
 		private spinner: NgxSpinnerService,
 		private messageService: MessageService,
+		private _location: Location
 		//private userService: UserService,
 	) { }
 
@@ -43,7 +49,10 @@ export class editcategoryComponent {
 			.subscribe(
             (params: Params) => {
             this.categoryId = params['id'];
+            this.catName = params['name'];
             this.model.id = this.categoryId;
+            this.parentId = params['pid'];
+            this.parentName = params['pname'];
             }
 		);
         if (this.categoryId) {
@@ -58,8 +67,6 @@ export class editcategoryComponent {
 
                //console.log("ml",this.moduleList)
                this.model.catname = this.categorydata.catname;
-               this.model.parent = this.categorydata.parent;
-               this.model.form = this.categorydata.form;
                this.model.image = this.categorydata.image;
                if(this.categorydata.image && this.categorydata.image != ''){
                 this.upImage = this.categorydata.image;
@@ -69,7 +76,6 @@ export class editcategoryComponent {
                this.spinner.hide();
             }
          });
-         this.loadCategoryData()
          this.loadFormData();
       }
 
@@ -113,6 +119,12 @@ export class editcategoryComponent {
         this.items.splice(0, 0, objectName)
 				this.spinner.hide();
         console.log(this.items)
+        for(let item of this.items){
+          if(item._id == this.categorydata.form){          
+            
+            this.model.form = item;
+          }
+        }
 				this.spinner.hide();
 			} else {
 				this.spinner.hide();
@@ -130,31 +142,10 @@ export class editcategoryComponent {
          console.log("this.moduleList ",this.moduleList[0])
       });
    } */
-   loadCategoryData() {
-		console.log("hhhhhhhhhhhh")
-		this.spinner.show();
-		  this.adminService.adminGetCategoryList().subscribe((result) => {
-			this.result = result;
-		},
-		(err) => this.spinner.hide(),
-		() => {
-			if (this.result.status === 'success') {
-        this.categories = this.result.data;
-        let objectName = {
-          catname:'Select Category',
-          _id:'0'
-        }
-        this.categories.splice(0, 0, objectName)
-
-			} else {
-				this.spinner.hide();
-				this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
-			}
-		});
-	}
+   
      edit_category() {
        this.model.form = this.model.form._id;
-       this.model.parent = this.model.parent._id
+       this.model.parent = this.parentId;
       //this.model.modules = this.moduleArr.modules;
       console.log("model ",this.model)
       this.spinner.show();
@@ -167,7 +158,7 @@ export class editcategoryComponent {
          if (this.result.status === 'success') {
             this.spinner.hide();
             this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
-            this.router.navigate(['/admin/managecategory']);
+            this._location.back();
          } else {
             this.spinner.hide();
             this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
@@ -187,4 +178,7 @@ export class editcategoryComponent {
      this.model.image = path;
      this.upImage = path;
    }
+   back(){
+		this._location.back();
+	}
 }

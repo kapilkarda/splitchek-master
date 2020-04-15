@@ -85,7 +85,7 @@ const routes: Routes = [
 			},
 
 			{
-				path: 'addcategory',
+				path: 'addcategory/:id/:name',
 				component: addcategoryComponent,
 				//canActivate: [AuthGuard]
 			},
@@ -96,12 +96,12 @@ const routes: Routes = [
 				//canActivate: [AuthGuard]
 			},
 			{
-				path: 'editcategory/:id',
+				path: 'editcategory/:id/:name/:pid/:pname',
 				component: editcategoryComponent,
 				//canActivate: [AuthGuard]
 			},
 			{
-				path: 'subcategory/:id',
+				path: 'subcategory/:id/:name',
 				component: SubCategoryComponent,
 				//canActivate: [AuthGuard]
 			},

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
 import {Router,ActivatedRoute,Params,Data} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
@@ -22,7 +23,8 @@ export class SubCategoryComponent implements OnInit {
 	categoryData: any;
   totalRecords: number;
   categoryId:any;
-
+	catName:any;
+	AllCats:any=[];
 	//private unsubscribe$: Subject<any> = new Subject<any>();
 	constructor(
 		//private cdref: ChangeDetectorRef,
@@ -33,14 +35,28 @@ export class SubCategoryComponent implements OnInit {
 
 		private spinner: NgxSpinnerService,
 		private messageService: MessageService,
-		private confirmationService: ConfirmationService
+		private confirmationService: ConfirmationService,
+		private _location: Location
 	) {
 
 	}
 	ngOnInit() {this.activatedRoute.params
     .subscribe(
           (params: Params) => {
-      this.categoryId = params['id'];
+			this.categoryId = params['id'];
+			this.catName = params['name'];
+			if(localStorage.getItem('breadcrumb')){
+				this.AllCats = JSON.parse(localStorage.getItem('breadcrumb'));
+			}
+			let obj = {
+				name:this.catName,
+				id:this.categoryId
+			}
+			this.AllCats.push(obj);
+			this.AllCats = this.getBreadcrumb(this.AllCats)
+			console.log(this.AllCats)
+
+			localStorage.setItem('breadcrumb',JSON.stringify(this.AllCats));
       this.loadCategoryData(this.categoryId);
           }
   );
@@ -48,7 +64,7 @@ export class SubCategoryComponent implements OnInit {
 	}
 
 
-  
+
 	loadCategoryData(catId) {
 		console.log("hhhhhhhhhhhh")
     this.spinner.show();
@@ -63,7 +79,7 @@ export class SubCategoryComponent implements OnInit {
 			if (this.result.status === 'success') {
 				this.categoryData = this.result.data;
         this.totalRecords = this.result.data.length;
-        
+
 
 				this.spinner.hide();
 			} else {
@@ -125,6 +141,18 @@ export class SubCategoryComponent implements OnInit {
 			reject: () => {
 			}
 	  });
-  }
+	}
 
+	getBreadcrumb(data){
+			let arr = [];
+			for(let i of data){
+				arr.push(i);
+				if(i.id === this.categoryId){
+					return arr;
+				}
+			}
+	}
+	back(){
+		this._location.back();
+	}
 }

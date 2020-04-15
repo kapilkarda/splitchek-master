@@ -32,7 +32,7 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import {CheckboxModule} from 'primeng/checkbox';
 import {FileUploadModule} from 'primeng/fileupload';
 import {EditorModule} from 'primeng/editor';
-
+import {TreeModule} from 'primeng/tree';
 
 
 /*import {adminmanagefeedbacksComponent} from './feedbackModule/manage_feedbacks/adminmanagefeedbacks.component';
@@ -93,7 +93,8 @@ import { EditFaqComponent } from './faqmodule/editFaq/edit-faq/edit-faq.componen
     RadioButtonModule,
     CheckboxModule,
     FileUploadModule,
-    EditorModule
+		EditorModule,
+		TreeModule
 	],
 	declarations: [
 		adminComponent,

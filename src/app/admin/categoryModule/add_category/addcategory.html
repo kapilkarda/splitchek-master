@@ -2,9 +2,14 @@
 	<section class="content-header">
    	<div class="container-fluid">
       	<div class="row mb-2">
-				<div class="col-sm-12">
-					<h1 class="m-0 text-dark">Add Category</h1>
-				</div>
+					<div class="col-sm-1">
+						<button (click)="back()" class="btn btn-grey back-btn">
+							<i class="fa fa-angle-left"></i>
+						</button>
+					</div>
+					<div class="col-sm-11">
+						<h1 class="m-0 text-dark">{{pageTitle}}</h1>
+					</div>
 			</div>
 		</div>
 	</section>
@@ -14,7 +19,7 @@
 				<div class="col-md-10 offset-1">
 					<div class="card card-primary">
 						<div class="card-header">
-							<h3 class="card-title">Add Category</h3>
+							<h3 class="card-title">{{pageTitle}}</h3>
 						</div>
 						<div class="card-body table-responsive p-0">
 							<form name="addcategoryform" (ngSubmit)="add_category()" #addcategoryForm="ngForm">
@@ -31,10 +36,9 @@
 
 
 								<div class="card-body">
-									<div class="form-group ">
+									<div class="form-group " *ngIf="catName != '0'">  
 										<label for="Name">Parent Category Name </label>
-										<p-dropdown class="pDropdwon" filterBy="label,value"  [filter]="true" [options]="categories" optionLabel="catname" optionValue="_id" [(ngModel)]="model.parent" name="parent"></p-dropdown>
-
+										<h6>{{catName}}</h6>
 
 									</div>
 
