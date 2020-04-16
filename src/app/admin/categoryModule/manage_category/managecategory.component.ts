@@ -197,4 +197,9 @@ export class managecategoryComponent {
 		}
 		return arr;
 	}
+	viewSubCat(id,name){
+		localStorage.setItem('subCatData',JSON.stringify(this.categoryData))
+		this.router.navigate(['admin/subcategory',id,name])
+		
+	}
 }

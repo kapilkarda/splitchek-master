@@ -47,7 +47,7 @@ export class addcategoryComponent {
 		);
 		if(this.categoryId != '0'){
 			this.pageTitle = 'Add new sub category in: '+this.catName;
-			
+
 		}
 
 
@@ -77,10 +77,10 @@ export class addcategoryComponent {
 			}
 		});
 	}
- 
+
 
 	add_category() {
-    this.model.form = this.model.form._id;    
+    this.model.form = this.model.form._id;
 		this.model.parent = this.categoryId;
 		this.spinner.show();
 		this.adminService.admin_add_category(this.model).subscribe(result => {
@@ -90,12 +90,10 @@ export class addcategoryComponent {
 		() => {
 			if (this.result.status === 'success') {
 				this.spinner.hide();
-				this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
-				if(this.categoryId != '0'){
-					this._location.back();
-				}else{
-					this.router.navigate(['/admin/managecategory']);
-				}
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
+
+        this.loadCategoryData();
+
 			} else {
 				this.spinner.hide();
 				this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
@@ -114,5 +112,31 @@ export class addcategoryComponent {
 	 }
 	 back(){
 		this._location.back();
+  }
+
+
+  loadCategoryData() {
+		console.log("hhhhhhhhhhhh")
+    this.spinner.show();
+		  this.adminService.adminGetPagedCategoryList().subscribe((result) => {
+      this.result = result;
+      console.log(this.result.data)
+		},
+		(err) => this.spinner.hide(),
+		() => {
+			if (this.result.status === 'success') {
+        // localStorage.setItem('subCatData',JSON.stringify(this.result.data))
+				if(this.categoryId != '0'){
+					this._location.back();
+				}else{
+					this.router.navigate(['/admin/managecategory']);
+				}
+
+				this.spinner.hide();
+			} else {
+				this.spinner.hide();
+				this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
+			}
+		});
 	}
 }

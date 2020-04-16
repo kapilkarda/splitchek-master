@@ -120,8 +120,8 @@ export class editcategoryComponent {
 				this.spinner.hide();
         console.log(this.items)
         for(let item of this.items){
-          if(item._id == this.categorydata.form){          
-            
+          if(item._id == this.categorydata.form){
+
             this.model.form = item;
           }
         }
@@ -142,7 +142,7 @@ export class editcategoryComponent {
          console.log("this.moduleList ",this.moduleList[0])
       });
    } */
-   
+
      edit_category() {
        this.model.form = this.model.form._id;
        this.model.parent = this.parentId;
@@ -158,7 +158,7 @@ export class editcategoryComponent {
          if (this.result.status === 'success') {
             this.spinner.hide();
             this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
-            this._location.back();
+            this.loadCategoryData();
          } else {
             this.spinner.hide();
             this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
@@ -180,5 +180,29 @@ export class editcategoryComponent {
    }
    back(){
 		this._location.back();
+  }
+  loadCategoryData() {
+		console.log("hhhhhhhhhhhh")
+    this.spinner.show();
+		  this.adminService.adminGetPagedCategoryList().subscribe((result) => {
+      this.result = result;
+      console.log(this.result.data)
+		},
+		(err) => this.spinner.hide(),
+		() => {
+			if (this.result.status === 'success') {
+        // localStorage.setItem('subCatData',JSON.stringify(this.result.data))
+				if(this.categoryId != '0'){
+					this._location.back();
+				}else{
+					this.router.navigate(['/admin/managecategory']);
+				}
+
+				this.spinner.hide();
+			} else {
+				this.spinner.hide();
+				this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
+			}
+		});
 	}
 }

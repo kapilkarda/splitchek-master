@@ -38,13 +38,19 @@ export class SubCategoryComponent implements OnInit {
 		private confirmationService: ConfirmationService,
 		private _location: Location
 	) {
-
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+   }
 	}
-	ngOnInit() {this.activatedRoute.params
+	ngOnInit() {
+		this.activatedRoute.params
     .subscribe(
           (params: Params) => {
 			this.categoryId = params['id'];
-			this.catName = params['name'];
+      this.catName = params['name'];
+      // this.router.navigateByUrl('/admin/dashboard/', { skipLocationChange: true }).then(() => {
+      //   this.router.navigate(['admin/subcategory',this.categoryId,this.catName]);
+      // });
 			if(localStorage.getItem('breadcrumb')){
 				this.AllCats = JSON.parse(localStorage.getItem('breadcrumb'));
 			}
@@ -55,39 +61,15 @@ export class SubCategoryComponent implements OnInit {
 			this.AllCats.push(obj);
 			this.AllCats = this.getBreadcrumb(this.AllCats)
 			console.log(this.AllCats)
-
-			localStorage.setItem('breadcrumb',JSON.stringify(this.AllCats));
-      this.loadCategoryData(this.categoryId);
-          }
-  );
+      localStorage.setItem('breadcrumb',JSON.stringify(this.AllCats));
+			this.loadCategoryData();
+      // this.loadCategoryData(this.categoryId);
+					}
+	);
 
 	}
 
 
-
-	loadCategoryData(catId) {
-		console.log("hhhhhhhhhhhh")
-    this.spinner.show();
-    let data ={
-      "parent":catId,
-    }
-		  this.adminService.adminGetSubCategoryList(data).subscribe((result) => {
-			this.result = result;
-		},
-		(err) => this.spinner.hide(),
-		() => {
-			if (this.result.status === 'success') {
-				this.categoryData = this.result.data;
-        this.totalRecords = this.result.data.length;
-
-
-				this.spinner.hide();
-			} else {
-				this.spinner.hide();
-				this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
-			}
-		});
-	}
 
 	delete_category(categoryId){
 		this.confirmationService.confirm({
@@ -103,7 +85,7 @@ export class SubCategoryComponent implements OnInit {
 				() => {
 				if (this.result.status === 'success') {
 					this.spinner.hide();
-					this.loadCategoryData(this.categoryId);
+					this.loadCategoryData();
 					this.messageService.add({severity:'success', summary: 'Success', detail:this.result.message});
 				} else {
 					this.spinner.hide();
@@ -116,21 +98,21 @@ export class SubCategoryComponent implements OnInit {
 	  });
 	}
 
-	status_change(categoryId,currentStatus){
+	status_change(categoryId){
 		this.confirmationService.confirm({
 			message: 'Are you sure that you want to activate/deactivate this category?',
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
 				this.spinner.show();
-				this.adminService.admin_change_category_status(categoryId,currentStatus).subscribe((result) => {
+				this.adminService.admin_change_category_status(categoryId).subscribe((result) => {
 					this.result = result;
 				},
 				(err) => this.spinner.hide(),
 				() => {
 				if (this.result.status === 'success') {
 					this.spinner.hide();
-					this.loadCategoryData(this.categoryId);
+					this.loadCategoryData();
 					this.messageService.add({severity:'success', summary: 'Success', detail:this.result.message});
 				} else {
 					this.spinner.hide();
@@ -142,17 +124,157 @@ export class SubCategoryComponent implements OnInit {
 			}
 	  });
 	}
-
-	getBreadcrumb(data){
-			let arr = [];
-			for(let i of data){
-				arr.push(i);
-				if(i.id === this.categoryId){
-					return arr;
-				}
+	ShowSubCatData(data){
+		let arr = [];
+		for(let item of data){
+			let obj = {
+				"label":item.name,
+				"data":item.name,
+				"children":[]
 			}
+			if(item.subCat){
+				let d = this.showSubtosub(item.subCat)
+				obj.children = d;
+			}
+
+			arr.push(obj)
+		}
+		let vs = arr;
+		console.log(vs)
+		return vs;
 	}
-	back(){
-		this._location.back();
+	showSubtosub(data){
+		let arr = [];
+		for(let item of data){
+			let obj = {
+				"label":item.name,
+				"data":item.name,
+				"children":[]
+			}
+			if(item.subCat){
+				let d = this.showSubtosub(item.subCat)
+				obj.children = d;
+			}
+
+			arr.push(obj)
+		}
+		return arr;
+	}
+	getIDArr(data){
+		let arr =[];
+		for(let item of data){
+			let obj = {
+				id:item._id,
+				status:item.status
+			}
+
+			arr.push(item._id);
+			if(item.subCat){
+				let d = this.getSubId(item.subCat)
+				arr.push(d);
+			}
+		}
+		return arr;
+	}
+	getSubId(data){
+		let arr =[];
+		for(let item of data){
+			let obj = {
+				id:item._id,
+				status:item.status
+			}
+
+			arr.push(item._id);
+			if(item.subCat){
+				let d = this.getSubId(item.subCat)
+				arr.push(d);
+			}
+		}
+		return arr;
+	}
+
+	getCatDataMain(data){
+		console.log(data)
+		for(let item of data ){
+			if(item._id == this.categoryId){
+				return item.subCat;
+			}
+			if(item.subCat){
+				let d = this.getCatDataMain2(item.subCat);
+				return d;
+			}
+		}
+	}
+
+	getCatDataMain2(data){
+		for(let item of data ){
+			if(item._id == this.categoryId){
+				return item.subCat;
+			}
+			if(item.subCat){
+				let d = this.getCatDataMain2(item.subCat);
+				return d;
+			}
+		}
+	}
+
+
+	viewSubCat(id,name){
+		// localStorage.setItem('subCatData',JSON.stringify(data))
+		this.router.navigateByUrl('/admin/dashboard/', { skipLocationChange: true }).then(() => {
+			this.router.navigate(['admin/subcategory',id,name]);
+		});
+		// this.router.navigate(['admin/subcategory',id,name])
+
+	}
+	getBreadcrumb(data){
+		let arr = [];
+		for(let i of data){
+			arr.push(i);
+			if(i.id === this.categoryId){
+				return arr;
+			}
+		}
+}
+  back(){
+	  this._location.back();
+  }
+  loadCategoryData() {
+		console.log("hhhhhhhhhhhh")
+    this.spinner.show();
+		  this.adminService.adminGetPagedCategoryList().subscribe((result) => {
+      this.result = result;
+      console.log(this.result.data)
+		},
+		(err) => this.spinner.hide(),
+		() => {
+			if (this.result.status === 'success') {
+        let catDAta =  this.result.data;
+        console.log(catDAta);
+
+      let mainData = this.getCatDataMain(catDAta)
+        for(let item of mainData){
+          let mobj = []
+          item['child'] = this.ShowSubCatData(item.subCat);
+          mobj = this.getIDArr(item.subCat);
+
+          let obj = {
+            id:item._id,
+            status:item.status
+          }
+          console.log(mobj)
+          mobj.push(obj)
+          item['idArr'] = mobj;
+        }
+
+        this.categoryData = mainData;
+        console.log(this.categoryData)
+        this.totalRecords = this.categoryData.length;
+				this.spinner.hide();
+			} else {
+				this.spinner.hide();
+				this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
+			}
+		});
 	}
 }

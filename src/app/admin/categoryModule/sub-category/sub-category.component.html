@@ -9,7 +9,7 @@
 				</div>
 				<div class="col-sm-6">
 					<h1>Manage Sub Category</h1>
-				</div>				
+				</div>
         <div class="col-sm-5">
           <button class="btn btn-primary pull-right" [routerLink]="['/admin/addcategory',categoryId,catName]"><i class="fa fa-plus"></i> Add Child Category</button>
         </div>
@@ -26,9 +26,8 @@
 	<section class="content">
 		<div class="card" *ngIf="categoryData && categoryData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
-				<p-table #dt *ngIf="categoryData" [value]="categoryData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['catname','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+				<p-table #dt *ngIf="categoryData" [value]="categoryData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['name','status','child']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
-
 						<div style="text-align: right">
 							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
 							<input type="text" pInputText size="50" placeholder=" " (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
@@ -36,27 +35,30 @@
 					</ng-template>
 					<ng-template pTemplate="header" let-columns>
 						<tr>
-							<th style="width: 8%">#</th>
-							<th>Icon</th>
-							<th style="width: 18%" [pSortableColumn]="'catname'">
-								Name
+              <th style="width: 80px">#</th>
+              <th style="width: 120px">Icon</th>
+							<th style="width: 18%" [pSortableColumn]="'name'">
+								Category Name
 								<p-sortIcon [field]="'name'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-							</th>
-              <th>Child Category</th>
+              </th>
+              <th>Sub Category</th>
 							<th style="width: 10%">Status</th>
 							<th style="width: 22%">Action</th>
 						</tr>
 					</ng-template>
 					<ng-template pTemplate="body" let-rowData let-i="rowIndex">
 						<tr>
-							<td>{{i+1}}</td>
+              <td>{{i+1}}</td>
               <td>
                 <img [src]="rowData.image" *ngIf="rowData.image && rowData.image != ''" width="50px"/>
                 <img src="../../../../assets/img/logo.png" *ngIf="!rowData.image " width="50px" />
               </td>
-              <td>{{rowData.catname}}</td>
-              <td>
-                <button type="text" [routerLink]="['/admin/subcategory',rowData._id,rowData.catname]"   class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>
+              <td>{{rowData.name}}</td>
+              <td style="display: flex;">
+                <button type="text" (click)="viewSubCat(rowData._id,rowData.name)"   class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>
+								<p-tree [value]="rowData.child" ></p-tree>
+								<!-- {{ShowSubCatData(rowData.subCat)}} -->
+
               </td>
 							<td>
 								<ng-container *ngIf="rowData.status == 1; else deactiveStatusText">
@@ -65,8 +67,8 @@
 								<ng-template #deactiveStatusText>Deactive</ng-template>
 							</td>
 							<td>
-								<button type="text" (click)=delete_category(rowData._id);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-								<button type="button" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
+								<button type="text" (click)=delete_category(rowData.idArr);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								<button type="button" (click)=status_change(rowData.idArr);  class="btn btn-blue">
 									<ng-container *ngIf="rowData.status == 1; else deactiveStatus">
 										<i class="fa fa-toggle-off" title="Deactivate User"></i>
 									</ng-container>

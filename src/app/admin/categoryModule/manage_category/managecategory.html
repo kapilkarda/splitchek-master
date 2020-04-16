@@ -20,7 +20,7 @@
 	<section class="content">
 		<div class="card" *ngIf="categoryData && categoryData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
-				<p-table #dt *ngIf="categoryData" [value]="categoryData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['name','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+				<p-table #dt *ngIf="categoryData" [value]="categoryData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['name','status','child']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
 						<div style="text-align: right">
 							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -29,8 +29,8 @@
 					</ng-template>
 					<ng-template pTemplate="header" let-columns>
 						<tr>
-              <th style="width: 30px">#</th>
-              <th style="width: 100px">Icon</th>
+              <th style="width: 80px">#</th>
+              <th style="width: 120px">Icon</th>
 							<th style="width: 18%" [pSortableColumn]="'name'">
 								Category Name
 								<p-sortIcon [field]="'name'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
@@ -49,10 +49,10 @@
               </td>
               <td>{{rowData.name}}</td>
               <td style="display: flex;">
-                <button type="text" [routerLink]="['/admin/subcategory',rowData._id,rowData.name]"   class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>
-								<p-tree [value]="rowData.child"></p-tree>
+                <button type="text" (click)="viewSubCat(rowData._id,rowData.name)"   class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>
+								<p-tree [value]="rowData.child" ></p-tree>
 								<!-- {{ShowSubCatData(rowData.subCat)}} -->
-               
+
               </td>
 							<td>
 								<ng-container *ngIf="rowData.status == 1; else deactiveStatusText">

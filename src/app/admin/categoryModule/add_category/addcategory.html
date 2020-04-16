@@ -25,18 +25,8 @@
 							<form name="addcategoryform" (ngSubmit)="add_category()" #addcategoryForm="ngForm">
 								<input type="hidden"  name="id" [(ngModel)]="model.id" #id="ngModel"/>
 
-
-								<!--<ngx-treeview
-									[config]="config"
-									[items]="items"
-									(selectedChange)="onSelectedChange($event)"
-									(filterChange)="onFilterChange($event)">
-								</ngx-treeview>-->
-
-
-
 								<div class="card-body">
-									<div class="form-group " *ngIf="catName != '0'">  
+									<div class="form-group " *ngIf="catName != '0'">
 										<label for="Name">Parent Category Name </label>
 										<h6>{{catName}}</h6>
 
