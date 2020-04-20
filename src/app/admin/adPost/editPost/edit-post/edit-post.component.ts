@@ -21,7 +21,7 @@ export class EditPostComponent implements OnInit {
   moduleArr: any = { "modules": [] };
   categories:any;
   items:any=[];
-  Customer:any = [{"name":"customer 1",_id:'1'},{"name":"customer 2",_id:'2'},{"name":"customer 3",_id:'3'}]
+  Customer:any=[];
   steps:number=0;
   step:number=0;
   uploadUrl = AppSettings.API_ENDPOINT;
@@ -39,7 +39,7 @@ export class EditPostComponent implements OnInit {
  ) { }
 
  ngOnInit() {
-
+this.loadUserData();
 
   this.activatedRoute.params
 			.subscribe(
@@ -60,11 +60,7 @@ export class EditPostComponent implements OnInit {
                this.model.form_name = this.postData.form_name;
                this.model.field = this.postData.field;
                this.items = this.postData.field;
-               for(let k of this.Customer){
-                 if(k._id == this.postData.userId){
-                   this.userName = k.name
-                 }
-               }
+
                console.log("modellll ",this.model)
                this.spinner.hide();
             }
@@ -79,7 +75,25 @@ export class EditPostComponent implements OnInit {
    console.log(e.form)
    this.loadFormData(e.form);
  }
+ loadUserData() {
+  console.log("hhhhhhhhhhhh")
+  this.spinner.show();
+    this.adminService.getUserList().subscribe((result) => {
+    this.result = result;
+  },
+  (err) => this.spinner.hide(),
+  () => {
+    if (this.result.status === 'success') {
 
+      this.Customer = this.result.data;
+      console.log(this.Customer)
+      this.spinner.hide();
+    } else {
+      this.spinner.hide();
+      this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
+    }
+  });
+}
 
  loadFormData(form) {
    let data = {
@@ -175,4 +189,12 @@ export class EditPostComponent implements OnInit {
      this.step--;
    }
  }
+ getUser(id){
+  for(let k of this.Customer){
+    if(k._id == id){
+      console.log(k)
+      return k.name
+    }
+  }
+}
 }

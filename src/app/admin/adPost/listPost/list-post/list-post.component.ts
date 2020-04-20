@@ -25,7 +25,7 @@ export class ListPostComponent implements OnInit {
   fieldData:any;
   fieldTitle:any;
 
-  Customer:any = [{"name":"customer 1",_id:'1'},{"name":"customer 2",_id:'2'},{"name":"customer 3",_id:'3'}]
+  Customer:any ;
 	//private unsubscribe$: Subject<any> = new Subject<any>();
 	constructor(
 		//private cdref: ChangeDetectorRef,
@@ -41,9 +41,28 @@ export class ListPostComponent implements OnInit {
 
 	}
 	ngOnInit() {
-		this.loadpostData();
+    this.loadUserData();
+    this.loadpostData();
 	}
+  loadUserData() {
+    console.log("hhhhhhhhhhhh")
+    this.spinner.show();
+      this.adminService.getUserList().subscribe((result) => {
+      this.result = result;
+    },
+    (err) => this.spinner.hide(),
+    () => {
+      if (this.result.status === 'success') {
 
+        this.Customer = this.result.data;
+        console.log(this.Customer)
+        this.spinner.hide();
+      } else {
+        this.spinner.hide();
+        this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
+      }
+    });
+  }
 
 
 	loadpostData() {
@@ -55,7 +74,9 @@ export class ListPostComponent implements OnInit {
 		(err) => this.spinner.hide(),
 		() => {
 			if (this.result.status === 'success') {
-				this.postData = this.result.data;
+
+        this.postData = this.result.data;
+        console.log(this.postData)
         this.totalRecords = this.result.data.length;
 
 				this.spinner.hide();
@@ -131,6 +152,7 @@ export class ListPostComponent implements OnInit {
   getUser(id){
     for(let k of this.Customer){
       if(k._id == id){
+        console.log(k)
         return k.name
       }
     }

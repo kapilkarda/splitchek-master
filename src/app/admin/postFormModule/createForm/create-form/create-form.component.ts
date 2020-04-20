@@ -5,6 +5,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {MessageService} from 'primeng/api';
 import {AdminService} from '../../../../services/admin.service';
 
+import {AppSettings} from '../../../../../../appSettings';
 @Component({
   selector: 'app-create-form',
   templateUrl: './create-form.component.html',
@@ -21,6 +22,8 @@ export class CreateFormComponent implements OnInit {
   step = [{field:[]}]
   fields = [{name:'',type:'',icon:'',value:'',option:[],optionShow:false}];
   Options = [];
+  uploadUrl = AppSettings.API_ENDPOINT;
+  upImage ='../../../../../assets/img/dummy.png';
   constructor(
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
@@ -81,7 +84,7 @@ export class CreateFormComponent implements OnInit {
     this.step[i].field.splice(j,1)
   }
   addOptions(j,i){
-    let obj = {label:'',value:''}
+    let obj = {label:'',value:'',icon:''}
     this.step[j].field[i].option.push(obj)
   }
   removeOptions(j,i,idx){
@@ -90,9 +93,26 @@ export class CreateFormComponent implements OnInit {
   showOption(j,i,e){
     console.log(e,i)
     if(e.id == 'select' || e.id == 'multiselect' || e.id == 'radio' || e.id == 'checkbox'){
-      let obj = {label:'',value:'',}
+      let obj = {label:'',value:'',icon:''}
       this.step[j].field[i].option.push(obj)
       this.step[j].field[i].optionShow = true;
     }
   }
+  uploadProgress(){
+    this.spinner.show();
+   }
+   onBasicUploadAuto(e,i,j){
+    this.spinner.hide();
+     console.log(e,i,j)
+     let path = e.originalEvent.body.data[0].filename;
+     this.step[i].field[j].icon = path;
+
+   }
+   onBasicUploadAuto1(e,j,i,ix){
+    this.spinner.hide();
+     console.log(e,i,j)
+     let path = e.originalEvent.body.data[0].filename;
+     this.step[j].field[i].option[ix].icon = path;
+
+   }
 }

@@ -110,7 +110,7 @@ export class ListFormComponent implements OnInit, OnDestroy {
 	        "status":status
 
         }
-				this.adminService.admin_update_form(data).subscribe((result) => {
+				this.adminService.updateFormStats(data).subscribe((result) => {
 					this.result = result;
 				},
 				(err) => this.spinner.hide(),

@@ -14,3 +14,8 @@ form .card-body {
   display: block;
   margin: 10px auto;
 }
+.form-group {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 11px;
+}

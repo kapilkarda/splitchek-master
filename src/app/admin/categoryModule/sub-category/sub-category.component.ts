@@ -194,29 +194,47 @@ export class SubCategoryComponent implements OnInit {
 	}
 
 	getCatDataMain(data){
-		console.log(data)
-		for(let item of data ){
-			if(item._id == this.categoryId){
-				return item.subCat;
+			// console.log(data)
+			for(let item of data ){
+
+				if(item._id == this.categoryId){
+					return item.subCat;
+				}
 			}
-			if(item.subCat){
-				let d = this.getCatDataMain2(item.subCat);
-				return d;
+			for(let item of data ){
+				console.log(item.subCat);
+				if(item.subCat.length > 0){
+					let d = this.getCatDataMain(item.subCat);
+					console.log(d)
+					if(d){
+						return d;
+					}
+				}
 			}
-		}
+			return false;
+
 	}
 
-	getCatDataMain2(data){
-		for(let item of data ){
-			if(item._id == this.categoryId){
-				return item.subCat;
-			}
-			if(item.subCat){
-				let d = this.getCatDataMain2(item.subCat);
-				return d;
-			}
-		}
-	}
+	// getCatDataMain2(data){
+
+	// 		for(let item of data ){
+	// 			console.log(item._id,this.categoryId)
+	// 			if(item._id == this.categoryId){
+	// 				console.log(item.subCat)
+	// 				return item.subCat;
+	// 			}
+	// 		}
+	// 		for(let item of data ){
+	// 			if(item.subCat.length > 0){
+	// 				console.log(item.subCat)
+	// 				let d = this.getCatDataMain2(item.subCat);
+	// 				console.log(d)
+	// 				return d;
+	// 			}
+	// 		}
+
+
+	// }
 
 
 	viewSubCat(id,name){
@@ -252,8 +270,10 @@ export class SubCategoryComponent implements OnInit {
         let catDAta =  this.result.data;
         console.log(catDAta);
 
-      let mainData = this.getCatDataMain(catDAta)
-        for(let item of mainData){
+			let mainData = this.getCatDataMain(catDAta);
+			console.log(mainData)
+			if(mainData){
+				for(let item of mainData){
           let mobj = []
           item['child'] = this.ShowSubCatData(item.subCat);
           mobj = this.getIDArr(item.subCat);
@@ -270,6 +290,8 @@ export class SubCategoryComponent implements OnInit {
         this.categoryData = mainData;
         console.log(this.categoryData)
         this.totalRecords = this.categoryData.length;
+			}
+
 				this.spinner.hide();
 			} else {
 				this.spinner.hide();

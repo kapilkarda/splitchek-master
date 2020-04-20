@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
 import {AppSettings} from '../../../appSettings';
 import 'rxjs/add/operator/map';
-
 @Injectable()
 export class AdminService {
 	constructor(private http: HttpClient) { }
@@ -233,7 +232,7 @@ export class AdminService {
       	'Authorization': localStorage.getItem('token')
       });
 		let options = { headers: headers };
-    	return this.http.post(AppSettings.API_ENDPOINT + 'updateStatusForm',data, options).map(res => <any>res);
+    	return this.http.post(AppSettings.API_ENDPOINT + 'updateForm',data, options).map(res => <any>res);
   }
   admin_load_formData(data) {
 		let headers = new HttpHeaders({
@@ -252,6 +251,15 @@ export class AdminService {
 		let options = { headers: headers };
     	return this.http.post(AppSettings.API_ENDPOINT + 'fetchFormAdverPost',data, options).map(res => <any>res);
   }
+  updateFormStats(data){
+
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'updateStatusForm',data, options).map(res => <any>res);
+  }
 
   addAdminPost(data) {
 		let headers = new HttpHeaders({
@@ -267,7 +275,7 @@ export class AdminService {
       	'Authorization': localStorage.getItem('token')
       });
 		let options = { headers: headers };
-    	return this.http.post(AppSettings.API_ENDPOINT + 'byIdAdverPostgit',data, options).map(res => <any>res);
+    	return this.http.post(AppSettings.API_ENDPOINT + 'byIdAdverPost',data, options).map(res => <any>res);
   }
   editAdminPost(data) {
 		let headers = new HttpHeaders({

@@ -37,11 +37,12 @@ export class managecategoryComponent {
 
 	}
 	ngOnInit() {
+    localStorage.setItem('breadcrumb','');
 		this.loadCategoryData();
 	}
 
 
-  
+
 	loadCategoryData() {
 		console.log("hhhhhhhhhhhh")
     this.spinner.show();
@@ -65,7 +66,7 @@ export class managecategoryComponent {
 					mobj.push(obj)
 					item['idArr'] = mobj;
 				}
-				
+
 				this.categoryData = this.result.data;
 
 				this.spinner.hide();
@@ -141,7 +142,7 @@ export class managecategoryComponent {
 				let d = this.showSubtosub(item.subCat)
 				obj.children = d;
 			}
-			
+
 			arr.push(obj)
 		}
 		let vs = arr;
@@ -160,7 +161,7 @@ export class managecategoryComponent {
 				let d = this.showSubtosub(item.subCat)
 				obj.children = d;
 			}
-			
+
 			arr.push(obj)
 		}
 		return arr;
@@ -172,7 +173,7 @@ export class managecategoryComponent {
 				id:item._id,
 				status:item.status
 			}
-			
+
 			arr.push(item._id);
 			if(item.subCat){
 				let d = this.getSubId(item.subCat)
@@ -188,7 +189,7 @@ export class managecategoryComponent {
 				id:item._id,
 				status:item.status
 			}
-			
+
 			arr.push(item._id);
 			if(item.subCat){
 				let d = this.getSubId(item.subCat)
@@ -200,6 +201,6 @@ export class managecategoryComponent {
 	viewSubCat(id,name){
 		localStorage.setItem('subCatData',JSON.stringify(this.categoryData))
 		this.router.navigate(['admin/subcategory',id,name])
-		
+
 	}
 }

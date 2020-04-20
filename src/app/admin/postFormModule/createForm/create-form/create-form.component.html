@@ -39,18 +39,28 @@
                         </div>
                         <div class="form-group col-4">
                           <label for="Name">Icon</label>
-                          <input type="text" class="form-control" name="icon_{{j}}{{i}}"  placeholder="Ex. fa-check" [(ngModel)]="f.icon" #icon="ngModel"/>
+                          <img [src]="f.icon" *ngIf="f.icon != ''" class="imgView" width="30px"/>
+                          <img [src]="upImage" *ngIf="f.icon == ''" class="imgView" width="30px"/>
+                          <p-fileUpload #fubauto mode="basic" name="icons_{{j}}{{i}}[]" [url]="uploadUrl+'imageuploadadverpost'" accept="image/*" maxFileSize="1000000" (onProgress)="uploadProgress()" (onUpload)="onBasicUploadAuto($event,j,i)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
+                          <input type="text" class="form-control" name="icon_{{j}}{{i}}"   [(ngModel)]="f.icon" #icon="ngModel"/>
                         </div>
                       </div>
                       <p-fieldset *ngIf="f.optionShow" legend="Options {{j}}{{i+1}}">
                         <div class="row" *ngFor="let o of f.option;let ix=index"  >
-                          <div class="form-group col-5">
+                          <div class="form-group col-3">
                             <label for="Name">Option label</label>
                             <input type="text" class="form-control" name="label_{{j}}{{i}}{{ix}}" placeholder="Label" [(ngModel)]="o.label" #label="ngModel" [maxlength]="50"/>
                           </div>
-                          <div class="form-group col-5">
+                          <div class="form-group col-3">
                             <label for="Name">Option Value</label>
                             <input type="text" class="form-control" name="value_{{j}}{{i}}{{ix}}" placeholder="Value" [(ngModel)]="o.value" #value="ngModel" [maxlength]="50"/>
+                          </div>
+                          <div class="firn-group col-3">
+                            <h5>Upload Image</h5>
+                            <img [src]="o.icon" *ngIf="o.icon != ''" class="imgView" width="30px"/>
+                            <img [src]="upImage" *ngIf="o.icon == ''" class="imgView" width="30px"/>
+                            <p-fileUpload #fubauto mode="basic" name="icons_{{j}}{{i}}{{ix}}[]" [url]="uploadUrl+'imageuploadadverpost'" accept="image/*" maxFileSize="1000000" (onProgress)="uploadProgress()" (onUpload)="onBasicUploadAuto1($event,j,i,ix)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
+                            <input type="text" class="form-control" name="icon_{{j}}{{i}}{{ix}}" placeholder="Icon" [(ngModel)]="o.icon" #icon="ngModel"/>
                           </div>
                           <div class="form-group col-1">
                             <p-button label="" icon="pi pi-minus"  styleClass="ui-button-danger" class="removeButtonOption" (onClick)="removeOptions(j,i,ix)"></p-button>

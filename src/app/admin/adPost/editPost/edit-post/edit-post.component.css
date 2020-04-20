@@ -12,3 +12,8 @@ form .card-body {
 .imgView{
   max-width: 250px;
 }
+.form-group {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 11px;
+}
