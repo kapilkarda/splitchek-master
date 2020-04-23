@@ -33,6 +33,7 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {FileUploadModule} from 'primeng/fileupload';
 import {EditorModule} from 'primeng/editor';
 import {TreeModule} from 'primeng/tree';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 
 /*import {adminmanagefeedbacksComponent} from './feedbackModule/manage_feedbacks/adminmanagefeedbacks.component';
@@ -69,6 +70,12 @@ import { EditUserComponent } from './usermodule/editUser/edit-user/edit-user.com
 import { AddFaqComponent } from './faqmodule/addFaq/add-faq/add-faq.component';
 import { ListFaqComponent } from './faqmodule/listFaq/list-faq/list-faq.component';
 import { EditFaqComponent } from './faqmodule/editFaq/edit-faq/edit-faq.component';
+import { UserReportComponent } from './reports/user-report/user-report.component';
+import { PostReportComponent } from './reports/post-report/post-report.component';
+import { PaymentReportComponent } from './reports/payment-report/payment-report.component';
+import { ListAdsComponent } from './Ads/list-ads/list-ads.component';
+import { AddAdsComponent } from './Ads/add-ads/add-ads.component';
+import { EditAdsComponent } from './Ads/edit-ads/edit-ads.component';
 
 @NgModule({
 	imports: [
@@ -94,7 +101,8 @@ import { EditFaqComponent } from './faqmodule/editFaq/edit-faq/edit-faq.componen
     CheckboxModule,
     FileUploadModule,
 		EditorModule,
-		TreeModule
+    TreeModule,
+    OverlayPanelModule
 	],
 	declarations: [
 		adminComponent,
@@ -128,6 +136,12 @@ import { EditFaqComponent } from './faqmodule/editFaq/edit-faq/edit-faq.componen
 		AddFaqComponent,
 		ListFaqComponent,
 		EditFaqComponent,
+		UserReportComponent,
+		PostReportComponent,
+		PaymentReportComponent,
+		ListAdsComponent,
+		AddAdsComponent,
+		EditAdsComponent,
 
 		//adminmanagefeedbacksComponent,
 		//adminmanageusersComponent,

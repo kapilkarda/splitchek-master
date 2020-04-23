@@ -18,7 +18,7 @@ import { NgSelect2Module } from 'ng-select2';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

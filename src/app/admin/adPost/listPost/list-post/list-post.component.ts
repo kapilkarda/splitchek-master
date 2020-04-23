@@ -41,6 +41,9 @@ export class ListPostComponent implements OnInit {
 
 	}
 	ngOnInit() {
+    if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+      this.router.navigate(['/']);
+    }
     this.loadUserData();
     this.loadpostData();
 	}
@@ -122,32 +125,39 @@ export class ListPostComponent implements OnInit {
     this.fieldData = data.field;
     this.fieldTitle = data.form_name
   }
-	// status_change(categoryId,currentStatus){
-	// 	this.confirmationService.confirm({
-	// 		message: 'Are you sure that you want to activate/deactivate this post?',
-	// 		header: 'Confirm Delete',
-	// 		icon: 'pi pi-exclamation-triangle',
-	// 		accept: () => {
-	// 			this.spinner.show();
-	// 			this.adminService.admin_change_category_status(categoryId,currentStatus).subscribe((result) => {
-	// 				this.result = result;
-	// 			},
-	// 			(err) => this.spinner.hide(),
-	// 			() => {
-	// 			if (this.result.status === 'success') {
-	// 				this.spinner.hide();
-	// 				this.loadpostData();
-	// 				this.messageService.add({severity:'success', summary: 'Success', detail:this.result.message});
-	// 			} else {
-	// 				this.spinner.hide();
-	// 				this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
-	// 			}
-	// 		});
-	// 	},
-	// 		reject: () => {
-	// 		}
-	//   });
-  // }
+	status_change(categoryId,currentStatus){
+
+
+		this.confirmationService.confirm({
+			message: 'Are you sure that you want to activate/deactivate this post?',
+			header: 'Confirm Delete',
+			icon: 'pi pi-exclamation-triangle',
+			accept: () => {
+        this.spinner.show();
+        let data = {
+          "id":categoryId,
+	        "status":currentStatus
+
+        }
+				this.adminService.updatePostStatus(data).subscribe((result) => {
+					this.result = result;
+				},
+				(err) => this.spinner.hide(),
+				() => {
+				if (this.result.status === 'success') {
+					this.spinner.hide();
+					this.loadpostData();
+					this.messageService.add({severity:'success', summary: 'Success', detail:this.result.message});
+				} else {
+					this.spinner.hide();
+					this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
+				}
+			});
+		},
+			reject: () => {
+			}
+	  });
+  }
 
   getUser(id){
     for(let k of this.Customer){

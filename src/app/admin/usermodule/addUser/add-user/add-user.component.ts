@@ -28,7 +28,9 @@ constructor(
 ) { }
 
 ngOnInit() {
-
+  if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+    this.router.navigate(['/']);
+  }
 }
 
 

@@ -30,6 +30,12 @@ import { EditUserComponent } from './usermodule/editUser/edit-user/edit-user.com
 import { AddFaqComponent } from './faqmodule/addFaq/add-faq/add-faq.component';
 import { ListFaqComponent } from './faqmodule/listFaq/list-faq/list-faq.component';
 import { EditFaqComponent } from './faqmodule/editFaq/edit-faq/edit-faq.component';
+import { UserReportComponent } from './reports/user-report/user-report.component';
+import { PostReportComponent } from './reports/post-report/post-report.component';
+import { PaymentReportComponent } from './reports/payment-report/payment-report.component';
+import { AddAdsComponent } from './Ads/add-ads/add-ads.component';
+import { ListAdsComponent } from './Ads/list-ads/list-ads.component';
+import { EditAdsComponent } from './Ads/edit-ads/edit-ads.component';
 
 
 /*import {adminaddpagesComponent} from './pagesModule/add_pages/adminaddpages.component';
@@ -146,7 +152,7 @@ const routes: Routes = [
 				//canActivate: [AuthGuard]
 			},
 			{
-				path: 'editPlan/:id',
+				path: 'editplan/:id',
 				component: EditPlanComponent,
 				//canActivate: [AuthGuard]
 			},
@@ -161,7 +167,7 @@ const routes: Routes = [
 				//canActivate: [AuthGuard]
 			},
 			{
-				path: 'editPlan/:id',
+				path: 'editUser/:id',
 				component: EditUserComponent,
 				//canActivate: [AuthGuard]
 			},
@@ -178,6 +184,36 @@ const routes: Routes = [
 			{
 				path: 'editFaq/:id',
 				component: EditFaqComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'userReport',
+				component: UserReportComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'postReport',
+				component: PostReportComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'paymentReport',
+				component: PaymentReportComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'createAds',
+				component: AddAdsComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'listAds',
+				component: ListAdsComponent,
+				//canActivate: [AuthGuard]
+			},
+			{
+				path: 'editAds/:id',
+				component: EditAdsComponent,
 				//canActivate: [AuthGuard]
 			},
 

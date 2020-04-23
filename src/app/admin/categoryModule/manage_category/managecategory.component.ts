@@ -37,6 +37,9 @@ export class managecategoryComponent {
 
 	}
 	ngOnInit() {
+    if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+      this.router.navigate(['/']);
+    }
     localStorage.setItem('breadcrumb','');
 		this.loadCategoryData();
 	}

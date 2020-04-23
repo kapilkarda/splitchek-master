@@ -29,6 +29,9 @@ constructor(
 ) { }
 
 ngOnInit() {
+  if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+    this.router.navigate(['/']);
+  }
   this.activatedRoute.params
   .subscribe(
         (params: Params) => {
@@ -37,10 +40,13 @@ ngOnInit() {
         }
 );
     if (this.categoryId) {
+      let data = {
+        id:this.categoryId
+      }
   this.spinner.show();
-  this.adminService.admin_load_planData(this.categoryId).subscribe(categorydata => {
+  this.adminService.admin_load_planData(data).subscribe(categorydata => {
         if (categorydata.status === 'success') {
-           this.categorydata = categorydata.data;
+           this.categorydata = categorydata.data[0];
            //this.selectedModuleList = roledata.data.modules;
            //this.selectedModuleList = roledata.data.modules;
            //this.selectedModuleList = roledata.data.modules.filter( (module) => module.checked );

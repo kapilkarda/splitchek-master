@@ -13,12 +13,14 @@ export class EditFaqComponent implements OnInit {
   model: any = {
     "question":"",
     "answer":"",
-    "id":""
+    "id":"",
+    "catId":""
 
   };
  result: any;
  categoryId:any;
  categorydata:any;
+ catName:any;
 
 constructor(
   private router: Router,
@@ -29,6 +31,9 @@ constructor(
 ) { }
 
 ngOnInit() {
+  if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+  this.router.navigate(['/']);
+}
   this.activatedRoute.params
   .subscribe(
         (params: Params) => {
@@ -40,7 +45,7 @@ ngOnInit() {
   this.spinner.show();
   this.adminService.admin_load_faqData(this.categoryId).subscribe(categorydata => {
         if (categorydata.status === 'success') {
-           this.categorydata = categorydata.data;
+           this.categorydata = categorydata.datas[0];
            //this.selectedModuleList = roledata.data.modules;
            //this.selectedModuleList = roledata.data.modules;
            //this.selectedModuleList = roledata.data.modules.filter( (module) => module.checked );
@@ -49,6 +54,8 @@ ngOnInit() {
            //console.log("ml",this.moduleList)
            this.model.question = this.categorydata.question;
            this.model.answer = this.categorydata.answer;
+           this.model.catId = this.categorydata.catId;
+           this.catName = this.categorydata.catName;
            console.log("modellll ",this.model)
            this.spinner.hide();
         }

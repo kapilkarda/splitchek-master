@@ -36,6 +36,9 @@ export class CreatePostComponent implements OnInit {
  ) { }
 
  ngOnInit() {
+  if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+    this.router.navigate(['/']);
+  }
   this.user = JSON.parse(localStorage.getItem('userInfo'))
   this.model.adminId = this.user._id;
  this.loadCategoryData();

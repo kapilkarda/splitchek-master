@@ -164,6 +164,26 @@
 						</li>
 					</ul>
         </li>
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-image"></i>
+						<p>Ads<i class="right fas fa-angle-left"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listAds']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage Ads</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createAds']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add Ads</p>
+							</a>
+						</li>
+					</ul>
+        </li>
         <li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-question-circle"></i>
@@ -180,6 +200,32 @@
 							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createFaq']" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Add FAQ</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+        <li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-list"></i>
+						<p>Reports<i class="right fas fa-angle-left"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/userReport']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>user</p>
+							</a>
+            </li>
+            <li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/postReport']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Post</p>
+							</a>
+						</li>
+            <li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/paymentReport']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Payment</p>
 							</a>
 						</li>
 					</ul>

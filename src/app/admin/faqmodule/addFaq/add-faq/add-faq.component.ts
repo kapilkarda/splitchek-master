@@ -12,11 +12,12 @@ import {AdminService} from '../../../../services/admin.service';
 export class AddFaqComponent implements OnInit {
   model: any = {
     "question":"",
-    "answer":""
+    "answer":"",
+    "catId":''
 
   };
  result: any;
-
+category:any;
 
 
 constructor(
@@ -27,12 +28,35 @@ constructor(
 ) { }
 
 ngOnInit() {
-
+  if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+    this.router.navigate(['/']);
+  }
+  this.loadCategoryData();
 }
+loadCategoryData() {
+		console.log("hhhhhhhhhhhh")
+    this.spinner.show();
+		  this.adminService.adminGetCategoryList().subscribe((result) => {
+      this.result = result;
+      console.log(this.result.data)
+		},
+		(err) => this.spinner.hide(),
+		() => {
+			if (this.result.status === 'success') {
+        this.category = this.result.data;
+
+				this.spinner.hide();
+			} else {
+				this.spinner.hide();
+				this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
+			}
+		});
+	}
 
 
 add_faq() {
   this.spinner.show();
+  this.model.catId = this.model.catId._id;
   this.adminService.admin_add_faq(this.model).subscribe(result => {
     this.result = result;
   },

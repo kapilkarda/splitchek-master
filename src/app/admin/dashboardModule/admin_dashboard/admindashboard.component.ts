@@ -14,7 +14,7 @@ import { AdminService } from '../../../services/admin.service';
 export class admindashboardComponent {
    model: any = {};
    result: any;
-	
+
 	constructor(
       private router: Router,
       private activatedRoute: ActivatedRoute,
@@ -25,6 +25,9 @@ export class admindashboardComponent {
       this.spinner.hide();
    }
    ngOnInit() {
+    if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+      this.router.navigate(['/']);
+    }
    	//this.registeredUsersCount();
 	}
 

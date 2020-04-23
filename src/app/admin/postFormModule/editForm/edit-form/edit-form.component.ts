@@ -34,6 +34,9 @@ export class EditFormComponent implements OnInit {
 		private messageService: MessageService) { }
 
   ngOnInit() {
+    if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+      this.router.navigate(['/']);
+    }
     this.activatedRoute.params
 			.subscribe(
             (params: Params) => {
@@ -119,7 +122,7 @@ export class EditFormComponent implements OnInit {
     this.step[i].field.splice(j,1)
   }
   addOptions(j,i){
-    let obj = {label:'',value:'',icon:'s'}
+    let obj = {label:'',value:'',icon:''}
     this.step[j].field[i].option.push(obj)
   }
   removeOptions(j,i,idx){

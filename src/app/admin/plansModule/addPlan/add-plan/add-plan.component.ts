@@ -27,9 +27,11 @@ export class AddPlanComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-
+    if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+      this.router.navigate(['/']);
+    }
   }
-  
+
 
 	add_plan() {
 		this.spinner.show();

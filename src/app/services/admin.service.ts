@@ -285,6 +285,15 @@ export class AdminService {
 		let options = { headers: headers };
     	return this.http.post(AppSettings.API_ENDPOINT + 'editAdverPost',data, options).map(res => <any>res);
   }
+  updatePostStatus(data){
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    });
+  let options = { headers: headers };
+    return this.http.post(AppSettings.API_ENDPOINT + 'updateStatusAdverPost',data, options).map(res => <any>res);
+  }
   adminGetPostList() {
 		let headers = new HttpHeaders({
 			'Content-Type': 'application/json',
@@ -326,6 +335,7 @@ export class AdminService {
 		let options = { headers: headers };
     	return this.http.post(AppSettings.API_ENDPOINT + 'advertisementPack/updateStatus',data, options).map(res => <any>res);
   }
+
   admin_delete_plan(data) {
 		let headers = new HttpHeaders({
       	'Content-Type': 'application/json',
@@ -406,13 +416,13 @@ export class AdminService {
 		let options = { headers: headers };
     	return this.http.post(AppSettings.API_ENDPOINT + 'faq/addFAQ',data, options).map(res => <any>res);
   }
-  getFaqList() {
+  getFaqList(data) {
 		let headers = new HttpHeaders({
 			'Content-Type': 'application/json',
 			'Authorization': localStorage.getItem('token')
     	});
 		let options = { headers: headers };
-    	return this.http.get(AppSettings.API_ENDPOINT + 'faq/listFAQ', options).map(res => <any>res);
+    	return this.http.post(AppSettings.API_ENDPOINT + 'faq/listFAQ',data, options).map(res => <any>res);
   }
   admin_delete_Faq(data) {
 		let headers = new HttpHeaders({
@@ -450,21 +460,79 @@ export class AdminService {
 		let options = { headers: headers };
     	return this.http.post(AppSettings.API_ENDPOINT + 'faq/editFAQ',data, options).map(res => <any>res);
   }
-	/*admin_load_roleData(roleId) {
 
-
+  user_report(data) {
 		let headers = new HttpHeaders({
       	'Content-Type': 'application/json',
       	'Authorization': localStorage.getItem('token')
-   	});
-    	let options = { headers: headers };
-    	return this.http.post(AppSettings.API_ENDPOINT + 'getrolebyid', options).map(res => <any>res);
-
-
-
-
-	}*/
-
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'report/userReport',data, options).map(res => <any>res);
+  }
+  post_report(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'report/advertisementPostedReport',data, options).map(res => <any>res);
+  }
+  payment_report(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'report/paymentReport', options).map(res => <any>res);
+  }
+  list_ads() {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.get(AppSettings.API_ENDPOINT + 'manageTise/list', options).map(res => <any>res);
+  }
+  post_ad(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'manageTise/add',data, options).map(res => <any>res);
+  }
+  delete_ad(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'manageTise/delete',data, options).map(res => <any>res);
+  }
+  update_ad(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'manageTise/updateStatus',data, options).map(res => <any>res);
+  }
+  edit_ad(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'manageTise/edit',data, options).map(res => <any>res);
+  }
+  by_id_ad(data) {
+		let headers = new HttpHeaders({
+      	'Content-Type': 'application/json',
+      	'Authorization': localStorage.getItem('token')
+      });
+		let options = { headers: headers };
+    	return this.http.post(AppSettings.API_ENDPOINT + 'manageTise/findById',data, options).map(res => <any>res);
+  }
 
 
 

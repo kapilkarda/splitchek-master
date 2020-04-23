@@ -1,0 +1,5 @@
+.navbar-expand .navbar-nav .dropdown-menu {
+    position: absolute;
+    left: -118px;
+    text-align: center;
+}

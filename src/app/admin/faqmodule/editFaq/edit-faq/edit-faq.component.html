@@ -21,6 +21,13 @@
 								<div class="card-body">
                   <div class="row">
                     <div class="form-group col-12">
+                      <label for="catName">Category </label>
+                      <input type="text" class="form-control" placeholder="Category" [(ngModel)]="catName" name="catName" disabled />
+
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-12">
                       <label for="question">Question </label>
                       <input type="text" class="form-control" name="question" placeholder="Question" [(ngModel)]="model.question" #question="ngModel" required  [maxlength]="50"/>
 

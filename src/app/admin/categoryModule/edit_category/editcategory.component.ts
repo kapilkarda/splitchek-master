@@ -45,6 +45,9 @@ export class editcategoryComponent {
 	) { }
 
 	ngOnInit() {
+    if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+      this.router.navigate(['/']);
+    }
 		this.activatedRoute.params
 			.subscribe(
             (params: Params) => {

@@ -1,9 +1,14 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light custom-header">
-	<ul class="navbar-nav custom-nav ml-auto">
+	<ul class="navbar-nav custom-nav ml-auto " style="position: relative;">
 		<li class="nav-item nav-top-menu">
-			<a class="nav-link" data-toggle="dropdown" (click)="logout()">
+			<a class="nav-link" data-toggle="dropdown" >
 				<i class="fa fa-sign-out-alt"></i>
-			</a>
-		</li> 
+      </a>
+      <ul class="dropdown-menu">
+        <li><!-- start message -->
+          <a (click)="logout()" href="#">Logout</a>
+        </li>
+      </ul>
+		</li>
 	</ul>
 </nav>

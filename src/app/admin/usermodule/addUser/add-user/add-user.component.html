@@ -32,6 +32,9 @@
                       <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="model.email"  #email="ngModel" required  [maxlength]="50"/>
                       <div *ngIf="email.errors && email.touched">
                         <span class="error" *ngIf="email.errors?.required">Email is mandatory.</span>
+                        <span *ngIf="email.errors?.email"  class="error">
+                          Email must be a valid email address
+                       </span>
                       </div>
                     </div>
                   </div>

@@ -32,6 +32,9 @@ export class CreateFormComponent implements OnInit {
 		private messageService: MessageService) { }
 
   ngOnInit() {
+    if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+      this.router.navigate(['/']);
+    }
     this.items = [{"id":'1',value:'customer1'},{"id":'2',value:'customer2'}];
     this.typeItem = [{id:'',value:'Please Select'},
                     {id:'text',value:'Text'},

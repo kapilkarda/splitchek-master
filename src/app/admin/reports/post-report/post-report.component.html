@@ -1,0 +1,91 @@
+<div class="content-wrapper">
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>Post Report</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="content">
+		<div class="card" *ngIf="reportData && reportData.length > 0; else noRecord">
+			<div class="card-body table-responsive p-0">
+				<form name="addcategoryform" #filter="ngForm">
+          <div class="searchForm row">
+            <div class="col-4 form-group">
+              <p-calendar [(ngModel)]="date1" name="date1" placeholder="From Date" ></p-calendar>
+            </div>
+            <div class="col-4 form-group">
+              <p-calendar [(ngModel)]="date2" name="date2" placeholder="To Date" ></p-calendar>
+            </div>
+            <div class="col-4 form-group">
+              <button type="button" (click)="report()" class="btn btn-primary btn-block subBut" [disabled]="!filter.valid">Filter</button>
+            </div>
+          </div>
+        </form>
+				<p-table #dt *ngIf="reportData" [value]="reportData" [paginator]="true" [alwaysShowPaginator]="false" [rows]="10" [scrollable]="false" [globalFilterFields]="['catname','updatedAt']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+					<ng-template pTemplate="caption">
+						<div style="text-align: right">
+							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+							<input type="text" pInputText size="50" placeholder=" " (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+						</div>
+					</ng-template>
+					<ng-template pTemplate="header" let-columns>
+						<tr>
+							<th style="width: 8%">#</th>
+							<th style="width: 18%" [pSortableColumn]="'catname'">
+								Category Name
+								<p-sortIcon [field]="'name'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+              </th>
+							<th style="width: 25%"  [pSortableColumn]="'updatedAt'">Date
+								<p-sortIcon [field]="'updatedAt'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+              </th>
+              <th style="width: 8%">Post Data</th>
+							<th style="width: 42%">Actions</th>
+						</tr>
+					</ng-template>
+					<ng-template pTemplate="body" let-rowData let-i="rowIndex">
+            <tr>
+							<td>{{i+1}}</td>
+              <td>{{rowData.catname}}</td>
+              <td>{{formatDate(rowData.updatedAt)}}</td>
+              <td>
+                <button type="text" (click) ="show(rowData)"  class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>
+             </td>
+							<td>
+								<button type="text" class="btn btn-grey" title="edit"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{rowData.likeCount}}</button>
+							  <button type="text" class="btn btn-grey" title="edit"><i class="fa fa-user-check" aria-hidden="true"></i> {{rowData.isfollow}}</button>
+                <button type="text" class="btn btn-grey" title="edit"><i class="fa fa-heart" aria-hidden="true"></i> {{rowData.isfavourite}}</button>
+                <button type="text" class="btn btn-grey" title="edit"><i class="fa fa-thumbs-down" aria-hidden="true"></i> {{rowData.reportAbuse}}</button>
+                <button type="text" class="btn btn-grey" title="edit"><i class="fa fa-share" aria-hidden="true"></i> {{rowData.shareCount}}</button>
+                <button type="text" class="btn btn-grey" title="edit"><i class="fa fa-eye" aria-hidden="true"></i> {{rowData.viewCount}}</button>
+							</td>
+						</tr>
+          </ng-template>
+				</p-table>
+			</div>
+		</div>
+  </section>
+  <p-dialog [header]="fieldTitle" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000"  class="pDialog">
+    <p-fieldset *ngFor="let s of fieldData;let i = index" legend="Step {{i+1}}">
+      <ul class="fieldList">
+        <li *ngFor="let f of s.field">
+          <span class="fieldTitle">FieldName : {{f.name}}</span>
+          <span class="fieldIcon"><i class="fa {{f.icon}}"></i></span>
+          <span class="fieldType">FieldType: {{f.type.value}}</span>
+          <span class="fieldType">Value: <b>{{f.value}}</b></span>
+          <ul class="subFieldList" *ngIf="f.optionShow">
+            <li *ngFor="let o of f.option">
+              <span class="fieldTitle">{{o.label}}</span>
+              <span class="fieldType">{{o.value}}</span>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </p-fieldset>
+  </p-dialog>
+</div>
+<ng-template #noRecord>No Record Found</ng-template>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="500" height="120"></p-confirmDialog>

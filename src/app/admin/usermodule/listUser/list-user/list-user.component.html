@@ -4,8 +4,11 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<h1>Manage User</h1>
-				</div>
-			</div>
+        </div>
+        <div class="col-sm-6">
+          <button class="btn btn-primary pull-right" [routerLink]="['/admin/createUser']"><i class="fa fa-plus"></i> Add User</button>
+        </div>
+      </div>
 		</div>
 	</section>
 	<section class="content">
@@ -28,13 +31,13 @@
 							<th  [pSortableColumn]="'email'">
 								Email
 								<p-sortIcon [field]="'email'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-							
+
 							</th>
 							<th>contact</th>
 							<th style="width: 10%"   [pSortableColumn]="'status'">
 								Status
 								<p-sortIcon [field]="'status'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-							
+
 							</th>
 							<th style="width: 22%">Action</th>
 						</tr>

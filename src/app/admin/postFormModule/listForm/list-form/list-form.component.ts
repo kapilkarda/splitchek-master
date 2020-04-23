@@ -34,6 +34,9 @@ export class ListFormComponent implements OnInit, OnDestroy {
 
 	}
 	ngOnInit() {
+    if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+      this.router.navigate(['/']);
+    }
 		this.loadFormData();
 	}
 

@@ -20,6 +20,9 @@ export class ListFaqComponent implements OnInit {
   display: boolean = false;
   fieldData:any;
   fieldTitle:any;
+  category:any;
+  faqData = {"id":""}
+  catId:any;
 	//private unsubscribe$: Subject<any> = new Subject<any>();
 	constructor(
 		//private cdref: ChangeDetectorRef,
@@ -34,8 +37,32 @@ export class ListFaqComponent implements OnInit {
 
 	}
 	ngOnInit() {
+    if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+      this.router.navigate(['/']);
+    }
 		this.loadFormData();
-	}
+    this.loadCategoryData();
+  }
+  loadCategoryData() {
+      console.log("hhhhhhhhhhhh")
+      this.spinner.show();
+        this.adminService.adminGetCategoryList().subscribe((result) => {
+        this.result = result;
+        console.log(this.result.data)
+      },
+      (err) => this.spinner.hide(),
+      () => {
+        if (this.result.status === 'success') {
+          this.category = this.result.data;
+
+          this.spinner.hide();
+        } else {
+          this.spinner.hide();
+          this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
+        }
+      });
+    }
+
 
   show(data) {
 
@@ -47,18 +74,21 @@ export class ListFaqComponent implements OnInit {
   ngOnDestroy() {
 
   }
-
+  getCatData(e){
+    this.faqData.id = e._id;
+    this.loadFormData()
+  }
 	loadFormData() {
 		console.log("hhhhhhhhhhhh")
     this.spinner.show();
-		  this.adminService.getFaqList().subscribe((result) => {
+		  this.adminService.getFaqList(this.faqData).subscribe((result) => {
 			this.result = result;
 		},
 		(err) => this.spinner.hide(),
 		() => {
 			if (this.result.status === 'success') {
-				this.FaqlistData = this.result.data;
-        this.totalRecords = this.result.data.length;
+				this.FaqlistData = this.result.datas;
+        this.totalRecords = this.result.datas.length;
         console.log(this.FaqlistData)
 				this.spinner.hide();
 			} else {

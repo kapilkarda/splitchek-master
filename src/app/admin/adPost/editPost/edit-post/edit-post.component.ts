@@ -15,7 +15,7 @@ import {AppSettings} from '../../../../../../appSettings';
   styleUrls: ['./edit-post.component.css']
 })
 export class EditPostComponent implements OnInit {
-  model: any = {adminId:'',userId:'',catname:'',form_name:'',field:[]};
+  model: any = {id:'',adminId:'',userId:'',catname:'',form_name:'',field:[]};
   result: any;
   roleList:any;
   moduleArr: any = { "modules": [] };
@@ -39,6 +39,9 @@ export class EditPostComponent implements OnInit {
  ) { }
 
  ngOnInit() {
+  if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
+    this.router.navigate(['/']);
+  }
 this.loadUserData();
 
   this.activatedRoute.params
@@ -51,6 +54,7 @@ this.loadUserData();
           let data = {
             id:this.postId
           }
+          this.model.id = this.postId;
 			this.spinner.show();
 			this.adminService.admin_load_postData(data).subscribe(categorydata => {
             if (categorydata.status === 'success') {

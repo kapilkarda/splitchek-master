@@ -1,0 +1,43 @@
+ul.fieldList {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+}
+ul.subFieldList{
+  list-style: none;
+  margin: 0;
+}
+.fieldList li {
+  border: 1px solid lightblue;
+  padding: 0;
+  margin-bottom: 10px;
+  border-radius: 18px;
+}
+span.fieldIcon {
+  padding: 10px 20px;
+  display: inline-block;
+  background: lightgray;
+  color: #000 !important;
+}
+
+span.fieldIcon i{
+  color: #000 !important;
+}
+span.fieldTitle {
+
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  font-weight: bold;
+  padding: 10px 20px;
+  background: #f7f7f7;
+  border-right: 1px solid lightgray;
+}
+span.fieldType {
+  padding: 20px;
+}
+
+.subFieldList li {
+  margin: 15px;
+  display: block;
+  overflow: hidden;
+}
