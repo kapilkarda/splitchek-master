@@ -9,22 +9,26 @@
 		</div>
 	</section>
 	<section class="content">
+    <form name="addcategoryform" #filter="ngForm">
+      <div class="searchForm row">
+        <div class="col-4 form-group">
+          <p-calendar [(ngModel)]="date1" required name="date1" placeholder="From Date" ></p-calendar>
+        </div>
+        <div class="col-4 form-group">
+          <p-calendar [(ngModel)]="date2" required [minDate]="date1" name="date2" placeholder="To Date" ></p-calendar>
+        </div>
+        <div class="col-3 form-group">
+          <button type="button" (click)="report()" class="btn btn-primary btn-block subBut" [disabled]="!filter.valid">Filter</button>
+        </div>
+        <div class="col-1 form-group">
+          <button type="button" (click)="refresh()" class="btn btn-primary btn-block subBut" ><i class="text-light" class="fa fa-undo-alt"></i></button>
+        </div>
+      </div>
+    </form>
 		<div class="card" *ngIf="reportData && reportData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
-        <form name="addcategoryform" #filter="ngForm">
-          <div class="searchForm row">
-            <div class="col-4 form-group">
-              <p-calendar [(ngModel)]="date1" name="date1" placeholder="From Date" ></p-calendar>
-            </div>
-            <div class="col-4 form-group">
-              <p-calendar [(ngModel)]="date2" name="date2" placeholder="To Date" ></p-calendar>
-            </div>
-            <div class="col-4 form-group">
-              <button type="button" (click)="report()" class="btn btn-primary btn-block subBut" [disabled]="!filter.valid">Filter</button>
-            </div>
-          </div>
-        </form>
-				<p-table #dt *ngIf="reportData" [value]="reportData" [paginator]="true" [alwaysShowPaginator]="false" [rows]="10" [scrollable]="false" [globalFilterFields]="['updatedAt','name','email','phoneNumber','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+
+				<p-table #dt *ngIf="reportData" [value]="reportData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['updatedAt','name','email','phoneNumber','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
 						<div style="text-align: right">
 							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -34,22 +38,18 @@
 					<ng-template pTemplate="header" let-columns>
 						<tr>
 							<th style="width: 8%">#</th>
-							<th  [pSortableColumn]="'updatedAt'">
+							<th  >
 								Date
-								<p-sortIcon [field]="'updatedAt'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 							</th>
-							<th  [pSortableColumn]="'email'">
+							<th  >
 								email
-								<p-sortIcon [field]="'email'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 							</th>
-							<th style="width: 14%" [pSortableColumn]="'name'">
-								Name
-								<p-sortIcon [field]="'name'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-							</th>
-							<th  [pSortableColumn]="'phoneNumber'">
-								Phone Number
-								<p-sortIcon [field]="'phoneNumber'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-							</th>
+							<th style="width: 14%" >
+                Name
+              </th>
+							<th  >
+                Phone Number
+              </th>
 							<th style="width: 10%">Status</th>
 							<!-- <th style="width: 22%">Action</th> -->
 						</tr>
@@ -57,7 +57,7 @@
 					<ng-template pTemplate="body" let-rowData let-i="rowIndex">
 						<tr>
 							<td>{{i+1}}</td>
-							<td>{{formatDate(rowData.updatedAt)}}</td>
+							<td>{{formatDate(rowData.createdAt)}}</td>
 							<td>{{rowData.email}}</td>
 							<td>{{rowData.name}}</td>
 							<td>{{rowData.phoneNumber}}</td>

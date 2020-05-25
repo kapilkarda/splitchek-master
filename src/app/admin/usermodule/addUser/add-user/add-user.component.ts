@@ -14,11 +14,13 @@ export class AddUserComponent implements OnInit {
     "name":"",
     "email":"",
     "phoneNumber":"",
-    "password":""
+    "password":"",
+    "countryCode":{name: "India", dial_code: "+91", code: "IN"}
   };
  result: any;
-
-
+ telCode:any;
+ mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
+teld:any
 
 constructor(
   private router: Router,
@@ -31,10 +33,29 @@ ngOnInit() {
   if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
     this.router.navigate(['/']);
   }
+  this.telcode()
+}
+telcode() {
+  this.spinner.show();
+  this.adminService.telCode().subscribe(result => {
+    this.teld = result;
+    console.log(this.teld)
+  },
+  (err) => console.log(err),
+  () => {
+    if (this.teld.status === 'success') {
+      this.telCode = this.teld.data;
+      this.spinner.hide();
+    } else {
+      this.spinner.hide();
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: this.teld.message });
+    }
+  });
 }
 
-
 add_user() {
+  this.model.phoneNumber = `${this.model.countryCode.dial_code}${this.model.phoneNumber}`;
+  console.log(this.model)
   this.spinner.show();
   this.adminService.admin_add_user(this.model).subscribe(result => {
     this.result = result;

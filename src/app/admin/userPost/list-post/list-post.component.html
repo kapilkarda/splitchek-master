@@ -1,0 +1,113 @@
+<div class="content-wrapper">
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>Manage Post</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="content">
+    <div class="form-group col-md-4">
+      <label>Category</label>
+      <p-dropdown class="pDropdwon"  filterBy="label,value"  [filter]="true" [options]="category" placeholder="Select Category" optionLabel="catname" optionValue="_id" [(ngModel)]="catId" (ngModelChange)="getCatData($event)" ></p-dropdown>
+    </div>
+		<div class="card" *ngIf="postData && postData.length > 0; else noRecord">
+			<div class="card-body table-responsive p-0">
+        <p-table #dt *ngIf="postData" [value]="postData" [paginator]="true" [alwaysShowPaginator]="true"
+        [rows]="10" [scrollable]="false" [globalFilterFields]="['productTitle','catname','username']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+					<ng-template pTemplate="caption">
+						<div style="text-align: right">
+							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+							<input type="text" pInputText size="50" placeholder=" " (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+						</div>
+					</ng-template>
+					<ng-template pTemplate="header" let-columns>
+						<tr>
+              <th style="width: 8%">#</th>
+              <th>Image</th>
+              <th  [pSortableColumn]="'productTitle'">
+                Title
+                <p-sortIcon [field]="'productTitle'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+
+              </th>
+							<th style="width: 18%" [pSortableColumn]="'catname'">
+								Category Name
+								<p-sortIcon [field]="'catname'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+              </th>
+							<th>User</th>
+              <th>Post Data</th>
+              <th>Mark as featured</th>
+							<th style="width: 10%">Status</th>
+							<th style="width: 22%">Action</th>
+						</tr>
+					</ng-template>
+					<ng-template pTemplate="body" let-rowData let-i="rowIndex">
+						<tr>
+              <td>{{i+1}}</td>
+              <td><img *ngIf="rowData.productImage" [src]="rowData.productImage" style="width:40px" />
+                <img *ngIf="!rowData.productImage" src="../../../../../assets/img/logo.png" style="width:40px" /></td>
+              <td>{{rowData.productTitle}}</td>
+              <td>{{rowData.catname}}</td>
+              <td>{{rowData.username}}</td>
+              <td>
+                <button type="text" (click) ="show(rowData)"  class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>
+             </td>
+             <td>
+              <button type="button" (click)=featurePost(rowData._id,rowData.featured);  class="btn btn-blue">
+                <ng-container *ngIf="rowData.featured == 1; else unFeturesdStatus">
+                  <i class="fa fa-check-square" id="Checkbox" title="Un Featured this Post"></i>
+                </ng-container>
+                <ng-template #unFeturesdStatus>
+                  <i class="fa fa-square-full" id="Checkbox1" title="Featured this Post"></i>
+                </ng-template>
+              </button>
+             </td>
+							<td>
+								<ng-container *ngIf="rowData.status == 1; else deactiveStatusText">
+									Active
+								</ng-container>
+								<ng-template #deactiveStatusText>Deactive</ng-template>
+							</td>
+							<td>
+								<button type="text" (click)=delete_category(rowData._id,rowData.isDeleted);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								<button type="button" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
+									<ng-container *ngIf="rowData.status == 1; else deactiveStatus">
+										<i class="fa fa-toggle-off" title="Deactivate User"></i>
+									</ng-container>
+									<ng-template #deactiveStatus>
+										<i class="fa fa-toggle-on" title="Activate User"></i>
+									</ng-template>
+								</button>
+								<button type="text" [routerLink]="['/admin/userEditPost',rowData._id]"   class="btn btn-grey" title="edit"><i class="fa fa-edit" aria-hidden="true"></i></button>
+							</td>
+						</tr>
+          </ng-template>
+				</p-table>
+			</div>
+		</div>
+  </section>
+  <p-dialog [header]="fieldTitle" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000"  class="pDialog">
+    <p-fieldset >
+      <ul class="fieldList">
+        <li *ngFor="let f of fieldData">
+          <span class="fieldTitle">FieldName : {{f.name}}</span>
+          <span class="fieldIcon"><i class="fa {{f.icon}}"></i></span>
+          <span class="fieldType" *ngIf="chkArray(f.value)">Value: <b>{{parseVal(f.value)}}</b></span>
+		  <span class="fieldType" *ngIf="!chkArray(f.value)">Value: <b>{{f.value}}</b></span>
+		  <!-- <span class="fieldType" *ngIf="f.type=='DatePicker'">Value: <b>{{f.value.from +'  ' + f.value.to}}</b></span> -->
+          <ul class="subFieldList" *ngIf="f.optionShow">
+            <li *ngFor="let o of f.option">
+              <span class="fieldTitle">{{o.label}}</span>
+              <span class="fieldType">{{o.value}}</span>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </p-fieldset>
+  </p-dialog>
+</div>
+<ng-template #noRecord>No Record Found</ng-template>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="500" height="120"></p-confirmDialog>

@@ -41,3 +41,12 @@ span.fieldType {
   display: block;
   overflow: hidden;
 }
+#Checkbox{
+  color:#c4bebe !important;
+  border-color:1px solid #afaaaa !important ;
+}
+#Checkbox1{
+  color: white;
+  border: 1px solid #c4bebe;
+  border-top: 2px solid #c4bebe;
+}

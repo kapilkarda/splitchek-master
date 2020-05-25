@@ -14,17 +14,18 @@ import * as moment from 'moment';
 })
 export class PaymentReportComponent implements OnInit {
   model: any = {
-    "start":"2020-01-09",
-	  "end":"2020-12-10"
-
-  };
-  date1:Date;
-  date2:Date;
+    type:"",
+    startDate:"",
+    endDate:""
+    };
+    date1:any = new Date();
+    date2:any = new Date();
   result: any;
   Customer:any=[]
   user:any;
   reportData:any=[];
   totalRecords:any=0;
+
  constructor(
    private router: Router,
    private activatedRoute: ActivatedRoute,
@@ -58,15 +59,23 @@ export class PaymentReportComponent implements OnInit {
     });
   }
   report() {
-    if(this.date1 && this.date2){
+    // if(this.model.type == 'range'){
 
-      this.model.start = this.date1;
-      this.model.end = this.date2;
+      if(this.date1 && this.date2){
+
+        this.model.startDate = moment(this.date1).format("YYYY-MM-DD");
+        this.model.endDate = moment(this.date2).format("YYYY-MM-DD");
+      // }
     }
+    // else{
+    //   this.model.startDate = '';
+    //     this.model.endDate = '';
+    // }
     console.log(this.model)
     this.spinner.show();
       this.adminService.payment_report(this.model).subscribe((result) => {
       this.result = result;
+      console.log(this.result)
     },
     (err) => this.spinner.hide(),
     () => {
@@ -84,6 +93,7 @@ export class PaymentReportComponent implements OnInit {
 formatDate(date){
   return moment(date).format('MM/DD/YYYY')
 }
+
 getUser(id){
   for(let k of this.Customer){
     if(k._id == id){
@@ -91,5 +101,13 @@ getUser(id){
       return k.name
     }
   }
+}
+refresh(){
+  // this.model.type = '';
+  this.model.startDate = '';
+  this.model.endDate = '';
+  this.date1 = undefined;
+  this.date2 = undefined;
+  this.report();
 }
 }

@@ -13,12 +13,12 @@ import * as moment from 'moment';
 })
 export class UserReportComponent implements OnInit {
   model: any = {
-    "start":"2020-01-09",
-	  "end":"2020-12-10"
+    "start":"",
+	  "end":""
 
   };
-  date1:Date;
-  date2:Date;
+  date1:any = new Date();
+  date2:any = new Date();
   result: any;
   user:any;
   reportData:any=[];
@@ -38,8 +38,8 @@ export class UserReportComponent implements OnInit {
   report() {
     if(this.date1 && this.date2){
 
-      this.model.start = this.date1;
-      this.model.end = this.date2;
+      this.model.start = moment(this.date1).format("YYYY-MM-DD");
+      this.model.end = moment(this.date2).format("YYYY-MM-DD");
     }
     console.log(this.model)
     this.spinner.show();
@@ -61,5 +61,12 @@ export class UserReportComponent implements OnInit {
   }
 formatDate(date){
   return moment(date).format('MM/DD/YYYY')
+}
+refresh(){
+  this.model.start = '';
+  this.model.end = '';
+  this.date1 = undefined;
+  this.date2 = undefined;
+  this.report();
 }
 }

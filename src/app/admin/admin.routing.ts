@@ -36,8 +36,15 @@ import { PaymentReportComponent } from './reports/payment-report/payment-report.
 import { AddAdsComponent } from './Ads/add-ads/add-ads.component';
 import { ListAdsComponent } from './Ads/list-ads/list-ads.component';
 import { EditAdsComponent } from './Ads/edit-ads/edit-ads.component';
-
-
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuardService } from '../services/auth-guard.service';
+import { ListticketComponent } from './ticketmodule/listticket/listticket.component';
+import { ReplyticketComponent } from './ticketmodule/replyticket/replyticket.component';
+import { TransactionComponent } from './reports/payment-report/transaction/transaction.component';
+import { DeductionComponent } from './reports/payment-report/deduction/deduction.component';
+import { DetaildeductionComponent } from './reports/payment-report/detaildeduction/detaildeduction.component';
+import { UserListPostComponent } from './userPost/list-post/list-post.component';
+import { UserEditPostComponent } from './userPost/edit-post/edit-post.component';
 /*import {adminaddpagesComponent} from './pagesModule/add_pages/adminaddpages.component';
 import {adminmanagepagesComponent} from './pagesModule/manage_pages/adminmanagepages.component';
 import {adminadddealsComponent} from './dealsModule/add_deals/adminadddeals.component';
@@ -57,167 +64,205 @@ const routes: Routes = [
       path: 'admin', component: adminComponent ,
       children: [
    		{path: '', component: adminloginComponent},
-         {path: 'dashboard', component: admindashboardComponent},
+         {path: 'dashboard', component: admindashboardComponent,canActivate: [AuthGuardService]},
 		 {
 				path: 'addroles',
 				component: addrolesComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'editroles/:id',
 				component: editrolesComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 		 {
 				path: 'manageroles',
 				component: managerolesComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 
 			{
 				path: 'addstaff',
 				component: addstaffComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'editstaff/:id',
 				component: editstaffComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 		 {
 				path: 'managestaff',
 				component: managestaffComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 
 			{
 				path: 'addcategory/:id/:name',
 				component: addcategoryComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 
 			{
 				path: 'managecategory',
 				component: managecategoryComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'editcategory/:id/:name/:pid/:pname',
 				component: editcategoryComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'subcategory/:id/:name',
 				component: SubCategoryComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'createForm',
 				component: CreateFormComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'listForm',
 				component: ListFormComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'editForm/:id',
 				component: EditFormComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'createPost',
 				component: CreatePostComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'listPost',
 				component: ListPostComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'editPost/:id',
 				component: EditPostComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'createPlan',
 				component: AddPlanComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'listPlan',
 				component: ListPlanComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'editplan/:id',
 				component: EditPlanComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'createUser',
 				component: AddUserComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'listUser',
 				component: ListUserComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'editUser/:id',
 				component: EditUserComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'createFaq',
 				component: AddFaqComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'listFaq',
 				component: ListFaqComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'editFaq/:id',
 				component: EditFaqComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'userReport',
 				component: UserReportComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'postReport',
 				component: PostReportComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'paymentReport',
 				component: PaymentReportComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'createAds',
 				component: AddAdsComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'listAds',
 				component: ListAdsComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
 			{
 				path: 'editAds/:id',
 				component: EditAdsComponent,
-				//canActivate: [AuthGuard]
+				canActivate: [AuthGuardService]
 			},
-
-
+			{
+				path: 'profile',
+				component: ProfileComponent,
+				canActivate: [AuthGuardService]
+			},
+			{
+				path: 'listTicket',
+				component: ListticketComponent,
+				canActivate: [AuthGuardService]
+			},
+			{
+				path: 'replyTicket/:id',
+				component: ReplyticketComponent,
+				canActivate: [AuthGuardService]
+			},
+			{
+				path: 'deduction',
+				component: DeductionComponent,
+				canActivate: [AuthGuardService]
+			},
+			{
+				path: 'transaction',
+				component: TransactionComponent,
+				canActivate: [AuthGuardService]
+			},
+			{
+				path: 'deductiondetail',
+				component: DetaildeductionComponent,
+				canActivate: [AuthGuardService]
+			},
+			{
+				path: 'UserlistPost',
+				component: UserListPostComponent,
+				canActivate: [AuthGuardService]
+			},
+			{
+				path: 'userEditPost/:id',
+				component: UserEditPostComponent,
+				canActivate: [AuthGuardService]
+			},
          /*{path: 'manageusers', component: adminmanageusersComponent},
          {path: 'managedownloads', component: adminmanageuserdownloadsComponent},
 

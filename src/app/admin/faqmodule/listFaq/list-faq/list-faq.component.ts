@@ -159,5 +159,12 @@ export class ListFaqComponent implements OnInit {
 			}
 	  });
   }
-
+ language(data){
+	//  console.log(data)
+	 if(data.languageType =='en'){
+		 return 'English'
+	 }else if(data.languageType=='ar'){
+		 return 'Arabic'
+	 }
+ }
 }

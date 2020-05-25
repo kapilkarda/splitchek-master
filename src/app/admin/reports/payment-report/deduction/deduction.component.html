@@ -1,0 +1,68 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Post Deduction Report</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="card" *ngIf="deductionData && deductionData.length > 0; else noRecord">
+            <div class="card-body table-responsive p-0">
+                <p-table #dt *ngIf="deductionData" [value]="deductionData" [paginator]="true"
+                    [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['name','kwd']"
+                    [totalRecords]="totalRecords" class="table table-head-fixed">
+                    <ng-template pTemplate="caption">
+                        <div style="text-align: right">
+                            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                            <input type="text" pInputText size="50" placeholder=" "
+                                (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th style="width: 8%">#</th>
+                            <th>User</th>
+                            <th>Bouns</th>
+                            <th style="width: 30%">Choose Plan</th>
+                            <th>Deduction Detail</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td>{{i+1}}</td>
+                            <td>{{getUser(rowData.userId)}}</td>
+                            <td>{{getBounce(rowData.userId)}}</td>
+                            <td>{{getPlan(rowData.userId)}}</td>
+                            <td>
+                                <button pButton type="button" (click)="detail(rowData)" label="Detail"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </section>
+    <p-dialog header="Deduction Detail" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000" class="pDialog">
+        <div *ngIf="detailData && detailData.length > 0; else noRecord">
+            <ul *ngFor="let detail of detailData">
+                <li><span class="list"><b>FieldName : particular</b></span> <span class="list">Value :
+                        {{detail.particular}}</span></li>
+                <li *ngFor="let value of detail.withdrawal"><span class="list"><b>FieldName : withdrawal</b></span> <span class="list">Value :
+                    {{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}</span></li>
+                <li *ngFor="let value of detail.deposite"><span class="list"><b>FieldName : deposite</b></span> <span class="list">Value :
+                    {{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}</span></li>
+                <li *ngFor="let value of detail.balance"><span class="list"><b>FieldName : balance</b></span> <span class="list">Value :
+                    {{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}</span></li>
+                <li><span class="list"><b>FieldName : walletstatus</b></span> <span class="list">Value :
+                        {{detail.walletstatus}}</span></li>
+            </ul>
+        </div>
+    </p-dialog>
+</div>
+
+
+<ng-template #noRecord>No Record Found</ng-template>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="500" height="120"></p-confirmDialog>

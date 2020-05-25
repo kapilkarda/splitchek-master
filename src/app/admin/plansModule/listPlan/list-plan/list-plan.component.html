@@ -11,7 +11,7 @@
 	<section class="content">
 		<div class="card" *ngIf="planlistData && planlistData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
-				<p-table #dt *ngIf="planlistData" [value]="planlistData" [paginator]="true" [alwaysShowPaginator]="false" [rows]="10" [scrollable]="false" [globalFilterFields]="['title','amount','no_listing','no_day','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+				<p-table #dt *ngIf="planlistData" [value]="planlistData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['kd','kwd']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
 						<div style="text-align: right">
 							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -20,23 +20,15 @@
 					</ng-template>
 					<ng-template pTemplate="header" let-columns>
 						<tr>
-							<th style="width: 8%">#</th>
-							<th  [pSortableColumn]="'title'">
-								Title
-								<p-sortIcon [field]="'title'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+							<th style="width: 8%">#</th>						
+							<!-- <th>Description</th> -->
+							<th [pSortableColumn]="'kd'">
+								kd
+								<p-sortIcon [field]="'kd'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 							</th>
-							<th  [pSortableColumn]="'amount'">
-								Amount
-								<p-sortIcon [field]="'amount'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-							</th>
-							<th>Description</th>
-							<th style="width: 14%" [pSortableColumn]="'no_listing'">
-								No of listing
-								<p-sortIcon [field]="'no_listing'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-							</th>
-							<th  [pSortableColumn]="'no_day'">
-								No of days
-								<p-sortIcon [field]="'no_day'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+							<th  [pSortableColumn]="'kwd'">
+								kwd
+								<p-sortIcon [field]="'kwd'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 							</th>
 							<th style="width: 10%">Status</th>
 							<th style="width: 22%">Action</th>
@@ -44,14 +36,13 @@
 					</ng-template>
 					<ng-template pTemplate="body" let-rowData let-i="rowIndex">
 						<tr>
-							<td>{{i+1}}</td>
-							<td>{{rowData.title}}</td>
-							<td>{{rowData.amount}}</td>
-              <td>
+							<td>{{i+1}}</td>	
+							
+              <!-- <td>
                 <button type="text" (click) ="show(rowData)"  class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>
-							</td>
-							<td>{{rowData.no_listing}}</td>
-							<td>{{rowData.no_day}}</td>
+							</td> -->
+							<td>{{rowData.kd}}</td>
+							<td>{{rowData.kwd}}</td>
 							<td>
 								<ng-container *ngIf="rowData.status == 1; else deactiveStatusText">
 									Active

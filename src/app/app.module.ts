@@ -15,6 +15,8 @@ import {CalendarModule} from 'primeng/calendar';
 import {ConfirmationService} from 'primeng/api';
 import {TreeviewModule} from 'ngx-treeview';
 import { NgSelect2Module } from 'ng-select2';
+import { NzTreeModule } from 'ng-zorro-antd/tree';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -25,13 +27,14 @@ import { NgSelect2Module } from 'ng-select2';
     HttpClientModule,
     AdminModule,
     AppRoutingModule,
+    NzTreeModule,
     NgxSpinnerModule,
     NgSelect2Module,
     TableModule,
     ToastModule,
 	TreeviewModule.forRoot()
   ],
-  providers: [MessageService,ConfirmationService,DatePipe,DialogService,DynamicDialogRef],
+  providers: [MessageService,ConfirmationService,DatePipe,DialogService,DynamicDialogRef,{ provide: AuthGuardService, useClass: AuthGuardService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

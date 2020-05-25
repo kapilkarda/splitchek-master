@@ -1,0 +1,144 @@
+<div class="content-wrapper">
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>Payment Transaction Report</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="content">
+		<form name="addcategoryform" #filter="ngForm">
+			<div class="searchForm row">
+				<div class="col-3 form-group">
+					<select name="type" [(ngModel)]="model.type" class="form-control">
+						<option value="">Select filter by</option>
+						<option value="day">Today</option>
+						<option value="week">Week</option>
+						<option value="month">Month</option>
+						<option value="month">Year</option>
+						<option value="range">Custom</option>
+					</select>
+				</div>
+				<div class="col-3 form-group">
+					<p-calendar [(ngModel)]="date1" name="date1" required placeholder="From Date"></p-calendar>
+				</div>
+				<div class="col-3 form-group">
+					<p-calendar [(ngModel)]="date2" name="date2" required [minDate]="date1" placeholder="To Date">
+					</p-calendar>
+				</div>
+				<div class="col-2 form-group">
+					<button type="button" (click)="report()" class="btn btn-primary btn-block subBut"
+						[disabled]="!filter.valid">Filter</button>
+				</div>
+				<div class="col-1 form-group">
+					<button type="button" (click)="refresh()" class="btn btn-primary btn-block subBut"><i
+							class="text-light" class="fa fa-undo-alt"></i></button>
+				</div>
+			</div>
+		</form>
+		<div class="card" *ngIf="reportData && reportData.length > 0; else noRecord">
+			<div class="card-body table-responsive p-0">
+
+				<p-table #dt *ngIf="reportData" [value]="reportData" [responsive]="true" [paginator]="true"
+					[alwaysShowPaginator]="true" [rows]="10"
+					[globalFilterFields]="['createdAt','CustomerEmail','CustomerMobile','CustomerName','CustomerReference','ExpiryDate','InvoiceDisplayValue','InvoiceId']"
+					[totalRecords]="totalRecords" class="table table-head-fixed">
+					<ng-template pTemplate="caption">
+						<div style="text-align: right">
+							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+							<input type="text" pInputText size="50" placeholder=" "
+								(input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+						</div>
+					</ng-template>
+					<ng-template pTemplate="header" let-columns>
+						<tr>
+							<th style="width: 6%">#</th>
+							<th style="width: 8%">Date</th>
+							<!-- <th>CustomerEmail</th>
+							<th>CustomerReference</th>
+							<th>ExpiryDate</th>
+							<th>InvoiceId</th> -->
+							<th>Title</th>
+							<th>User</th>
+							<th>Mobile</th>			
+							<th>Price</th>							
+							<th>Transaction Detail</th>
+						</tr>
+					</ng-template>
+					<ng-template pTemplate="body" let-rowData let-i="rowIndex">
+						<tr>
+							<td>{{i+1}}</td>
+							<td>{{formatDate(rowData.createdAt)}}</td>
+							<!-- <td>{{rowData.CustomerEmail}}</td> 
+							<td>{{rowData.CustomerReference}}</td>
+							<td>{{rowData.ExpiryDate}}</td> 
+							<td>{{rowData.InvoiceId}}</td>-->
+							<td *ngFor="let value of rowData.InvoiceItems">{{value.ItemName}}</td>
+							<td>{{rowData.CustomerName}}</td>
+							<td>{{rowData.CustomerMobile}}</td>					
+							<td>{{rowData.InvoiceDisplayValue}}</td>
+							<td>
+								<!-- <button class="btn btn-grey" (click)="invoice(rowData)" id="color"
+									title="InvoiceItems"><i class="fas fa-file-invoice" aria-hidden="true"></i></button> -->
+								<button class="btn btn-grey" (click)="InvoiceTrans(rowData)" id="color"
+									title="Detail"><i class="fas fa-forward" aria-hidden="true"></i>
+								</button>
+							</td>							
+						</tr>
+					</ng-template>
+				</p-table>
+			</div>
+		</div>
+	</section>
+	<!-- <p-dialog header="InvoiceItems" [(visible)]="display" [style]="{width: '45vw'}" [baseZIndex]="10000"
+		class="pDialog">
+		<div *ngIf="InvoiceItems && InvoiceItems.length > 0; else noRecord">
+			<ul *ngFor="let invoice of InvoiceItems">
+				<li><span class="list"><b>FieldName : ItemName</b></span> <span class="list">Value :
+						{{invoice.ItemName}}</span></li>
+				<li><span class="list"><b>FieldName : Quantity</b></span> <span class="list">Value :
+						{{invoice.Quantity}}</span></li>
+				<li><span class="list"><b>FieldName : UnitPrice</b></span> <span class="list">Value :
+						{{invoice.UnitPrice}}</span></li>
+			</ul>
+		</div>
+	</p-dialog> -->
+	<p-dialog header="Transaction Detail" [(visible)]="displays" [style]="{width: '45vw'}" [baseZIndex]="10000"
+		class="pDialog">
+		<div *ngIf="InvoiceTransactions && InvoiceTransactions.length > 0; else noRecord">
+			<ul *ngFor="let invoicetrans of InvoiceTransactions">
+				<br>
+				<li><span class="list"><b>FieldName : AuthorizationId</b></span> <span class="list">Value :
+						{{invoicetrans.AuthorizationId}}</span></li>
+				<li><span class="list"><b>FieldName : Currency</b></span> <span class="list">Value :
+						{{invoicetrans.Currency}}</span></li>
+				<li><span class="list"><b>FieldName : CustomerServiceCharge</b></span> <span class="list">Value :
+						{{invoicetrans.CustomerServiceCharge}}</span></li>
+				<li><span class="list"><b>FieldName : DueValue</b></span> <span class="list">Value :
+						{{invoicetrans.DueValue}}</span></li>
+				<li><span class="list"><b>FieldName : PaidCurrency</b></span> <span class="list">Value :
+						{{invoicetrans.PaidCurrency}}</span></li>
+				<li><span class="list"><b>FieldName : PaymentGateway</b></span> <span class="list">Value :
+						{{invoicetrans.PaymentGateway}}</span></li>
+				<li><span class="list"><b>FieldName : PaymentId</b></span> <span class="list">Value :
+						{{invoicetrans.PaymentId}}</span></li>
+				<li><span class="list"><b>FieldName : ReferenceId</b></span> <span class="list">Value :
+						{{invoicetrans.ReferenceId}}</span></li>
+				<li><span class="list"><b>FieldName : TrackId</b></span> <span class="list">Value :
+						{{invoicetrans.TrackId}}</span></li>
+				<li><span class="list"><b>FieldName : TransactionDate</b></span> <span class="list">Value :
+						{{invoicetrans.TransactionDate}}</span></li>
+				<li><span class="list"><b>FieldName : TransactionId</b></span> <span class="list">Value :
+						{{invoicetrans.TransactionId}}</span></li>
+				<li><span class="list"><b>FieldName : TransactionStatus</b></span> <span class="list">Value :
+						{{invoicetrans.TransactionStatus}}</span></li>
+				<li><span class="list"><b>FieldName : TransationValue</b></span> <span class="list">Value :
+						{{invoicetrans.TransationValue}}</span></li>
+			</ul>
+		</div>
+	</p-dialog>
+</div>
+<ng-template #noRecord>No Record Found</ng-template>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="500" height="120"></p-confirmDialog>

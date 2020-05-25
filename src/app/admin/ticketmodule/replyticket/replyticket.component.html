@@ -1,0 +1,51 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <h1 class="m-0 text-dark">Reply Ticket</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 offset-1">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Reply Ticket</h3>
+                        </div>
+                        <div class="card-body table-responsive p-0">
+                            <form name="addcategoryform" #addPlanForm="ngForm">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            <label for="answer">Message </label>
+                                            <textarea class="form-control" name="ans" placeholder="Message" [(ngModel)]="model.ans"  #ans="ngModel" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <ng-container *ngIf="model.ticketStatus == 'open'; else deactiveStatusText">
+                                        <button type="button" (click)="replyBack()" class="btn btn-primary subBut"
+                                            [disabled]="! addPlanForm.valid ">Reply</button>
+                                    </ng-container>
+                                    <ng-template #deactiveStatusText>
+                                        <button type="button" (click)="replyBack()" disabled
+                                            class="btn btn-danger subBut"
+                                            >Reply</button>
+                                    </ng-template>
+                                    <!-- <button type="button" (click)="replyBack()" class="btn btn-primary subBut"
+                                        [disabled]="! addPlanForm.valid">Reply</button> -->
+                                    <button [routerLink]="['/admin/listTicket']" class="btn btn-default cancelBut"
+                                        style="font-weight: bold;float:right;">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
