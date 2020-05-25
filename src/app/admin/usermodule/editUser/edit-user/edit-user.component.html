@@ -29,19 +29,22 @@
                     </div>
                     <div class="form-group col-6">
                       <label for="email">Email </label>
-                      <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="model.email"  #email="ngModel" required  [maxlength]="50"/>
+                      <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="model.email"  #email="ngModel" email required  [maxlength]="50"/>
                       <div *ngIf="email.errors && email.touched">
                         <span class="error" *ngIf="email.errors?.required">Email is mandatory.</span>
+                      </div>
+                      <div *ngIf="email.value !== '' && email.touched">
+                        <span *ngIf="email.invalid"  class="error">
+                          Email must be a valid email address
+                       </span>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-6">
                       <label for="phoneNumber">Phone number </label>
-                      <input type="number" class="form-control" name="phoneNumber" disabled placeholder="Phone number" [(ngModel)]="model.phoneNumber"  #phoneNumber="ngModel" required  [maxlength]="50"/>
-                      <div *ngIf="phoneNumber.errors && phoneNumber.touched">
-                        <span class="error" *ngIf="phoneNumber.errors?.required">Phone no is mandatory.</span>
-                      </div>
+                      <input type="text"  class="form-control" name="phoneNumber" disabled placeholder="Phone number" [(ngModel)]="model.phoneNumber"  #phoneNumber="ngModel" required  [maxlength]="50"/>
+
                     </div>
                     <!-- <div class="form-group col-6">
                       <label for="no_day">Password </label>

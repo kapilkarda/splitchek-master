@@ -50,7 +50,7 @@
               <td>{{rowData.name}}</td>
               <td style="display: flex;">
                 <button type="text" (click)="viewSubCat(rowData._id,rowData.name)"   class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>
-								<p-tree [value]="rowData.child" ></p-tree>
+								<p-tree [value]="rowData.children" ></p-tree>
 								<!-- {{ShowSubCatData(rowData.subCat)}} -->
 
               </td>

@@ -52,6 +52,7 @@ export class managestaffComponent {
 		() => {
 			if (this.result.status === 'success') {
 				this.staffData = this.result.data;
+				console.log(this.staffData)
 				this.totalRecords = this.result.data.length;
 				this.spinner.hide();
 			} else {

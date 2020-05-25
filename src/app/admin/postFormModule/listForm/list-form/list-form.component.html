@@ -11,7 +11,7 @@
 	<section class="content">
 		<div class="card" *ngIf="formalistData && formalistData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
-				<p-table #dt *ngIf="formalistData" [value]="formalistData" [paginator]="true" [alwaysShowPaginator]="false" [rows]="10" [scrollable]="false" [globalFilterFields]="['form_name','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+				<p-table #dt *ngIf="formalistData" [value]="formalistData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['form_name','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
 						<div style="text-align: right">
 							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -65,9 +65,9 @@
 		</div>
   </section>
   <p-dialog [header]="fieldTitle" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000"  class="pDialog">
-    <p-fieldset *ngFor="let s of fieldData;let i = index" legend="Step {{i+1}}">
+    <p-fieldset >
       <ul class="fieldList">
-        <li *ngFor="let f of s.field">
+        <li *ngFor="let f of fieldData">
           <span class="fieldTitle">{{f.name}}</span>
           <span class="fieldIcon"><i class="fa {{f.icon}}"></i></span>
           <span class="fieldType">{{f.type.value}}</span>

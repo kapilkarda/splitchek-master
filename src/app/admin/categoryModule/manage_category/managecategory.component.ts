@@ -59,7 +59,7 @@ export class managecategoryComponent {
 				this.totalRecords = this.result.data.length;
 				for(let item of this.result.data){
 					let mobj = []
-					item['child'] = this.ShowSubCatData(item.subCat);
+					item['children'] = this.ShowSubCatData(item.subCat);
 					mobj = this.getIDArr(item.subCat);
 					let obj = {
 						id:item._id,
@@ -202,7 +202,8 @@ export class managecategoryComponent {
 		return arr;
 	}
 	viewSubCat(id,name){
-		localStorage.setItem('subCatData',JSON.stringify(this.categoryData))
+    console.log(this.categoryData)
+		// localStorage.setItem('subCatData',JSON.stringify(this.categoryData))
 		this.router.navigate(['admin/subcategory',id,name])
 
 	}

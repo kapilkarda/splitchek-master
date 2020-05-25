@@ -1,25 +1,25 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Router,ActivatedRoute,Params,Data} from '@angular/router';
-import {NgForm} from '@angular/forms';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {MessageService} from 'primeng/api';
-import {ConfirmationService} from 'primeng/api';
-import {AdminService} from '../../../../services/admin.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute, Params, Data } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
+import { AdminService } from '../../../../services/admin.service';
 
 @Component({
-  selector: 'app-list-user',
-  templateUrl: './list-user.component.html',
-  styleUrls: ['./list-user.component.css']
+	selector: 'app-list-user',
+	templateUrl: './list-user.component.html',
+	styleUrls: ['./list-user.component.css']
 })
 export class ListUserComponent implements OnInit {
-  model: any = {};
+	model: any = {};
 	result: any;
 	userlistData: any;
-  totalRecords: number;
-  display: boolean = false;
-  fieldData:any;
-  fieldTitle:any;
+	totalRecords: number;
+	display: boolean = false;
+	fieldData: any;
+	fieldTitle: any;
 	//private unsubscribe$: Subject<any> = new Subject<any>();
 	constructor(
 		//private cdref: ChangeDetectorRef,
@@ -34,103 +34,110 @@ export class ListUserComponent implements OnInit {
 
 	}
 	ngOnInit() {
-    if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
-      this.router.navigate(['/']);
-    }
+		if (localStorage.getItem('token') == null && localStorage.getItem('token') == 'null') {
+			this.router.navigate(['/']);
+		}
 		this.loadFormData();
 	}
 
-  show(data) {
+	show(data) {
 
-    this.display = true;
-    this.fieldData = data.description;
-    this.fieldTitle = data.title
-  }
+		this.display = true;
+		this.fieldData = data.description;
+		this.fieldTitle = data.title
+	}
 
-  ngOnDestroy() {
+	ngOnDestroy() {
 
-  }
+	}
 
 	loadFormData() {
 		console.log("hhhhhhhhhhhh")
-    this.spinner.show();
-		  this.adminService.getUserList().subscribe((result) => {
+		this.spinner.show();
+		this.adminService.getUserList().subscribe((result) => {
 			this.result = result;
 		},
-		(err) => this.spinner.hide(),
-		() => {
-			if (this.result.status === 'success') {
-				this.userlistData = this.result.data;
-        this.totalRecords = this.result.data.length;
-        console.log(this.userlistData)
-				this.spinner.hide();
-			} else {
-				this.spinner.hide();
-				this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
-			}
-		});
+			(err) => this.spinner.hide(),
+			() => {
+				if (this.result.status === 'success') {
+					let obj = [];
+					for (let value of this.result.data) {
+						if (value.loginType != '5') {
+							obj.push(value)
+						}
+					}
+					this.userlistData = obj;
+
+					this.totalRecords = this.result.data.length;
+					console.log(this.userlistData, "Data")
+					this.spinner.hide();
+				} else {
+					this.spinner.hide();
+					this.messageService.add({ severity: 'error', summary: 'Success', detail: this.result.message });
+				}
+			});
 	}
 
-	delete_form(id,isDeleted){
+	delete_form(id, isDeleted) {
 		this.confirmationService.confirm({
 			message: 'Are you sure that you want to delete this User?',
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
-        let data = {
-          "id":id
-        }
+				let data = {
+					"id": id
+				}
 				this.spinner.show();
 				this.adminService.admin_delete_user(data).subscribe((result) => {
 					this.result = result;
 				},
-				(err) => this.spinner.hide(),
-				() => {
-				if (this.result.status === 'success') {
-					this.spinner.hide();
-					this.loadFormData();
-					this.messageService.add({severity:'success', summary: 'Success', detail:this.result.message});
-				} else {
-					this.spinner.hide();
-					this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
-				}
-			});
-		},
+					(err) => this.spinner.hide(),
+					() => {
+						if (this.result.status === 'success') {
+							this.spinner.hide();
+							this.loadFormData();
+							this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
+						} else {
+							this.spinner.hide();
+							this.messageService.add({ severity: 'error', summary: 'Success', detail: this.result.message });
+						}
+					});
+			},
 			reject: () => {
 			}
-	  });
+		});
 	}
 
-	status_change(id,status){
+	status_change(id, status) {
 		this.confirmationService.confirm({
 			message: 'Are you sure that you want to activate/deactivate this User?',
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
-        this.spinner.show();
-        let data = {
-          "id":id,
-	        "status":status
+				this.spinner.show();
+				let data = {
+					"id": id,
+					"status": status
 
-        }
+				}
 				this.adminService.admin_update_user(data).subscribe((result) => {
 					this.result = result;
 				},
-				(err) => this.spinner.hide(),
-				() => {
-				if (this.result.status === 'success') {
-					this.spinner.hide();
-					this.loadFormData();
-					this.messageService.add({severity:'success', summary: 'Success', detail:this.result.message});
-				} else {
-					this.spinner.hide();
-					this.messageService.add({severity:'error', summary: 'Success', detail:this.result.message});
-				}
-			});
-		},
+					(err) => this.spinner.hide(),
+					() => {
+						if (this.result.status === 'success') {
+							this.spinner.hide();
+							this.loadFormData();
+							this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
+						} else {
+							this.spinner.hide();
+							this.messageService.add({ severity: 'error', summary: 'Success', detail: this.result.message });
+						}
+					});
+			},
 			reject: () => {
 			}
-	  });
-  }
+		});
+	}
 
 }

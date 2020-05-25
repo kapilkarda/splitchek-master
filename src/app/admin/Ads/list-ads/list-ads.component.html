@@ -11,7 +11,7 @@
 	<section class="content">
 		<div class="card" *ngIf="FaqlistData && FaqlistData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
-				<p-table #dt *ngIf="FaqlistData" [value]="FaqlistData" [paginator]="true" [alwaysShowPaginator]="false" [rows]="10" [scrollable]="false" [globalFilterFields]="['name','title','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+				<p-table #dt *ngIf="FaqlistData" [value]="FaqlistData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['name','title','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
 						<div style="text-align: right">
 							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -47,7 +47,7 @@
               <td><img [src]="rowData.path" style="width: 50px;" /></td>
               <td>{{rowData.name}}</td>
               <td>{{rowData.title}}</td>
-              <td>{{rowData.title}}</td>
+              <td>{{rowData.price}}</td>
 							<td>
 								<ng-container *ngIf="rowData.status == 1; else deactiveStatusText">
 									Active

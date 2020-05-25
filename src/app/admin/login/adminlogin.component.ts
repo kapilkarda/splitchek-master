@@ -25,8 +25,9 @@ export class adminloginComponent {
 
 	ngOnInit() {
    	if(localStorage.getItem('token') != null && localStorage.getItem('token') !='null'){
-      	this.router.navigate(['/admin/dashboard']);
-    	}
+         this.router.navigate(['/admin/dashboard']);
+       }
+      //  console.log(localStorage.getItem('userLogin'))
 	}
 
    login() { 
@@ -38,10 +39,18 @@ export class adminloginComponent {
       () => {
       	if (this.result.status === 'success') { 
             localStorage.setItem('userInfo',JSON.stringify(this.result.userData))
+            localStorage.setItem('userLogin',JSON.stringify(this.result.userData.loginType))
          	localStorage.setItem('token', this.result.token);
             localStorage.setItem('email', this.result.email);
+            if(localStorage.getItem('userLogin') == '5'){
             this.router.navigate(['/admin/dashboard']);
             this.messageService.add({severity:'success', summary: 'Success', detail:this.result.message});
+            }else{
+               this.router.navigate(['']);
+               this.spinner.hide();
+               this.messageService.add({severity:'error', summary: 'Error', detail:'User is not valid'});
+            }
+            
          } else { 
             this.spinner.hide();
             this.messageService.add({severity:'error', summary: 'Error', detail:this.result.message});

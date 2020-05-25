@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute, Params, Data} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -6,16 +6,19 @@ import {MessageService} from 'primeng/api';
 import {AdminService} from '../../../../services/admin.service';
 import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
 
+import * as moment from 'moment';
 import {AppSettings} from '../../../../../../appSettings';
 
 
+declare var google;
 @Component({
   selector: 'app-edit-post',
   templateUrl: './edit-post.component.html',
   styleUrls: ['./edit-post.component.css']
 })
 export class EditPostComponent implements OnInit {
-  model: any = {id:'',adminId:'',userId:'',catname:'',form_name:'',field:[]};
+  @ViewChild('map',{static:false}) mapElement: ElementRef;
+  model: any = { adminId: '', userId: '', catname: '', form_name: '', field: [], productMedia: [], sellerLocation: [],loc:[], productTitle: "", productImage: "", productPrice: "", dateNtime: "" };
   result: any;
   roleList:any;
   moduleArr: any = { "modules": [] };
@@ -36,12 +39,61 @@ export class EditPostComponent implements OnInit {
    private adminService: AdminService,
    private spinner: NgxSpinnerService,
    private messageService: MessageService,
- ) { }
-
- ngOnInit() {
+ ) {
   if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
     this.router.navigate(['/']);
   }
+ }
+ initMap() {
+
+  var pos;
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 22.397, lng: 77.644},
+    zoom: 15
+  });
+  infoWindow = new google.maps.InfoWindow;
+  navigator.geolocation.getCurrentPosition(function(position) {
+    let val = document.getElementById('latitude').innerHTML;
+    if(val != ''){
+      pos = {
+        lat: parseFloat(document.getElementById('latitude').innerHTML),
+        lng: parseFloat(document.getElementById('longitude').innerHTML),
+      };
+    }else{
+      pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+    }
+
+    infoWindow.setPosition(pos);
+    infoWindow.setContent( 'Click to set your location');
+    infoWindow.open(map);
+    map.setCenter(pos);
+    document.getElementById('latitude').innerHTML = position.coords.latitude.toString();
+    document.getElementById('longitude').innerHTML = position.coords.latitude.toString();
+  });
+
+  // Create the initial InfoWindow.
+  var infoWindow = new google.maps.InfoWindow(
+      {content: 'Click to set your location', position: pos});
+  infoWindow.open(map);
+
+  // Configure the click listener.
+  map.addListener('click', function(mapsMouseEvent) {
+    // Close the current InfoWindow.
+    infoWindow.close();
+    document.getElementById('latitude').innerHTML = mapsMouseEvent.latLng.lat().toString();
+    document.getElementById('longitude').innerHTML = mapsMouseEvent.latLng.lng().toString();
+    // Create a new InfoWindow.
+    console.log(this.lat)
+    infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
+    infoWindow.setContent(mapsMouseEvent.latLng.toString());
+    infoWindow.open(map);
+  });
+}
+ ngOnInit() {
+
 this.loadUserData();
 
   this.activatedRoute.params
@@ -57,14 +109,26 @@ this.loadUserData();
           this.model.id = this.postId;
 			this.spinner.show();
 			this.adminService.admin_load_postData(data).subscribe(categorydata => {
+        console.log(categorydata)
             if (categorydata.status === 'success') {
+              console.log(categorydata)
                this.postData = categorydata.data;
+               console.log(this.postData);
                this.model.catname = this.postData.catname;
                this.model.userId = this.postData.userId;
+               this.model.productTitle = this.postData.productTitle;
+               this.model.productImage = this.postData.productImage;
+               this.model.dateNtime = this.postData.dateNtime;
                this.model.form_name = this.postData.form_name;
-               this.model.field = this.postData.field;
-               this.items = this.postData.field;
+               this.model.loc = this.postData.loc;
+              this.items = this.postData.field;
+              this.steps = this.items.length;
+              this.model.field = this.postData.field;
+              if(this.model.loc){
 
+                document.getElementById('latitude').innerHTML = this.model.loc[0];
+                document.getElementById('longitude').innerHTML = this.model.loc[1];
+              }
                console.log("modellll ",this.model)
                this.spinner.hide();
             }
@@ -74,6 +138,7 @@ this.loadUserData();
   this.user = JSON.parse(localStorage.getItem('userInfo'))
   this.model.adminId = this.user.id;
 
+  this.initMap();
  }
  getCatValue(e){
    console.log(e.form)
@@ -106,14 +171,18 @@ this.loadUserData();
    this.spinner.show();
      this.adminService.getFormData(data).subscribe((result) => {
      this.result = result;
+     console.log(this.result)
    },
    (err) => this.spinner.hide(),
    () => {
      if (this.result.status === 'success') {
        let items = this.result.data[0];
        this.model.form_name = items.form_name;
-       this.items = items.fields;
-       this.steps = this.items.length;
+       console.log(items.field);
+
+        this.items = items.field;
+        this.steps = this.items.length;
+
        console.log(this.items)
        this.spinner.hide();
      } else {
@@ -156,7 +225,13 @@ this.loadUserData();
 
  add_category() {
    this.model.field = this.items;
+   this.model.dateNtime = moment().format("YYYY-MM-DD HH:mm:ss")
    console.log(this.model)
+
+   let lat = document.getElementById('latitude').innerHTML;
+   let long = document.getElementById('longitude').innerHTML;
+
+   this.model.loc = [lat,long];
    this.spinner.show();
    this.adminService.editAdminPost(this.model).subscribe(result => {
      this.result = result;
@@ -176,12 +251,17 @@ this.loadUserData();
  uploadProgress(){
   this.spinner.show();
  }
- onBasicUploadAuto(e,i,j){
+ onBasicUploadAuto(e,i){
   this.spinner.hide();
-   console.log(e,i,j)
+   console.log(e,i)
    let path = e.originalEvent.body.data[0].filename;
-   this.items[i].field[j].value = path;
+   this.items[i].value = path;
    this.upImage = path;
+ }
+ onBasicPimage(e){
+  this.spinner.hide();
+   let path = e.originalEvent.body.data[0].filename;
+   this.model.productImage = path;
  }
  next(){
    if(this.step < this.items.length){
@@ -200,5 +280,11 @@ this.loadUserData();
       return k.name
     }
   }
+}
+formatDate(date){
+  return new Date(date)
+}
+chkArray(val){
+  return Array.isArray(val);
 }
 }

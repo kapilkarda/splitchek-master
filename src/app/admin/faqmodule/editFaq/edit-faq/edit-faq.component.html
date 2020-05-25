@@ -39,10 +39,16 @@
                       <textarea class="form-control" name="answer" placeholder="Answer" [(ngModel)]="model.answer"  #answer="ngModel" required ></textarea>
 
                     </div>
+				  </div>
+				  <div class="row">
+                    <div class="form-group col-12">
+                      <label for="languageType">Language </label>
+					  <p-dropdown class="pDropdwon"  filterBy="label" required [filter]="true" [options]="language" optionLabel="label" [(ngModel)]="model.languageType" #languageType="ngModel"  name="languageType"  ></p-dropdown>					  
+                    </div>
                   </div>
                  </div>
                 <div class="card-footer">
-                  <button type="button" (click)="edit_faq()" class="btn btn-primary subBut" [disabled]="! addPlanForm.valid">Update FAQ</button>
+                  <button type="button" (click)="edit_faq()" class="btn btn-primary subBut" [disabled]="!addPlanForm.valid">Update FAQ</button>
                   <button [routerLink]="['/admin/listFaq']"  class="btn btn-default cancelBut"  style="font-weight: bold;float:right;">Cancel</button>
                 </div>
 							</form>

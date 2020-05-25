@@ -59,7 +59,7 @@ export class EditFormComponent implements OnInit {
                //console.log("ml",this.moduleList)
                this.model.id = this.formId;
                this.model.form_name = this.formdata.form_name;
-               this.step = this.formdata.fields;
+               this.fields = this.formdata.fields;
                this.model.fields = this.formdata.fields;
               //  console.log()
                console.log("modellll ",this.step)
@@ -90,7 +90,7 @@ export class EditFormComponent implements OnInit {
   }
 	update_form() {
     console.log(this.fields)
-    this.model.fields = this.step;
+    this.model.fields = this.fields;
 		this.spinner.show();
 		this.adminService.admin_update_form(this.model).subscribe(result => {
 			this.result = result;
@@ -107,50 +107,44 @@ export class EditFormComponent implements OnInit {
 			}
 		});
   }
-  AddStep(){
-    let obj = {field:[{name:'',type:'',icon:'',value:'',option:[],optionShow:false}]}
-    this.step.push(obj)
-  }
-  removeStep(i){
-    this.step.splice(i,1)
-  }
-  AddField(i){
+
+  AddField(){
     let obj = {name:'',type:'',icon:'',value:'',option:[],optionShow:false}
-    this.step[i].field.push(obj)
+    this.fields.push(obj)
   }
-  RemoveField(i,j){
-    this.step[i].field.splice(j,1)
+  RemoveField(j){
+    this.fields.splice(j,1)
   }
-  addOptions(j,i){
+  addOptions(i){
     let obj = {label:'',value:'',icon:''}
-    this.step[j].field[i].option.push(obj)
+    this.fields[i].option.push(obj)
   }
-  removeOptions(j,i,idx){
-    this.step[j].field[i].option.splice(idx,1)
+  removeOptions(i,idx){
+    this.fields[i].option.splice(idx,1)
   }
-  showOption(j,i,e){
+  showOption(i,e){
     console.log(e,i)
     if(e.id == 'select' || e.id == 'multiselect' || e.id == 'radio' || e.id == 'checkbox'){
       let obj = {label:'',value:'',icon:''}
-      this.step[j].field[i].option.push(obj)
-      this.step[j].field[i].optionShow = true;
+      this.fields[i].option.push(obj)
+      this.fields[i].optionShow = true;
     }
   }
   uploadProgress(){
     this.spinner.show();
    }
-   onBasicUploadAuto(e,i,j){
+   onBasicUploadAuto(e,j){
     this.spinner.hide();
-     console.log(e,i,j)
+     console.log(e,j)
      let path = e.originalEvent.body.data[0].filename;
-     this.step[i].field[j].icon = path;
+     this.fields[j].icon = path;
 
    }
-   onBasicUploadAuto1(e,j,i,ix){
+   onBasicUploadAuto1(e,i,ix){
     this.spinner.hide();
-     console.log(e,i,j)
+     console.log(e)
      let path = e.originalEvent.body.data[0].filename;
-     this.step[j].field[i].option[ix].icon = path;
+     this.fields[i].option[ix].icon = path;
 
    }
 }

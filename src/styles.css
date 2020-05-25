@@ -31,6 +31,10 @@ p-calendar {
     width: 100%;
     display: block;
 }
+.ui-dropdown {
+  min-width: 100% !important;
+}
+
 span.ui-calendar input {
     width: 100%;
 }
@@ -45,4 +49,35 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+aside.main-sidebar {
+    padding-bottom: 50px;
+}
+
+adminheader ul.dropdown-menu.show {
+    left: -120px !important;
+    padding: 10px;
+}
+
+ul.ant-tree-child-tree,ul.ant-tree {
+  list-style: none;
+}
+nz-input-group.ant-input-affix-wrapper {
+  position: relative;
+    padding: 10px 0;
+    width: 100%;
+    display: block;
+      }
+span.ant-input-suffix {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+.ant-tree li {
+  cursor: pointer;
+  padding: 5px 0;
+}
+.ant-tree-node-selected {
+  background: lightgray;
+  padding: 6px;
 }

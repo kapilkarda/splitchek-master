@@ -14,12 +14,12 @@ import * as moment from 'moment';
 })
 export class PostReportComponent implements OnInit {
   model: any = {
-    "start":"2020-01-09",
-	  "end":"2020-12-10"
+    "start":"",
+	  "end":""
 
   };
-  date1:Date;
-  date2:Date;
+  date1:any = new Date();
+  date2:any = new Date();
   result: any;
   user:any;
   reportData:any=[];
@@ -42,13 +42,12 @@ export class PostReportComponent implements OnInit {
 
   report() {
     if(this.date1 && this.date2){
-
-      this.model.start = this.date1;
-      this.model.end = this.date2;
+      this.model.start = moment(this.date1).format("YYYY-MM-DD");
+      this.model.end = moment(this.date2).format("YYYY-MM-DD");
     }
     console.log(this.model)
     this.spinner.show();
-      this.adminService.post_report(this.model).subscribe((result) => {
+    this.adminService.post_report(this.model).subscribe((result) => {
       this.result = result;
     },
     (err) => this.spinner.hide(),
@@ -70,8 +69,26 @@ formatDate(date){
 show(data) {
 
   this.display = true;
-  this.fieldData = data.field;
+  if(data.field.length == 1){
+    this.fieldData = data.field[0].field;
+  }else{
+    this.fieldData = data.field;
+  }
+  console.log(this.fieldData)
   this.fieldTitle = data.form_name
 }
-
+refresh(){
+  this.model.start = '';
+  this.model.end = '';
+  this.date1 = undefined;
+  this.date2 = undefined;
+  this.report();
+}
+chkArray(val){
+  return Array.isArray(val);
+}
+parseVal(val){
+  console.log(val)
+  return JSON.stringify(val)
+}
 }

@@ -1,0 +1,64 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Profile</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">User Profile</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 offset-4">
+          <form name="addcategoryform" #addcategoryForm="ngForm">
+            <input type="hidden"  name="id" [(ngModel)]="model.id" #id="ngModel"/>
+          <!-- Profile Image -->
+          <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+              <div class="text-center">
+                <img *ngIf="model.image" class="profile-user-img img-fluid img-circle"
+                     [src]="model.image"
+                     alt="User profile picture">
+                <img *ngIf="!model.image" class="profile-user-img img-fluid img-circle"
+                     src="../../../assets/img/user2-160x160.jpg"
+                     alt="User profile picture">
+
+              </div>
+
+              <h3 class="profile-username text-center"><p-fileUpload #fubauto mode="basic" name="image[]" [url]="uploadUrl+'imageuploadadverpost'" accept="image/*" maxFileSize="1000000" (onProgress)="uploadProgress()" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
+              </h3>
+
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Name" [(ngModel)]="model.name" #name="ngModel" required  [maxlength]="50"/>
+                </li>
+                <li class="list-group-item">
+                  <input type="text" class="form-control" disabled name="catname" id="CatName" placeholder="Email" [(ngModel)]="model.email" #email="ngModel" required  [maxlength]="50"/>
+                </li>
+              </ul>
+
+              <button type="button" (click)="updateProfile()" class="btn btn-primary btn-block subBut" [disabled]="! addcategoryForm.valid">Update</button>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          </form>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>

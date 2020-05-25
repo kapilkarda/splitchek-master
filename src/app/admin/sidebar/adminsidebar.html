@@ -1,26 +1,23 @@
 <aside class="main-sidebar custom-sidebar sidebar-dark-primary elevation-4">
 	<a [routerLink]="['/']" class="brand-link">
-		<img  src="../../../assets/img/logo.png"
-				alt="Classified App"
-				class="logo-image"
-				 />
+		<img src="../../../assets/img/logo.png" alt="Classified App" class="logo-image" />
 		<span class="brand-text font-weight-light"></span>
 	</a>
 	<div class="sidebar">
-		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+		<div class="user-panel mt-3 pb-3 mb-3 d-flex" style="cursor: pointer;" [routerLink]="['/admin/profile']">
 			<div class="image">
 				<img src="../../assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
-				<a href="#" class="d-block">Super Admin</a>
+				<a class="d-block">Super Admin</a>
 			</div>
 		</div>
 		<nav class="mt-2">
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				<li class="nav-item">
-			  		<a [routerLinkActive]="['active']" [routerLink]="['/admin/dashboard']" class="nav-link">
-				 		<i class="nav-icon fas fa-tachometer-alt"></i>
-				 		<p>Dashboard</p>
+					<a [routerLinkActive]="['active']" [routerLink]="['/admin/dashboard']" class="nav-link">
+						<i class="nav-icon fas fa-tachometer-alt"></i>
+						<p>Dashboard</p>
 					</a>
 				</li>
 				<li class="nav-item has-treeview">
@@ -62,8 +59,8 @@
 							</a>
 						</li>
 					</ul>
-        </li>
-        <li class="nav-item has-treeview">
+				</li>
+				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-user"></i>
 						<p>User<i class="right fas fa-angle-left"></i></p>
@@ -82,8 +79,8 @@
 							</a>
 						</li>
 					</ul>
-        </li>
-        <li class="nav-item has-treeview">
+				</li>
+				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-file-signature"></i>
 						<p>Post<i class="right fas fa-angle-left"></i></p>
@@ -110,20 +107,22 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managecategory']" class="nav-link">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managecategory']"
+								class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Manage category</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/addcategory','0','0']" class="nav-link">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/addcategory','0','0']"
+								class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Add Category</p>
 							</a>
 						</li>
 					</ul>
-        </li>
-        <li class="nav-item has-treeview">
+				</li>
+				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-tasks"></i>
 						<p>Post Form<i class="right fas fa-angle-left"></i></p>
@@ -144,7 +143,7 @@
 					</ul>
 				</li>
 
-        <li class="nav-item has-treeview">
+				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-network-wired"></i>
 						<p>Plans<i class="right fas fa-angle-left"></i></p>
@@ -163,7 +162,7 @@
 							</a>
 						</li>
 					</ul>
-        </li>
+				</li>
 				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-image"></i>
@@ -183,8 +182,8 @@
 							</a>
 						</li>
 					</ul>
-        </li>
-        <li class="nav-item has-treeview">
+				</li>
+				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-question-circle"></i>
 						<p>FAQ<i class="right fas fa-angle-left"></i></p>
@@ -204,7 +203,7 @@
 						</li>
 					</ul>
 				</li>
-        <li class="nav-item has-treeview">
+				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-list"></i>
 						<p>Reports<i class="right fas fa-angle-left"></i></p>
@@ -215,22 +214,59 @@
 								<i class="far fa-circle nav-icon"></i>
 								<p>user</p>
 							</a>
-            </li>
-            <li class="nav-item">
+						</li>
+						<li class="nav-item">
 							<a [routerLinkActive]="['active']" [routerLink]="['/admin/postReport']" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Post</p>
 							</a>
 						</li>
-            <li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/paymentReport']" class="nav-link">
+						<li class="nav-item  has-treeview">
+							<a href="#" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Payment</p>
+								<p>Payment<i class="right fas fa-angle-left"></i></p>
 							</a>
+							<ul class="nav nav-treeview" id="left-head">
+								<li class="nav-item">
+									<a [routerLinkActive]="['active']" [routerLink]="['/admin/deduction']"
+										class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p >Post Deduction Report</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a [routerLinkActive]="['active']" [routerLink]="['/admin/transaction']"
+										class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Payment Transaction Report</p>
+									</a>
+								</li>
+							</ul>
 						</li>
 					</ul>
 				</li>
+
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-paste"></i>
+						<p>Ticket<i class="right fas fa-angle-left"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listTicket']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage TIcket</p>
+							</a>
+						</li>
+						<!-- <li class="nav-item">
+						<a [routerLinkActive]="['active']" [routerLink]="['/admin/createFaq']" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Add FAQ</p>
+						</a>
+					</li> -->
+					</ul>
+				</li>
 			</ul>
-	  	</nav>
+		</nav>
 	</div>
 </aside>

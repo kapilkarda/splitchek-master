@@ -3,19 +3,19 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Manage Faq</h1>
+					<h1>Manage FAQ</h1>
 				</div>
 			</div>
 		</div>
 	</section>
 	<section class="content">
-    <div class="form-group">
+    <div class="form-group col-md-4" >
       <label>Category</label>
-      <p-dropdown class="pDropdwon"  filterBy="label,value"  [filter]="true" [options]="category" optionLabel="catname" optionValue="_id" [(ngModel)]="catId" (ngModelChange)="getCatData($event)" ></p-dropdown>
+      <p-dropdown class="pDropdwon"  filterBy="label,value" placeholder="All Categories" [filter]="true" [options]="category" optionLabel="catname" optionValue="_id" [(ngModel)]="catId" (ngModelChange)="getCatData($event)" ></p-dropdown>
     </div>
 		<div class="card" *ngIf="FaqlistData && FaqlistData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
-				<p-table #dt *ngIf="FaqlistData" [value]="FaqlistData" [paginator]="true" [alwaysShowPaginator]="false" [rows]="10" [scrollable]="false" [globalFilterFields]="['question','catName','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+				<p-table #dt *ngIf="FaqlistData" [value]="FaqlistData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['question','catName','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
             <div style="text-align: right">
               <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -34,6 +34,7 @@
 								<p-sortIcon [field]="'question'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 							</th>
 							<th>Answer</th>
+							<th>Language</th>
 							<th style="width: 10%"  [pSortableColumn]="'status'">
 								Status
 								<p-sortIcon [field]="'status'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
@@ -49,22 +50,23 @@
               <td>
                 <button type="text" (click) ="show(rowData)"  class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>
 							</td>
+							<td>{{language(rowData)}}</td>
 							<td>
-								<!-- <ng-container *ngIf="rowData.status == 1; else deactiveStatusText"> -->
+								<ng-container *ngIf="rowData.status == 1; else deactiveStatusText">
 									Active
-								<!-- </ng-container>
-								<ng-template #deactiveStatusText>Deactive</ng-template> -->
+								</ng-container>
+								<ng-template #deactiveStatusText>Deactive</ng-template>
 							</td>
 							<td>
 								<button type="text" (click)=delete_form(rowData._id,rowData.isDeleted);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-								<!-- <button type="button" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
+								<button type="button" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
 									<ng-container *ngIf="rowData.status == 1; else deactiveStatus">
 										<i class="fa fa-toggle-off" title="Deactivate User"></i>
 									</ng-container>
 									<ng-template #deactiveStatus>
 										<i class="fa fa-toggle-on" title="Activate User"></i>
 									</ng-template>
-								</button> -->
+								</button>
 								<button type="text" [routerLink]="['/admin/editFaq',rowData._id]"   class="btn btn-grey" title="edit"><i class="fa fa-edit" aria-hidden="true"></i></button>
 							</td>
 						</tr>

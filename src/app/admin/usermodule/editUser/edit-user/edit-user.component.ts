@@ -19,7 +19,7 @@ export class EditUserComponent implements OnInit {
  result: any;
  categoryId:any;
  categorydata:any;
-
+ mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
 constructor(
   private router: Router,
   private adminService: AdminService,

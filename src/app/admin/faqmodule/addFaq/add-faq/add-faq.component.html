@@ -22,21 +22,25 @@
                   <div class="row">
                     <div class="form-group col-12">
                       <label for="catname">Category</label>
-                      <p-dropdown class="pDropdwon"  filterBy="label,value"  [filter]="true" [options]="category" optionLabel="catname" optionValue="_id" [(ngModel)]="model.catId" name="catId"></p-dropdown>
-
+                      <p-dropdown class="pDropdwon"  filterBy="label,value"  [filter]="true" [options]="category" optionLabel="catname" optionValue="_id" [(ngModel)]="model.catId" name="catId" required></p-dropdown>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-12">
                       <label for="question">Question </label>
-                      <input type="text" class="form-control" name="question" placeholder="Question" [(ngModel)]="model.question" #question="ngModel" required  [maxlength]="50"/>
+                      <input type="text" class="form-control" name="question" placeholder="Question" [(ngModel)]="model.question" #question="ngModel" required />
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-12">
                       <label for="answer">Answer </label>
                       <textarea class="form-control" name="answer" placeholder="Answer" [(ngModel)]="model.answer"  #answer="ngModel" required ></textarea>
-
+                    </div>
+				  </div>
+				  <div class="row">
+                    <div class="form-group col-12">
+                      <label for="languageType">Language </label>
+					  <p-dropdown class="pDropdwon"  filterBy="label"  [filter]="true" [options]="language" optionLabel="label"  [(ngModel)]="model.languageType" name="languageType" required ></p-dropdown>
                     </div>
                   </div>
                  </div>

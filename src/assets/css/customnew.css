@@ -96,7 +96,7 @@
 }
 
 .p-calender, .fileup{
-   display: block;'
+   display: block;
    width: 100%;
 }
 .card-primary .card-header{
@@ -110,4 +110,14 @@
 }
 .error{
    color: red;
+}
+.ui-accordion-content{
+   height: 170px !important ;
+  display: block;
+  overflow-y: scroll !important;
+  overflow: scroll !important;
+}
+#color{
+   color: #0031CD !important;
+   cursor: pointer !important;
 }

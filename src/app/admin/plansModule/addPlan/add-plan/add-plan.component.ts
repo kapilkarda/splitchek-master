@@ -1,21 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute, Params, Data} from '@angular/router';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {MessageService} from 'primeng/api';
-import {AdminService} from '../../../../services/admin.service';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params, Data } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MessageService } from 'primeng/api';
+import { AdminService } from '../../../../services/admin.service';
 
 @Component({
-  selector: 'app-add-plan',
-  templateUrl: './add-plan.component.html',
-  styleUrls: ['./add-plan.component.css']
+	selector: 'app-add-plan',
+	templateUrl: './add-plan.component.html',
+	styleUrls: ['./add-plan.component.css']
 })
 export class AddPlanComponent implements OnInit {
-  model: any = {description:'',
-    amount:'',
-    title:'',
-    no_listing:'',
-    no_day:''};
-   result: any;
+	model: any = {
+		'kd': '',
+		'kwd': ''
+	};
+	result: any;
 
 
 
@@ -27,10 +26,10 @@ export class AddPlanComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-    if(localStorage.getItem('token') == null && localStorage.getItem('token') =='null'){
-      this.router.navigate(['/']);
-    }
-  }
+		if (localStorage.getItem('token') == null && localStorage.getItem('token') == 'null') {
+			this.router.navigate(['/']);
+		}
+	}
 
 
 	add_plan() {
@@ -38,16 +37,16 @@ export class AddPlanComponent implements OnInit {
 		this.adminService.admin_add_plan(this.model).subscribe(result => {
 			this.result = result;
 		},
-		(err) => console.log(err),
-		() => {
-			if (this.result.status === 'success') {
-				this.spinner.hide();
-				this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
-				this.router.navigate(['/admin/listPlan']);
-			} else {
-				this.spinner.hide();
-				this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
-			}
-		});
+			(err) => console.log(err),
+			() => {
+				if (this.result.status === 'success') {
+					this.spinner.hide();
+					this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
+					this.router.navigate(['/admin/listPlan']);
+				} else {
+					this.spinner.hide();
+					this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
+				}
+			});
 	}
 }
