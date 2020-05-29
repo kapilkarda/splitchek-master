@@ -67,7 +67,7 @@
                             <td>{{rowData.username}}</td>
                             <!-- <td>{{getUser(rowData.userId)}}</td> -->
                             <!-- <td>{{getTitle(rowData.productTitle)}}</td> -->
-                            <td>{{rowData.content.title}}</td>                           
+                            <td>{{rowData.content.title}}</td>
                             <td ui-table-responsive>
                                 <!-- <p-accordion>
                                     <p-accordionTab header="Open Message">
@@ -80,7 +80,7 @@
                                         </div>
                                     </p-accordionTab>
                                 </p-accordion> -->
-                                <button (click)="Message(rowData)" class="btn btn-grey" title="view"><i
+                                <button (click)="MessageView(rowData)" class="btn btn-grey" title="view"><i
                                         class="fa fa-eye" aria-hidden="true"></i></button>
                             </td>
                             <td>
@@ -112,7 +112,7 @@
                                 </button>
                                 <!-- <button type="text" [routerLink]="['/admin/replyTicket',rowData._id]"
                                     class="btn btn-grey" title="reply"><i class="fa fa-location-arrow"
-                                        aria-hidden="true"></i></button> 
+                                        aria-hidden="true"></i></button>
                                     (click)=delete_form(rowData._id,rowData.isDeleted);-->
                                 <ng-container *ngIf="rowData.ticketStatus == 'open'; else deactiveStatusTextbtn">
                                     <button type="text" [routerLink]="['/admin/replyTicket',rowData._id]"
@@ -135,12 +135,14 @@
         </div>
     </section>
     <p-dialog header="Message" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000" class="pDialog">
-        <!-- <span > 
+        <!-- <span >
         <textarea class="form-control m-1"  value="this.textArea"></textarea>
     </span> -->
         <div *ngIf="detailData && detailData.length > 0; else noRecord">
-            <span *ngFor="let value of detailData">               
-                <textarea class="form-control m-1" placeholder="Message" [(ngModel)]="value.ans"
+            <span *ngFor="let value of detailData">
+                <textarea *ngIf="value.ans" class="form-control m-1" placeholder="Message" [(ngModel)]="value.ans"
+                    [style.background]="value.ischat == '1'? '#6cd5f0' : '#d1dae8'"></textarea>
+                <textarea *ngIf="value.description" class="form-control m-1" placeholder="Message" [(ngModel)]="value.description"
                     [style.background]="value.ischat == '1'? '#6cd5f0' : '#d1dae8'"></textarea>
             </span>
         </div>

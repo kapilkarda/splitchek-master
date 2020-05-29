@@ -20,7 +20,8 @@ export class ReplyticketComponent implements OnInit {
     "ans":"",
     "id": "",
     "ticketStatus":"",
-    "ischat":""
+    "ischat":"",
+    "dateTime":new Date()
   };
   // items:any=[];
   result: any;
@@ -52,13 +53,13 @@ export class ReplyticketComponent implements OnInit {
         if (result.status === 'success') {
           this.ticketlistData = result.data
           console.log(this.ticketlistData,"data")
-          
-         
+
+
           // this.model.ans = this.ticketlistData.answer;
           // this.items = this.ticketlistData.answer;
           for(let statusValue of this.ticketlistData){
-           
-            
+
+
             // console.log(statusValue.ticketStatus,"*")
           }
           this.Data = localStorage.getItem("getStatus");
@@ -69,16 +70,17 @@ export class ReplyticketComponent implements OnInit {
       });
     }
   }
- 
+
   replyBack() {
     if(this.model.ticketStatus == 'open'){
       this.model.ticketStatus = 'close'
       }else{
         this.model.ticketStatus = 'close'
       }
+      this.model.dateTime = this.formatAMPM(this.model.dateTime)
     this.spinner.show();
     this.adminService.admin_ticket_reply_back(this.model).subscribe(result => {
-      this.result = result;  
+      this.result = result;
           },
       (err) => console.log(err),
       () => {
@@ -92,4 +94,16 @@ export class ReplyticketComponent implements OnInit {
         }
       });
   }
+  formatAMPM(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = date.toDateString()+' '+' at '+ hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+    }
+
+
 }

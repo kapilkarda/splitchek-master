@@ -30,7 +30,7 @@ export class ListticketComponent implements OnInit {
 	formData = {
 		id: ""
 	}
-	detailData: any;
+	detailData: any= [];
 	textArea: any =[];
 	//private unsubscribe$: Subject<any> = new Subject<any>();
 	constructor(
@@ -215,10 +215,15 @@ export class ListticketComponent implements OnInit {
 			}
 		});
 	}
-	Message(data) {
-		this.display = true;
-		this.detailData = data.answer;
+	MessageView(data) {
+    this.detailData = []
+    this.display = true;
+    if(data.answer.length >0){
+      this.detailData = data.answer;
+    }else{
+      this.detailData.push(data.content);
+    }
 		// this.detailData.ans.splice(1, 0, 'this.textArea');
-		console.log(this.detailData.length)
+		console.log(this.detailData)
 	}
 }
