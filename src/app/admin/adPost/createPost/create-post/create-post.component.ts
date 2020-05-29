@@ -27,22 +27,26 @@ export class CreatePostComponent implements OnInit {
   searchValue = '';
   imgAd = [{'filename':''}];
   staticField: any = [
-    { name: 'Title', type: 'text', icon: '', value: '' },
+    { name: 'Title', type: 'Input', icon: '', value: '' },
     { name: 'Price', type: 'number', icon: '', value: '' },
-    { name: 'Description', type: 'textarea', icon: '', value: '' },
-    { name: 'Your location', type: 'select', icon: '', value: '', option: [{ label: 'Personal', value: 'Personal' }, { label: 'Business', value: 'Business' }] },
+    { name: 'Description', type: 'Input', icon: '', value: '' },
+    { name: 'Type of your listing', type: 'Select', icon: '', value: '', option: [{ label: 'Personal', value: 'Personal' }, { label: 'Business', value: 'Business' }] },
+
     { name: 'Add Additional Number', type: 'number', icon: '', value: '' },
-    { name: 'Hide Registered Number', type: 'radio', icon: '', value: '', option: [{ label: 'Yes', value: true }, { label: 'No', value: false }] },
+    { name: 'Hide Registered Number', type: 'Checkbox', icon: '', value: false },
     {
-      name: 'Do not disturb hours', type: 'radio', icon: '', value: '',
+      name: 'Do not disturb hours', type: 'Radio', icon: '', value: '',
       option: [{ label: 'Yes', value: true }, { label: 'No', value: false }], childs: [
-        { name: 'From', type: 'timepicker', icon: '', value: '' },
-        { name: 'To', type: 'timepicker', icon: '', value: '' },
+        { name: 'from', type: 'Timepicker', icon: '', value: '' },
+        { name: 'to', type: 'Timepicker', icon: '', value: '' },
+        { name: 'fromDateTime', type: 'hidden', icon: '', value: '' },
+        { name: 'toDateTime', type: 'hidden', icon: '', value: '' },
       ], flex: true
     },
     { name: ' Seller Number', type: 'number', icon: '', value: '' },
     { name: 'Seller Name', type: 'text', icon: '', value: '' },
     {name:'Seller profile image', type:'file', value:''},
+    {name:'AdPost create date', type:'Datepicker', value:''},
 
   ]
   categoryData: any = [];
@@ -296,24 +300,34 @@ export class CreatePostComponent implements OnInit {
     const time = moment().format("h:mm a")
     const mdate = date + ' at ' + time;
     this.model.field = this.items;
-    this.model.field.push({name:'Ad images', type:'file', value:this.imgAd});
-
+    this.model.field.push({name:'Ad images', type:'ImagePicker', value:this.imgAd});
+    this.model.field.push({name:'Your location',type:'Select',"value": [{
+      "latitude": document.getElementById('latitude').innerHTML,
+      "longitude": document.getElementById('longitude').innerHTML,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+  }, ""]})
     for (let item of this.staticField) {
       if (item.name == 'Price') {
         this.model.productPrice = item.value;
       }
       if(item.name == 'Do not disturb hours'){
-        if(item.childs[0].value == 'Invalid date'){
+
+
+        if(item.childs[0].value == ''){
           item.childs[0].value = '';
         }else{
-          item.childs[0].value = moment(item.value).format("hh:mm")
+          item.childs[0].value = moment(item.childs[0].value).format("h:mm")
+          item.childs[2].value = item.childs[0].value;
         }
-        if(item.childs[1].value == 'Invalid date'){
+        if(item.childs[1].value == ''){
           item.childs[1].value = '';
         }else{
 
-          item.childs[1].value = moment(item.value).format("hh:mm")
+          item.childs[1].value = moment(item.childs[1].value).format("h:mm")
+          item.childs[3].value = item.childs[1].value;
         }
+        item.value = item.childs
       }
       // if (Array.isArray(item.childs)) {
       //   item.childs.forEach(item => {
@@ -358,7 +372,7 @@ export class CreatePostComponent implements OnInit {
     this.spinner.hide();
     console.log(e, i)
     let path = e.originalEvent.body.data[0].filename;
-    this.items[i].value = path;
+    this.staticField[i].value = path;
     this.upImage = path;
   }
 

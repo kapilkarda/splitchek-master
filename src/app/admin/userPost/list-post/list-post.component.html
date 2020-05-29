@@ -16,7 +16,7 @@
 		<div class="card" *ngIf="postData && postData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
         <p-table #dt *ngIf="postData" [value]="postData" [paginator]="true" [alwaysShowPaginator]="true"
-        [rows]="10" [scrollable]="false" [globalFilterFields]="['productTitle','catname','username']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+        [rows]="10" [scrollable]="false" [globalFilterFields]="['productTitle','catname','username','createdAt']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
 						<div style="text-align: right">
 							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -25,14 +25,15 @@
 					</ng-template>
 					<ng-template pTemplate="header" let-columns>
 						<tr>
-              <th style="width: 8%">#</th>
+			  <th style="width: 8%">#</th>
+			  <th style="width: 10%">Date</th>
               <th>Image</th>
               <th  [pSortableColumn]="'productTitle'">
                 Title
                 <p-sortIcon [field]="'productTitle'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 
               </th>
-							<th style="width: 18%" [pSortableColumn]="'catname'">
+							<th style="width: 15%" [pSortableColumn]="'catname'">
 								Category Name
 								<p-sortIcon [field]="'catname'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
               </th>
@@ -40,12 +41,13 @@
               <th>Post Data</th>
               <th>Mark as featured</th>
 							<th style="width: 10%">Status</th>
-							<th style="width: 22%">Action</th>
+							<th style="width: 15%" *ngIf="this.role =='Super Admin'">Action</th>
 						</tr>
 					</ng-template>
 					<ng-template pTemplate="body" let-rowData let-i="rowIndex">
 						<tr>
-              <td>{{i+1}}</td>
+			  <td>{{i+1}}</td>
+			  <td>{{formatDate(rowData.createdAt)}}</td>
               <td><img *ngIf="rowData.productImage" [src]="rowData.productImage" style="width:40px" />
                 <img *ngIf="!rowData.productImage" src="../../../../../assets/img/logo.png" style="width:40px" /></td>
               <td>{{rowData.productTitle}}</td>
@@ -70,14 +72,14 @@
 								</ng-container>
 								<ng-template #deactiveStatusText>Deactive</ng-template>
 							</td>
-							<td>
-								<button type="text" (click)=delete_category(rowData._id,rowData.isDeleted);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+							<td *ngIf="this.role =='Super Admin'">
+								<button type="text" *ngIf="this.role =='Super Admin'" (click)=delete_category(rowData._id,rowData.isDeleted);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
 								<button type="button" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
 									<ng-container *ngIf="rowData.status == 1; else deactiveStatus">
-										<i class="fa fa-toggle-off" title="Deactivate User"></i>
+										<i class="fa fa-toggle-off" title="Deactivate Post"></i>
 									</ng-container>
 									<ng-template #deactiveStatus>
-										<i class="fa fa-toggle-on" title="Activate User"></i>
+										<i class="fa fa-toggle-on" title="Activate Post"></i>
 									</ng-template>
 								</button>
 								<button type="text" [routerLink]="['/admin/userEditPost',rowData._id]"   class="btn btn-grey" title="edit"><i class="fa fa-edit" aria-hidden="true"></i></button>

@@ -11,7 +11,7 @@
 	<section class="content">   
 		<div class="card" *ngIf="rolesData && rolesData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
-				<p-table #dt *ngIf="rolesData" [value]="rolesData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['email','name']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+				<p-table #dt *ngIf="rolesData" [value]="rolesData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['rolename','roledesc','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
 						<div style="text-align: right">        
 							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -23,11 +23,11 @@
 							<th style="width: 8%">#</th>
 							<th style="width: 18%" [pSortableColumn]="'rolename'">
 								Role Name
-								<p-sortIcon [field]="'name'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+								<p-sortIcon [field]="'rolename'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 							</th>
 							<th style="width: 25%" [pSortableColumn]="'roledesc'">
 								Role Description
-								<p-sortIcon [field]="'email'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+								<p-sortIcon [field]="'roledesc'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 							</th>
 							<!-- <th style="width: 11%" [pSortableColumn]="'gender'">
 								Gender
@@ -69,10 +69,10 @@
 									<button type="text" (click)=delete_role(rowData._id);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
 									<button type="button" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
 										<ng-container *ngIf="rowData.status == 1; else deactiveStatus">
-											<i class="fa fa-toggle-off" title="Deactivate User"></i>
+											<i class="fa fa-toggle-off" title="Deactivate Role"></i>
 										</ng-container>
 										<ng-template #deactiveStatus>
-											<i class="fa fa-toggle-on" title="Activate User"></i>
+											<i class="fa fa-toggle-on" title="Activate Role"></i>
 										</ng-template>
 									</button>
 									<button type="text" [routerLink]="['/admin/editroles',rowData._id]"   class="btn btn-grey" title="edit"><i class="fa fa-edit" aria-hidden="true"></i></button>

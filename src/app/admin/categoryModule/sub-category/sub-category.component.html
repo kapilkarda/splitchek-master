@@ -70,10 +70,10 @@
 								<button type="text" (click)=delete_category(rowData.idArr);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
 								<button type="button" (click)=status_change(rowData.idArr);  class="btn btn-blue">
 									<ng-container *ngIf="rowData.status == 1; else deactiveStatus">
-										<i class="fa fa-toggle-off" title="Deactivate User"></i>
+										<i class="fa fa-toggle-off" title="Deactivate Sub Category"></i>
 									</ng-container>
 									<ng-template #deactiveStatus>
-										<i class="fa fa-toggle-on" title="Activate User"></i>
+										<i class="fa fa-toggle-on" title="Activate Sub Category"></i>
 									</ng-template>
 								</button>
 								<button type="text" [routerLink]="['/admin/editcategory',rowData._id,rowData.name,categoryId,catName]"   class="btn btn-grey" title="edit"><i class="fa fa-edit" aria-hidden="true"></i></button>

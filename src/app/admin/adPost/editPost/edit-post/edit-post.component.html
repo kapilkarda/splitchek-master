@@ -58,7 +58,7 @@
                     <div id="map" #map></div>
                     <div class="row" *ngIf="items">
                             <ng-container *ngFor="let f of items;let j = index">
-                            <div class="form-group col-6" *ngIf="(f.type.id == 'text' || f.type.id == 'number' || f.type.id == 'tel')">
+                            <div class="form-group col-6" *ngIf="(f.type == 'text' || f.type == 'number' || f.type == 'tel')">
                               <label [for]="f.name">{{f.name}}</label>
 
                               <input [type]="f.type.id" class="form-control" name="{{f.name}}{{j}}" placeholder="{{f.name}}" [(ngModel)]="f.value" #{{f.name}}="ngModel" [maxlength]="50" min="0"/>
@@ -69,7 +69,7 @@
                               <input [type]="f.type" class="form-control" name="{{f.name}}{{j}}" placeholder="{{f.name}}" [(ngModel)]="f.value" #{{f.name}}="ngModel" [maxlength]="50"/>
                             </div>
 
-                            <div class="form-group col-6"  *ngIf="(f.type.id == 'select')||(f.type == 'select')||(f.type == 'Select')">
+                            <div class="form-group col-6"  *ngIf="(f.type.id == 'select')||(f.type == 'select')||(f.type == 'Select') && f.name !== 'your location'">
                               <label [for]="f.name">{{f.name}}</label>
                               <p-dropdown class="pDropdwon" name="{{f.name}}{{j}}" filterBy="label,value" [filter]="true" [options]="f.option" [optionLabel]="f.label" [(ngModel)]="f.value" [name]="f.name" ></p-dropdown>
                             </div>
@@ -84,7 +84,7 @@
                             </div> -->
                             <div class="form-group col-12"  *ngIf="(f.type.id == 'checkbox')||(f.type == 'checkbox')||(f.type == 'Checkbox')">
                               <label [for]="f.name">{{f.name}}</label>
-                              <p-checkbox  *ngFor="let o of f.option" value="{{o.value}}" label="{{o.label}}" [(ngModel)]="f.value" name="{{f.name}}{{j}}"></p-checkbox >
+                              <p-checkbox  value="{{f.value}}" label="{{f.label}}" [(ngModel)]="f.value" name="{{f.name}}{{j}}"></p-checkbox >
                             </div>
                             <div class="imageUploadContainer" *ngIf="((f.type.id == 'file')||(f.type == 'file')||(f.type == 'Imagepicker')) && f.name !== 'Ad images'">
                               <h5>Upload Image</h5>
@@ -115,19 +115,19 @@
                               <label [for]="f.name">{{f.name}}</label>
                               <textarea class="form-control" name="{{f.name}}{{j}}" placeholder="{{f.name}}" [(ngModel)]="f.value" #{{f.name}}="ngModel" ></textarea>
                             </div>
-                            <div class="form-group col-12" [class.d-flex]="f?.flex" *ngIf="f.type == 'radio'">
+                            <div class="form-group col-12" [class.d-flex]="f?.flex" *ngIf="f.type == 'Radio'">
                               <label [for]="f.name" >{{f.name}}</label>
                               <p-radioButton *ngFor="let o of f.option" value="{{o.value}}" label="{{o.label}}" class="pt-1"
                                 [(ngModel)]="f.value" name="{{f.name}}{{j}}"></p-radioButton>
-                              <ng-container *ngIf="f.value == 'true'">
-                                <ng-container *ngFor="let f of f.childs;let j = index">
-                                  <ng-container *ngIf="f.type == 'timepicker'">
-                                    <label [for]="f.name" class="m-1">{{f.name}}</label>
-                                    <p-calendar [(ngModel)]="f.value" name="{{f.name}}{{j}}" [readonlyInput]="true"
-                                      [timeOnly]="true"></p-calendar>
-                                  </ng-container>
+                                <ng-container *ngIf="f.value == 'true' && f.childs">
+                                  <ng-container *ngFor="let g of f.childs;let k = index">
+                                    <ng-container *ngIf="g.type !== 'hidden'">
+                                      <label [for]="g.name" class="m-1 pl-3">{{g.name}}</label>
+                                      <p-calendar [(ngModel)]="g.value" name="{{g.name}}{{k}}" [readonlyInput]="true"
+                                        [timeOnly]="true"></p-calendar>
+                                    </ng-container>
+                                    </ng-container>
                                 </ng-container>
-                              </ng-container>
                             </div>
                           </ng-container>
                     </div>

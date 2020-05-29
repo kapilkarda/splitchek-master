@@ -14,7 +14,7 @@ import {AdminService} from '../../../services/admin.service';
 export class addrolesComponent {
 	model: any = {};
 	result: any;
-	moduleList:any;
+	// moduleList:any;
 	
 	constructor(
 		private router: Router,
@@ -25,17 +25,17 @@ export class addrolesComponent {
 	) { }
 
 	ngOnInit() {
-		this.adminService.adminGetModuleList().subscribe(module => {
-			this.moduleList = module.data;
-			this.moduleList.forEach(item => item["selected"] = false);
-		},
-		(err) => console.log(err),
-		() => { 
-		}); 
+		// this.adminService.adminGetModuleList().subscribe(module => {
+		// 	this.moduleList = module.data;
+		// 	this.moduleList.forEach(item => item["selected"] = false);
+		// },
+		// (err) => console.log(err),
+		// () => { 
+		// }); 
 	}
 
     add_role() { 
-		this.model.modules = this.moduleList; 
+		// this.model.modules = this.moduleList; 
 		
 		console.log("mmmmmmmmmm ", this.model)
 		
@@ -56,11 +56,11 @@ export class addrolesComponent {
 		}); 
 	} 
 
-	onChangeModule(event, moduleId: any){  
-		for(let i=0; i<this.moduleList.length;i++){
-			if(this.moduleList[i]._id == moduleId){
-				this.moduleList[i].selected = event;
-			}
-		}
-	}
+	// onChangeModule(event, moduleId: any){  
+	// 	for(let i=0; i<this.moduleList.length;i++){
+	// 		if(this.moduleList[i]._id == moduleId){
+	// 			this.moduleList[i].selected = event;
+	// 		}
+	// 	}
+	// }
 }

@@ -15,7 +15,7 @@ export class editrolesComponent {
 	model: any = {};
 	roleId: any;
 	roledata: any;
-	selectedModuleList:any;
+	// selectedModuleList:any;
 	result: any;
 	
 	constructor(
@@ -43,7 +43,7 @@ export class editrolesComponent {
 			this.adminService.admin_load_roleData(this.roleId).subscribe(roledata => {
 				if (roledata.status === 'success') {
 					this.roledata = roledata.data;
-					this.selectedModuleList = roledata.data.modules;
+					// this.selectedModuleList = roledata.data.modules;
 					this.model = this.roledata;
 					this.spinner.hide();
 				}
@@ -52,7 +52,7 @@ export class editrolesComponent {
 	}
 
     edit_role() { 
-		this.model.modules = this.selectedModuleList; 
+		// this.model.modules = this.selectedModuleList; 
 		this.spinner.show();
 		this.adminService.admin_edit_role(this.model).subscribe(result => {
 			this.result = result;
@@ -70,11 +70,11 @@ export class editrolesComponent {
 		}); 
 	}  
 	
-	onChangeModule(event, moduleId: any){  
-		for(let i=0; i<this.selectedModuleList.length;i++){
-			if(this.selectedModuleList[i]._id == moduleId){
-				this.selectedModuleList[i].selected = event;
-			}
-		}
-	}
+	// onChangeModule(event, moduleId: any){  
+	// 	for(let i=0; i<this.selectedModuleList.length;i++){
+	// 		if(this.selectedModuleList[i]._id == moduleId){
+	// 			this.selectedModuleList[i].selected = event;
+	// 		}
+	// 	}
+	// }
 }

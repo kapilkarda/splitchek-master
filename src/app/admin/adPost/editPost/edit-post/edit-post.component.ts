@@ -130,6 +130,24 @@ this.loadUserData();
                 if(item.name == 'Ad images'){
                   this.imgAd = item.value;
                 }
+                if(item.name == 'Do not disturb hours'){
+
+                  console.log(item.childs)
+                  if(item.childs[0].value == 'Invalid date'){
+                    item.childs[0].value = '';
+                  }
+                  else if(this.is_date(item.childs[0].value)){
+
+                    item.childs[0].value = moment(item.childs[0].value).format("h:mm")
+                  }
+
+                  if(item.childs[1].value == 'Invalid date'){
+                    item.childs[1].value = '';
+                  }if(this.is_date(item.childs[1].value)){
+
+                    item.childs[1].value = moment(item.childs[1].value).format("h:mm")
+                  }
+                }
 
               }
               // get index of object with name
@@ -244,7 +262,6 @@ this.loadUserData();
    this.model.field = this.items;
    this.model.dateNtime = mdate;
    console.log(this.model)
-
    let lat = document.getElementById('latitude').innerHTML;
    let long = document.getElementById('longitude').innerHTML;
    for (let item of this.model.field) {
@@ -252,17 +269,22 @@ this.loadUserData();
       this.model.productPrice = item.value;
     }
     if(item.name == 'Do not disturb hours'){
-      if(item.childs[0].value == 'Invalid date'){
+
+      console.log(item.childs)
+      if(item.childs[0].value == ''){
         item.childs[0].value = '';
       }else{
-        item.childs[0].value = moment(item.value).format("hh:mm")
+        item.childs[0].value = moment(item.childs[0].value).format("h:mm")
+        item.childs[2].value = item.childs[0].value;
       }
-      if(item.childs[1].value == 'Invalid date'){
+      if(item.childs[1].value == ''){
         item.childs[1].value = '';
       }else{
 
-        item.childs[1].value = moment(item.value).format("hh:mm")
+        item.childs[1].value = moment(item.childs[1].value).format("h:mm")
+        item.childs[3].value = item.childs[1].value;
       }
+      item.value = item.childs
     }
     // if (Array.isArray(item.childs)) {
     //   item.childs.forEach(item => {
@@ -271,7 +293,6 @@ this.loadUserData();
     //   });
     // }
 
-    this.model.field.push(item);
   }
    this.model.loc = [lat,long];
    this.spinner.show();
@@ -290,6 +311,11 @@ this.loadUserData();
      }
    });
  }
+ is_date(input) {
+  if ( Object.prototype.toString.call(input) === "[object Date]" )
+    return true;
+  return false;
+    };
  uploadProgress(){
   this.spinner.show();
  }

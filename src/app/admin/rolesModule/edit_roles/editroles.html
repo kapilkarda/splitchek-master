@@ -34,7 +34,7 @@
 											<span class="error" *ngIf="roledesc.errors?.required">Role Description is mandatory.</span>
 										</div> 
 									</div>
-									<ng-container *ngIf="selectedModuleList">
+									<!-- <ng-container *ngIf="selectedModuleList">
 										<h6><b>Module List</b></h6>
 										<div class="form-group" >
 											<div class="form-check" *ngFor="let module of selectedModuleList"> 
@@ -48,7 +48,7 @@
 												</label>
 											</div>
 										</div>
-									</ng-container> 
+									</ng-container>  -->
 									<div class="card-footer">
 										<button type="button" (click)="edit_role()" class="btn btn-primary subBut" [disabled]="! editroleForm.valid">Edit Role</button>
 										<button [routerLink]="['/admin/manageroles']"  class="btn btn-default cancelBut"  style="font-weight: bold;float:right;">Cancel</button>

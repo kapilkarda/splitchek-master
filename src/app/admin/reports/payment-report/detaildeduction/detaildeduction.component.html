@@ -8,7 +8,7 @@
                     </button>
                 </div>
                 <div class="col-sm-6">
-                    <h1>Deduction Detail</h1>
+                    <h1>Post Deduction Detail Report</h1>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
         <div class="card" *ngIf="deductionData && deductionData.length > 0; else noRecord">
             <div class="card-body table-responsive p-0">
                 <p-table #dt *ngIf="deductionData" [value]="deductionData" [paginator]="true"
-                    [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['kd','kwd']"
+                    [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['particular','walletstatus','withdrawal']"
                     [totalRecords]="totalRecords" class="table table-head-fixed">
                     <ng-template pTemplate="caption">
                         <div style="text-align: right">
@@ -37,16 +37,16 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-rowData let-i="rowIndex">
-                        <tr *ngFor="let data of rowData.detail">
+                        <tr>
                             <td>{{i+1}}</td>
-                            <td>{{data.particular}}</td>
-                            <td *ngFor="let value of data.withdrawal">
+                            <td>{{rowData.particular}}</td>
+                            <td *ngFor="let value of rowData.withdrawal">
                                 {{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}</td>
-                            <td *ngFor="let value of data.deposite">{{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}
+                            <td *ngFor="let value of rowData.deposite">{{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}
                             </td>
-                            <td *ngFor="let value of data.balance">{{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}
+                            <td *ngFor="let value of rowData.balance">{{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}
                             </td>
-                            <td>{{data.walletstatus}}</td>
+                            <td>{{rowData.walletstatus}}</td>
                         </tr>
                     </ng-template>
                 </p-table>

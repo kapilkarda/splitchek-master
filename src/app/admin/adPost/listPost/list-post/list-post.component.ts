@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { AdminService } from '../../../../services/admin.service';
+import * as moment from 'moment';
 
 @Component({
 	selector: 'app-list-post',
@@ -24,10 +25,11 @@ export class ListPostComponent implements OnInit {
 	selectedValues: any[] = ['1']
 	formData = {
 		id: "",
-    isPostSide: 1
+		isPostSide: 1
 	}
 	catId: any = [];
 	Customer: any;
+	role: any;
 	//private unsubscribe$: Subject<any> = new Subject<any>();
 	constructor(
 		//private cdref: ChangeDetectorRef,
@@ -79,9 +81,9 @@ export class ListPostComponent implements OnInit {
 				if (this.result.status === 'success') {
 
 					this.Customer = this.result.data;
-          console.log(this.Customer)
+					console.log(this.Customer)
 
-		      this.loadpostData();
+					this.loadpostData();
 					this.spinner.hide();
 				} else {
 					this.spinner.hide();
@@ -100,17 +102,18 @@ export class ListPostComponent implements OnInit {
 			(err) => this.spinner.hide(),
 			() => {
 				if (this.result.status === 'success') {
-          for(let item of this.result.data){
-            for(let it of this.Customer){
-              if (it._id == item.userId) {
-                item['username'] = it.name;
-              }
-            }
-          }
+					for (let item of this.result.data) {
+						for (let it of this.Customer) {
+							if (it._id == item.userId) {
+								item['username'] = it.name;
+							}
+						}
+					}
 					this.postData = this.result.data;
 					console.log(this.postData)
 					this.totalRecords = this.result.data.length;
-
+					this.role=localStorage.getItem('roleName')
+					// console.log(this.role)
 					this.spinner.hide();
 				} else {
 					this.spinner.hide();
@@ -118,7 +121,9 @@ export class ListPostComponent implements OnInit {
 				}
 			});
 	}
-
+	formatDate(date) {
+		return moment(date).format('DD/MM/YYYY')
+	  }
 	delete_category(id, isdeleted) {
 		let data = {
 			"id": id,

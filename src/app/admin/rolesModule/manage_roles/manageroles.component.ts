@@ -50,6 +50,7 @@ export class managerolesComponent {
 		() => {
 			if (this.result.status === 'success') {
 				this.rolesData = this.result.data;
+				// console.log(this.rolesData,"Data")
 				this.totalRecords = this.result.data.length;
 				this.spinner.hide();
 			} else {
@@ -93,6 +94,11 @@ export class managerolesComponent {
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
+				// let data = {
+				// 	"userid":roleId,
+				// 	"status":currentStatus
+				// }
+				// console.log(data)
 				this.spinner.show();
 				this.adminService.admin_change_role_status(roleId,currentStatus).subscribe((result) => {
 					this.result = result;

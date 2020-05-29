@@ -13,8 +13,9 @@
         <div class="card" *ngIf="ticketlistData && ticketlistData.length > 0; else noRecord">
             <div class="card-body table-responsive p-0">
                 <p-table #dt *ngIf="ticketlistData" [value]="ticketlistData" [paginator]="true"
-                    [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['content']"
-                    [totalRecords]="totalRecords" class="table table-head-fixed">
+                    [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false"
+                    [globalFilterFields]="['content.title','username','createdAt']" [totalRecords]="totalRecords"
+                    class="table table-head-fixed">
                     <ng-template pTemplate="caption">
                         <div style="text-align: right">
                             <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -25,14 +26,25 @@
                     <ng-template pTemplate="header" let-columns>
                         <tr>
                             <th style="width: 8%">#</th>
-                            <th>User</th>
-                            <th>Subject</th>
-                            <th [pSortableColumn]="'content'">
-                                Message
-                                <p-sortIcon [field]="'content'" ariaLabel="Activate to sort"
+                            <th [pSortableColumn]="'dateNtime'">Date
+                                <p-sortIcon [field]="'dateNtime'" ariaLabel="Activate to sort"
                                     ariaLabelDesc="Activate to sort in descending order"
                                     ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
                             </th>
+                            <th [pSortableColumn]="'username'">User
+                                <p-sortIcon [field]="'username'" ariaLabel="Activate to sort"
+                                    ariaLabelDesc="Activate to sort in descending order"
+                                    ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                            </th>
+                            <th [pSortableColumn]="'content.title'">Subject
+                                <p-sortIcon [field]="'content.title'" ariaLabel="Activate to sort"
+                                    ariaLabelDesc="Activate to sort in descending order"
+                                    ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                            </th>
+                            <th>
+                                Message
+                            </th>
+                            <th>Ticket Status</th>
                             <!-- <th style="width: 25%" [pSortableColumn]="'answer'">
                                 Title
                                 <p-sortIcon [field]="'answer'" ariaLabel="Activate to sort"
@@ -45,17 +57,19 @@
                                     ariaLabelDesc="Activate to sort in descending order"
                                     ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
                             </th> -->
-                            <th style="width: 15%">Action</th>
+                            <th>Action</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-rowData let-i="rowIndex">
                         <tr>
                             <td>{{i+1}}</td>
-                            <td>{{getUser(rowData.userId)}}</td>
+                            <td>{{formatDate(rowData.createdAt)}}</td>
+                            <td>{{rowData.username}}</td>
+                            <!-- <td>{{getUser(rowData.userId)}}</td> -->
                             <!-- <td>{{getTitle(rowData.productTitle)}}</td> -->
-                            <td>{{rowData.content.title}}</td>
+                            <td>{{rowData.content.title}}</td>                           
                             <td ui-table-responsive>
-                                <p-accordion>
+                                <!-- <p-accordion>
                                     <p-accordionTab header="Open Message">
                                         <div *ngIf="rowData.answer && rowData.answer.length > 0; else noRecord">
                                             <span *ngFor="let value of rowData.answer">
@@ -65,7 +79,17 @@
                                             </span>
                                         </div>
                                     </p-accordionTab>
-                                </p-accordion>
+                                </p-accordion> -->
+                                <button (click)="Message(rowData)" class="btn btn-grey" title="view"><i
+                                        class="fa fa-eye" aria-hidden="true"></i></button>
+                            </td>
+                            <td>
+                                <ng-container *ngIf="rowData.ticketStatus == 'open'; else deactiveTicketStatus">
+                                    <span class="text-warning">In Progress</span>
+                                </ng-container>
+                                <ng-template #deactiveTicketStatus>
+                                    <span class="text-success">Resolved</span>
+                                </ng-template>
                             </td>
                             <!-- <td>
                                 <ng-container *ngIf="rowData.status == 1; else deactiveStatusText">
@@ -75,30 +99,31 @@
                             </td> -->
 
                             <td>
-                                <button type="text" class="btn btn-grey" title="delete"><i class="fa fa-trash"
+                                <button type="text" (click)=delete_form(rowData._id,rowData.isDeleted); class="btn btn-grey" title="delete"><i class="fa fa-trash"
                                         aria-hidden="true"></i></button>
-                                <!-- <button type="button" (click)=status_change(rowData._id,rowData.status);
+                                <button type="button" (click)=status_change(rowData._id,rowData.ticketStatus);
                                     class="btn btn-blue">
-                                    <ng-container *ngIf="rowData.status == 1; else deactiveStatus">
-                                        <i class="fa fa-toggle-off" title="Deactivate User"></i>
+                                    <ng-container *ngIf="rowData.ticketStatus == 'open'; else deactiveStatus">
+                                        <i class="fa fa-toggle-off" title="Resolved Status"></i>
                                     </ng-container>
                                     <ng-template #deactiveStatus>
-                                        <i class="fa fa-toggle-on" title="Activate User"></i>
+                                        <i class="fa fa-toggle-on" title="Open Status"></i>
                                     </ng-template>
-                                </button> -->
+                                </button>
                                 <!-- <button type="text" [routerLink]="['/admin/replyTicket',rowData._id]"
                                     class="btn btn-grey" title="reply"><i class="fa fa-location-arrow"
                                         aria-hidden="true"></i></button> 
                                     (click)=delete_form(rowData._id,rowData.isDeleted);-->
                                 <ng-container *ngIf="rowData.ticketStatus == 'open'; else deactiveStatusTextbtn">
                                     <button type="text" [routerLink]="['/admin/replyTicket',rowData._id]"
-                                        class="btn btn-grey" title="reply" (click)="showStatus(rowData)"><i class="fa fa-paper-plane"
-                                            aria-hidden="true"></i></button>
+                                        class="btn btn-grey" title="reply" (click)="showStatus(rowData)"><i
+                                            class="fa fa-paper-plane" aria-hidden="true"></i></button>
                                 </ng-container>
                                 <ng-template #deactiveStatusTextbtn>
                                     <button type="text" [routerLink]="['/admin/replyTicket',rowData._id]"
                                         class="btn btn-grey" title="reply"><i id="ticketStatus"
-                                            class="fa fa-paper-plane" aria-hidden="true" (click)="showStatus(rowData)"></i></button>
+                                            class="fa fa-paper-plane" aria-hidden="true"
+                                            (click)="showStatus(rowData)"></i></button>
                                 </ng-template>
                             </td>
 
@@ -109,9 +134,16 @@
             </div>
         </div>
     </section>
-    <p-dialog [header]="fieldTitle" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000"
-        class="pDialog">
-        <p>{{fieldData}}</p>
+    <p-dialog header="Message" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000" class="pDialog">
+        <!-- <span > 
+        <textarea class="form-control m-1"  value="this.textArea"></textarea>
+    </span> -->
+        <div *ngIf="detailData && detailData.length > 0; else noRecord">
+            <span *ngFor="let value of detailData">               
+                <textarea class="form-control m-1" placeholder="Message" [(ngModel)]="value.ans"
+                    [style.background]="value.ischat == '1'? '#6cd5f0' : '#d1dae8'"></textarea>
+            </span>
+        </div>
     </p-dialog>
 </div>
 

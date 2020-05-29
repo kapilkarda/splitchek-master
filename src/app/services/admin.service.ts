@@ -369,7 +369,6 @@ export class AdminService {
 		let options = { headers: headers };
 		console.log(data,"datafromservice")
 		return this.http.post(AppSettings.API_ENDPOINT + 'editPlansInfo', data, options).map(res => <any>res);
-
 	}
 	admin_add_user(data) {
 		let headers = new HttpHeaders({
@@ -585,7 +584,7 @@ export class AdminService {
 		});
 		let options = { headers: headers };
 		// console.log(data,"value**")
-		return this.http.post(AppSettings.API_ENDPOINT + 'statusTickets', data, options).map(res => <any>res);
+		return this.http.post(AppSettings.API_ENDPOINT + 'createStatusTickets', data, options).map(res => <any>res);
 	}
 	admin_delete_Ticket(data) {
 		let headers = new HttpHeaders({
@@ -593,7 +592,7 @@ export class AdminService {
 			'Authorization': localStorage.getItem('token')
 		});
 		let options = { headers: headers };
-		return this.http.post(AppSettings.API_ENDPOINT + '', data, options).map(res => <any>res);
+		return this.http.post(AppSettings.API_ENDPOINT + 'deleteTickets', data, options).map(res => <any>res);
 	}
 	deduction() {
 		let headers = new HttpHeaders({
@@ -605,7 +604,7 @@ export class AdminService {
 	}
 
 
-
+	
 
 
 

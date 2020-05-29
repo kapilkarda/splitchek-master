@@ -35,21 +35,8 @@ export class CreateFormComponent implements OnInit {
       this.router.navigate(['/']);
     }
     this.items = [{"id":'1',value:'customer1'},{"id":'2',value:'customer2'}];
-    this.typeItem = [{id:'',value:'Please Select'},
-                    {id:'text',value:'Text'},
-                    {id:'number',value:'Number'},
-                    {id:'tel',value:'Tel'},
-                    {id:'select',value:'Select'},
-                    {id:'radio',value:'Radio'},
-                    {id:'checkbox',value:'Checkbox'},
-                    {id:'file',value:'Upload'},
-                    {id:'editor',value:'Editor'},
-                    {id:'multiselect',value:'Multiselect'},
-                    {id:'datepicker',value:'Datepicker'},
-                    {id:'daterangepicker',value:'DateRangePicker'},
-                    {id:'timepicker',value:'timePicker'},
-                    {id:'datetimepicker',value:'DateTimePicker'},
-                    {id:'textarea',value:'Textarea'},]
+    this.typeItem = ['Input','Number','Tel','Select','Radio','Checkbox','Upload','ImagePicker','Editor','Multiselect'
+                    ,'Datepicker','DateRangePicker','TimePicker','DateTimePicker','Textarea']
     this.fields = this.fields;
   }
 	add_form() {
@@ -88,7 +75,8 @@ export class CreateFormComponent implements OnInit {
   }
   showOption(i,e){
     console.log(e,i)
-    if(e.id == 'select' || e.id == 'multiselect' || e.id == 'radio' || e.id == 'checkbox'){
+    let val = e.target.value;
+    if(val == 'Select' || val == 'Multiselect' || val == 'Radio' ){
       let obj = {label:'',value:'',icon:''}
       this.fields[i].option.push(obj)
       this.fields[i].optionShow = true;

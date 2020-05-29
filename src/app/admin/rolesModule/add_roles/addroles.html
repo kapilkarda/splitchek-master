@@ -29,12 +29,12 @@
 									</div>
 									<div class="form-group">
 										<label for="Roledesc">Role Description</label>
-										<input type="text" class="form-control" name="roledesc" id="Roledesc" placeholder="Role Description ..." [(ngModel)]="model.roledesc" #roledesc="ngModel" required  [maxlength]="50"/>
+										<input type="text" class="form-control" name="roledesc" id="Roledesc" placeholder="Role Description ..." [(ngModel)]="model.roledesc" #roledesc="ngModel" required />
 										<div *ngIf="roledesc.errors && roledesc.touched">   
 											<span class="error" *ngIf="roledesc.errors?.required">Role Description is mandatory.</span>
 										</div> 
 									</div>
-									<ng-container *ngIf="moduleList">
+									<!-- <ng-container *ngIf="moduleList">
 										<h6><b>Module List</b></h6>
 										<div class="form-group" >
 											<div class="form-check" *ngFor="let module of moduleList">
@@ -44,10 +44,10 @@
 												</label>
 											</div>
 										</div>
-									</ng-container> 
+									</ng-container>  -->
 									<div class="card-footer">
 										<button type="button" (click)="add_role()" class="btn btn-primary subBut" [disabled]="! addroleForm.valid">Add Role</button>
-										<button [routerLink]="['/admin/managepages']"  class="btn btn-default cancelBut"  style="font-weight: bold;float:right;">Cancel</button>
+										<button [routerLink]="['/admin/manageroles']"  class="btn btn-default cancelBut"  style="font-weight: bold;float:right;">Cancel</button>
 									</div>
 								</div>
 							</form>

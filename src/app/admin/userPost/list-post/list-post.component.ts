@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { AdminService } from '../../../services/admin.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-list-post',
@@ -28,6 +29,7 @@ export class UserListPostComponent implements OnInit {
 	}
 	catId: any = [];
 	Customer: any;
+	role: any;
 	//private unsubscribe$: Subject<any> = new Subject<any>();
 	constructor(
 		//private cdref: ChangeDetectorRef,
@@ -112,7 +114,8 @@ export class UserListPostComponent implements OnInit {
 					this.postData = this.result.data;
 					console.log(this.postData)
 					this.totalRecords = this.result.data.length;
-
+					this.role=localStorage.getItem('roleName')
+					// console.log(this.role)
 					this.spinner.hide();
 				} else {
 					this.spinner.hide();
@@ -243,5 +246,8 @@ export class UserListPostComponent implements OnInit {
 		console.log(val)
 		return JSON.stringify(val)
 	}
+	formatDate(date) {
+		return moment(date).format('DD/MM/YYYY')
+	  }
 }
 

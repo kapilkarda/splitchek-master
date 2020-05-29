@@ -14,7 +14,7 @@
 	<section class="content">
 		<div class="card" *ngIf="userlistData && userlistData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
-				<p-table #dt *ngIf="userlistData" [value]="userlistData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['name','email','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
+				<p-table #dt *ngIf="userlistData" [value]="userlistData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['name','email','status','phoneNumber']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
 						<div style="text-align: right">
 							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -33,7 +33,7 @@
 								<p-sortIcon [field]="'email'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 
 							</th>
-							<th>contact</th>
+							<th>Contact</th>
 							<th style="width: 10%"   [pSortableColumn]="'status'">
 								Status
 								<p-sortIcon [field]="'status'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
@@ -55,8 +55,8 @@
 								<ng-template #deactiveStatusText>Deactive</ng-template>
 							</td>
 							<td>
-								<button type="text" (click)=delete_form(rowData._id,rowData.isDeleted);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-								<button type="button" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
+								<button type="text" *ngIf="this.role =='Super Admin'" (click)=delete_form(rowData._id,rowData.isDeleted);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								<button type="button" *ngIf="this.role =='Super Admin'" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
 									<ng-container *ngIf="rowData.status == 1; else deactiveStatus">
 										<i class="fa fa-toggle-off" title="Deactivate User"></i>
 									</ng-container>

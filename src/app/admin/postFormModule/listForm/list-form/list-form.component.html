@@ -50,10 +50,10 @@
 								<button type="text" (click)=delete_form(rowData._id,rowData.isDeleted);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
 								<button type="button" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
 									<ng-container *ngIf="rowData.status == 1; else deactiveStatus">
-										<i class="fa fa-toggle-off" title="Deactivate User"></i>
+										<i class="fa fa-toggle-off" title="Deactivate Form"></i>
 									</ng-container>
 									<ng-template #deactiveStatus>
-										<i class="fa fa-toggle-on" title="Activate User"></i>
+										<i class="fa fa-toggle-on" title="Activate Form"></i>
 									</ng-template>
 								</button>
 								<button type="text" [routerLink]="['/admin/editForm',rowData._id]"   class="btn btn-grey" title="edit"><i class="fa fa-edit" aria-hidden="true"></i></button>
@@ -70,7 +70,7 @@
         <li *ngFor="let f of fieldData">
           <span class="fieldTitle">{{f.name}}</span>
           <span class="fieldIcon"><i class="fa {{f.icon}}"></i></span>
-          <span class="fieldType">{{f.type.value}}</span>
+          <span class="fieldType">{{f.type}}</span>
           <ul class="subFieldList" *ngIf="f.optionShow">
             <li *ngFor="let o of f.option">
               <span class="fieldTitle">{{o.label}}</span>

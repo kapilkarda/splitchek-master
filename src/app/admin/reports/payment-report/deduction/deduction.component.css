@@ -11,4 +11,20 @@
 }
 li{
     list-style-type: none;
+    padding: 5px;
+    border: 1px solid grey;
+    /* margin-bottom: 1px; */
+}
+ul{
+    /* border: 1px solid rgb(119, 109, 109) !important ; */
+    border-radius: 5px;
+}
+.vertical { 
+    border-right: 2px solid black;
+    padding-left: 5px;
+    
+} 
+span{
+    padding: 5px;
+    padding-right: 5px;
 }

@@ -62,7 +62,7 @@ export class addstaffComponent {
       //console.log("catttttttttttttt ",this.categories)
       //this.model.modules = this.moduleArr.modules; 
       //this.model.modules = this.categories;
-      console.log("model ",this.model)
+      console.log("model",this.model)
       this.spinner.show();
       
        this.adminService.admin_add_staff(this.model).subscribe(result => {
