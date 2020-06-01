@@ -131,6 +131,14 @@
                           (onProgress)="uploadProgress()" (onUpload)="onBasicUploadAuto($event,j)" [auto]="true"
                           chooseLabel="Browse"></p-fileUpload>
                       </div>
+                      <div class="imageUploadContainer" *ngIf="f.type == 'File'">
+                        <h5>{{f.name}}</h5>
+                        {{f.value}}
+                        <p-fileUpload #fubauto mode="basic" name="{{f.name}}{{j}}[]"
+                          [url]="uploadUrl+'imageuploadadverpost'" accept="image/*" maxFileSize="1000000"
+                          (onProgress)="uploadProgress()" (onUpload)="onBasicUploadAuto($event,j)" [auto]="true"
+                          chooseLabel="Browse"></p-fileUpload>
+                      </div>
                       <div class="editorDiv" *ngIf="f.type == 'Editor'">
                         <h5>{{f.name}}</h5>
                         <p-editor [(ngModel)]="f.value" name="{{f.name}}{{j}}" [style]="{'height':'320px'}"></p-editor>

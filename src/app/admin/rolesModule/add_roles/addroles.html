@@ -32,13 +32,10 @@
 									</div>
 									<div class="form-group">
 										<label for="Roledesc">Role Description</label>
-										<input type="text" class="form-control" name="roledesc" id="Roledesc"
-											placeholder="Role Description ..." [(ngModel)]="model.roledesc"
-											#roledesc="ngModel" required />
-										<div *ngIf="roledesc.errors && roledesc.touched">
-											<span class="error" *ngIf="roledesc.errors?.required">Role Description is
-												mandatory.</span>
-										</div>
+										<input type="text" class="form-control" name="roledesc" id="Roledesc" placeholder="Role Description ..." [(ngModel)]="model.roledesc" #roledesc="ngModel" required />
+										<div *ngIf="roledesc.errors && roledesc.touched">   
+											<span class="error" *ngIf="roledesc.errors?.required">Role Description is mandatory.</span>
+										</div> 
 									</div>
 									<!-- <ng-container *ngIf="moduleList">
 										<h6><b>Module List</b></h6>
