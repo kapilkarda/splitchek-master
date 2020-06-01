@@ -25,6 +25,8 @@ export class EditPostComponent implements OnInit {
   categories:any;
   items:any=[];
   Customer:any=[];
+
+  imgAd = [];
   steps:number=0;
   step:number=0;
   uploadUrl = AppSettings.API_ENDPOINT;
@@ -123,6 +125,33 @@ this.loadUserData();
                this.model.loc = this.postData.loc;
               this.items = this.postData.field;
               this.steps = this.items.length;
+
+              for(let item of this.postData.field){
+                if(item.name == 'Ad images'){
+                  this.imgAd = item.value;
+                }
+                if(item.name == 'Do not disturb hours'){
+
+                  console.log(item.childs)
+                  if(item.childs[0].value == 'Invalid date'){
+                    item.childs[0].value = '';
+                  }
+                  else if(this.is_date(item.childs[0].value)){
+
+                    item.childs[0].value = moment(item.childs[0].value).format("h:mm")
+                  }
+
+                  if(item.childs[1].value == 'Invalid date'){
+                    item.childs[1].value = '';
+                  }if(this.is_date(item.childs[1].value)){
+
+                    item.childs[1].value = moment(item.childs[1].value).format("h:mm")
+                  }
+                }
+
+              }
+              // get index of object with name
+
               this.model.field = this.postData.field;
               if(this.model.loc){
 
@@ -225,12 +254,46 @@ this.loadUserData();
 
  add_category() {
    this.model.field = this.items;
-   this.model.dateNtime = moment().format("YYYY-MM-DD HH:mm:ss")
-   console.log(this.model)
 
+   this.model.field.push({name:'Ad images', type:'file', value:this.imgAd});
+   const date = moment().format("Do MMM YYYY");
+   const time = moment().format("h:mm a")
+   const mdate = date + ' at ' + time;
+   this.model.field = this.items;
+   this.model.dateNtime = mdate;
+   console.log(this.model)
    let lat = document.getElementById('latitude').innerHTML;
    let long = document.getElementById('longitude').innerHTML;
+   for (let item of this.model.field) {
+    if (item.name == 'Price') {
+      this.model.productPrice = item.value;
+    }
+    if(item.name == 'Do not disturb hours'){
 
+      console.log(item.childs)
+      if(item.childs[0].value == ''){
+        item.childs[0].value = '';
+      }else{
+        item.childs[0].value = moment(item.childs[0].value).format("h:mm")
+        item.childs[2].value = item.childs[0].value;
+      }
+      if(item.childs[1].value == ''){
+        item.childs[1].value = '';
+      }else{
+
+        item.childs[1].value = moment(item.childs[1].value).format("h:mm")
+        item.childs[3].value = item.childs[1].value;
+      }
+      item.value = item.childs
+    }
+    // if (Array.isArray(item.childs)) {
+    //   item.childs.forEach(item => {
+    //     item.value = moment(item.value).format("hh:mm")
+    //     this.model.field.push(item);
+    //   });
+    // }
+
+  }
    this.model.loc = [lat,long];
    this.spinner.show();
    this.adminService.editAdminPost(this.model).subscribe(result => {
@@ -248,6 +311,11 @@ this.loadUserData();
      }
    });
  }
+ is_date(input) {
+  if ( Object.prototype.toString.call(input) === "[object Date]" )
+    return true;
+  return false;
+    };
  uploadProgress(){
   this.spinner.show();
  }
@@ -259,9 +327,14 @@ this.loadUserData();
    this.upImage = path;
  }
  onBasicPimage(e){
+  let imgArr = [];
   this.spinner.hide();
    let path = e.originalEvent.body.data[0].filename;
    this.model.productImage = path;
+   imgArr.push({
+     filename:path
+   })
+   this.model.productMedia = imgArr;
  }
  next(){
    if(this.step < this.items.length){
@@ -276,7 +349,7 @@ this.loadUserData();
  getUser(id){
   for(let k of this.Customer){
     if(k._id == id){
-      console.log(k)
+      // console.log(k)
       return k.name
     }
   }
@@ -286,5 +359,21 @@ formatDate(date){
 }
 chkArray(val){
   return Array.isArray(val);
+}
+addAd(){
+  if(this.imgAd.length < 7){
+    this.imgAd.push({filename:''})
+  }
+}
+remAd(i){
+  if(this.imgAd.length > 1){
+    this.imgAd.splice(i,1)
+  }
+}
+onBasicUploadAdd(e,i){
+  this.spinner.hide();
+  console.log(e, i)
+  let path = e.originalEvent.body.data[0].filename;
+  this.imgAd[i].filename = path;
 }
 }

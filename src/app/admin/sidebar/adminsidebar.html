@@ -6,10 +6,14 @@
 	<div class="sidebar">
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex" style="cursor: pointer;" [routerLink]="['/admin/profile']">
 			<div class="image">
-				<img src="../../assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+				<!-- <img src="../../assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
+				<img *ngIf="this.img" class="img-circle elevation-2" alt="User Image" [src]="this.img" id="img"
+					>
+				<img *ngIf="!this.img" class="img-circle elevation-2" alt="User Image" id="img"
+					src="../../../assets/img/user2-160x160.jpg">
 			</div>
 			<div class="info">
-				<a class="d-block">Super Admin</a>
+				<a class="d-block">{{this.userName}}</a>
 			</div>
 		</div>
 		<nav class="mt-2">
@@ -22,68 +26,8 @@
 				</li>
 				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-tasks"></i>
-						<p>Roles<i class="right fas fa-angle-left"></i></p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/manageroles']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Manage Roles</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/addroles']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add Roles</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-user"></i>
-						<p>Staff<i class="right fas fa-angle-left"></i></p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managestaff']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Manage Staff</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/addstaff']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add Staff</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-user"></i>
-						<p>User<i class="right fas fa-angle-left"></i></p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listUser']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Manage User</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createUser']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add User</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-file-signature"></i>
-						<p>Post<i class="right fas fa-angle-left"></i></p>
+						<p>Manage Commercial Ads<i class="right fas fa-angle-right"></i></p>
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
@@ -101,9 +45,35 @@
 					</ul>
 				</li>
 				<li class="nav-item has-treeview">
+					<a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/admin/UserlistPost']">
+						<i class="nav-icon fas fa-image"></i>
+						<p>Manage User Ads</p>
+					</a>
+				</li>
+				<li class="nav-item has-treeview" *ngIf="this.role =='Super Admin'">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-tasks"></i>
+						<p>Post Form<i class="right fas fa-angle-right"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listForm']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage Form</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createForm']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add Form</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item has-treeview" *ngIf="this.role =='Super Admin'">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-boxes"></i>
-						<p>Category<i class="right fas fa-angle-left"></i></p>
+						<p>Category<i class="right fas fa-angle-right"></i></p>
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
@@ -122,31 +92,10 @@
 						</li>
 					</ul>
 				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-tasks"></i>
-						<p>Post Form<i class="right fas fa-angle-left"></i></p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listForm']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Manage Form</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createForm']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add Form</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-
-				<li class="nav-item has-treeview">
+				<li class="nav-item has-treeview" *ngIf="this.role =='Super Admin'">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-network-wired"></i>
-						<p>Plans<i class="right fas fa-angle-left"></i></p>
+						<p>Plans<i class="right fas fa-angle-right"></i></p>
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
@@ -163,56 +112,30 @@
 						</li>
 					</ul>
 				</li>
-				<li class="nav-item has-treeview">
+				<li class="nav-item has-treeview" *ngIf="this.role =='Super Admin'">
 					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-image"></i>
-						<p>Ads<i class="right fas fa-angle-left"></i></p>
+						<i class="nav-icon fas fa-paste"></i>
+						<p>Tickets<i class="right fas fa-angle-right"></i></p>
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listAds']" class="nav-link">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listTicket']" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Manage Ads</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createAds']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add Ads</p>
+								<p>Manage Ticket</p>
 							</a>
 						</li>
 					</ul>
 				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-question-circle"></i>
-						<p>FAQ<i class="right fas fa-angle-left"></i></p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listFaq']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Manage FAQ</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createFaq']" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add FAQ</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview">
+				<li class="nav-item has-treeview" *ngIf="this.role =='Super Admin'">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-list"></i>
-						<p>Reports<i class="right fas fa-angle-left"></i></p>
+						<p>Reports<i class="right fas fa-angle-right"></i></p>
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
 							<a [routerLinkActive]="['active']" [routerLink]="['/admin/userReport']" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>user</p>
+								<p>User</p>
 							</a>
 						</li>
 						<li class="nav-item">
@@ -224,14 +147,14 @@
 						<li class="nav-item  has-treeview">
 							<a href="#" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Payment<i class="right fas fa-angle-left"></i></p>
+								<p>Payment<i class="right fas fa-angle-right"></i></p>
 							</a>
 							<ul class="nav nav-treeview" id="left-head">
 								<li class="nav-item">
 									<a [routerLinkActive]="['active']" [routerLink]="['/admin/deduction']"
 										class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p >Post Deduction Report</p>
+										<p>Post Deduction Report</p>
 									</a>
 								</li>
 								<li class="nav-item">
@@ -245,27 +168,88 @@
 						</li>
 					</ul>
 				</li>
-
 				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-paste"></i>
-						<p>Ticket<i class="right fas fa-angle-left"></i></p>
+						<i class="nav-icon fas fa-user"></i>
+						<p>Users<i class="right fas fa-angle-right"></i></p>
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listTicket']" class="nav-link">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listUser']" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Manage TIcket</p>
+								<p>Manage User</p>
 							</a>
 						</li>
-						<!-- <li class="nav-item">
-						<a [routerLinkActive]="['active']" [routerLink]="['/admin/createFaq']" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
-							<p>Add FAQ</p>
-						</a>
-					</li> -->
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createUser']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add User</p>
+							</a>
+						</li>
 					</ul>
 				</li>
+				<li class="nav-item has-treeview" *ngIf="this.role =='Super Admin'">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-user"></i>
+						<p>Staff<i class="right fas fa-angle-right"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/managestaff']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage Staff</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/addstaff']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add Staff</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item has-treeview" *ngIf="this.role =='Super Admin'">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-tasks"></i>
+						<p>Roles<i class="right fas fa-angle-right"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/manageroles']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage Roles</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/addroles']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add Roles</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<li class="nav-item has-treeview" *ngIf="this.role =='Super Admin'">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-question-circle"></i>
+						<p>FAQs<i class="right fas fa-angle-right"></i></p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/listFaq']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Manage FAQs</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLinkActive]="['active']" [routerLink]="['/admin/createFaq']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add FAQs</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+
 			</ul>
 		</nav>
 	</div>

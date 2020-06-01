@@ -12,8 +12,9 @@
         <div class="card" *ngIf="deductionData && deductionData.length > 0; else noRecord">
             <div class="card-body table-responsive p-0">
                 <p-table #dt *ngIf="deductionData" [value]="deductionData" [paginator]="true"
-                    [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['name','kwd']"
-                    [totalRecords]="totalRecords" class="table table-head-fixed">
+                    [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false"
+                    [globalFilterFields]="['username','bonus','plan','email','expire']" [totalRecords]="totalRecords"
+                    class="table table-head-fixed">
                     <ng-template pTemplate="caption">
                         <div style="text-align: right">
                             <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -24,21 +25,27 @@
                     <ng-template pTemplate="header" let-columns>
                         <tr>
                             <th style="width: 8%">#</th>
-                            <th>User</th>
-                            <th>Bouns</th>
-                            <th style="width: 30%">Choose Plan</th>
+                            <th>User Name</th>
+                            <th>User Email</th>
+                            <th>Total Bonus</th>
+                            <th>Total Plan Balance</th>
+                            <th>Bonus Expiry</th>
                             <th>Deduction Detail</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-rowData let-i="rowIndex">
                         <tr>
                             <td>{{i+1}}</td>
-                            <td>{{getUser(rowData.userId)}}</td>
-                            <td>{{getBounce(rowData.userId)}}</td>
-                            <td>{{getPlan(rowData.userId)}}</td>
+                            <td>{{rowData.username}}</td>
+                            <td>{{rowData.email}}</td>
+                            <td>{{rowData.bonus}}</td>
+                            <td>{{rowData.plan}}</td>
+                            <td>{{formatDate(rowData.expire)}}</td>
                             <td>
                                 <!-- (click)="detail(rowData)" -->
-                                <button pButton type="button"  [routerLink]="['/admin/deductiondetail']"  label="Detail"></button>
+                                <!-- <button pButton type="button" (click)="detail(rowData)" label="Detail"></button> -->
+                                <button (click)="detail(rowData)" class="btn btn-grey" title="view"><i class="fa fa-eye"
+                                        aria-hidden="true"></i></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -46,22 +53,46 @@
             </div>
         </div>
     </section>
-    <!-- <p-dialog header="Deduction Detail" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000" class="pDialog">
-        <div *ngIf="detailData && detailData.length > 0; else noRecord">
+    <p-dialog header="Deduction Detail" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000"
+        class="pDialog">
+        <!-- <div *ngIf="detailData && detailData.length > 0; else noRecord">
             <ul *ngFor="let detail of detailData">
-                <li><span class="list"><b>FieldName : particular</b></span> <span class="list">Value :
-                        {{detail.particular}}</span></li>
-                <li *ngFor="let value of detail.withdrawal"><span class="list"><b>FieldName : withdrawal</b></span> <span class="list">Value :
-                    {{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}</span></li>
-                <li *ngFor="let value of detail.deposite"><span class="list"><b>FieldName : deposite</b></span> <span class="list">Value :
-                    {{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}</span></li>
-                <li *ngFor="let value of detail.balance"><span class="list"><b>FieldName : balance</b></span> <span class="list">Value :
-                    {{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}</span></li>
-                <li><span class="list"><b>FieldName : walletstatus</b></span> <span class="list">Value :
-                        {{detail.walletstatus}}</span></li>
+                <li><b>Particular &nbsp;</b>{{detail.particular}}</li>
+                <li *ngFor="let value of detail.withdrawal">
+                    <b>Withdrawal&nbsp; </b>{{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}</li>
+                <li *ngFor="let value of detail.deposite">
+                    <b>Deposite&nbsp; </b>{{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}</li>
+                <li *ngFor="let value of detail.balance"><b>Balance &nbsp;</b>{{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}
+                </li>
+                <li><b>Status &nbsp;</b>{{detail.walletstatus}}</li>
             </ul>
-        </div>
-    </p-dialog> -->
+        </div> -->
+        <table class="table table-bordered" *ngIf="detailData && detailData.length > 0; else noRecord">
+            <tbody *ngFor="let detail of detailData">
+                <tr>
+                    <th>Particular</th>
+                    <td>{{detail.particular}}</td>
+                </tr>
+                <tr>
+                    <th>Withdrawal</th>
+                    <td *ngFor="let value of detail.withdrawal">{{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}</td>
+                </tr>
+                <tr>
+                    <th>Deposite</th>
+                    <td *ngFor="let value of detail.deposite">{{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}</td>
+                </tr>
+                <tr>
+                    <th>Balance</th>
+                    <td *ngFor="let value of detail.balance">{{'Kd=' + value.kd + ' , '+ 'Kwd=' + value.kwd }}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>{{detail.walletstatus}}</td>
+                </tr>
+                <br>
+            </tbody>
+        </table>
+    </p-dialog>
 </div>
 
 

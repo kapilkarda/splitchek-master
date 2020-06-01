@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params, Data } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 import { AdminService } from '../../../../services/admin.service';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-add-plan',
@@ -23,6 +24,7 @@ export class AddPlanComponent implements OnInit {
 		private adminService: AdminService,
 		private spinner: NgxSpinnerService,
 		private messageService: MessageService,
+		private _location: Location,
 	) { }
 
 	ngOnInit() {
@@ -48,5 +50,8 @@ export class AddPlanComponent implements OnInit {
 					this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
 				}
 			});
+	}
+	back() {
+		this._location.back();
 	}
 }

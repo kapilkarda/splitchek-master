@@ -55,15 +55,16 @@
 					<ng-template pTemplate="header" let-columns>
 						<tr>
 							<th style="width: 6%">#</th>
-							<th style="width: 8%">Date</th>
+							<th>Date</th>
 							<!-- <th>CustomerEmail</th>
 							<th>CustomerReference</th>
 							<th>ExpiryDate</th>
-							<th>InvoiceId</th> -->
-							<th>Title</th>
-							<th>User</th>
-							<th>Mobile</th>			
-							<th>Price</th>							
+							<th>InvoiceId</th> 
+							<th>Title</th>-->
+
+							<th>User Name</th>
+							<th>Mobile</th>
+							<th>Price</th>
 							<th>Transaction Detail</th>
 						</tr>
 					</ng-template>
@@ -74,20 +75,24 @@
 							<!-- <td>{{rowData.CustomerEmail}}</td> 
 							<td>{{rowData.CustomerReference}}</td>
 							<td>{{rowData.ExpiryDate}}</td> 
-							<td>{{rowData.InvoiceId}}</td>-->
-							<td *ngFor="let value of rowData.InvoiceItems">{{value.ItemName}}</td>
+							<td>{{rowData.InvoiceId}}</td>
+							<td *ngFor="let value of rowData.InvoiceItems">{{value.ItemName}}</td>-->
+
 							<td>{{rowData.CustomerName}}</td>
-							<td>{{rowData.CustomerMobile}}</td>					
+							<td>{{rowData.CustomerMobile}}</td>
 							<td>{{rowData.InvoiceDisplayValue}}</td>
 							<td>
 								<!-- <button class="btn btn-grey" (click)="invoice(rowData)" id="color"
 									title="InvoiceItems"><i class="fas fa-file-invoice" aria-hidden="true"></i></button> -->
-								<button class="btn btn-grey" (click)="InvoiceTrans(rowData)" id="color"
+								<!-- <button class="btn btn-grey" (click)="InvoiceTrans(rowData)" id="color"
 									title="Detail"><i class="fas fa-forward" aria-hidden="true"></i>
-								</button>
-							</td>							
+								</button> -->
+								<button (click)="InvoiceTrans(rowData)"  class="btn btn-grey" title="view"><i class="fa fa-eye"
+									aria-hidden="true"></i></button>
+							</td>
 						</tr>
 					</ng-template>
+				
 				</p-table>
 			</div>
 		</div>
@@ -107,7 +112,63 @@
 	</p-dialog> -->
 	<p-dialog header="Transaction Detail" [(visible)]="displays" [style]="{width: '45vw'}" [baseZIndex]="10000"
 		class="pDialog">
-		<div *ngIf="InvoiceTransactions && InvoiceTransactions.length > 0; else noRecord">
+		<table class="table table-bordered" *ngIf="InvoiceTransactions && InvoiceTransactions.length > 0; else noRecord">
+            <tbody *ngFor="let invoicetrans of InvoiceTransactions">
+                <tr>
+                    <th>AuthorizationId</th>
+                    <td>{{invoicetrans.AuthorizationId}}</td>
+                </tr>
+                <tr>
+                    <th>Currency</th>
+                    <td>{{invoicetrans.Currency}}</td>
+                </tr>
+                <tr>
+                    <th>CustomerServiceCharge</th>
+                    <td>{{invoicetrans.CustomerServiceCharge}}</td>
+                </tr>
+                <tr>
+                    <th>DueValue</th>
+                    <td>{{invoicetrans.DueValue}}</td>
+                </tr>
+                <tr>
+                    <th>PaidCurrency</th>
+                    <td>{{invoicetrans.PaidCurrency}}</td>
+				</tr>
+				<tr>
+                    <th>PaymentGateway</th>
+                    <td>{{invoicetrans.PaymentGateway}}</td>
+				</tr>
+				<tr>
+                    <th>PaymentId</th>
+                    <td>{{invoicetrans.PaymentId}}</td>
+				</tr>
+				<tr>
+                    <th>ReferenceId</th>
+                    <td>{{invoicetrans.ReferenceId}}</td>
+				</tr>
+				<tr>
+                    <th>TrackId</th>
+                    <td>{{invoicetrans.TrackId}}</td>
+				</tr>
+				<tr>
+                    <th>TransactionDate</th>
+                    <td>{{invoicetrans.TransactionDate}}</td>
+				</tr>
+				<tr>
+                    <th>TransactionId</th>
+                    <td>{{invoicetrans.TransactionId}}</td>
+				</tr>
+				<tr>
+                    <th>TransactionStatus</th>
+                    <td>{{invoicetrans.TransactionStatus}}</td>
+				</tr>
+				<tr>
+                    <th>TransationValue</th>
+                    <td>{{invoicetrans.TransationValue}}</td>
+                </tr>
+            </tbody>
+        </table>
+		<!-- <div *ngIf="InvoiceTransactions && InvoiceTransactions.length > 0; else noRecord">
 			<ul *ngFor="let invoicetrans of InvoiceTransactions">
 				<br>
 				<li><span class="list"><b>FieldName : AuthorizationId</b></span> <span class="list">Value :
@@ -137,7 +198,7 @@
 				<li><span class="list"><b>FieldName : TransationValue</b></span> <span class="list">Value :
 						{{invoicetrans.TransationValue}}</span></li>
 			</ul>
-		</div>
+		</div> -->
 	</p-dialog>
 </div>
 <ng-template #noRecord>No Record Found</ng-template>

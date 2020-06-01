@@ -15,7 +15,7 @@ export class AddUserComponent implements OnInit {
     "email":"",
     "phoneNumber":"",
     "password":"",
-    "countryCode":{name: "India", dial_code: "+91", code: "IN"}
+    "countryCode":{name: "Kuwait", dial_code: "+965", code: "KW"}
   };
  result: any;
  telCode:any;

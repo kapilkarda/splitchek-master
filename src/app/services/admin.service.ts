@@ -3,8 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { AppSettings } from '../../../appSettings';
 import 'rxjs/add/operator/map';
+
+
 @Injectable()
 export class AdminService {
+
 	constructor(private http: HttpClient) { }
 
 	admin_login(user) {
@@ -67,7 +70,7 @@ export class AdminService {
 			'status': currentStatus.toString()
 		});
 		let options = { headers: headers };
-		return this.http.get(AppSettings.API_ENDPOINT + 'adminChangeRoleStatus', options).map(res => <any>res);
+		return this.http.get(AppSettings.API_ENDPOINT + 'adminChangeStatus', options).map(res => <any>res);
 	}
 
 	admin_delete_role(roleId) {
@@ -267,7 +270,7 @@ export class AdminService {
 			'Authorization': localStorage.getItem('token')
 		});
 		let options = { headers: headers };
-		return this.http.post(AppSettings.API_ENDPOINT + 'addAdverPost', data, options).map(res => <any>res);
+		return this.http.post(AppSettings.API_ENDPOINT + 'Admin/addAdverPost', data, options).map(res => <any>res);
 	}
 	admin_load_postData(data) {
 		let headers = new HttpHeaders({
@@ -369,7 +372,6 @@ export class AdminService {
 		let options = { headers: headers };
 		console.log(data,"datafromservice")
 		return this.http.post(AppSettings.API_ENDPOINT + 'editPlansInfo', data, options).map(res => <any>res);
-		
 	}
 	admin_add_user(data) {
 		let headers = new HttpHeaders({
@@ -550,9 +552,12 @@ export class AdminService {
 			'Content-Type': 'application/json',
 			'Authorization': localStorage.getItem('token')
 		});
+
 		let options = { headers: headers };
 		return this.http.post(AppSettings.API_ENDPOINT + 'updateUserProfile', data, options).map(res => <any>res);
+		
 	}
+
 	telCode() {
 		let headers = new HttpHeaders({
 			'Content-Type': 'application/json',
@@ -585,7 +590,7 @@ export class AdminService {
 		});
 		let options = { headers: headers };
 		// console.log(data,"value**")
-		return this.http.post(AppSettings.API_ENDPOINT + 'statusTickets', data, options).map(res => <any>res);
+		return this.http.post(AppSettings.API_ENDPOINT + 'createStatusTickets', data, options).map(res => <any>res);
 	}
 	admin_delete_Ticket(data) {
 		let headers = new HttpHeaders({
@@ -593,7 +598,7 @@ export class AdminService {
 			'Authorization': localStorage.getItem('token')
 		});
 		let options = { headers: headers };
-		return this.http.post(AppSettings.API_ENDPOINT + '', data, options).map(res => <any>res);
+		return this.http.post(AppSettings.API_ENDPOINT + 'deleteTickets', data, options).map(res => <any>res);
 	}
 	deduction() {
 		let headers = new HttpHeaders({
@@ -604,8 +609,8 @@ export class AdminService {
 		return this.http.get(AppSettings.API_ENDPOINT + 'deduction', options).map(res => <any>res);
 	}
 
-	
 
+	
 
 
 
@@ -883,7 +888,7 @@ export class AdminService {
 	   let options = { headers: headers };
 	   return this.http.get(AppSettings.API_ENDPOINT + 'getUserPetDetail', options).map(res => <any>res);
 	}
- 
+
 	admin_delete_user(user) {
 	   let headers = new HttpHeaders({
 		  'Content-Type': 'application/json',

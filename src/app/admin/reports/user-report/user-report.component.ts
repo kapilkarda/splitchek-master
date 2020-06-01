@@ -60,7 +60,7 @@ export class UserReportComponent implements OnInit {
     });
   }
 formatDate(date){
-  return moment(date).format('MM/DD/YYYY')
+  return moment(date).format('DD/MM/YYYY')
 }
 refresh(){
   this.model.start = '';

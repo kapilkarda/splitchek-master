@@ -39,11 +39,13 @@ export class adminloginComponent {
       () => {
       	if (this.result.status === 'success') { 
             localStorage.setItem('userInfo',JSON.stringify(this.result.userData))
-            localStorage.setItem('userLogin',JSON.stringify(this.result.userData.loginType))
+            localStorage.setItem('profileImg',this.result.userData.image)
+            localStorage.setItem('userLogin',JSON.stringify(this.result.userData.loginType))            
          	localStorage.setItem('token', this.result.token);
             localStorage.setItem('email', this.result.email);
             if(localStorage.getItem('userLogin') == '5'){
             this.router.navigate(['/admin/dashboard']);
+            this.spinner.hide();
             this.messageService.add({severity:'success', summary: 'Success', detail:this.result.message});
             }else{
                this.router.navigate(['']);
@@ -51,6 +53,7 @@ export class adminloginComponent {
                this.messageService.add({severity:'error', summary: 'Error', detail:'User is not valid'});
             }
             
+            // this.messageService.add({severity:'success', summary: 'Success', detail:this.result.message});
          } else { 
             this.spinner.hide();
             this.messageService.add({severity:'error', summary: 'Error', detail:this.result.message});

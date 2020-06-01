@@ -1,7 +1,7 @@
 <div class="content-wrapper">
 	<section class="content-header">
-   	<div class="container-fluid">
-      	<div class="row mb-2">
+		<div class="container-fluid">
+			<div class="row mb-2">
 				<div class="col-sm-12">
 					<h1 class="m-0 text-dark">Add Plan</h1>
 				</div>
@@ -19,23 +19,27 @@
 						<div class="card-body table-responsive p-0">
 							<form name="addcategoryform" #addPlanForm="ngForm">
 								<div class="card-body">
-                  <div class="row">
-                    <div class="form-group col-12">
-                      <label for="kd">kd </label>
-                      <input type="number" class="form-control" name="kd" placeholder="kd" [(ngModel)]="model.kd" #kd="ngModel" required  min="0"/>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-12">
-                      <label for="kwd">kwd </label>
-                      <input type="number" class="form-control" name="kwd" placeholder="kwd" [(ngModel)]="model.kwd" #kwd="ngModel" required min="0"/>
-                    </div>
-                  </div>
-								</div>     
-                <div class="card-footer">
-                  <button type="button" (click)="add_plan()" class="btn btn-primary subBut" [disabled]="! addPlanForm.valid">Add Plan</button>
-                  <button [routerLink]="['/admin/listPlan']"  class="btn btn-default cancelBut"  style="font-weight: bold;float:right;">Cancel</button>
-                </div>
+									<div class="row">
+										<div class="form-group col-12">
+											<label for="kd">kd </label>
+											<input type="number" class="form-control" name="kd" placeholder="kd"
+												[(ngModel)]="model.kd" #kd="ngModel" required min="0" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-12">
+											<label for="kwd">kwd </label>
+											<input type="number" class="form-control" name="kwd" placeholder="kwd"
+												[(ngModel)]="model.kwd" #kwd="ngModel" required min="0" />
+										</div>
+									</div>
+								</div>
+								<div class="card-footer">
+									<button type="button" (click)="add_plan()" class="btn btn-primary subBut"
+										[disabled]="! addPlanForm.valid">Add Plan</button>
+									<button [routerLink]="['/admin/listPlan']" class="btn btn-default cancelBut"
+										style="font-weight: bold;float:right;">Cancel</button>
+								</div>
 							</form>
 						</div>
 					</div>

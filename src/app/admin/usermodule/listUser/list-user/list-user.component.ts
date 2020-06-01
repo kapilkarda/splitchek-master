@@ -20,6 +20,7 @@ export class ListUserComponent implements OnInit {
 	display: boolean = false;
 	fieldData: any;
 	fieldTitle: any;
+	role: any;
 	//private unsubscribe$: Subject<any> = new Subject<any>();
 	constructor(
 		//private cdref: ChangeDetectorRef,
@@ -70,6 +71,8 @@ export class ListUserComponent implements OnInit {
 
 					this.totalRecords = this.result.data.length;
 					console.log(this.userlistData, "Data")
+					this.role=localStorage.getItem('roleName')
+					// console.log(this.role)
 					this.spinner.hide();
 				} else {
 					this.spinner.hide();

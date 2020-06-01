@@ -28,6 +28,7 @@ export class TransactionComponent implements OnInit {
   displays: boolean = false;
 	InvoiceItems: any;
   InvoiceTransactions: any;
+  totalPrice: number=0;
 
   constructor(
     private router: Router,
@@ -84,7 +85,7 @@ export class TransactionComponent implements OnInit {
       () => {
         if (this.result.status === 'success') {
           this.reportData = this.result.data;
-          this.totalRecords = this.result.data.length
+          this.totalRecords = this.result.data.length          
           console.log(this.reportData ,"$")
           this.spinner.hide();
         } else {
@@ -94,7 +95,7 @@ export class TransactionComponent implements OnInit {
       });
   }
   formatDate(date) {
-    return moment(date).format('MM/DD/YYYY')
+    return moment(date).format('DD/MM/YYYY')
   }
 
   getUser(id) {

@@ -84,7 +84,11 @@ import { ReplyticketComponent } from './ticketmodule/replyticket/replyticket.com
 import { DeductionComponent } from './reports/payment-report/deduction/deduction.component';
 import { TransactionComponent } from './reports/payment-report/transaction/transaction.component';
 import { DetaildeductionComponent } from './reports/payment-report/detaildeduction/detaildeduction.component';
-import { AccordionModule} from 'primeng/primeng';
+import { AccordionModule } from 'primeng/primeng';
+import { UserListPostComponent } from './userPost/list-post/list-post.component';
+import { UserEditPostComponent } from './userPost/edit-post/edit-post.component';
+import {DataViewModule} from 'primeng/dataview';
+
 @NgModule({
 	imports: [
 		BrowserAnimationsModule,
@@ -114,7 +118,7 @@ import { AccordionModule} from 'primeng/primeng';
 		NzTreeModule,
 		NzInputModule,
 		AccordionModule,
-		
+		DataViewModule
 	],
 	declarations: [
 		adminComponent,
@@ -160,6 +164,9 @@ import { AccordionModule} from 'primeng/primeng';
 		DeductionComponent,
 		TransactionComponent,
 		DetaildeductionComponent,
+		UserListPostComponent,
+		UserEditPostComponent,
+
 		//adminmanagefeedbacksComponent,
 		//adminmanageusersComponent,
 		//adminmanageuserdownloadsComponent,

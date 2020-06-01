@@ -67,14 +67,14 @@
 								</td> 
 								<td>
 									<button type="text" (click)=delete_staff(rowData._id);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-									<button type="button" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
+									<!-- <button type="button" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
 										<ng-container *ngIf="rowData.status == 1; else deactiveStatus">
 											<i class="fa fa-toggle-off" title="Deactivate User"></i>
 										</ng-container>
 										<ng-template #deactiveStatus>
 											<i class="fa fa-toggle-on" title="Activate User"></i>
 										</ng-template>
-									</button>
+									</button> -->
 									<button type="text" [routerLink]="['/admin/editstaff',rowData._id]"   class="btn btn-grey" title="edit"><i class="fa fa-edit" aria-hidden="true"></i></button>
 
 									

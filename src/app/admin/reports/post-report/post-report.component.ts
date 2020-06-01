@@ -64,7 +64,7 @@ export class PostReportComponent implements OnInit {
     });
   }
 formatDate(date){
-  return moment(date).format('MM/DD/YYYY')
+  return moment(date).format('DD/MM/YYYY')
 }
 show(data) {
 

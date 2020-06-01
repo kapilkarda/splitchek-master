@@ -22,24 +22,32 @@ export class CreatePostComponent implements OnInit {
   map: any;
   nodes: NzTreeNodeOptions[] = [];
   @ViewChild('nzTreeComponent', { static: false }) nzTreeComponent: NzTreeComponent;
-  model: any = { adminId: '', userId: '', catname: '', form_name: '', field: [], productMedia: [], sellerLocation: [], loc: [], productTitle: "", productImage: "", productPrice: "", dateNtime: "" };
+  model: any = { adminId: '', userId: '', catname: '', form_name: '', field: [], productMedia: [], sellerLocation: [], loc: [], productTitle: "", productImage: "", productPrice: "", dateNtime: "",isPostSide:1,featured:0 };
   expandKeys = [];
   searchValue = '';
+  imgAd = [{'filename':''}];
   staticField: any = [
-    { name: 'Price', type: 'number', icon: '', value: '' },
-    { name: 'Description', type: 'textarea', icon: '', value: '' },
-    { name: 'Location type', type: 'select', icon: '', value: '', option: [{ label: 'Personal', value: 'Personal' }, { label: 'Business', value: 'Business' }] },
-    { name: 'Add another number', type: 'number', icon: '', value: '' },
-    { name: 'Hide my register number', type: 'radio', icon: '', value: '', option: [{ label: 'Yes', value: true }, { label: 'No', value: false }] },
+    { name: 'Title', type: 'Input', icon: '', value: '' },
+    { name: 'Price', type: 'number', icon: 'KWD', value: ''},
+    { name: 'Description', type: 'Input', icon: '', value: '' },
+    { name: 'Type of your listing', type: 'Select', icon: '', value: '', option: [{ label: 'Personal', value: 'Personal' }, { label: 'Business', value: 'Business' }] },
+
+    { name: 'Add Additional Number', type: 'number', icon: '', value: '' },
+    { name: 'Hide Registered Number', type: 'Checkbox', icon: '', value: false },
     {
-      name: 'Set do not disturb hour', type: 'radio', icon: '', value: '',
+      name: 'Do not disturb hours', type: 'Radio', icon: '', value: '',
       option: [{ label: 'Yes', value: true }, { label: 'No', value: false }], childs: [
-        { name: 'From', type: 'timepicker', icon: '', value: '' },
-        { name: 'To', type: 'timepicker', icon: '', value: '' },
+        { name: 'from', type: 'Timepicker', icon: '', value: '' },
+        { name: 'to', type: 'Timepicker', icon: '', value: '' },
+        { name: 'fromDateTime', type: 'hidden', icon: '', value: '' },
+        { name: 'toDateTime', type: 'hidden', icon: '', value: '' },
       ], flex: true
     },
-    { name: ' Seller Number', type: 'number', icon: '', value: '' },
-    { name: 'Seller Name', type: 'text', icon: '', value: '' },
+    // { name: ' Seller Number', type: 'number', icon: '', value: '' },
+    // { name: 'Seller Name', type: 'text', icon: '', value: '' },
+    {name:'Seller profile image', type:'file', value:''},
+    {name:'AdPost create date', type:'Datepicker', value:''},
+
   ]
   categoryData: any = [];
   result: any;
@@ -96,7 +104,7 @@ export class CreatePostComponent implements OnInit {
 
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
-   
+
     input.addEventListener("keydown", function (event) {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -292,19 +300,46 @@ export class CreatePostComponent implements OnInit {
     const time = moment().format("h:mm a")
     const mdate = date + ' at ' + time;
     this.model.field = this.items;
-
+    this.model.field.push({name:'Ad images', type:'ImagePicker', value:this.imgAd});
+    this.model.field.push({name:'Your location',type:'Select',"value": [{
+      "latitude": document.getElementById('latitude').innerHTML,
+      "longitude": document.getElementById('longitude').innerHTML,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+  }, ""]})
     for (let item of this.staticField) {
-      this.model.field.push(item);
       if (item.name == 'Price') {
         this.model.productPrice = item.value;
       }
-      if (Array.isArray(item.childs)) {
-        item.childs.forEach(item => {
-          item.value = moment(item.value).format("hh:mm")
-          this.model.field.push(item);
-        });
+      if(item.name == 'Do not disturb hours'){
+
+
+        if(item.childs[0].value == ''){
+          item.childs[0].value = '';
+        }else{
+          item.childs[0].value = moment(item.childs[0].value).format("h:mm")
+          item.childs[2].value = item.childs[0].value;
+        }
+        if(item.childs[1].value == ''){
+          item.childs[1].value = '';
+        }else{
+
+          item.childs[1].value = moment(item.childs[1].value).format("h:mm")
+          item.childs[3].value = item.childs[1].value;
+        }
+        item.value = item.childs
       }
+      // if (Array.isArray(item.childs)) {
+      //   item.childs.forEach(item => {
+      //     item.value = moment(item.value).format("hh:mm")
+      //     this.model.field.push(item);
+      //   });
+      // }
+
+      this.model.field.push(item);
     }
+
+
     console.log("Data", this.staticField)
     this.model.userId = this.model.userId._id;
 
@@ -312,7 +347,7 @@ export class CreatePostComponent implements OnInit {
     let long = document.getElementById('longitude').innerHTML;
 
     this.model.loc = [lat, long];
-    this.model.dateNtime = moment().format("Do MMM YYYY h:mm a")
+    this.model.dateNtime = mdate;
     console.log(this.model)
     this.spinner.show();
     this.adminService.addAdminPost(this.model).subscribe(result => {
@@ -337,14 +372,20 @@ export class CreatePostComponent implements OnInit {
     this.spinner.hide();
     console.log(e, i)
     let path = e.originalEvent.body.data[0].filename;
-    this.items[i].value = path;
+    this.staticField[i].value = path;
     this.upImage = path;
   }
+
   onBasicPimage(e) {
+    let imgArr = [];
     this.spinner.hide();
     let path = e.originalEvent.body.data[0].filename;
     console.log(path)
     this.model.productImage = path;
+    imgArr.push({
+      filename:path
+    })
+    this.model.productMedia = imgArr;
   }
   next() {
     if (this.step < this.items.length) {
@@ -377,7 +418,7 @@ export class CreatePostComponent implements OnInit {
       arr.push(obj)
     }
     let vs = arr;
-    console.log(vs)
+    // console.log(vs)
     return vs;
   }
   showSubtosub(data) {
@@ -443,5 +484,20 @@ export class CreatePostComponent implements OnInit {
       }
     }
   }
-
+  addAd(){
+    if(this.imgAd.length < 7){
+      this.imgAd.push({filename:''})
+    }
+  }
+  remAd(i){
+    if(this.imgAd.length > 1){
+      this.imgAd.splice(i,1)
+    }
+  }
+  onBasicUploadAdd(e,i){
+    this.spinner.hide();
+    console.log(e, i)
+    let path = e.originalEvent.body.data[0].filename;
+    this.imgAd[i].filename = path;
+  }
 }

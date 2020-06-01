@@ -53,7 +53,7 @@ export class AddFaqComponent implements OnInit {
         if (this.result.status === 'success') {
           this.category = this.result.data;
           let objectName = {
-            catname: 'Choose Category',
+            catname: 'All Categories',
             _id: ''
           }
 

@@ -6,17 +6,18 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { AdminService } from '../../../../services/admin.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-detaildeduction',
-  templateUrl: './detaildeduction.component.html',
-  styleUrls: ['./detaildeduction.component.css']
+	selector: 'app-detaildeduction',
+	templateUrl: './detaildeduction.component.html',
+	styleUrls: ['./detaildeduction.component.css']
 })
 export class DetaildeductionComponent implements OnInit {
 	result: any;
 	deductionData: any;
 	totalRecords: number;
+	Data: any;
 	//private unsubscribe$: Subject<any> = new Subject<any>();
 	constructor(
 		//private cdref: ChangeDetectorRef,
@@ -34,7 +35,8 @@ export class DetaildeductionComponent implements OnInit {
 		if (localStorage.getItem('token') == null && localStorage.getItem('token') == 'null') {
 			this.router.navigate(['/']);
 		}
-    this.loadFormData();
+
+		this.loadFormData();
 	}
 
 	ngOnDestroy() {
@@ -42,30 +44,15 @@ export class DetaildeductionComponent implements OnInit {
 	}
 
 	loadFormData() {
-		console.log("hhhhhhhhhhhh")
 		this.spinner.show();
-		this.adminService.deduction().subscribe((result) => {
-			this.result = result;
-		},
-			(err) => this.spinner.hide(),
-			() => {
-				if (this.result.status === 'success') {
-					// for (let datas of this.result.data) {
-					// 		this.deductionData = datas.detail;
-					// 		this.totalRecords = datas.detail.length;
-					// 		console.log(this.totalRecords, 'length')
-					// 		console.log(this.deductionData, "*Data*")
-					// }
-					this.deductionData = this.result.data
-					
-					this.spinner.hide();
-				} else {
-					this.spinner.hide();
-					this.messageService.add({ severity: 'error', summary: 'Success', detail: this.result.message });
-				}
-			});
-  }
-  back(){
+		this.deductionData = JSON.parse(localStorage.getItem('deductionDetail'));
+		// console.log(this.deductionData, "Data")
+		this.totalRecords = this.deductionData.length;
+		// console.log(this.totalRecords, 'length')
+
+		this.spinner.hide();
+	}
+	back() {
 		this._location.back();
-  }
+	}
 }

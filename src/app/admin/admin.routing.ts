@@ -43,6 +43,8 @@ import { ReplyticketComponent } from './ticketmodule/replyticket/replyticket.com
 import { TransactionComponent } from './reports/payment-report/transaction/transaction.component';
 import { DeductionComponent } from './reports/payment-report/deduction/deduction.component';
 import { DetaildeductionComponent } from './reports/payment-report/detaildeduction/detaildeduction.component';
+import { UserListPostComponent } from './userPost/list-post/list-post.component';
+import { UserEditPostComponent } from './userPost/edit-post/edit-post.component';
 /*import {adminaddpagesComponent} from './pagesModule/add_pages/adminaddpages.component';
 import {adminmanagepagesComponent} from './pagesModule/manage_pages/adminmanagepages.component';
 import {adminadddealsComponent} from './dealsModule/add_deals/adminadddeals.component';
@@ -249,6 +251,16 @@ const routes: Routes = [
 			{
 				path: 'deductiondetail',
 				component: DetaildeductionComponent,
+				canActivate: [AuthGuardService]
+			},
+			{
+				path: 'UserlistPost',
+				component: UserListPostComponent,
+				canActivate: [AuthGuardService]
+			},
+			{
+				path: 'userEditPost/:id',
+				component: UserEditPostComponent,
 				canActivate: [AuthGuardService]
 			},
          /*{path: 'manageusers', component: adminmanageusersComponent},
