@@ -94,10 +94,10 @@
     <p-fieldset >
       <ul class="fieldList">
         <li *ngFor="let f of fieldData">
-          <span class="fieldTitle">FieldName : {{f.name}}</span>
+          <span class="fieldTitle"><b>{{f.name}}</b></span>
           <span class="fieldIcon"><i class="fa fa-arrow-right"></i></span>
-          <span class="fieldType" *ngIf="chkArray(f.value)">Value: <b>{{parseVal(f.value)}}</b></span>
-		  <span class="fieldType" *ngIf="!chkArray(f.value)">Value: <b>{{f.value}}</b></span>		
+          <span class="fieldType" *ngIf="chkArray(f.value)">Value: {{parseVal(f.value)}}</span>
+		  <span class="fieldType" *ngIf="!chkArray(f.value)">Value: {{f.value}}</span>		
           <ul class="subFieldList" *ngIf="f.optionShow">
             <li *ngFor="let o of f.option">
               <span class="fieldTitle">{{o.label}}</span>

@@ -306,7 +306,7 @@ this.loadUserData();
      if (this.result.status === 'success') {
        this.spinner.hide();
        this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
-       this.router.navigate(['/admin/listPost']);
+       this.router.navigate(['/admin/UserlistPost']);
      } else {
        this.spinner.hide();
        this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });

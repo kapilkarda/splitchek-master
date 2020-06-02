@@ -219,6 +219,7 @@ export class ListticketComponent implements OnInit {
     this.detailData = []
     this.display = true;
     if(data.answer.length >0){
+		// this.detailData.push(data.content);
       this.detailData = data.answer;
     }else{
       this.detailData.push(data.content);

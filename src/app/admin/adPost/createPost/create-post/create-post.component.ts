@@ -43,8 +43,8 @@ export class CreatePostComponent implements OnInit {
         { name: 'toDateTime', type: 'hidden', icon: '', value: '' },
       ], flex: true
     },
-    // { name: ' Seller Number', type: 'number', icon: '', value: '' },
-    // { name: 'Seller Name', type: 'text', icon: '', value: '' },
+    { name: 'Seller Number', type: 'number', icon: '', value: '' },
+    { name: 'Seller Name', type: 'text', icon: '', value: '' },
     {name:'Seller profile image', type:'file', value:''},
     {name:'AdPost create date', type:'Datepicker', value:''},
 
@@ -238,6 +238,7 @@ export class CreatePostComponent implements OnInit {
       () => {
         if (this.result.status === 'success') {
           let items = this.result.data[0];
+          console.log(items,"&&")
           this.model.form_name = items.form_name;
           this.items = items.fields;
           this.steps = this.items.length;

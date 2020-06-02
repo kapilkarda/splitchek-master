@@ -38,20 +38,21 @@
 					</ng-template>
 					<ng-template pTemplate="header" let-columns>
 						<tr>
-							<th style="width: 8%">#</th>
+              <th style="width: 8%">#</th>
+              <th style="width: 25%"  >Date</th>
 							<th style="width: 18%" >
 								Category Name
 							</th>
-							<th style="width: 25%"  >Date</th>
+							
               <th style="width: 8%">Post Data</th>
 							<th style="width: 42%">Actions</th>
 						</tr>
 					</ng-template>
 					<ng-template pTemplate="body" let-rowData let-i="rowIndex">
             <tr>
-							<td>{{i+1}}</td>
-              <td>{{rowData.catname}}</td>
+              <td>{{i+1}}</td>
               <td>{{formatDate(rowData.createdAt)}}</td>
+              <td>{{rowData.catname}}</td>             
               <td>
                 <button type="text" (click) ="show(rowData)"  class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button>
              </td>
@@ -73,13 +74,12 @@
     <p-fieldset >
       <ul class="fieldList">
         <li *ngFor="let f of fieldData">
-          <span class="fieldTitle" *ngIf="f.title">FieldName : {{f.title}}</span>
-          <span class="fieldTitle" *ngIf="f.name">FieldName : {{f.name}}</span>
-          <span class="fieldIcon"><i class="fa {{f.icon}}"></i></span>
-          <span class="fieldType">FieldType: {{f.type}}</span>
-          <span class="fieldType" *ngIf="chkArray(f.value)">Value: <b>{{parseVal(f.value)}}</b></span>
-          <span class="fieldType" *ngIf="!chkArray(f.value)">Value: <b>{{f.value}}</b></span>
-          <span class="fieldType" *ngIf="f.type=='DatePicker'">Value: <b>{{f.value.from +'  ' + f.value.to}}</b></span>
+          <!-- <span class="fieldTitle">{{f.title}}</span> -->
+          <span class="fieldTitle" ><b>{{f.name}}</b></span>
+          <span class="fieldIcon"><i class="fa fa-arrow-right"></i></span>
+          <!-- <span class="fieldType">{{f.type}}</span> -->
+          <span class="fieldType" *ngIf="chkArray(f.value)">{{parseVal(f.value)}}</span>
+          <span class="fieldType" *ngIf="!chkArray(f.value)">{{f.value}}</span>
           <ul class="subFieldList" *ngIf="f.optionShow">
             <li *ngFor="let o of f.options">
               <span class="fieldTitle">{{o.label}}</span>
@@ -89,6 +89,21 @@
         </li>
 
       </ul>
+      <!-- <ul class="fieldList">
+				<li *ngFor="let f of fieldData">
+					<span class="fieldTitle"><b>{{f.name}}</b></span>
+					<span class="fieldIcon"><i class="fa fa-arrow-right"></i></span>
+					<span class="fieldType" *ngIf="chkArray(f.value)">{{parseVal(f.value)}}</span>
+					<span class="fieldType" *ngIf="!chkArray(f.value)">{{f.value}}</span>
+					<ul class="subFieldList" *ngIf="f.optionShow">
+						<li *ngFor="let o of f.option">
+							<span class="fieldTitle">{{o.label}}</span>
+							<span class="fieldType">{{o.value}}</span>
+						</li>
+					</ul>
+				</li>
+
+			</ul> -->
     </p-fieldset>
   </p-dialog>
 </div>
