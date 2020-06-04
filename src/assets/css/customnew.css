@@ -125,3 +125,14 @@
    height: 1.8em !important;
    width: 2.1rem !important;
 }
+.ui-dialog-content {
+   height: 300px !important ;
+   overflow-y: scroll !important;
+   overflow: scroll !important;
+ }
+ /* p-dialog .ui-dialog {
+   overflow: scroll;
+   max-height: 90%;
+ } */
+
+ 

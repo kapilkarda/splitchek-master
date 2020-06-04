@@ -95,9 +95,10 @@
       <ul class="fieldList">
         <li *ngFor="let f of fieldData">
           <span class="fieldTitle"><b>{{f.name}}</b></span>
-          <span class="fieldIcon"><i class="fa fa-arrow-right"></i></span>
-          <span class="fieldType" *ngIf="chkArray(f.value)">Value: {{parseVal(f.value)}}</span>
-		  <span class="fieldType" *ngIf="!chkArray(f.value)">Value: {{f.value}}</span>		
+		  <span class="fieldIcon"><i class="fa fa-arrow-right"></i></span>
+		  <span class="fieldType">{{f.type.value}}</span>
+          <span class="fieldType" *ngIf="chkArray(f.value)">{{parseVal(f.value)}}</span>
+		  <span class="fieldType" *ngIf="!chkArray(f.value)">{{f.value}}</span>		
           <ul class="subFieldList" *ngIf="f.optionShow">
             <li *ngFor="let o of f.option">
               <span class="fieldTitle">{{o.label}}</span>
