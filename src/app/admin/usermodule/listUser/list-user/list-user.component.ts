@@ -69,8 +69,8 @@ export class ListUserComponent implements OnInit {
 					}
 					this.userlistData = obj;
 
-					this.totalRecords = this.result.data.length;
-					console.log(this.userlistData, "Data")
+					this.totalRecords = this.userlistData.length;
+					console.log(this.totalRecords, "Data")
 					this.role=localStorage.getItem('roleName')
 					// console.log(this.role)
 					this.spinner.hide();

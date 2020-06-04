@@ -15,19 +15,23 @@ import * as moment from 'moment';
 
 
 export class ReplyticketComponent implements OnInit {
-  date:any = new Date()
+  date = new Date()
+  hours = this.date.getHours()
+  minutes: any = this.date.getMinutes()
+  ampm = this.hours >= 12 ? 'PM' : 'AM'
+
   model: any = {
     // "answer": "",
-    "ans":"",
+    "ans": "",
     "id": "",
-    "ticketStatus":"",
-    "ischat":"",
-    "dateTime":moment(this.date).format('DD/MM/YYYY,hh:mm A')
+    "ticketStatus": "",
+    "ischat": "",
+    "dateTime": ""
   };
   // items:any=[];
   result: any;
   ticketId: any;
-  ticketlistData: any =[];
+  ticketlistData: any = [];
   Data: any
   strTime: string;
   constructor(
@@ -58,10 +62,10 @@ export class ReplyticketComponent implements OnInit {
           // this.model.ans = this.ticketlistData.answer;
           // this.items = this.ticketlistData.answer;
           // for(let statusValue of this.ticketlistData){
-            // console.log(statusValue.ticketStatus,"*")
+          // console.log(statusValue.ticketStatus,"*")
           // }
           this.Data = localStorage.getItem("getStatus");
-          this.model.ticketStatus =this.Data ;
+          this.model.ticketStatus = this.Data;
           console.log("modellll ", this.model)
           this.spinner.hide();
         }
@@ -78,19 +82,24 @@ export class ReplyticketComponent implements OnInit {
   //   this.strTime = moment(dateTime).format('DD/MM/YYYY') +' '+' at '+ hours + ':' + minutes + ' ' + ampm;
   //   console.log(this.strTime,"*")
   //   // return   dateTime = strTime;
-    
+
   //   }
   replyBack() {
-    if(this.model.ticketStatus == 'open'){
+    if (this.model.ticketStatus == 'open') {
       this.model.ticketStatus = 'close'
-      }else{
-        this.model.ticketStatus = 'close'
-      }
-      // this.model.dateTime = moment(this.model.dateTime).format('DD/MM/YYYY , hh:mm');
+    } else {
+      this.model.ticketStatus = 'close'
+    }
+
+    this.hours = this.hours % 12
+    this.hours = this.hours ? this.hours : 12; // the hour '0' should be '12'
+    this.minutes = this.minutes < 10 ? '0' + this.minutes : this.minutes
+    this.model.dateTime = moment(this.date).format('DD/MM/YYYY') + ' ' + ' at ' + this.hours + ':' + this.minutes + ' ' + this.ampm;
+   
     this.spinner.show();
     this.adminService.admin_ticket_reply_back(this.model).subscribe(result => {
       this.result = result;
-          },
+    },
       (err) => console.log(err),
       () => {
         if (this.result.status === 'success') {
