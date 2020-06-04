@@ -17,7 +17,7 @@ export class DeductionComponent implements OnInit {
 
 	model: any = {};
 	result: any;
-	deductionData: any;
+	deductionData: any=[];
 	totalRecords: number;
 	display: boolean = false;
 	Customer: any = [];
@@ -75,20 +75,25 @@ export class DeductionComponent implements OnInit {
 			(err) => this.spinner.hide(),
 			() => {
 				if (this.result.status === 'success') {
+					
 					for (let item of this.result.data) {
 						for (let it of this.Customer) {
-							if (it._id == item.userId) {
+							if (it._id == item.userId) {								
 								item['username'] = it.name;
 								item['email'] = it.email;
 								item['bonus'] = 'kd=' + it.kd + ' , ' + 'Kwd=' + it.kwd;
 								item['plan'] = 'kd=' + it.real_amount_kd + ' , ' + 'Kwd=' + it.real_amount_kwd;
 								item['expire'] = it.isbounsDate;
+								if(item.userId!=undefined){
+									this.deductionData.push(item)
+									this.totalRecords =this.deductionData.length
+								}
 							}
-						}
-					}
+						}						
+					}	
 					
-					this.deductionData = this.result.data
-					console.log(this.deductionData, "**")
+					
+					console.log(this.deductionData,'+',this.totalRecords, "**")
 					this.spinner.hide();
 				} else {
 					this.spinner.hide();

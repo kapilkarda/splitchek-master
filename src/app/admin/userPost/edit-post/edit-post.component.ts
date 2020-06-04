@@ -76,12 +76,75 @@ export class UserEditPostComponent implements OnInit {
     document.getElementById('latitude').innerHTML = position.coords.latitude.toString();
     document.getElementById('longitude').innerHTML = position.coords.latitude.toString();
   });
+// Create the search box and link it to the UI element.
+var input = document.getElementById('pac-input');
+input.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    // Do more work
+  }
+});
+var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   // Create the initial InfoWindow.
   var infoWindow = new google.maps.InfoWindow(
       {content: 'Click to set your location', position: pos});
   infoWindow.open(map);
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function () {
+      searchBox.setBounds(map.getBounds());
+    });
 
+    var markers = [];
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', function () {
+      var places = searchBox.getPlaces();
+
+      if (places.length == 0) {
+        return;
+      }
+
+      // Clear out the old markers.
+      markers.forEach(function (marker) {
+        marker.setMap(null);
+      });
+      markers = [];
+
+      // For each place, get the icon, name and location.
+      var bounds = new google.maps.LatLngBounds();
+      places.forEach(function (place) {
+        if (!place.geometry) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+        var icon = {
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25)
+        };
+        document.getElementById('latitude').innerHTML = place.geometry.location.lat().toString();
+        document.getElementById('longitude').innerHTML = place.geometry.location.lng().toString();
+
+        // Create a marker for each place.
+        markers.push(new google.maps.Marker({
+          map: map,
+          icon: icon,
+          title: place.name,
+          position: place.geometry.location
+        }));
+
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      map.fitBounds(bounds);
   // Configure the click listener.
   map.addListener('click', function(mapsMouseEvent) {
     // Close the current InfoWindow.
@@ -94,6 +157,7 @@ export class UserEditPostComponent implements OnInit {
     infoWindow.setContent(mapsMouseEvent.latLng.toString());
     infoWindow.open(map);
   });
+})
 }
  ngOnInit() {
 
@@ -306,7 +370,7 @@ this.loadUserData();
      if (this.result.status === 'success') {
        this.spinner.hide();
        this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
-       this.router.navigate(['/admin/listPost']);
+       this.router.navigate(['/admin/UserlistPost']);
      } else {
        this.spinner.hide();
        this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });

@@ -30,8 +30,8 @@ export class ListticketComponent implements OnInit {
 	formData = {
 		id: ""
 	}
-	detailData: any= [];
-	textArea: any =[];
+	detailData: any = [];
+	textArea: any = [];
 	//private unsubscribe$: Subject<any> = new Subject<any>();
 	constructor(
 		//private cdref: ChangeDetectorRef,
@@ -89,18 +89,18 @@ export class ListticketComponent implements OnInit {
 			(err) => this.spinner.hide(),
 			() => {
 				if (this.result.status === 'success') {
-					for(let item of this.result.data){
-						for(let it of this.Customer){
-						  if (it._id == item.userId) {
-							item['username'] = it.name;
-						  }
+					for (let item of this.result.data) {
+						for (let it of this.Customer) {
+							if (it._id == item.userId) {
+								item['username'] = it.name;
+							}
 						}
-					  }
+					}
 					this.ticketlistData = this.result.data;
 					this.totalRecords = this.result.data.length;
 					// console.log(this.ticketlistData,"**")
-					for(let value of this.result.data){
-						this.textArea =value.content.description
+					for (let value of this.result.data) {
+						this.textArea = value.content.description
 						// console.log(this.textArea)
 					}
 
@@ -113,9 +113,9 @@ export class ListticketComponent implements OnInit {
 				}
 			});
 	}
-	showStatus(data){
+	showStatus(data) {
 		// console.log(data.ticketStatus,"---->")
-		localStorage.setItem("getStatus",data.ticketStatus)
+		localStorage.setItem("getStatus", data.ticketStatus)
 	}
 
 	// loadpostData() {
@@ -136,9 +136,9 @@ export class ListticketComponent implements OnInit {
 	// 			}
 	// 		});
 	// }
-	formatDate(date){
+	formatDate(date) {
 		return moment(date).format('DD/MM/YYYY')
-	  }
+	}
 	// getUser(id) {
 	// 	for (let k of this.Customer) {
 	// 		if (k._id == id) {
@@ -216,14 +216,32 @@ export class ListticketComponent implements OnInit {
 		});
 	}
 	MessageView(data) {
-    this.detailData = []
-    this.display = true;
-    if(data.answer.length >0){
-      this.detailData = data.answer;
-    }else{
-      this.detailData.push(data.content);
-    }
-		// this.detailData.ans.splice(1, 0, 'this.textArea');
+    console.log(data.answer)
+		this.display = true;
+		if (data.answer.length > 0) {
+        this.detailData = [];
+			// this.detailData.push(data.content);
+        this.detailData = data.answer;
+
+        if(this.detailData[0].ans === data.content.description){
+
+        }else{
+          let objectName = {
+            ans: data.content.description,
+            ischat: '0',
+            dateTime: ''
+          }
+          this.detailData.splice(0, 0, objectName)
+        }
+			// console.log(objectName)
+
+		} else {
+      this.detailData = [];
+			this.detailData.push(data.content);
+		}
 		console.log(this.detailData)
+	}
+	refresh() {
+		this.loadFormData();
 	}
 }

@@ -6,11 +6,11 @@
 	<div class="sidebar">
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex" style="cursor: pointer;" [routerLink]="['/admin/profile']">
 			<div class="image">
-				<img src="../../assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-				<!-- <img *ngIf="this.img" class="img-circle elevation-2" alt="User Image" [src]="this.img" id="img"
-					alt="User profile picture">
+				<!-- <img src="../../assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
+				<img *ngIf="this.img" class="img-circle elevation-2" alt="User Image" [src]="this.img" id="img"
+					>
 				<img *ngIf="!this.img" class="img-circle elevation-2" alt="User Image" id="img"
-					src="../../../assets/img/user2-160x160.jpg"> -->
+					src="../../../assets/img/user2-160x160.jpg">
 			</div>
 			<div class="info">
 				<a class="d-block">{{this.userName}}</a>

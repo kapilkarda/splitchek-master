@@ -94,11 +94,11 @@
     <p-fieldset >
       <ul class="fieldList">
         <li *ngFor="let f of fieldData">
-          <span class="fieldTitle">FieldName : {{f.name}}</span>
-          <span class="fieldIcon"><i class="fa {{f.icon}}"></i></span>
-          <span class="fieldType" *ngIf="chkArray(f.value)">Value: <b>{{parseVal(f.value)}}</b></span>
-		  <span class="fieldType" *ngIf="!chkArray(f.value)">Value: <b>{{f.value}}</b></span>
-		  <!-- <span class="fieldType" *ngIf="f.type=='DatePicker'">Value: <b>{{f.value.from +'  ' + f.value.to}}</b></span> -->
+          <span class="fieldTitle"><b>{{f.name}}</b></span>
+		  <span class="fieldIcon"><i class="fa fa-arrow-right"></i></span>
+		  <span class="fieldType">{{f.type.value}}</span>
+          <span class="fieldType" *ngIf="chkArray(f.value)">{{parseVal(f.value)}}</span>
+		  <span class="fieldType" *ngIf="!chkArray(f.value)">{{f.value}}</span>		
           <ul class="subFieldList" *ngIf="f.optionShow">
             <li *ngFor="let o of f.option">
               <span class="fieldTitle">{{o.label}}</span>
@@ -107,7 +107,8 @@
           </ul>
         </li>
 
-      </ul>
+	  </ul>
+	 
     </p-fieldset>
   </p-dialog>
 </div>

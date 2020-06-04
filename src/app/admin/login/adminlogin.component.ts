@@ -39,6 +39,7 @@ export class adminloginComponent {
       () => {
       	if (this.result.status === 'success') { 
             localStorage.setItem('userInfo',JSON.stringify(this.result.userData))
+            localStorage.setItem('profileImg',this.result.userData.image)
             localStorage.setItem('userLogin',JSON.stringify(this.result.userData.loginType))            
          	localStorage.setItem('token', this.result.token);
             localStorage.setItem('email', this.result.email);

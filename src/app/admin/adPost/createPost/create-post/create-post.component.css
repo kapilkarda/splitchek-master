@@ -28,3 +28,6 @@ p-calendar {
   float: right;
   /* width: 50%; */
 }
+.border{
+  border-bottom: none !important;
+}

@@ -111,7 +111,7 @@ export class EditFormComponent implements OnInit {
   }
   showOption(i,e){
     console.log(e,i)
-    let val = e.target.value;
+    let val = e;
     if(val == 'Select' || val == 'Multiselect' || val == 'Radio' ){
       let obj = {label:'',value:'',icon:''}
       this.fields[i].option.push(obj)

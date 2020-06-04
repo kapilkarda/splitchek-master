@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
     "image": "",
     "phoneNumber":""
   }
+  userlistData: any;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -39,8 +40,9 @@ export class ProfileComponent implements OnInit {
     this.model.id = this.user._id
     this.model.email = this.user.email
     this.model.name = this.user.name
-    this.model.email = this.user.email
+    this.model.image = this.user.image
     this.model.phoneNumber = this.user.phoneNumber
+    
   }
 
   ngOnInit() {
@@ -49,15 +51,20 @@ export class ProfileComponent implements OnInit {
   updateProfile() {
     this.spinner.show();
     this.adminService.updateProfile(this.model).subscribe((result) => {
-      localStorage.setItem('userName', this.model.name)
+      // localStorage.setItem('userName', this.model.name)
       this.result = result;
     },
       (err) => this.spinner.hide(),
       () => {
         if (this.result.status === 'success') {
-          console.log(this.result)
+          console.log(this.result.user)
+          localStorage.setItem('userInfo',JSON.stringify(this.result.user))
+          localStorage.setItem('profileImg',this.result.user.image)
           this.messageService.add({ severity: 'success', summary: 'Success', detail: this.result.message });
-          this.router.navigate(['/admin/dashboard']);
+          // this.router.navigate(['/admin/dashboard']);
+          // window.location.reload();
+          window.location.href ='/admin/dashboard'
+        
         } else {
           this.spinner.hide();
           this.messageService.add({ severity: 'error', summary: 'Success', detail: this.result.message });
@@ -72,7 +79,8 @@ export class ProfileComponent implements OnInit {
     console.log(e)
     let path = e.originalEvent.body.data[0].filename;
     this.model.image = path;
-    localStorage.setItem("img",this.model.image)
+    // localStorage.setItem("img",this.model.image)
     this.upImage = path;
   }
+
 }

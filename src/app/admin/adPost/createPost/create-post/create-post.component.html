@@ -82,15 +82,19 @@
                     <ng-container *ngFor="let f of items;let j = index">
                       <div class="form-group col-6"
                         *ngIf="f.type == 'text' ||f.type == 'text'|| f.type == 'tel'">
+                        <span *ngIf="f.name!='Seller Name'">
                         <label [for]="f.name">{{f.name}}</label>
                         <input type="text" class="form-control" name="{{f.name}}{{j}}" placeholder="{{f.name}}"
                           [(ngModel)]="f.value" #{{f.name}}="ngModel" [maxlength]="50"/>
+                          </span>
                       </div>
                       <div class="form-group col-6"
                         *ngIf="f.type == 'number'">
+                        <span *ngIf="f.name!='Seller Number'">
                         <label [for]="f.name">{{f.name}}</label>
                         <input [type]="f.type" class="form-control" name="{{f.name}}{{j}}" placeholder="{{f.name}}"
-                          [(ngModel)]="f.value" #{{f.name}}="ngModel" [maxlength]="50" min="0" />
+                          [(ngModel)]="f.value" #{{f.name}}="ngModel" [maxlength]="50" min="0"/>
+                        </span>
                       </div>
                       <div class="form-group col-6" *ngIf="f.type == 'Select'">
                         <label [for]="f.name">{{f.name}}</label>
@@ -131,13 +135,21 @@
                           (onProgress)="uploadProgress()" (onUpload)="onBasicUploadAuto($event,j)" [auto]="true"
                           chooseLabel="Browse"></p-fileUpload>
                       </div>
+                      <div class="imageUploadContainer" *ngIf="f.type == 'File'">
+                        <h5>{{f.name}}</h5>
+                        {{f.value}}
+                        <p-fileUpload #fubauto mode="basic" name="{{f.name}}{{j}}[]"
+                          [url]="uploadUrl+'imageuploadadverpost'" accept="image/*" maxFileSize="1000000"
+                          (onProgress)="uploadProgress()" (onUpload)="onBasicUploadAuto($event,j)" [auto]="true"
+                          chooseLabel="Browse"></p-fileUpload>
+                      </div>
                       <div class="editorDiv" *ngIf="f.type == 'Editor'">
                         <h5>{{f.name}}</h5>
                         <p-editor [(ngModel)]="f.value" name="{{f.name}}{{j}}" [style]="{'height':'320px'}"></p-editor>
                       </div>
-                      <div class="form-group col-6" *ngIf="f.type == 'Datepicker'">
+                      <div class="form-group col-12" *ngIf="f.type == 'Datepicker'">
                         <label [for]="f.name">{{f.name}}</label>
-                        <p-calendar [(ngModel)]="f.value" name="{{f.name}}{{j}}" [readonlyInput]="true"></p-calendar>
+                        <p-calendar [(ngModel)]="f.value" name="{{f.name}}{{j}}" [readonlyInput]="true" required></p-calendar>
                       </div>
                       <div class="form-group col-6" *ngIf="f.type == 'Daterangepicker'">
                         <label [for]="f.name">{{f.name}}</label>
@@ -164,19 +176,24 @@
                   <div class="row" *ngIf="staticField">
                     <ng-container *ngFor="let f of staticField;let j = index">
                       <div class="form-group col-6" *ngIf="f.type == 'Input'||f.type == 'text'|| f.type == 'tel'">
+                        <span *ngIf="f.name!='Seller Name'">
                         <label [for]="f.name">{{f.name}}</label>
                         <input type="text" class="form-control" name="{{f.name}}{{j}}" placeholder="{{f.name}}"
                           [(ngModel)]="f.value" #{{f.name}}="ngModel" [maxlength]="50"/>
+                        </span>
                       </div>
                       <div class="form-group col-6" *ngIf="f.type == 'number'">
+                        <span *ngIf="f.name!='Seller Number'">
                         <label [for]="f.name">{{f.name}}</label>
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">{{f.icon}}</span>
                           </div>
                         <input [type]="f.type" class="form-control" name="{{f.name}}{{j}}" placeholder="{{f.name}}"
-                          [(ngModel)]="f.value" #{{f.name}}="ngModel" [maxlength]="50" min="0"/>
+                          [(ngModel)]="f.value" #{{f.name}}="ngModel" [maxlength]="50" min="0" />
+
                         </div>
+                         </span>
                       </div>
                       <div class="form-group col-6" *ngIf="f.type == 'Select'">
                         <label [for]="f.name">{{f.name}}</label>
@@ -221,9 +238,9 @@
                         <h5>{{f.name}}</h5>
                         <p-editor [(ngModel)]="f.value" name="{{f.name}}{{j}}" [style]="{'height':'320px'}"></p-editor>
                       </div>
-                      <div class="form-group col-6" *ngIf="f.type == 'Datepicker'">
+                      <div class="form-group col-12" *ngIf="f.type == 'Datepicker'">
                         <label [for]="f.name">{{f.name}}</label>
-                        <p-calendar [(ngModel)]="f.value" name="{{f.name}}{{j}}" [readonlyInput]="true"></p-calendar>
+                        <p-calendar [(ngModel)]="f.value" name="{{f.name}}{{j}}" [readonlyInput]="true" required></p-calendar>
                       </div>
                       <div class="form-group col-6" *ngIf="f.type == 'Daterangepicker'">
                         <label [for]="f.name">{{f.name}}</label>

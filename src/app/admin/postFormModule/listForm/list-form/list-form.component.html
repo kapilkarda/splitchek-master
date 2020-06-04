@@ -69,8 +69,8 @@
       <ul class="fieldList">
         <li *ngFor="let f of fieldData">
           <span class="fieldTitle">{{f.name}}</span>
-          <span class="fieldIcon"><i class="fa {{f.icon}}"></i></span>
-          <span class="fieldType">{{f.type}}</span>
+          <span class="fieldIcon"><i class="fa fa-arrow-right"></i></span>
+          <span class="fieldType">{{f.type.value}}</span>
           <ul class="subFieldList" *ngIf="f.optionShow">
             <li *ngFor="let o of f.option">
               <span class="fieldTitle">{{o.label}}</span>

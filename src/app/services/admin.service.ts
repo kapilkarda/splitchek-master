@@ -3,8 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { AppSettings } from '../../../appSettings';
 import 'rxjs/add/operator/map';
+
+
 @Injectable()
 export class AdminService {
+
 	constructor(private http: HttpClient) { }
 
 	admin_login(user) {
@@ -67,7 +70,7 @@ export class AdminService {
 			'status': currentStatus.toString()
 		});
 		let options = { headers: headers };
-		return this.http.get(AppSettings.API_ENDPOINT + 'adminChangeRoleStatus', options).map(res => <any>res);
+		return this.http.get(AppSettings.API_ENDPOINT + 'adminChangeStatus', options).map(res => <any>res);
 	}
 
 	admin_delete_role(roleId) {
@@ -549,9 +552,12 @@ export class AdminService {
 			'Content-Type': 'application/json',
 			'Authorization': localStorage.getItem('token')
 		});
+
 		let options = { headers: headers };
 		return this.http.post(AppSettings.API_ENDPOINT + 'updateUserProfile', data, options).map(res => <any>res);
+		
 	}
+
 	telCode() {
 		let headers = new HttpHeaders({
 			'Content-Type': 'application/json',

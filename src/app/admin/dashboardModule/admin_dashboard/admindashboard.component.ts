@@ -49,7 +49,7 @@ export class admindashboardComponent {
 	}
 
 	loadRolesData() {
-		console.log("hhhhhhhhhhhh")
+		// console.log("hhhhhhhhhhhh")
 		this.spinner.show();
 		this.adminService.adminGetRolesList().subscribe((result) => {
 			this.result = result;
@@ -60,12 +60,12 @@ export class admindashboardComponent {
 					for (let item of this.result.data) {
 						if (this.roleDataName == item._id) {
 							// item['username'] = it.name;
-							console.log(this.roleDataName)
+							// console.log(this.roleDataName)
 							localStorage.setItem('roleName', item.rolename)
 						}
 					}
 					this.rolesData = this.result.data;
-					console.log(this.rolesData, "RoleData")
+					// console.log(this.rolesData, "RoleData")
 					this.spinner.hide();
 				} else {
 					this.spinner.hide();
@@ -74,7 +74,7 @@ export class admindashboardComponent {
 			});
 	}
 	loadFormData() {
-		console.log("hhhhhhhhhhhh")
+		// console.log("hhhhhhhhhhhh")
 		this.spinner.show();
 		this.adminService.getUserList().subscribe((result) => {
 			this.result = result;
@@ -90,7 +90,7 @@ export class admindashboardComponent {
 					}
 					this.userlistData = obj;
 					this.Registered = this.userlistData.length
-					console.log(this.Registered, "Data")
+					// console.log(this.Registered, "Data")
 
 					this.spinner.hide();
 				} else {
@@ -100,7 +100,7 @@ export class admindashboardComponent {
 			});
 	}
 	loadpostData() {
-		console.log("hhhhhhhhhhhh")
+		// console.log("hhhhhhhhhhhh")
 		this.spinner.show();
 		this.adminService.adminGetPostList(this.formData).subscribe((result) => {
 			this.result = result;
@@ -118,7 +118,7 @@ export class admindashboardComponent {
 	}
 
 	userApp() {
-		console.log("hhhhhhhhhhhh")
+		// console.log("hhhhhhhhhhhh")
 		this.spinner.show();
 		this.adminService.adminGetPostList(this.formDatas).subscribe((result) => {
 			this.result = result;

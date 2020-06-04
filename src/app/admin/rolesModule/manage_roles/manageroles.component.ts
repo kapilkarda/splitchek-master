@@ -94,11 +94,11 @@ export class managerolesComponent {
 			header: 'Confirm Delete',
 			icon: 'pi pi-exclamation-triangle',
 			accept: () => {
-				// let data = {
-				// 	"userid":roleId,
-				// 	"status":currentStatus
-				// }
-				// console.log(data)
+				let data = {
+					"roleId":roleId,
+					"status":currentStatus
+				}
+				console.log(data)
 				this.spinner.show();
 				this.adminService.admin_change_role_status(roleId,currentStatus).subscribe((result) => {
 					this.result = result;
