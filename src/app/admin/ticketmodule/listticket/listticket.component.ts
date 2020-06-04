@@ -238,3 +238,5 @@ export class ListticketComponent implements OnInit {
 		this.loadFormData();
 	}
 }
+// localStorage.setItem('ticketValue',data.content.description)
+// this.ticketValue = localStorage.getItem('ticketValue')
