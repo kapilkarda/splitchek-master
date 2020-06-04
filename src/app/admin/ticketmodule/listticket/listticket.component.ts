@@ -216,20 +216,27 @@ export class ListticketComponent implements OnInit {
 		});
 	}
 	MessageView(data) {
-		this.detailData = []
+    console.log(data.answer)
 		this.display = true;
 		if (data.answer.length > 0) {
+        this.detailData = [];
 			// this.detailData.push(data.content);
-			this.detailData = data.answer;
-			let objectName = {
-				ans: data.content.description,
-				ischat: '0',
-				dateTime: ''
-			}			
-			this.detailData.splice(0, 0, objectName)
+        this.detailData = data.answer;
+
+        if(this.detailData[0].ans === data.content.description){
+
+        }else{
+          let objectName = {
+            ans: data.content.description,
+            ischat: '0',
+            dateTime: ''
+          }
+          this.detailData.splice(0, 0, objectName)
+        }
 			// console.log(objectName)
-			
+
 		} else {
+      this.detailData = [];
 			this.detailData.push(data.content);
 		}
 		console.log(this.detailData)

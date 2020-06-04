@@ -237,12 +237,15 @@ export class CreatePostComponent implements OnInit {
       (err) => this.spinner.hide(),
       () => {
         if (this.result.status === 'success') {
-          let items = this.result.data[0];
-          console.log(items,"&&")
-          this.model.form_name = items.form_name;
-          this.items = items.fields;
-          this.steps = this.items.length;
-          console.log(this.items)
+          if(this.result.data.length > 0){
+            let items = this.result.data[0];
+            console.log(items,"&&")
+            this.model.form_name = items.form_name;
+            this.items = items.fields;
+            this.steps = this.items.length;
+            console.log(this.items)
+          }
+
           this.spinner.hide();
         } else {
           this.spinner.hide();
@@ -265,7 +268,7 @@ export class CreatePostComponent implements OnInit {
           let datCat = []
           for (let item of categories) {
             let obj = {
-              "key": item.name,
+              "key": item._id,
               "title": item.name,
               "children": this.ShowSubCatData(item.subCat)
             }
@@ -403,7 +406,7 @@ export class CreatePostComponent implements OnInit {
     let arr = [];
     for (let item of data) {
       let obj = {
-        "key": item.name,
+        "key": item._id,
         "title": item.name
       }
       if (item.subCat) {
@@ -426,7 +429,7 @@ export class CreatePostComponent implements OnInit {
     let arr = [];
     for (let item of data) {
       let obj = {
-        "key": item.name,
+        "key": item._id,
         "title": item.name,
       }
       if (item.subCat) {
@@ -476,12 +479,11 @@ export class CreatePostComponent implements OnInit {
     return arr;
   }
   nzEvent(e) {
-    console.log(e)
     if (e.eventName == 'click') {
       if (e.node.origin.isLeaf == true) {
-        this.searchValue = e.node.key;
-        this.model.catname = e.node.key;
-        this.loadFormData(e.node.origin.form);
+        this.searchValue = e.node.title;
+        this.model.catname = e.node.title;
+        this.loadFormData(e.node.key);
       }
     }
   }
