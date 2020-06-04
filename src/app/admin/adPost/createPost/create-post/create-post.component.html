@@ -170,8 +170,13 @@
                       </div>
                       <div class="form-group col-6" *ngIf="f.type == 'number'">
                         <label [for]="f.name">{{f.name}}</label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">{{f.icon}}</span>
+                          </div>
                         <input [type]="f.type" class="form-control" name="{{f.name}}{{j}}" placeholder="{{f.name}}"
                           [(ngModel)]="f.value" #{{f.name}}="ngModel" [maxlength]="50" min="0"/>
+                        </div>
                       </div>
                       <div class="form-group col-6" *ngIf="f.type == 'Select'">
                         <label [for]="f.name">{{f.name}}</label>

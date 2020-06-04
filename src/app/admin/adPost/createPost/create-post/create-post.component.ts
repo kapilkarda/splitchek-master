@@ -28,7 +28,7 @@ export class CreatePostComponent implements OnInit {
   imgAd = [{'filename':''}];
   staticField: any = [
     { name: 'Title', type: 'Input', icon: '', value: '' },
-    { name: 'Price', type: 'number', icon: '', value: '' },
+    { name: 'Price', type: 'number', icon: 'KWD', value: '' },
     { name: 'Description', type: 'Input', icon: '', value: '' },
     { name: 'Type of your listing', type: 'Select', icon: '', value: '', option: [{ label: 'Personal', value: 'Personal' }, { label: 'Business', value: 'Business' }] },
 
@@ -43,8 +43,8 @@ export class CreatePostComponent implements OnInit {
         { name: 'toDateTime', type: 'hidden', icon: '', value: '' },
       ], flex: true
     },
-    { name: ' Seller Number', type: 'number', icon: '', value: '' },
-    { name: 'Seller Name', type: 'text', icon: '', value: '' },
+    // { name: ' Seller Number', type: 'number', icon: '', value: '' },
+    // { name: 'Seller Name', type: 'text', icon: '', value: '' },
     {name:'Seller profile image', type:'file', value:''},
     {name:'AdPost create date', type:'Datepicker', value:''},
 
