@@ -115,6 +115,7 @@ var searchBox = new google.maps.places.SearchBox(input);
       // For each place, get the icon, name and location.
       var bounds = new google.maps.LatLngBounds();
       places.forEach(function (place) {
+        console.log(place)
         if (!place.geometry) {
           console.log("Returned place contains no geometry");
           return;
@@ -331,6 +332,20 @@ this.loadUserData();
    let lat = document.getElementById('latitude').innerHTML;
    let long = document.getElementById('longitude').innerHTML;
    for (let item of this.model.field) {
+    if(item.name === 'Title'){
+      item.value = this.model.productTitle
+    }
+    if(item.name === 'AdPost create date'){
+      item.value = moment().format('YYYY-MM-DD HH:mm:ss')
+    }
+    if(item.name === 'Your location'){
+      item.value = [{
+        "latitude": document.getElementById('latitude').innerHTML,
+        "longitude": document.getElementById('longitude').innerHTML,
+        "latitudeDelta": 0.0922,
+        "longitudeDelta": 0.0421
+    }, ""]
+    }
     if (item.name == 'Price') {
       this.model.productPrice = item.value;
     }

@@ -27,7 +27,6 @@ export class CreatePostComponent implements OnInit {
   searchValue = '';
   imgAd = [{'filename':''}];
   staticField: any = [
-    { name: 'Title', type: 'Input', icon: '', value: '' },
     { name: 'Price', type: 'number', icon: 'KWD', value: ''},
     { name: 'Description', type: 'Input', icon: '', value: '' },
     { name: 'Type of your listing', type: 'Select', icon: '', value: '', option: [{ label: 'Personal', value: 'Personal' }, { label: 'Business', value: 'Business' }] },
@@ -43,10 +42,9 @@ export class CreatePostComponent implements OnInit {
         { name: 'toDateTime', type: 'hidden', icon: '', value: '' },
       ], flex: true
     },
-    { name: 'Seller Number', type: 'number', icon: '', value: '' },
-    { name: 'Seller Name', type: 'text', icon: '', value: '' },
+    { name: 'Seller Number', type: 'Input', icon: '', value: '' },
+    { name: 'Seller Name', type: 'Input', icon: '', value: '' },
     {name:'Seller profile image', type:'file', value:''},
-    {name:'AdPost create date', type:'Datepicker', value:''},
 
   ]
   categoryData: any = [];
@@ -217,6 +215,17 @@ export class CreatePostComponent implements OnInit {
         if (this.result.status === 'success') {
           this.userlistData = this.result.data;
           console.log(this.userlistData)
+          for(let item of this.staticField){
+            if(item.name === 'Seller Name'){
+              item.value = this.userlistData[0].name
+            }
+            if(item.name === 'Seller Number'){
+              item.value = this.userlistData[0].phoneNumber
+            }
+            if(item.name === 'Seller profile image'){
+              item.value = this.userlistData[0].image
+            }
+          }
           this.spinner.hide();
         } else {
           this.spinner.hide();
@@ -304,17 +313,21 @@ export class CreatePostComponent implements OnInit {
     const time = moment().format("h:mm a")
     const mdate = date + ' at ' + time;
     this.model.field = this.items;
+    this.model.field.push({ name: 'Title', type: 'Input', icon: '', value: this.model.productTitle })
     this.model.field.push({name:'Ad images', type:'ImagePicker', value:this.imgAd});
-    this.model.field.push({name:'Your location',type:'Select',"value": [{
+    this.model.field.push({name:'Your location',type:'',"value": [{
       "latitude": document.getElementById('latitude').innerHTML,
       "longitude": document.getElementById('longitude').innerHTML,
       "latitudeDelta": 0.0922,
       "longitudeDelta": 0.0421
   }, ""]})
+    this.model.field.push({name:'AdPost create date','type':'',value:moment().format('YYYY-MM-DD HH:mm:ss')})
+
     for (let item of this.staticField) {
       if (item.name == 'Price') {
         this.model.productPrice = item.value;
       }
+
       if(item.name == 'Do not disturb hours'){
 
 
@@ -502,5 +515,19 @@ export class CreatePostComponent implements OnInit {
     console.log(e, i)
     let path = e.originalEvent.body.data[0].filename;
     this.imgAd[i].filename = path;
+  }
+  getUserId(e){
+    console.log(e)
+    for(let item of this.staticField){
+      if(item.name === 'Seller Name'){
+        item.value = e.name
+      }
+      if(item.name === 'Seller Number'){
+        item.value = e.phoneNumber
+      }
+      if(item.name === 'Seller profile image'){
+        item.value = e.image
+      }
+    }
   }
 }

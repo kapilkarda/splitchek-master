@@ -45,7 +45,9 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
+input[type="checkbox"] {
+    margin-left: 15px;
+}
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;

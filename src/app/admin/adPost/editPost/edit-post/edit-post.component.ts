@@ -86,7 +86,7 @@ input.addEventListener("keydown", function (event) {
 });
 var searchBox = new google.maps.places.SearchBox(input);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    
+
   // Create the initial InfoWindow.
   var infoWindow = new google.maps.InfoWindow(
       {content: 'Click to set your location', position: pos});
@@ -190,7 +190,7 @@ this.loadUserData();
                this.model.form_name = this.postData.form_name;
                console.log(this.postData.loc,"*")
                this.model.loc = this.postData.loc;
-               
+
               this.items = this.postData.field;
               this.steps = this.items.length;
 
@@ -330,9 +330,25 @@ this.loadUserData();
    this.model.field = this.items;
    this.model.dateNtime = mdate;
    console.log(this.model)
+  this.model.field.push({name:'AdPost create date','type':'',})
    let lat = document.getElementById('latitude').innerHTML;
    let long = document.getElementById('longitude').innerHTML;
    for (let item of this.model.field) {
+    if(item.name === 'Title'){
+      item.value = this.model.productTitle
+    }
+    if(item.name === 'AdPost create date'){
+      item.value = moment().format('YYYY-MM-DD HH:mm:ss')
+    }
+    if(item.name === 'Your location'){
+      item.value = [{
+        "latitude": document.getElementById('latitude').innerHTML,
+        "longitude": document.getElementById('longitude').innerHTML,
+        "latitudeDelta": 0.0922,
+        "longitudeDelta": 0.0421
+    }, ""]
+    }
+
     if (item.name == 'Price') {
       this.model.productPrice = item.value;
     }
