@@ -277,7 +277,7 @@ export class CreatePostComponent implements OnInit {
           let datCat = []
           for (let item of categories) {
             let obj = {
-              "key": item._id,
+              "key": item.form,
               "title": item.name,
               "children": this.ShowSubCatData(item.subCat)
             }
@@ -419,7 +419,7 @@ export class CreatePostComponent implements OnInit {
     let arr = [];
     for (let item of data) {
       let obj = {
-        "key": item._id,
+        "key": item.form,
         "title": item.name
       }
       if (item.subCat) {
@@ -442,7 +442,7 @@ export class CreatePostComponent implements OnInit {
     let arr = [];
     for (let item of data) {
       let obj = {
-        "key": item._id,
+        "key": item.form,
         "title": item.name,
       }
       if (item.subCat) {

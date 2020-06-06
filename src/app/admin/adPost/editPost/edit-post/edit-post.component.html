@@ -97,7 +97,8 @@
                             </div> -->
                             <div class="form-group col-12"  *ngIf="(f.type.id == 'checkbox')||(f.type == 'checkbox')||(f.type == 'Checkbox')">
                               <label [for]="f.name">{{f.name}}</label>
-                              <p-checkbox  value="{{f.value}}" label="{{f.label}}" [(ngModel)]="f.value" name="{{f.name}}{{j}}"></p-checkbox >
+                              <input type="checkbox"  value="{{f.value}}" [checked]="f.value"  [(ngModel)]="f.value" name="{{f.name}}{{j}}" />
+
                             </div>
                             <div class="imageUploadContainer" *ngIf="((f.type.id == 'file')||(f.type == 'file')||(f.type == 'Imagepicker')) && f.name !== 'Ad images' && f.name !== 'Seller profile image'">
                               <h5>Upload Image</h5>

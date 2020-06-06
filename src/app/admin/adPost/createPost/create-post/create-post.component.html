@@ -116,8 +116,7 @@
                       </div>
                       <div class="form-group col-12" *ngIf="f.type == 'Checkbox'">
                         <label [for]="f.name">{{f.name}}</label>
-                        <p-checkbox  value="{{f.value}}" label="{{f.name}}"
-                          [(ngModel)]="f.value" name="{{f.name}}{{j}}"></p-checkbox>
+                        <input type="checkbox"  value="{{f.value}}" [checked]="f.value"  [(ngModel)]="f.value" name="{{f.name}}{{j}}" />
                       </div>
                       <div class="imageUploadContainer" *ngIf="f.type == 'ImagePicker'">
                         <h5>{{f.name}}</h5>
@@ -223,8 +222,7 @@
                       </div>
                       <div class="form-group col-12" *ngIf="f.type == 'Checkbox'">
                         <label [for]="f.name">{{f.name}}</label>
-                        <p-checkbox  value="{{f.value}}" label="{{f.label}}"
-                          [(ngModel)]="f.value" name="{{f.name}}{{j}}"></p-checkbox>
+                          <input type="checkbox"  value="{{f.value}}" [checked]="f.value"  [(ngModel)]="f.value" name="{{f.name}}{{j}}" />
                       </div>
                       <div class="imageUploadContainer" *ngIf="f.type == 'ImagePicker'">
                         <h5>{{f.name}}</h5>
