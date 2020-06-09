@@ -22,7 +22,7 @@ export class CreatePostComponent implements OnInit {
   map: any;
   nodes: NzTreeNodeOptions[] = [];
   @ViewChild('nzTreeComponent', { static: false }) nzTreeComponent: NzTreeComponent;
-  model: any = { adminId: '', userId: '', catname: '', form_name: '', field: [], productMedia: [], sellerLocation: [], loc: [], productTitle: "", productImage: "", productPrice: "", dateNtime: "",isPostSide:1,featured:0 };
+  model: any = { adminId: '',userDAta:'', userId: '', catname: '', form_name: '', field: [], productMedia: [], sellerLocation: [], loc: [], productTitle: "", productImage: "", productPrice: "", dateNtime: "",isPostSide:1,featured:0 };
   expandKeys = [];
   searchValue = '';
   imgAd = [{'filename':''}];
@@ -226,6 +226,7 @@ export class CreatePostComponent implements OnInit {
               item.value = this.userlistData[0].image
             }
           }
+          this.model.userId = this.userlistData[0]._id
           this.spinner.hide();
         } else {
           this.spinner.hide();
@@ -320,7 +321,7 @@ export class CreatePostComponent implements OnInit {
       "longitude": document.getElementById('longitude').innerHTML,
       "latitudeDelta": 0.0922,
       "longitudeDelta": 0.0421
-  }, ""]})
+  }, "India"]})
     this.model.field.push({name:'AdPost create date','type':'',value:moment().format('YYYY-MM-DD HH:mm:ss')})
 
     for (let item of this.staticField) {
@@ -358,7 +359,6 @@ export class CreatePostComponent implements OnInit {
 
 
     console.log("Data", this.staticField)
-    this.model.userId = this.model.userId._id;
 
     let lat = document.getElementById('latitude').innerHTML;
     let long = document.getElementById('longitude').innerHTML;
@@ -492,13 +492,14 @@ export class CreatePostComponent implements OnInit {
     return arr;
   }
   nzEvent(e) {
-    if (e.eventName == 'click') {
+
       if (e.node.origin.isLeaf == true) {
+        console.log(e.node)
         this.searchValue = e.node.title;
         this.model.catname = e.node.title;
         this.loadFormData(e.node.key);
       }
-    }
+
   }
   addAd(){
     if(this.imgAd.length < 7){
@@ -529,5 +530,6 @@ export class CreatePostComponent implements OnInit {
         item.value = e.image
       }
     }
+    this.model.userId = e._id
   }
 }
