@@ -21,25 +21,35 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-12">
+                                          <label for="subject">Subject</label>
+                                          <input type="text" class="form-control" disabled [value]="title" />
+                                        </div>
+                                        <div class="form-group col-12">
+                                          <label for="answer">Answers</label>
+                                            <textarea class="form-control m-1" disabled name="content" [(ngModel)]="content"
+                                            [style.background]="'#d1dae8'"></textarea>
+                                          <ng-container *ngFor="let value of allData.answer;let i = index">
+                                            <textarea  class="form-control m-1" disabled placeholder="Message" name="ans{{i}}" [(ngModel)]="value.ans"
+                                            [style.background]="value.ischat == '1'? '#6cd5f0' : '#d1dae8'"></textarea>
+                                          </ng-container>
+                                        </div>
+                                        <div class="form-group col-12" *ngIf="allData.ticketStatus == 'open'">
                                             <label for="answer">Message </label>
-                                            <textarea class="form-control" name="ans" placeholder="Message" [(ngModel)]="model.ans"  #ans="ngModel" required></textarea>
+                                            <textarea class="form-control" [disabled]="" name="ans" placeholder="Message" [(ngModel)]="model.ans"  #ans="ngModel" required></textarea>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="card-footer">
-                                    <ng-container *ngIf="model.ticketStatus == 'open'; else deactiveStatusText">
+                                    <ng-container *ngIf="allData.ticketStatus == 'open'">
                                         <button type="button" (click)="replyBack()" class="btn btn-primary subBut"
                                             [disabled]="! addPlanForm.valid ">Reply</button>
                                     </ng-container>
-                                    <ng-template #deactiveStatusText>
-                                        <button type="button" (click)="replyBack()" disabled
-                                            class="btn btn-danger subBut"
-                                            >Reply</button>
-                                    </ng-template>
                                     <!-- <button type="button" (click)="replyBack()" class="btn btn-primary subBut"
                                         [disabled]="! addPlanForm.valid">Reply</button> -->
-                                    <button [routerLink]="['/admin/listTicket']" class="btn btn-default cancelBut"
+                                    <button *ngIf="allData.ticketStatus == 'open'" [routerLink]="['/admin/listTicket']" class="btn btn-default cancelBut"
                                         style="font-weight: bold;float:right;">Cancel</button>
+                                        <!-- <button (click)="chkData()">Chk</button> -->
                                 </div>
                             </form>
                         </div>

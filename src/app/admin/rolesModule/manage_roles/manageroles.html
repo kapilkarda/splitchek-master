@@ -7,13 +7,13 @@
 				</div>
 			</div>
 		</div>
-	</section> 
-	<section class="content">   
+	</section>
+	<section class="content">
 		<div class="card" *ngIf="rolesData && rolesData.length > 0; else noRecord">
 			<div class="card-body table-responsive p-0">
 				<p-table #dt *ngIf="rolesData" [value]="rolesData" [paginator]="true" [alwaysShowPaginator]="true" [rows]="10" [scrollable]="false" [globalFilterFields]="['rolename','roledesc','status']" [totalRecords]="totalRecords" class="table table-head-fixed" >
 					<ng-template pTemplate="caption">
-						<div style="text-align: right">        
+						<div style="text-align: right">
 							<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
 							<input type="text" pInputText size="50" placeholder=" " (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
 						</div>
@@ -37,7 +37,7 @@
 								Login From
 								<p-sortIcon [field]="'loginType'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 							</th> -->
-							<th style="width: 10%">Status</th>
+							<!-- <th style="width: 10%">Status</th> -->
 							<th style="width: 22%">Action</th>
 						</tr>
 					</ng-template>
@@ -57,14 +57,14 @@
 									<ng-container *ngIf="rowData.loginType == 3">
 										FaceBook
 									</ng-container>
-									
+
 								</td> -->
-								<td>
+								<!-- <td>
 									<ng-container *ngIf="rowData.status == 1; else deactiveStatusText">
 											Active
 									</ng-container>
 									<ng-template #deactiveStatusText>Deactive</ng-template>
-								</td> 
+								</td>  -->
 								<td>
 									<button type="text" (click)=delete_role(rowData._id);  class="btn btn-grey" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
 									<!-- <button type="button" (click)=status_change(rowData._id,rowData.status);  class="btn btn-blue">
@@ -77,10 +77,10 @@
 									</button> -->
 									<button type="text" [routerLink]="['/admin/editroles',rowData._id]"   class="btn btn-grey" title="edit"><i class="fa fa-edit" aria-hidden="true"></i></button>
 
-									
+
 									<!-- <button type="text" [routerLink]="['/admin/viewdetail',rowData._id]"   class="btn btn-grey" title="view"><i class="fa fa-eye" aria-hidden="true"></i></button> -->
-									
-									
+
+
 									<!-- <button type="button"  (click)="showDialog(rowData._id)" class="btn btn-blue" title="Suspend User"><i class="fa fa-ban"></i></button>
 									<button type="text" [routerLink]="['/admin/viewcharmrdetail',rowData._id]"   class="btn btn-grey" title="view charmrs"><i class="fa fa-paw" aria-hidden="true"></i></button> -->
 								</td>
@@ -105,15 +105,15 @@
 						<fieldset>
 							<div class="form-group">
 								<input type="text" class="form-control" name="suspendDays" id="SuspendDays" placeholder="Suspend Days..." [(ngModel)]="model.suspendDays" #suspendDays="ngModel" required number  />
-								<div *ngIf="suspendDays.errors && suspendDays.touched">   
+								<div *ngIf="suspendDays.errors && suspendDays.touched">
 									<span class="error" *ngIf="suspendDays.errors?.required">Suspend Days are mandatory.</span>
 									<span class="error" *ngIf="suspendDays.errors?.number">Only numbers allowed.</span>
-								</div> 
+								</div>
 							</div>
-							
-							
+
+
 							<button type="button" (click)="suspend_user()" class="btn btn-primary subBut" [disabled]="! suspendUserForm.valid">Suspend User</button>
-							
+
 						</fieldset>
 					</form>
 				</div>

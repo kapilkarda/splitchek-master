@@ -55,6 +55,7 @@ telcode() {
 
 add_user() {
   this.model.phoneNumber = `${this.model.countryCode.dial_code}${this.model.phoneNumber}`;
+  this.model.email = this.model.email.toLowerCase();
   console.log(this.model)
   this.spinner.show();
   this.adminService.admin_add_user(this.model).subscribe(result => {

@@ -11,6 +11,8 @@ import {AppSettings} from '../../../../../../appSettings';
 
 
 declare var google;
+
+var country ='India';
 @Component({
   selector: 'app-edit-post',
   templateUrl: './edit-post.component.html',
@@ -126,6 +128,9 @@ var searchBox = new google.maps.places.SearchBox(input);
           anchor: new google.maps.Point(17, 34),
           scaledSize: new google.maps.Size(25, 25)
         };
+
+    let addr = place.formatted_address.split(',');
+    country = addr[addr.length - 1];
         document.getElementById('latitude').innerHTML = place.geometry.location.lat().toString();
         document.getElementById('longitude').innerHTML = place.geometry.location.lng().toString();
 
@@ -198,22 +203,26 @@ this.loadUserData();
                 if(item.name == 'Ad images'){
                   this.imgAd = item.value;
                 }
+                if(item.name == 'Your location'){
+                  country = item.value[1]
+                }
                 if(item.name == 'Do not disturb hours'){
 
-                  console.log(item.childs)
-                  if(item.childs[0].value == 'Invalid date'){
-                    item.childs[0].value = '';
+                  item.option =  [{ label: 'Yes', value: true }, { label: 'No', value: false }]
+                  console.log(item.value)
+                  if(item.value[0].from == 'Invalid date'){
+                    item.value[0].from = '';
                   }
-                  else if(this.is_date(item.childs[0].value)){
+                  else if(this.is_date(item.value[0].from)){
 
-                    item.childs[0].value = moment(item.childs[0].value).format("h:mm")
+                    item.value[0].from = moment(item.childs[0].from).format("h:mm")
                   }
 
-                  if(item.childs[1].value == 'Invalid date'){
-                    item.childs[1].value = '';
-                  }if(this.is_date(item.childs[1].value)){
+                  if(item.value[0].to == 'Invalid date'){
+                    item.value[0].to = '';
+                  }if(this.is_date(item.value[0].to)){
 
-                    item.childs[1].value = moment(item.childs[1].value).format("h:mm")
+                    item.value[0].to = moment(item.value[0].to).format("h:mm")
                   }
                 }
 
@@ -324,6 +333,7 @@ this.loadUserData();
    this.model.field = this.items;
 
    this.model.field.push({name:'Ad images', type:'file', value:this.imgAd});
+   this.model.productMedia = this.imgAd;
    const date = moment().format("Do MMM YYYY");
    const time = moment().format("h:mm a")
    const mdate = date + ' at ' + time;
@@ -346,7 +356,7 @@ this.loadUserData();
         "longitude": document.getElementById('longitude').innerHTML,
         "latitudeDelta": 0.0922,
         "longitudeDelta": 0.0421
-    }, ""]
+    }, country]
     }
 
     if (item.name == 'Price') {
@@ -354,21 +364,20 @@ this.loadUserData();
     }
     if(item.name == 'Do not disturb hours'){
 
-      console.log(item.childs)
-      if(item.childs[0].value == ''){
-        item.childs[0].value = '';
-      }else{
-        item.childs[0].value = moment(item.childs[0].value).format("h:mm")
-        item.childs[2].value = item.childs[0].value;
+      console.log(item.value)
+      if(item.value[0].from == ''){
+        item.value[0].from = '';
+      }else if (this.is_date(item.value[0].from )){
+        item.value[0].fromDateTime = item.value[0].from;
+        item.value[0].from = moment(item.value[0].from).format("h:mm")
       }
-      if(item.childs[1].value == ''){
-        item.childs[1].value = '';
-      }else{
+      if(item.value[0].to == ''){
+        item.value[0].to = '';
+      }else  if (this.is_date(item.value[0].to )){
 
-        item.childs[1].value = moment(item.childs[1].value).format("h:mm")
-        item.childs[3].value = item.childs[1].value;
+        item.value[0].toDateTime = item.value[0].to;
+        item.value[0].to = moment(item.value[0].to).format("h:mm")
       }
-      item.value = item.childs
     }
     // if (Array.isArray(item.childs)) {
     //   item.childs.forEach(item => {
@@ -411,14 +420,9 @@ this.loadUserData();
    this.upImage = path;
  }
  onBasicPimage(e){
-  let imgArr = [];
   this.spinner.hide();
    let path = e.originalEvent.body.data[0].filename;
    this.model.productImage = path;
-   imgArr.push({
-     filename:path
-   })
-   this.model.productMedia = imgArr;
  }
  next(){
    if(this.step < this.items.length){
@@ -459,5 +463,10 @@ onBasicUploadAdd(e,i){
   console.log(e, i)
   let path = e.originalEvent.body.data[0].filename;
   this.imgAd[i].filename = path;
+}
+getDonotDistrub(e,f){
+  console.log(e,f)
+  f['isSelected'] = e;
+
 }
 }

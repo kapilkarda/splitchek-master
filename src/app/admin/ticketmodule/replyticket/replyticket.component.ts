@@ -34,6 +34,9 @@ export class ReplyticketComponent implements OnInit {
   ticketlistData: any = [];
   Data: any
   strTime: string;
+  allData:any;
+  title:any;
+  content:any;
   constructor(
     private router: Router,
     private adminService: AdminService,
@@ -70,6 +73,22 @@ export class ReplyticketComponent implements OnInit {
           this.spinner.hide();
         }
       });
+      let payload = {
+        id:this.ticketId
+      }
+      this.adminService.TicketData(payload).subscribe((result)=>
+        {
+          if(result.status === 'success'){
+            this.allData = result.data;
+            console.log(this.allData)
+            this.title = this.allData.content.title;
+            this.content = this.allData.content.description;
+          }
+        }
+      )
+
+
+
     }
   }
   // formatAMPM(dateTime) {
@@ -91,11 +110,40 @@ export class ReplyticketComponent implements OnInit {
       this.model.ticketStatus = 'close'
     }
 
+    let data = {
+      "mode": "formdata",
+      "formdata": [
+        {
+          "key": "username",
+          "value":this.model.username,
+          "type": "text"
+        },
+        {
+          "key": "password",
+          "value": this.model.password,
+          "type": "text"
+        },
+        {
+          "key": "apikey",
+          "value": "Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A",
+          "type": "text"
+        },
+        {
+          "key": "email",
+          "value": this.model.email,
+          "type": "text"
+        }
+      ]
+    }
+
+    let formData = new FormData();
+    formData.append('username', this.model.username);
+
     this.hours = this.hours % 12
     this.hours = this.hours ? this.hours : 12; // the hour '0' should be '12'
     this.minutes = this.minutes < 10 ? '0' + this.minutes : this.minutes
     this.model.dateTime = moment(this.date).format('DD/MM/YYYY') + ' ' + ' at ' + this.hours + ':' + this.minutes + ' ' + this.ampm;
-   
+
     this.spinner.show();
     this.adminService.admin_ticket_reply_back(this.model).subscribe(result => {
       this.result = result;
@@ -113,6 +161,44 @@ export class ReplyticketComponent implements OnInit {
       });
   }
 
-
+// async chkData(){
+//  let data =  {
+//     "mode": "formdata",
+//     "formdata": [
+//       {
+//         "key": "username",
+//         "value": "test2",
+//         "type": "text"
+//       },
+//       {
+//         "key": "password",
+//         "value": "test2",
+//         "type": "text"
+//       },
+//       {
+//         "key": "apikey",
+//         "value": "Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A",
+//         "type": "text"
+//       },
+//       {
+//         "key": "email",
+//         "value": "misterroo@gmail.com",
+//         "type": "text"
+//       }
+//     ],
+//     "options": {
+//       "formdata": {}
+//     }
+//   }
+//   var formData = new FormData();
+//   await formData.append('username','devendra');
+//   await formData.append('password','123456');
+//   await formData.append('apikey',"Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A");
+//   await formData.append('email','devendraxtra@gmail.com');
+//   console.log(formData.getAll('username'))
+//   await this.adminService.chkFormData(formData).subscribe(result => {
+//     console.log(result)
+//   })
+// }
 
 }

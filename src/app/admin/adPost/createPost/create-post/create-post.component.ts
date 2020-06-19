@@ -12,6 +12,7 @@ import * as moment from 'moment';
 import { AppSettings } from '../../../../../../appSettings';
 import { isArray } from 'util';
 declare var google;
+var country= 'India';
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
@@ -34,12 +35,9 @@ export class CreatePostComponent implements OnInit {
     { name: 'Add Additional Number', type: 'number', icon: '', value: '' },
     { name: 'Hide Registered Number', type: 'Checkbox', icon: '', value: false },
     {
-      name: 'Do not disturb hours', type: 'Radio', icon: '', value: '',
-      option: [{ label: 'Yes', value: true }, { label: 'No', value: false }], childs: [
-        { name: 'from', type: 'Timepicker', icon: '', value: '' },
-        { name: 'to', type: 'Timepicker', icon: '', value: '' },
-        { name: 'fromDateTime', type: 'hidden', icon: '', value: '' },
-        { name: 'toDateTime', type: 'hidden', icon: '', value: '' },
+      name: 'Do not disturb hours', type: 'DatePicker', icon: '', isSelected: false,
+      option: [{ label: 'Yes', value: true }, { label: 'No', value: false }], value: [
+        { from: '' ,to: '',fromDateTime: '',toDateTime:'' }
       ], flex: true
     },
     { name: 'Seller Number', type: 'Input', icon: '', value: '' },
@@ -53,6 +51,7 @@ export class CreatePostComponent implements OnInit {
   moduleArr: any = { "modules": [] };
   categories: any = [];
   items: any = [];
+
   Customer: any = [{ "name": "customer 1", _id: '1' }, { "name": "customer 2", _id: '2' }, { "name": "customer 3", _id: '3' }]
   steps: number = 0;
   step: number = 0;
@@ -153,6 +152,10 @@ export class CreatePostComponent implements OnInit {
           anchor: new google.maps.Point(17, 34),
           scaledSize: new google.maps.Size(25, 25)
         };
+        console.log(place)
+        let addr = place.formatted_address.split(',');
+        let ads = addr[addr.length - 1];
+        country = ads;
         document.getElementById('latitude').innerHTML = place.geometry.location.lat().toString();
         document.getElementById('longitude').innerHTML = place.geometry.location.lng().toString();
 
@@ -174,6 +177,7 @@ export class CreatePostComponent implements OnInit {
       map.fitBounds(bounds);
       // Configure the click listener.
       map.addListener('click', function (mapsMouseEvent) {
+        console.log(mapsMouseEvent)
         // Close the current InfoWindow.
         infoWindow.close();
         document.getElementById('latitude').innerHTML = mapsMouseEvent.latLng.lat().toString();
@@ -247,13 +251,19 @@ export class CreatePostComponent implements OnInit {
       (err) => this.spinner.hide(),
       () => {
         if (this.result.status === 'success') {
-          if(this.result.data.length > 0){
-            let items = this.result.data[0];
-            console.log(items,"&&")
-            this.model.form_name = items.form_name;
-            this.items = items.fields;
-            this.steps = this.items.length;
-            console.log(this.items)
+          if(this.result.message != 'form data not found'){
+
+            if(this.result.data.length > 0){
+              let items = this.result.data[0];
+              console.log(items,"&&")
+              this.model.form_name = items.form_name;
+              this.items = items.fields;
+              this.steps = this.items.length;
+              console.log(this.items)
+            }
+          }else{
+            this.items = [];
+
           }
 
           this.spinner.hide();
@@ -316,12 +326,13 @@ export class CreatePostComponent implements OnInit {
     this.model.field = this.items;
     this.model.field.push({ name: 'Title', type: 'Input', icon: '', value: this.model.productTitle })
     this.model.field.push({name:'Ad images', type:'ImagePicker', value:this.imgAd});
+    this.model.productMedia = this.imgAd;
     this.model.field.push({name:'Your location',type:'',"value": [{
       "latitude": document.getElementById('latitude').innerHTML,
       "longitude": document.getElementById('longitude').innerHTML,
       "latitudeDelta": 0.0922,
       "longitudeDelta": 0.0421
-  }, "India"]})
+  }, country]})
     this.model.field.push({name:'AdPost create date','type':'',value:moment().format('YYYY-MM-DD HH:mm:ss')})
 
     for (let item of this.staticField) {
@@ -331,21 +342,23 @@ export class CreatePostComponent implements OnInit {
 
       if(item.name == 'Do not disturb hours'){
 
+        console.log(item.value[0])
 
-        if(item.childs[0].value == ''){
-          item.childs[0].value = '';
+        if(item.value[0] == ''){
+          item.value[0] = '';
         }else{
-          item.childs[0].value = moment(item.childs[0].value).format("h:mm")
-          item.childs[2].value = item.childs[0].value;
+          item.value[0].fromDateTime = item.value[0].from;
+          item.value[0].from = moment(item.value[0].from).format("h:mm")
         }
-        if(item.childs[1].value == ''){
-          item.childs[1].value = '';
+        if(item.value[0] == ''){
+          console.log("hello")
+          item.value[0].to = '';
         }else{
 
-          item.childs[1].value = moment(item.childs[1].value).format("h:mm")
-          item.childs[3].value = item.childs[1].value;
+          item.value[0].toDateTime = item.value[0].to;
+          item.value[0].to = moment(item.value[0].to).format("h:mm")
         }
-        item.value = item.childs
+
       }
       // if (Array.isArray(item.childs)) {
       //   item.childs.forEach(item => {
@@ -394,15 +407,11 @@ export class CreatePostComponent implements OnInit {
   }
 
   onBasicPimage(e) {
-    let imgArr = [];
     this.spinner.hide();
     let path = e.originalEvent.body.data[0].filename;
     console.log(path)
     this.model.productImage = path;
-    imgArr.push({
-      filename:path
-    })
-    this.model.productMedia = imgArr;
+
   }
   next() {
     if (this.step < this.items.length) {
@@ -492,13 +501,17 @@ export class CreatePostComponent implements OnInit {
     return arr;
   }
   nzEvent(e) {
+    console.log(e)
+    if(e.eventName == 'search'){
 
+    }else{
       if (e.node.origin.isLeaf == true) {
         console.log(e.node)
-        this.searchValue = e.node.title;
         this.model.catname = e.node.title;
         this.loadFormData(e.node.key);
       }
+    }
+
 
   }
   addAd(){
@@ -531,5 +544,10 @@ export class CreatePostComponent implements OnInit {
       }
     }
     this.model.userId = e._id
+  }
+  getDonotDistrub(e,f){
+    console.log(e,f)
+    f['isSelected'] = e;
+
   }
 }

@@ -21,7 +21,7 @@ export class editstaffComponent {
     result: any;
    /*moduleList:any;
    moduleArr: any = { "modules": [] }; */
-    
+
    /*pagedata: any; */
 
    constructor(
@@ -34,8 +34,8 @@ export class editstaffComponent {
    ) {
    }
 
-   ngOnInit() { 
-      
+   ngOnInit() {
+
       this.activatedRoute.params
          .subscribe(
             (params: Params) => {
@@ -53,23 +53,23 @@ export class editstaffComponent {
                //this.selectedModuleList = roledata.data.modules;
                //this.selectedModuleList = roledata.data.modules.filter( (module) => module.checked );
                //console.log("selectedModuleList ",this.selectedModuleList);
-               
+
                //console.log("ml",this.moduleList)
                this.model = this.staffdata;
                console.log("modellll ",this.model)
                this.spinner.hide();
             }
          });
-      } 
+      }
 
       this.adminService.adminGetRolesList().subscribe(role => {
          this.roleList = role.data;
          console.log("this.roleList ",this.roleList)
       },
       (err) => console.log(err),
-      () => { 
+      () => {
          console.log("this.moduleList ",this.roleList[0])
-      }); 
+      });
 
 
 
@@ -81,7 +81,7 @@ export class editstaffComponent {
          this.moduleList = module.data;
       },
       (err) => console.log(err),
-      () => { 
+      () => {
          console.log("this.moduleList ",this.moduleList[0])
       });  */
 
@@ -92,16 +92,17 @@ export class editstaffComponent {
          this.moduleList = module.data;
       },
       (err) => console.log(err),
-      () => { 
+      () => {
          console.log("this.moduleList ",this.moduleList[0])
-      }); 
+      });
    } */
 
-     edit_staff() { 
-      //this.model.modules = this.moduleArr.modules; 
+     edit_staff() {
+      //this.model.modules = this.moduleArr.modules;
+      this.model.email = this.model.email.toLowerCase();
       console.log("model ",this.model)
       this.spinner.show();
-      
+
       this.adminService.admin_add_staff(this.model).subscribe(result => {
          this.result = result;
       },
@@ -115,12 +116,12 @@ export class editstaffComponent {
             this.spinner.hide();
             this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
          }
-      }); 
-   }  
+      });
+   }
 
-   
 
-    /* onChangeModule(event, module: any){  
+
+    /* onChangeModule(event, module: any){
       console.log("event ",event)
       console.log("module ",module)
       this.moduleArr.modules.push(module);

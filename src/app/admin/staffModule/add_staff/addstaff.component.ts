@@ -52,19 +52,19 @@ export class addstaffComponent {
          console.log("this.roleList ",this.roleList)
       },
       (err) => console.log(err),
-      () => { 
+      () => {
          console.log("this.moduleList ",this.roleList[0])
-      }); 
+      });
 
    }
 
-   add_staff() { 
+   add_staff() {
       //console.log("catttttttttttttt ",this.categories)
-      //this.model.modules = this.moduleArr.modules; 
+      //this.model.modules = this.moduleArr.modules;
       //this.model.modules = this.categories;
       console.log("model",this.model)
       this.spinner.show();
-      
+      this.model.email = this.model.email.toLowerCase();
        this.adminService.admin_add_staff(this.model).subscribe(result => {
          this.result = result;
       },
@@ -78,10 +78,10 @@ export class addstaffComponent {
             this.spinner.hide();
             this.messageService.add({ severity: 'error', summary: 'Error', detail: this.result.message });
          }
-      });  
-   }  
+      });
+   }
 
-   /* onChangeModule(event, moduleId: any,moduleName: any){  
+   /* onChangeModule(event, moduleId: any,moduleName: any){
       console.log("event ",event)
       console.log("moduleId ",moduleId)
       console.log("moduleName ",moduleName)

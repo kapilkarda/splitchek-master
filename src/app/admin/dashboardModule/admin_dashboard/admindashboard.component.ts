@@ -18,7 +18,10 @@ export class admindashboardComponent {
 	roleDataName: any;
 	userlistData: any[];
 	Registered: any;
-	Comersial: any;
+  Comersial: any;
+  totalTiket:any;
+  totalOpenTiket:any = 0;
+  totalCloseTiket:any = 0;
 	usercountapp: any;
 	formData = {
 		id: "",
@@ -38,14 +41,18 @@ export class admindashboardComponent {
 		this.spinner.hide();
 	}
 	ngOnInit() {
+
+
 		if (localStorage.getItem('token') == null && localStorage.getItem('token') == 'null') {
 			this.router.navigate(['/']);
-		}
+    }
+    this.roleDataName = JSON.parse(localStorage.getItem('userInfo')).roleId;
+    console.log(this.roleDataName)
 		this.loadRolesData();
 		this.loadFormData();
 		this.loadpostData();
-		this.userApp();
-		this.roleDataName = JSON.parse(localStorage.getItem('userInfo')).roleId;
+    this.userApp();
+    this.loadTicketData();
 	}
 
 	loadRolesData() {
@@ -60,7 +67,8 @@ export class admindashboardComponent {
 					for (let item of this.result.data) {
 						if (this.roleDataName == item._id) {
 							// item['username'] = it.name;
-							// console.log(this.roleDataName)
+              // console.log(this.roleDataName)
+              this.roleDataName = item.rolename;
 							localStorage.setItem('roleName', item.rolename)
 						}
 					}
@@ -127,6 +135,31 @@ export class admindashboardComponent {
 			() => {
 				if (this.result.status === 'success') {
 					this.usercountapp = this.result.data.length;
+					this.spinner.hide();
+				} else {
+					this.spinner.hide();
+					this.messageService.add({ severity: 'error', summary: 'Success', detail: this.result.message });
+				}
+			});
+  }
+  loadTicketData() {
+		console.log("hhhhhhhhhhhh")
+		this.spinner.show();
+		this.adminService.getTIcketList().subscribe((result) => {
+			this.result = result;
+		},
+			(err) => this.spinner.hide(),
+			() => {
+				if (this.result.status === 'success') {
+          console.log(this.result.data)
+          for(let item of this.result.data){
+            if(item.ticketStatus == 'close'){
+              this.totalCloseTiket++;
+            }else{
+              this.totalOpenTiket++;
+            }
+          }
+					this.totalTiket = this.result.data.length;
 					this.spinner.hide();
 				} else {
 					this.spinner.hide();

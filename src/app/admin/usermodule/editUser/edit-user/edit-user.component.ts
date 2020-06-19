@@ -67,6 +67,7 @@ ngOnInit() {
 
 add_user() {
   this.spinner.show();
+  this.model.email = this.model.email.toLowerCase();
   this.adminService.admin_edit_user(this.model).subscribe(result => {
     this.result = result;
   },

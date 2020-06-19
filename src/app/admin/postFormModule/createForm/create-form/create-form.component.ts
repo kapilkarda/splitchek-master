@@ -35,8 +35,8 @@ export class CreateFormComponent implements OnInit {
       this.router.navigate(['/']);
     }
     this.items = [{"id":'1',value:'customer1'},{"id":'2',value:'customer2'}];
-    this.typeItem = ['Input','Number','Tel','Select','Radio','Checkbox','Upload','ImagePicker','Editor','Multiselect'
-                    ,'Datepicker','DateRangePicker','TimePicker','DateTimePicker','Textarea']
+    this.typeItem = ['Input','Number','Select','Radio','Checkbox','Upload','ImagePicker','Multiselect'
+                    ,'Datepicker','Textarea']
     this.fields = this.fields;
   }
 	add_form() {

@@ -555,7 +555,7 @@ export class AdminService {
 
 		let options = { headers: headers };
 		return this.http.post(AppSettings.API_ENDPOINT + 'updateUserProfile', data, options).map(res => <any>res);
-		
+
 	}
 
 	telCode() {
@@ -599,7 +599,15 @@ export class AdminService {
 		});
 		let options = { headers: headers };
 		return this.http.post(AppSettings.API_ENDPOINT + 'deleteTickets', data, options).map(res => <any>res);
-	}
+  }
+  TicketData(data){
+    let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+		});
+		let options = { headers: headers };
+		return this.http.post(AppSettings.API_ENDPOINT + 'findByIdTickets', data, options).map(res => <any>res);
+  }
 	deduction() {
 		let headers = new HttpHeaders({
 			'Content-Type': 'application/json',
@@ -608,9 +616,14 @@ export class AdminService {
 		let options = { headers: headers };
 		return this.http.get(AppSettings.API_ENDPOINT + 'deduction', options).map(res => <any>res);
 	}
+  chkFormData(formData){
+    console.log(formData.getAll('username'))
+    let headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
+		let options = { headers: headers, method: 'post' };
+    return this.http.post('http://ec2-3-16-187-225.us-east-2.compute.amazonaws.com/simulationAPI/register.php',formData,options).map(res => <any>res);
+  }
 
 
-	
 
 
 

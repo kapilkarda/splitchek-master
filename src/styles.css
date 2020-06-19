@@ -83,3 +83,8 @@ span.ant-input-suffix {
   background: lightgray;
   padding: 6px;
 }
+span.imgUploadInfo {
+    display: block;
+    color: red;
+    font-size: 12px;
+}

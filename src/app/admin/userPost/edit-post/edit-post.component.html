@@ -30,6 +30,7 @@
                         <label for="image">Image</label>
                         <img *ngIf="model.productImage != ''" [src]="model.productImage" style="width: 60px;padding:0 10px"/><br>
                         <p-fileUpload #fubauto mode="basic" name="productImage[]" [url]="uploadUrl+'imageuploadadverpost'" accept="image/*" maxFileSize="1000000" (onProgress)="uploadProgress()" (onUpload)="onBasicPimage($event)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
+                        <span class="imgUploadInfo">The standard size of image upload is 3:2 (eg. 780 * 520)</span>
 
                       </div>
                     </div>
@@ -69,78 +70,65 @@
 
                     <div class="row" *ngIf="items">
                             <ng-container *ngFor="let f of items;let j = index">
-                            <div class="form-group col-6" *ngIf="(f.type == 'text' || f.type == 'number' || f.type == 'tel') && f.name !== 'Title'">
+                            <div class="form-group col-6" *ngIf="f.type == 'Input'  && f.name !== 'Title'">
                               <label [for]="f.name">{{f.name}}</label>
 
-                              <input [type]="f.type.id" class="form-control" [disabled]="(f.name === 'Seller Name' || f.name === 'Seller Number')" name="{{f.name}}{{j}}" placeholder="{{f.name}}" [(ngModel)]="f.value" #{{f.name}}="ngModel" [maxlength]="50" min="0"/>
+                              <input type="text" class="form-control" [disabled]="(f.name === 'Seller Name' || f.name === 'Seller Number')" name="{{f.name}}{{j}}" placeholder="{{f.name}}" [(ngModel)]="f.value" #{{f.name}}="ngModel"  min="0"/>
                             </div>
-                            <div class="form-group col-6" *ngIf="(f.type == 'text' || f.type == 'number' || f.type == 'tel' || f.type == 'Input'|| f.type == 'Number') && f.name !== 'Title'">
-                              <label [for]="f.name" min="0">{{f.name}}</label>
-                              <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text" id="basic-addon1">{{f.icon}}</span>
-                                </div>
-                                <input [type]="f.type" class="form-control" [disabled]="(f.name === 'Seller Name' || f.name === 'Seller Number')" name="{{f.name}}{{j}}" placeholder="{{f.name}}" [(ngModel)]="f.value" #{{f.name}}="ngModel" [maxlength]="50"/>
+                            <div class="form-group col-6" *ngIf="f.type == 'number' || f.type == 'Number'">
+                              <label [for]="f.name">{{f.name}}</label>
 
-                              </div>
-                             </div>
-                            <div class="form-group col-6"  *ngIf="(f.type.id == 'select')||(f.type == 'select')||(f.type == 'Select') && f.name !== 'your location'">
+                              <input type="number" class="form-control" [disabled]="(f.name === 'Seller Name' || f.name === 'Seller Number')" name="{{f.name}}{{j}}" placeholder="{{f.name}}" [(ngModel)]="f.value" #{{f.name}}="ngModel"  min="0"/>
+                            </div>
+                            <div class="form-group col-6"  *ngIf="(f.type == 'select' || f.type == 'Select') && f.name !== 'your location'">
                               <label [for]="f.name">{{f.name}}</label>
                               <p-dropdown class="pDropdwon" name="{{f.name}}{{j}}" filterBy="label,value" [filter]="true" [options]="f.option || f.options" [optionLabel]="f.label" [(ngModel)]="f.value" [name]="f.name" ></p-dropdown>
                             </div>
 
-                            <div class="form-group col-6"  *ngIf="(f.type.id == 'multiselect')||(f.type == 'multiselect')||(f.type == 'Multiselect')">
+                            <div class="form-group col-6"  *ngIf="(f.type == 'multiselect' || f.type == 'Multiselect')">
                               <label [for]="f.name">{{f.name}}</label>
                               <p-multiSelect  class="pDropdwon" name="{{f.name}}{{j}}" filterBy="label,value" [filter]="true" [options]="f.options" [optionLabel]="f.label"  [(ngModel)]="f.value" [name]="f.name"></p-multiSelect >
                             </div>
-                            <!-- <div class="form-group col-12"  *ngIf="(f.type.id == 'radio')||(f.type == 'radio')||(f.type == 'Radio')">
+                            <div class="form-group col-12"  *ngIf="(f.type == 'radio' || f.type == 'Radio')">
                               <label [for]="f.name">{{f.name}}</label>
-                              <p-radioButton *ngFor="let o of f.option" value="{{o.value}}" label="{{o.label}}" [(ngModel)]="f.value" name="{{f.name}}{{j}}"></p-radioButton>
-                            </div> -->
-                            <div class="form-group col-12"  *ngIf="(f.type.id == 'checkbox')||(f.type == 'checkbox')||(f.type == 'Checkbox')">
+                              <span *ngFor="let o of f.option">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <input type="radio"  [checked]="o.value" [value]="o.value" class="pt-1"
+                                [(ngModel)]="f.isSelected" name="{{f.name}}{{j}}" />
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span>{{o.label}}</span></span>
+                            </div>
+                            <div class="form-group col-12"  *ngIf="(f.type == 'checkbox' || f.type == 'Checkbox')">
                               <label [for]="f.name">{{f.name}}</label>
                               <input type="checkbox"  value="{{f.value}}" [checked]="f.value"  [(ngModel)]="f.value" name="{{f.name}}{{j}}" />
                             </div>
-                            <div class="imageUploadContainer" *ngIf="((f.type.id == 'file')||(f.type == 'file')||(f.type == 'Imagepicker')) && f.name !== 'Ad images' && f.name !== 'Seller profile image'">
+                            <div class="imageUploadContainer" *ngIf="f.type == 'Imagepicker' && (f.name !== 'Ad images' && f.name !== 'Seller profile image')">
                               <h5>Upload Image</h5>
                               <p>{{f.value}}</p>
                               <p-fileUpload #fubauto mode="basic" name="{{f.name}}{{j}}[]" [url]="uploadUrl+'imageuploadadverpost'" accept="image/*" maxFileSize="1000000" (onProgress)="uploadProgress()" (onUpload)="onBasicUploadAuto($event,j)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
+                              <span class="imgUploadInfo">The standard size of image upload is 3:2 (eg. 780 * 520)</span>
                             </div>
-                            <div class="editorDiv"  *ngIf="(f.type.id == 'editor')||(f.type == 'Editor')">
-                              <h5>{{f.name}}</h5>
-                              <p-editor [(ngModel)]="f.value" name="{{f.name}}{{j}}"  [style]="{'height':'320px'}"></p-editor>
-                            </div>
-                            <div class="form-group col-6"  *ngIf="(f.type.id == 'datepicker')||(f.type == 'Datepicker')">
+                            <div class="form-group col-6"  *ngIf="f.type == 'Datepicker' && f.name != 'Do not disturb hours'">
                               <label [for]="f.name">{{f.name}}</label>
                               <p-calendar [(ngModel)]="f.value" name="{{f.name}}{{j}}" [readonlyInput]="true"></p-calendar>
                             </div>
-                            <div class="form-group col-6"  *ngIf="(f.type.id == 'daterangepicker')||(f.type == 'Daterangepicker')">
-                              <label [for]="f.name">{{f.name}}</label>
-                              <p-calendar [(ngModel)]="f.value" name="{{f.name}}{{j}}" selectionMode="range"  [readonlyInput]="true"></p-calendar>
-                            </div>
-                            <!-- <div class="form-group col-6"  *ngIf="(f.type.id == 'timepicker')||(f.type == 'timepicker')||(f.type == 'Timepicker')">
-                              <label [for]="f.name">{{f.name}}</label>
-                              <p-calendar *ngIf="chkArray(f.value)" [(ngModel)]="f.value[0]" name="{{f.name}}{{j}}" selectionMode="range" [readonlyInput]="true" [timeOnly]="true"></p-calendar>
-                            </div> -->
-                            <div class="form-group col-6"  *ngIf="(f.type.id == 'datetimepicker')||f.type == 'Datetimepicker'">
-                              <label [for]="f.name">{{f.name}}</label>
-                              <p-calendar [(ngModel)]="f.value" name="{{f.name}}{{j}}" selectionMode="range" [readonlyInput]="true" [showTime]="true"></p-calendar>
-                            </div>
-                            <div class="form-group col-12" *ngIf="(f.type.id == 'textarea')||(f.type == 'textarea')||(f.type == 'Textarea')">
+                            <div class="form-group col-12" *ngIf="(f.type == 'textarea')||(f.type == 'Textarea')">
                               <label [for]="f.name">{{f.name}}</label>
                               <textarea class="form-control" name="{{f.name}}{{j}}" placeholder="{{f.name}}" [(ngModel)]="f.value" #{{f.name}}="ngModel" ></textarea>
                             </div>
-                            <div class="form-group col-12" [class.d-flex]="f?.flex" *ngIf="f.type == 'Radio' && f.type == 'radio'">
-                              <label [for]="f.name" >{{f.name}}</label>
-                              <p-radioButton *ngFor="let o of f.option" value="{{o.value}}" label="{{o.label}}" class="pt-1"
-                                [(ngModel)]="f.value" name="{{f.name}}{{j}}"></p-radioButton>
-                                <ng-container *ngIf="f.value == 'true' && f.childs">
-                                  <ng-container *ngFor="let g of f.childs;let k = index">
-                                    <ng-container *ngIf="g.type !== 'hidden'">
-                                      <label [for]="g.name" class="m-1 pl-3">{{g.name}}</label>
-                                      <p-calendar [(ngModel)]="g.value" name="{{g.name}}{{k}}" [readonlyInput]="true"
-                                        [timeOnly]="true"></p-calendar>
-                                    </ng-container>
+                            <div class="form-group col-12" [class.d-flex]="f?.flex" *ngIf="f.type == 'DatePicker' && f.name == 'Do not disturb hours'">
+                              <span  style="float:left;max-width:400px" ><label [for]="f.name" >{{f.name}}</label>
+                              <span *ngFor="let o of f.option">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <input type="radio"  [checked]="f.isSelected == o.value" [value]="o.value" class="pt-1"
+                                [(ngModel)]="f.isSelected" name="{{f.name}}{{j}}" (ngModelChange)="getDonotDistrub($event,f)" />
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span>{{o.label}}</span></span></span>
+                                <ng-container *ngIf="f.isSelected">
+                                  <ng-container *ngFor="let g of f.value;let k = index">
+                                    <span style="float:left;max-width:200px"><label [for]="g.from" class="m-1 pl-3">From</label>
+                                      <p-calendar [(ngModel)]="g.from" name="from" [readonlyInput]="true"
+                                        [timeOnly]="true"></p-calendar></span>
+                                      <span style="float:left;max-width:200px">
+                                      <label [for]="g.to" class="m-1 pl-3">To</label>
+                                      <p-calendar [(ngModel)]="g.to" name="to" [readonlyInput]="true"
+                                        [timeOnly]="true"></p-calendar></span>
                                     </ng-container>
                                 </ng-container>
                             </div>
@@ -156,6 +144,7 @@
                             [url]="uploadUrl+'imageuploadadverpost'" accept="image/*" maxFileSize="1000000"
                             (onProgress)="uploadProgress()" (onUpload)="onBasicUploadAdd($event,i)" [auto]="true"
                             chooseLabel="Browse"></p-fileUpload>
+                            <span class="imgUploadInfo">The standard size of image upload is 3:2 (eg. 780 * 520)</span>
                         </div>
                         <div class="col-2">
                           <p-button label="" icon="pi pi-minus" *ngIf="i !== 0"  styleClass="ui-button-danger" class="removeButtonOption" (onClick)="remAd(i)"></p-button>
@@ -167,7 +156,7 @@
               </div>
 
               <div class="card-footer">
-                <button type="button" (click)="add_category()" class="btn btn-primary subBut pull-right" [disabled]="! addcategoryForm.valid">Submit</button>
+                <button type="button" (click)="add_category()" class="btn btn-primary subBut pull-right" >Submit</button>
                 <button [routerLink]="['/admin/UserlistPost']"  class="btn btn-default cancelBut"  style="font-weight: bold;float:right;">Cancel</button>
               </div>
 						</form>

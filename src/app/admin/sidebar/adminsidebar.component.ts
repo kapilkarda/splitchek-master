@@ -32,10 +32,17 @@ export class adminsidebarComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.loadRolesData();
+    this.loadRolesData();
 		this.roleDataName = JSON.parse(localStorage.getItem('userInfo')).roleId;
-		this.userName = JSON.parse(localStorage.getItem('userInfo')).name;
+    this.userName = JSON.parse(localStorage.getItem('userInfo')).name;
+    console.log(localStorage.getItem('profileImg'))
+    if(!localStorage.getItem('profileImg') || localStorage.getItem('profileImg')  == undefined || localStorage.getItem('profileImg')  == 'undefined' || localStorage.getItem('profileImg') == ''){
+
+      this.img = '../../../assets/img/user2-160x160.jpg'
+    }else{
+
 		this.img = localStorage.getItem('profileImg')
+    }
 	}
 
 	loadRolesData() {
