@@ -15,7 +15,7 @@ import {AppSettings} from '../../../../../appSettings';
 })
 
 export class editcategoryComponent {
-	model: any = {id:'',parent:'0',catname:'',form:'',image:''};
+	model: any = {id:'',parent:'0',catname:'',form:'',image:'',arCatname:''};
 	categoryId: any;
 	categorydata: any;
 	selectedModuleList:any;
@@ -71,6 +71,7 @@ export class editcategoryComponent {
                //console.log("ml",this.moduleList)
                this.model.catname = this.categorydata.catname;
                this.model.image = this.categorydata.image;
+               this.model.arCatname = this.categorydata.arCatname;
                if(this.categorydata.image && this.categorydata.image != ''){
                 this.upImage = this.categorydata.image;
                }

@@ -20,7 +20,7 @@ var country ='India';
 })
 export class EditPostComponent implements OnInit {
   @ViewChild('map',{static:false}) mapElement: ElementRef;
-  model: any = { adminId: '', userId: '', catname: '', form_name: '', field: [], productMedia: [], sellerLocation: [],loc:[], productTitle: "", productImage: "", productPrice: "", dateNtime: "" };
+  model: any = { adminId: '', userId: '', catname: '',model:'', form_name: '', field: [], productMedia: [], sellerLocation: [],loc:[], productTitle: "", productImage: "", productPrice: "", dateNtime: "" };
   result: any;
   roleList:any;
   moduleArr: any = { "modules": [] };
@@ -188,6 +188,7 @@ this.loadUserData();
                this.postData = categorydata.data;
                console.log(this.postData);
                this.model.catname = this.postData.catname;
+               this.model.catnameId = this.postData.catnameId;
                this.model.userId = this.postData.userId;
                this.model.productTitle = this.postData.productTitle;
                this.model.productImage = this.postData.productImage;

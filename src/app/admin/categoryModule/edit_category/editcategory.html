@@ -25,7 +25,7 @@
 							<form name="addcategoryform" (ngSubmit)="edit_category()" #addcategoryForm="ngForm">
 								<input type="hidden"  name="id" [(ngModel)]="model.id" #id="ngModel"/>
 								<div class="card-body">
-                  <div class="form-group " *ngIf="parentName != '0'">  
+                  <div class="form-group " *ngIf="parentName != '0'">
 										<label for="Name">Parent Category Name </label>
 										<h6>{{parentName}}</h6>
 
@@ -35,6 +35,14 @@
 										<input type="text" class="form-control" name="catname" id="CatName" placeholder="Category Name ..." [(ngModel)]="model.catname" #catname="ngModel" required  [maxlength]="50"/>
 										<div *ngIf="catname.errors && catname.touched">
 											<span class="error" *ngIf="catname.errors?.required">Category Name is mandatory.</span>
+										</div>
+                  </div>
+
+                  <div class="form-group ">
+										<label for="Name">اسم التصنيف (Category Name)(Arabic)</label>
+										<input type="text" class="form-control" name="arCatname" id="arCatname" placeholder="  اسم التصنيف (Category Name ...)" [(ngModel)]="model.arCatname" #catname="ngModel" required  [maxlength]="50"/>
+										<div *ngIf="catname.errors && catname.touched">
+											<span class="error" *ngIf="catname.errors?.required">اسم الفئة إلزامي. (Category Name is mandatory.)</span>
 										</div>
                   </div>
                   <div class="form-group ">

@@ -15,7 +15,7 @@ import {AppSettings} from '../../../../../appSettings';
 })
 
 export class addcategoryComponent {
-  model: any = {parent:'0',catname:'',form:'0',image:''};
+  model: any = {parent:'0',catname:'',form:'0',image:'',arCatname:''};
    result: any;
    roleList:any;
    moduleArr: any = { "modules": [] };

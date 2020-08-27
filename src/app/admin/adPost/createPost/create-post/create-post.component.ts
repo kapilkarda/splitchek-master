@@ -23,7 +23,7 @@ export class CreatePostComponent implements OnInit {
   map: any;
   nodes: NzTreeNodeOptions[] = [];
   @ViewChild('nzTreeComponent', { static: false }) nzTreeComponent: NzTreeComponent;
-  model: any = { adminId: '',userDAta:'', userId: '', catname: '', form_name: '', field: [], productMedia: [], sellerLocation: [], loc: [], productTitle: "", productImage: "", productPrice: "", dateNtime: "",isPostSide:1,featured:0 };
+  model: any = { adminId: '',userDAta:'', userId: '', catname: '',model:'', form_name: '', field: [], productMedia: [], sellerLocation: [], loc: [], productTitle: "", productImage: "", productPrice: "", dateNtime: "",isPostSide:1,featured:0 };
   expandKeys = [];
   searchValue = '';
   imgAd = [{'filename':''}];
@@ -508,6 +508,7 @@ export class CreatePostComponent implements OnInit {
       if (e.node.origin.isLeaf == true) {
         console.log(e.node)
         this.model.catname = e.node.title;
+        this.model.catnameId = e.node._id;
         this.loadFormData(e.node.key);
       }
     }
