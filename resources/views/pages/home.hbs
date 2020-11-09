@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {{> ../common/head }}
+</head>
+
+<body class="home">
+  {{> ../common/mobile-menu }}
+  {{> ../common/mobile-menu-bottom }}
+  <div class="section-blur theme-background-one">
+    {{> ../common/header-next }}
+    <div class="container">
+      <div class="main-content position-relative d-flex align-items-start justify-content-between">
+        <aside class="aside-left">
+          <div class="scroll-div">
+            <section class="section-content">
+              <span class="section-content__title position-relative d-flex align-items-center">shop for</span>
+              <div class="personal-card d-flex align-items-center flex-column overflow-hidden">
+                <div
+                  class="personal-card__avatar personal-card__avatar--no-img d-flex align-items-center justify-content-center overflow-hidden">
+                  <img src="" alt="">
+                  <span class="personal-card__symbol">JS</span>
+                </div>
+                <p class="personal-card__name">John Smith</p>
+                <ul class="personal-card__list d-flex align-items-center flex-column list-unstyled mb-0">
+                  <li class="personal-card__item">
+                    <a href="#" class="personal-card__link">
+                      <span>John’s wishlist</span>
+                      <span class="personal-card__num">12</span>
+                    </a>
+                  </li>
+                  <li class="personal-card__item">
+                    <a href="#" class="personal-card__link">
+                      <span>View preferences</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <a href="#" class="section-content__btn btn-border">Shop for another</a>
+            </section>
+
+            <section class="section-content">
+              <span class="section-content__title position-relative d-flex align-items-center">Other links</span>
+
+              <div class="other-links">
+                <ul class="other-links__list d-flex flex-column list-unstyled mb-0">
+                  <li class="other-links__item">
+                    <a href="#" class="other-links__link position-relative">
+                      <!-- add class "active" <i class="icon icon-gift"></i> what would the icon change -->
+                      <i class="icon icon-gift active"></i>
+                      <span>Spoil yourself</span>
+                    </a>
+                  </li>
+                  <li class="other-links__item">
+                    <a href="#" class="other-links__link position-relative">
+                      <!-- add class "active" what would the icon change -->
+                      <i class="icon icon-social-media"></i>
+                      <span>Open public goss</span>
+                    </a>
+                  </li>
+                  <li class="other-links__item">
+                    <a href="#" class="other-links__link position-relative d-flex align-items-center">
+                      <!-- add class "active" what would the icon change -->
+                      <i class="icon icon-discount"></i>
+                      <span>Snatch a bargain</span>
+                    </a>
+                  </li>
+                  <li class="other-links__item">
+                    <a href="#" class="other-links__link position-relative d-flex align-items-center">
+                      <!-- add class "active" what would the icon change -->
+                      <i class="icon icon-mail"></i>
+                      <span>Shared orders</span>
+                    </a>
+                  </li>
+                  <li class="other-links__item">
+                    <a href="#" class="other-links__link position-relative d-flex align-items-center">
+                      <!-- add class "active" what would the icon change -->
+                      <i class="icon icon-group"></i>
+                      <span>My groups</span>
+                    </a>
+                  </li>
+                  <li class="other-links__item">
+                    <a href="#" class="other-links__link position-relative d-flex align-items-center">
+                      <!-- add class "active" what would the icon change -->
+                      <i class="icon icon-heart"></i>
+                      <span>My family</span>
+                    </a>
+                  </li>
+                  <li class="other-links__item">
+                    <a href="#" class="other-links__link position-relative d-flex align-items-center">
+                      <i class="icon icon-notification"></i>
+                      <!-- add class "active" what would the icon change -->
+                      <span>Alerts</span>
+                    </a>
+                  </li>
+                  <li class="other-links__item">
+                    <a href="#" class="other-links__link position-relative d-flex align-items-center">
+                      <i class="icon icon-setting"></i>
+                      <!-- add class "active" what would the icon change -->
+                      <span>Shopping preferences</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </aside>
+
+        <main class="main">
+          <section class="section-content">
+            <a href="#" data-toggle="modal" data-target="#goss"
+              class="section-content__title position-relative d-flex align-items-center">
+              <span>What’s the goss?</span>
+              <i class="icon icon-help"></i>
+            </a>
+            <i></i>
+            <div class="card-goss position-relative">
+              <div class="card-goss__slider swiper-container">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <a href="#" data-toggle="modal" data-target="#create-goss"
+                      class="card-goss__item card-goss__item--new position-relative d-flex align-items-center justify-content-center overflow-hidden">
+                      <i class="icon icon-plus"></i>
+                    </a>
+                    <span class="card-goss__name">#Create</span>
+                  </div>
+                  <div class="swiper-slide">
+                    <a href="#"
+                      class="card-goss__item card-goss__item--no-img position-relative d-flex align-items-center justify-content-center overflow-hidden">
+                    </a>
+                    <span class="card-goss__name"></span>
+                  </div>
+                  <div class="swiper-slide">
+                    <a href="#"
+                      class="card-goss__item card-goss__item--no-img position-relative d-flex align-items-center justify-content-center overflow-hidden">
+                    </a>
+                    <span class="card-goss__name"></span>
+                  </div>
+                  <div class="swiper-slide">
+                    <a href="#"
+                      class="card-goss__item card-goss__item--no-img position-relative d-flex align-items-center justify-content-center overflow-hidden">
+                    </a>
+                    <span class="card-goss__name"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
+          </section>
+          <section class="section-content">
+            <span class="section-content__title position-relative d-flex align-items-center">What’s next?</span>
+            <div class="main__card main__card--bias">
+              <div
+                class="internal-card internal-card--main w-100 d-flex flex-column align-items-center align-items-lg-start flex-lg-row">
+                <div class="internal-card__info">
+                  <h2>Thank you for being part of the SplitChek community!</h2>
+                  <p>There are few more things you could do to make your experience even more satisfying:</p>
+                </div>
+                <figure class="internal-card__img mb-0">
+                  <img src="images/home/Gifts-bro.svg" alt="card-img">
+                </figure>
+              </div>
+              <div class="internal-card d-flex flex-column align-items-center align-items-lg-start flex-lg-row">
+                <figure class="internal-card__img mb-0">
+                  <img src="images/home/Resume.svg" alt="img">
+                </figure>
+                <div class="internal-card__info">
+                  <div class="internal-card__desc">
+                    <h5> Your shipping details are missing</h5>
+                    <p>Allows your loved ones and SplitChek to identify you</p>
+                    <a href="#">Learn about how we store your data </a>
+                  </div>
+                  <a href="#" class="btn-border">Add picture</a>
+                </div>
+              </div>
+
+              <div class="internal-card d-flex flex-column align-items-center align-items-lg-start flex-lg-row">
+                <figure class="internal-card__img mb-0">
+                  <img src="images/home/Address.svg" alt="img">
+                </figure>
+                <div class="internal-card__info">
+                  <div class="internal-card__desc">
+                    <h5>Your shipping details are missing</h5>
+                    <p>We use it to send goods to you</p>
+                  </div>
+                  <a href="#" class="btn-border">Add address</a>
+                </div>
+              </div>
+              <div class="internal-card d-flex flex-column align-items-center align-items-lg-start flex-lg-row">
+                <figure class="internal-card__img mb-0">
+                  <img src="images/home/Login.svg" alt="img">
+                </figure>
+                <div class="internal-card__info">
+                  <div class="internal-card__desc">
+                    <h5>Your mobile number is missing</h5>
+                    <p>We use your mobile number to verify you at checkout and send you updates about your orders</p>
+                  </div>
+                  <a href="#" class="btn-border">Add my number</a>
+                </div>
+              </div>
+              <div class="internal-card d-flex flex-column align-items-center align-items-lg-start flex-lg-row">
+                <figure class="internal-card__img mb-0">
+                  <img src="images/home/Family.svg" alt="img">
+                </figure>
+                <div class="internal-card__info">
+                  <div class="internal-card__desc">
+                    <h5>Connect with your family and share your shopping experience</h5>
+                  </div>
+                  <a href="#" class="btn-border-orange">Add family</a>
+                </div>
+              </div>
+              <div class="internal-card d-flex flex-column align-items-center align-items-lg-start flex-lg-row">
+                <figure class="internal-card__img mb-0">
+                  <img src="images/home/Friendship.svg" alt="img">
+                </figure>
+                <div class="internal-card__info">
+                  <div class="internal-card__desc">
+                    <h5>Connect with your best friends and share your wishlist and checkout</h5>
+                  </div>
+                  <a href="#" class="btn-border-orange">Add besties</a>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="section-content">
+            <a href="#" data-toggle="modal" data-target="#goss"
+              class="section-content__title position-relative d-flex align-items-center">
+              <span>What’s the goss?</span>
+              <i class="icon icon-help"></i>
+            </a>
+
+            <div class="section-content__tiles d-flex align-items-center flex-wrap flex-column justify-content-between">
+              <div class="main__card position-relative overflow-hidden">
+                <div
+                  class="internal-card internal-card--main d-flex flex-column align-items-center align-items-lg-start flex-lg-row">
+                  <figure class="internal-card__img figure-bg mb-0"
+                    style="background-image: url('images/home/buffer.svg'); max-width: 220px; height: 220px">
+                    {{!-- <img src="images/home/buffer.svg" alt="img"> --}}
+                  </figure>
+                </div>
+                <div class="main__buttons">
+                  <a href="#" class="btn-border">Create a goss</a>
+                </div>
+              </div>
+              <div class="main__card position-relative overflow-hidden">
+                <div
+                  class="internal-card internal-card--main d-flex flex-column align-items-center align-items-lg-start flex-lg-row">
+                  <figure class="internal-card__img figure-bg mb-0"
+                    style="background-image: url('images/home/blogging.svg'); max-width: 235px; height: 135px">
+                    {{!-- <img src="images/home/blogging.svg" alt="img"> --}}
+                  </figure>
+                </div>
+                <div class="main__buttons">
+                  <a href="#" data-toggle="modal" data-target="#goss" class="btn-border-orange">Read public goss</a>
+                </div>
+              </div>
+              <div class="main__card position-relative overflow-hidden">
+                <div
+                  class="internal-card internal-card--main d-flex flex-column align-items-center align-items-lg-start flex-lg-row">
+                  <figure class="internal-card__img figure-bg mb-0"
+                    style="background-image: url('images/home/product-hunt.svg'); max-width: 235px; height: 135px">
+                    {{!-- <img src="images/home/product-hunt.svg" alt="img"> --}}
+                  </figure>
+                </div>
+                <div class="main__buttons">
+                  <a href="#" class="btn-border-orange">Snatch a bargain</a>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="section-content">
+            <span class="section-content__title position-relative d-flex align-items-center">Your shopping
+              preferences</span>
+            <div class="main__card main__card--bias position-relative overflow-hidden">
+              <div
+                class="internal-card internal-card--main w-100 d-flex flex-column align-items-center align-items-lg-start flex-lg-row">
+                <div class="internal-card__info">
+                  <h2>Why create preferences?</h2>
+                  <p style="padding-bottom: 25px;">Based on the permission you give to your loved ones, they can use
+                    your shopping preferences to buy
+                    gifts for you</p>
+                </div>
+                <figure class="internal-card__img mb-0">
+                  <img src="images/home/Online-shopping.svg" alt="card-img">
+                </figure>
+              </div>
+              <div class="main__buttons">
+                <a href="#" data-toggle="modal" data-target="#shopping" class="btn-border">Learn more</a>
+                <a href="#" class="btn-blue">Create preferences</a>
+              </div>
+            </div>
+          </section>
+          <section class="section-content">
+            <span class="section-content__title position-relative d-flex align-items-center">Your wishlist</span>
+            <div class="main__card main__card--bias position-relative overflow-hidden">
+              <div
+                class="internal-card internal-card--main w-100 d-flex flex-column align-items-center align-items-lg-start flex-lg-row">
+                <div class="internal-card__info">
+                  <h2>Why create a wishlist?</h2>
+                  <p>Based on the permission you give to your loved ones, they can buy you gifts from your wishlist</p>
+                </div>
+                <figure class="internal-card__img mb-0">
+                  <img src="images/home/window-shopping.svg" alt="card-img">
+                </figure>
+              </div>
+              <div class="main__buttons">
+                <a href="#" data-toggle="modal" data-target="#wishlist" class="btn-border">Learn more</a>
+                <a href="#" class="btn-blue">Create preferences</a>
+              </div>
+            </div>
+          </section>
+          <section class="section-content">
+            <div
+              class="main__card main__card--bias main__card--row position-relative d-flex flex-wrap justify-content-center justify-content-md-between overflow-hidden">
+              <h2 class="main__card-title">Split your checkout with:</h2>
+
+              <div class="internal-card d-flex flex-column align-items-center">
+                <figure class="internal-card__img position-relative overflow-hidden mb-0">
+                  <img src="images/home/love.svg" alt="card-img">
+                </figure>
+                <div class="internal-card__info d-flex align-items-center flex-column">
+                  <p>Your loved ones</p>
+                  <a href="#" data-toggle="modal" data-target="#share" class="btn-link-orange">Learn More</a>
+                </div>
+              </div>
+              <div class="internal-card d-flex flex-column align-items-center">
+                <figure class="internal-card__img position-relative overflow-hidden mb-0">
+                  <img src="images/home/Chat.svg" alt="card-img">
+                </figure>
+                <div class="internal-card__info">
+                  <p>The community</p>
+                  <a href="#" data-toggle="modal" data-target="#community" class="btn-link-orange">Learn More</a>
+                </div>
+              </div>
+              <div class="internal-card d-flex flex-column align-items-center">
+                <figure class="internal-card__img position-relative overflow-hidden mb-0">
+                  <img src="images/home/gift.svg" alt="card-img">
+                </figure>
+                <div class="internal-card__info">
+                  <p>Or let them buy it from your wishlist</p>
+                  <a href="#" data-toggle="modal" data-target="#share-wishlist" class="btn-link-orange">Learn More</a>
+                </div>
+              </div>
+
+              <!-- option  add class: - options--open -->
+              <div class="options">
+                <button type="button" class="options__btn" data-type="options">
+                  <i class="icon icon-more"></i>
+                </button>
+
+                <div class="options__dropdown">
+                  <ul class="list-unstyled mb-0">
+                    <li><a href="#">Share</a></li>
+                    <li><a href="#">Not gift worthy</a></li>
+                    <li><a href="#">About the store</a></li>
+                    <li><a href="#">Report abuse</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="section-content">
+            <span
+              class="section-content__title section-content__title--center position-relative d-flex align-items-center justify-content-center">
+              <span>My goss</span>
+            </span>
+            <div
+              class="main__card main__card--noshadow position-relative d-flex align-items-center justify-content-between flex-column overflow-hidden">
+              <div class="internal-card d-flex align-items-center justify-content-center flex-column">
+                <figure class="internal-card__img mb-0">
+                  <img src="images/home/buffer.svg" alt="card-img">
+                </figure>
+                <div class="internal-card__info">
+                  <h2>No goss in your feed</h2>
+                </div>
+              </div>
+              <div class="main__buttons">
+                <a href="#" class="btn-border">Create a goss</a>
+              </div>
+            </div>
+
+          </section>
+        </main>
+
+        <aside class="aside-right">
+
+          <section class="section-content">
+            <div class="scroll-div">
+              <span class="section-content__title position-relative d-flex align-items-center">My timeline</span>
+              <a href="#" data-toggle="modal" data-target="#add-timeline"
+                class="new-item position-relative d-flex align-items-center justify-content-start">
+                <span class="position-relative">
+                  <i class="icon icon-plus"></i>
+                  Add to a timeline
+                </span>
+              </a>
+
+              <div class="timeline position-relative">
+                <div class="timeline__line"></div>
+                <ul class="timeline__list d-flex flex-column list-unstyled mb-0">
+                  <li class="timeline__item">
+                    <span class="timeline__date timeline__date--active">2:30 pm today</span>
+                    <article
+                      class="timeline__card card-timeline card-timeline--active card-timeline--visible-notification">
+                      <!-- notification -->
+                      <div class="card-timeline__notification">
+                        <i class="icon icon-bell-white"></i>
+                        <span>Today is the big day!</span>
+                      </div>
+                      <!-- card-inner -->
+                      <div class="card-timeline__inner">
+                        <!-- card-header -->
+                        <div class="card-timeline__header">
+                          <div class="card-timeline__info card-timeline__info--main">
+                            <p>Lunch with friends in lorem ipsum dolor sit amet or something</p>
+                            <p>Budget: <span class="bold">$45 per person</span></p>
+                          </div>
+                        </div>
+                        <!-- card-body -->
+                        <div class="card-timeline__body">
+                          <span class="card-timeline__title">Who is coming?</span>
+                          <div class="card-timeline__slider position-relative d-flex align-items-center">
+                            <div class="swiper-container">
+                              <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                  <a href="#"
+                                    class="card-timeline__link card-timeline__link--contact card-timeline__link--no-img">
+                                    <img src="" alt="avatar">
+                                    <span>JS</span>
+                                  </a>
+                                </div>
+                                <div class="swiper-slide">
+                                  <a href="#"
+                                    class="card-timeline__link card-timeline__link--contact card-timeline__link--no-img">
+                                    <img src="" alt="avatar">
+                                    <span>JS</span>
+                                  </a>
+                                </div>
+                                <div class="swiper-slide">
+                                  <a href="#"
+                                    class="card-timeline__link card-timeline__link--contact card-timeline__link--no-img">
+                                    <img src="" alt="avatar">
+                                    <span>JS</span>
+                                  </a>
+                                </div>
+                                <div class="swiper-slide">
+                                  <a href="#"
+                                    class="card-timeline__link card-timeline__link--contact card-timeline__link--no-img">
+                                    <img src="" alt="avatar">
+                                    <span>JS</span>
+                                  </a>
+                                </div>
+                                <div class="swiper-slide">
+                                  <a href="#"
+                                    class="card-timeline__link-light card-timeline__link card-timeline__link--contact card-timeline__link--no-img">
+                                    <img src="" alt="avatar">
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                          </div>
+                        </div>
+                        <!-- card-bottom -->
+                        <div class="card-timeline__bottom">
+                          <span class="card-timeline__title">Location</span>
+                          <div class="card-timeline__info">
+                            <p>4 Bellbird Cres, Coomera, QLD, 4209</p>
+                          </div>
+                        </div>
+
+                        <!-- option  add class: - options--open -->
+                        <div class="options">
+                          <button type="button" class="options__btn" data-type="options">
+                            <i class="icon icon-more"></i>
+                          </button>
+
+                          <div class="options__dropdown">
+                            <ul class="list-unstyled mb-0">
+                              <li><a href="#">Share</a></li>
+                              <li><a href="#">Not gift worthy</a></li>
+                              <li><a href="#">About the store</a></li>
+                              <li><a href="#">Report abuse</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                  <li class="timeline__item">
+                    <span class="timeline__date">10:00 am Friday</span>
+                    <article class="timeline__card card-timeline">
+                      <!-- notification -->
+                      <div class="card-timeline__notification">
+                        <i class="icon icon-bell"></i>
+                        <span></span>
+                      </div>
+                      <!-- card-inner -->
+                      <div class="card-timeline__inner">
+                        <!-- card-header -->
+                        <div class="card-timeline__header">
+                          <div class="card-timeline__info card-timeline__info--main">
+                            <p>Lunch with friends in lorem ipsum dolor sit amet or something</p>
+                            <p>Budget: <span class="bold">$45 per person</span></p>
+                          </div>
+                        </div>
+                        <!-- option  add class: - options--open -->
+                        <div class="options">
+                          <button type="button" class="options__btn" data-type="options">
+                            <i class="icon icon-more"></i>
+                          </button>
+
+                          <div class="options__dropdown">
+                            <ul class="list-unstyled mb-0">
+                              <li><a href="#">Share</a></li>
+                              <li><a href="#">Not gift worthy</a></li>
+                              <li><a href="#">About the store</a></li>
+                              <li><a href="#">Report abuse</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                  <li class="timeline__item">
+                    <span class="timeline__date">14:30 pm Friday</span>
+                    <article class="timeline__card card-timeline card-timeline--visible-notification">
+                      <!-- notification -->
+                      <div class="card-timeline__notification">
+                        <i class="icon icon-bell"></i>
+                        <span></span>
+                      </div>
+                      <!-- card-inner -->
+                      <div class="card-timeline__inner">
+                        <!-- card-header -->
+                        <div class="card-timeline__header">
+                          <span class="card-timeline__title">
+                            <span>Added by:</span>
+                            <span class="bold">You</span>
+                          </span>
+                          <div class="card-timeline__info card-timeline__info--main">
+                            <p>Product name lorem ipsum dolor sit amet or something</p>
+                            <p>Budget: <span class="bold">$45 per person</span></p>
+                          </div>
+                        </div>
+                        <!-- card-body -->
+                        <div class="card-timeline__body">
+                          <figure class="card-timeline__img mb-0">
+                            <img src="images/product/1.jpg" alt="product">
+                          </figure>
+                        </div>
+                        <!-- card-bottom -->
+                        <div class="card-timeline__bottom">
+                          <span class="card-timeline__title">Comment</span>
+                          <div class="card-timeline__info">
+                            <p>I plan to buy it for my mum</p>
+                          </div>
+                        </div>
+
+                        <!-- option  add class: - options--open -->
+                        <div class="options">
+                          <button type="button" class="options__btn" data-type="options">
+                            <i class="icon icon-more"></i>
+                          </button>
+
+                          <div class="options__dropdown">
+                            <ul class="list-unstyled mb-0">
+                              <li><a href="#">Share</a></li>
+                              <li><a href="#">Not gift worthy</a></li>
+                              <li><a href="#">About the store</a></li>
+                              <li><a href="#">Report abuse</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+            <a href="#" class="btn-border">Load more</a>
+          </section>
+
+
+        </aside>
+      </div>
+    </div>
+
+    {{> ../common/footer }}
+  </div>
+  {{> ../common/modal }}
+</body>
+
+</html>

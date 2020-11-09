@@ -1,0 +1,324 @@
+.icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  &.icon-home {
+    width: auto;
+    height: auto;
+    &:before {
+      content: url("images/icons/home.svg");
+    }
+
+    &.active {
+      &:before {
+        content: url("images/icons/home-notice.svg");
+      }
+    }
+  }
+
+  &.icon-star {
+    width: auto;
+    height: auto;
+    &:before {
+      content: url("images/icons/star.svg");
+    }
+
+    &.active {
+      &:before {
+        content: url("images/icons/star-notice.svg");
+      }
+    }
+  }
+
+  &.icon-offer {
+    width: auto;
+    height: auto;
+    &:before {
+      content: url("images/icons/offer.svg");
+    }
+
+    &.active {
+      &:before {
+        content: url("images/icons/offer-notice.svg");
+      }
+    }
+  }
+
+  &.icon-cart {
+    width: auto;
+    height: auto;
+    &:before {
+      content: url("images/icons/cart.svg");
+    }
+
+    &.active {
+      &:before {
+        content: url("images/icons/cart-notice.svg");
+      }
+    }
+  }
+
+  &.icon-head-mail {
+    width: auto;
+    height: auto;
+    &:before {
+      content: url("images/icons/mail.svg");
+    }
+
+    &.active {
+      &:before {
+        content: url("images/icons/mail-notice.svg");
+      }
+    }
+  }
+
+  &.icon-search {
+    width: 21px;
+    height: 21px;
+    &:before {
+      content: url("images/icons/search.svg");
+    }
+  }
+
+  &.icon-gift {
+    width: 20px;
+    height: 26px;
+    &:before {
+      content: url("images/icons/gift.svg");
+    }
+    &.active {
+      &:before {
+        content: url("images/icons/gift-notice.svg");
+      }
+    }
+  }
+  &.icon-social-media {
+    width: 20px;
+    height: 26px;
+    &:before {
+      content: url("images/icons/social-media.svg");
+    }
+    &.active {
+      &:before {
+        content: url("images/icons/social-media-notice.svg");
+      }
+    }
+  }
+  &.icon-group {
+    width: 20px;
+    height: 26px;
+    &:before {
+      content: url("images/icons/group.svg");
+    }
+    &.active {
+      &:before {
+        content: url("images/icons/group-notice.svg");
+      }
+    }
+  }
+  &.icon-discount {
+    width: 20px;
+    height: 26px;
+    &:before {
+      content: url("images/icons/discount.svg");
+    }
+    &.active {
+      &:before {
+        content: url("images/icons/discount-notice.svg");
+      }
+    }
+  }
+  &.icon-mail {
+    width: 20px;
+    height: 26px;
+    &:before {
+      content: url("images/icons/mail-icon.svg");
+    }
+    &.active {
+      &:before {
+        content: url("images/icons/mail-icon-notice.svg");
+      }
+    }
+  }
+  &.icon-setting {
+    width: 20px;
+    height: 26px;
+    &:before {
+      content: url("images/icons/setting.svg");
+    }
+    &.active {
+      &:before {
+        content: url("images/icons/setting-notice.svg");
+      }
+    }
+  }
+
+  &.icon-coin-bank {
+    width: 20px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/coin-bank.png");
+    }
+  }
+  &.icon-heart {
+    width: 20px;
+    height: 26px;
+    &:before {
+      content: url("images/icons/heart.svg");
+    }
+    &.active {
+      &:before {
+        content: url("images/icons/heart-notice.svg");
+      }
+    }
+  }
+  &.icon-notification {
+    width: 20px;
+    height: 26px;
+    &:before {
+      content: url("images/icons/notification.svg");
+    }
+    &.active {
+      &:before {
+        content: url("images/icons/notification-notice.svg");
+      }
+    }
+  }
+  &.icon-plus {
+    width: 14px;
+    height: 19px;
+    &:before {
+      content: url("images/icons/plus.svg");
+    }
+  }
+  &.icon-more {
+    width: 6px;
+    height: 21px;
+    &:before {
+      content: url("images/icons/more.svg");
+    }
+  }
+  &.icon-bell {
+    &:before {
+      content: url("images/icons/bell.svg");
+    }
+  }
+  &.icon-bell-white {
+    &:before {
+      content: url("images/icons/bell-white.svg");
+    }
+  }
+  &.icon-help {
+    width: 18px;
+    height: 18px;
+    &:before {
+      content: url("images/icons/help.svg");
+    }
+  }
+  &.icon-arrow {
+    width: 13px;
+    height: 19px;
+    &:before {
+      content: url("images/icons/arrow.svg");
+    }
+  }
+  &.icon-like {
+    width: 20px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/like.svg");
+    }
+  }
+  &.icon-heart-l {
+    width: 20px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/heart-icon.svg");
+    }
+  }
+  &.icon-happy {
+    width: 20px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/happy.svg");
+    }
+  }
+  &.icon-surprised {
+    width: 20px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/surprised.svg");
+    }
+  }
+  &.icon-angry {
+    width: 20px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/angry.svg");
+    }
+  }
+  &.icon-like-big {
+    width: 20px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/like-big.svg");
+    }
+  }
+  &.icon-heart-l-big {
+    width: 20px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/heart-icon-big.svg");
+    }
+  }
+  &.icon-happy-big {
+    width: 20px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/happy-big.svg");
+    }
+  }
+  &.icon-surprised-big {
+    width: 20px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/surprised-big.svg");
+    }
+  }
+  &.icon-angry-big {
+    width: 20px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/angry-big.svg");
+    }
+  }
+  &.icon-like-blue {
+    width: 22px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/like-blue.svg");
+    }
+  }
+  &.icon-comment {
+    width: 20px;
+    height: 20px;
+    &:before {
+      content: url("images/icons/comment.svg");
+    }
+  }
+  &.icon-plus-blue {
+    width: 14px;
+    height: 14px;
+    &:before {
+      content: url("images/icons/plus-blue.svg");
+    }
+  }
+  &.icon-gallery-main {
+    width: 15px;
+    height: 18px;
+    &:before {
+      content: url("images/icons/gallery-main.svg");
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>dot-circle-solid</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="register-hashtag" transform="translate(-448.000000, -819.000000)" fill="#F77D0E" fill-rule="nonzero">
+            <g id="Register-hashtag" transform="translate(360.000000, 64.000000)">
+                <g id="dot-circle-solid" transform="translate(88.000000, 755.000000)">
+                    <path d="M9,0 C4.02942339,0 0,4.02942339 0,9 C0,13.9705766 4.02942339,18 9,18 C13.9705766,18 18,13.9705766 18,9 C18,4.02942339 13.9705766,0 9,0 Z M11.9032258,9 C11.9032258,10.6008387 10.6008387,11.9032258 9,11.9032258 C7.39916129,11.9032258 6.09677419,10.6008387 6.09677419,9 C6.09677419,7.39916129 7.39916129,6.09677419 9,6.09677419 C10.6008387,6.09677419 11.9032258,7.39916129 11.9032258,9 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

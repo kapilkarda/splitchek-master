@@ -1,0 +1,83 @@
+.gifts {
+  padding-top: 30px;
+  padding-bottom: 130px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  @media (max-width: 991px) {
+    padding-bottom: 260px;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    &:before {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      content: url("images/landing/fun.svg");
+      position: absolute;
+      left: -30px;
+      top: 0;
+      @media (max-width: 992px) {
+        left: 0;
+      }
+      @media (max-width: 991px) {
+        content: url("images/icons/fun-small.svg");
+        top: -200px;
+        left: 50%;
+        margin-right: -50%;
+        transform: translateX(-50%);
+      }
+    }
+    &:after {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      content: url("images/landing/balloons.svg");
+      position: absolute;
+      right: 0;
+      bottom: -100px;
+      @media (max-width: 991px) {
+        content: url("images/icons/ballons-small.svg");
+        left: 50%;
+        right: 0;
+        bottom: -240px;
+        margin-right: -50%;
+        transform: translateX(-50%);
+      }
+    }
+    a {
+      max-width: 240px;
+      height: 56px;
+    }
+    h4 {
+      margin-bottom: 32px;
+      max-width: 752px;
+      text-align: center;
+      color: #0b0212;
+      font-size: 40px;
+      line-height: 56px;
+
+      @include roman();
+    }
+    p {
+      color: #0b0212;
+      font-size: 22px;
+      line-height: 22px;
+      text-align: center;
+      margin-bottom: 54px;
+      @include roman();
+
+      span {
+        font-weight: bold;
+      }
+      @media (max-width: 575px) {
+        max-width: 240px;
+        font-size: 18px;
+      }
+    }
+  }
+}

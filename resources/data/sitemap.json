@@ -1,0 +1,47 @@
+{
+  "page_title": "Sitemap",
+  "sitemap": [
+    {
+      "title": "Home Page",
+      "description": "pending",
+      "url": "/index.html"
+    },
+    {
+      "title": "Early birds",
+      "description": "Early birds",
+      "url": "/early-bird.html"
+    },
+    {
+      "title": "Home",
+      "description": "Home",
+      "url": "/home.html"
+    }
+    ,
+    {
+      "title": "Home-filled",
+      "description": "Home-filled",
+      "url": "/home-filled.html"
+    },
+    {
+      "title": "Gifter",
+      "description": "For Gifterss",
+      "url": "/gifter.html"
+    },
+    {
+      "title": "Sell",
+      "description": "For Business",
+      "url": "/sell.html"
+    },
+    {
+      "title": "Hashtag",
+      "description": "Hashtag",
+      "url": "/hashtag.html"
+    },
+    {
+      "title": "Selling-splitchek",
+      "description": "Selling SplitChek",
+      "url": "/selling-splitchek.html"
+    }
+  ]
+
+}

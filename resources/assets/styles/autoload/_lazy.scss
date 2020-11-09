@@ -1,0 +1,30 @@
+.lazy {
+  // Default transition for smooth fading in
+  // after image successfully loads
+  opacity: 0;
+  @include transition(
+    opacity 0.68s ease
+  );
+  &.loaded {
+    opacity: 1;
+  }
+
+  // Zoom transition, only use when overflow
+  // isn't an issue (e.g. parent container has `overflow: hidden`
+  &.zoom {
+    transform-origin: center center;
+    transform: scale(1.05, 1.05);
+    @include transition(
+      opacity 0.68s ease,
+      transform 2s ease-out
+    );
+    &.loaded {
+      transform: scale(1, 1);
+    }
+  }
+
+  // Removes transition
+  &.no-trans {
+    transition: none;
+  }
+}

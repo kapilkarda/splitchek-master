@@ -1,0 +1,94 @@
+.personal-card {
+  width: 100%;
+  padding-top: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+
+  box-shadow: $shadow-card;
+  background-color: theme-color("white");
+  // .personal-card__avatar
+
+  &__avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+
+    background-color: theme-color("light-gray");
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  // .personal-card__avatar--no-img
+
+  &__avatar--no-img {
+    img {
+      display: none;
+    }
+  }
+
+  // .personal-card__symbol
+
+  &__symbol {
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: theme-color("light-blue");
+  }
+
+  // .personal-card__name
+
+  &__name {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: center;
+    margin-bottom: 12px;
+
+    color: theme-color("dark-blue");
+  }
+
+  // .personal-card__list
+
+  &__list {
+    width: 100%;
+  }
+
+  // .personal-card__item
+
+  &__item {
+    width: 100%;
+    padding: 13px 16px;
+    text-align: center;
+
+    border-top: 1px solid theme-color("light-gray");
+  }
+
+  // .personal-card__link
+
+  &__link {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+
+    color: theme-color("blue");
+  }
+
+  // .personal-card__num
+
+  &__num {
+    font-size: 14px;
+    text-align: left;
+
+    color: theme-color("orange");
+  }
+}

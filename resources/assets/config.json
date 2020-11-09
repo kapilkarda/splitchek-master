@@ -1,0 +1,21 @@
+{
+  "entry": {
+    "main": [
+      "./scripts/main.js",
+      "./styles/main.scss"
+    ],
+    "pages/home": "./styles/pages/home/index.scss",
+    "pages/early-bird": "./styles/pages/early-bird/index.scss",
+    "pages/gifter": "./styles/pages/gifter/index.scss",
+    "pages/sell": "./styles/pages/sell/index.scss",
+    "pages/hashtag": "./styles/pages/hashtag/index.scss",
+    "pages/sellingSplitchek": "./styles/pages/sellingCheck/index.scss"
+  },
+  "publicPath": "/",
+  "proxyUrl": "http://localhost:3000",
+  "watch": [
+    "resources/views/**/*.hbs",
+    "resources/data/**/*.js",
+    "resources/styles/**/*.scss"
+  ]
+}

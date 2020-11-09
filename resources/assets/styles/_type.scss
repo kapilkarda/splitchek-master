@@ -1,0 +1,205 @@
+/**
+ * ============
+ * Typography
+ * ============
+ * Define as much reusable typography here
+ * such as `.text-hero`, which can be `@extend`-ed from other scss files
+ * This way, this file become a master list of typography used throughout the site
+ */
+a {
+  border: none;
+  outline: none;
+  text-decoration: none;
+  &:hover {
+    border: none;
+    outline: none;
+    text-decoration: none;
+  }
+}
+h3 {
+  color: #0b0212;
+  @include roman;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 56px;
+  span {
+    @media (max-width: 767px) {
+      font-size: 32px !important;
+      line-height: 44px !important;
+    }
+  }
+  @media (max-width: 767px) {
+    font-size: 32px !important;
+    line-height: 44px !important;
+  }
+}
+
+input[type="text"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+input[type="text"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+.btn-border,
+.btn-border-orange {
+  transition: 0.3s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  max-width: 160px;
+  height: 40px;
+  border-radius: 5px;
+  @include med;
+  font-size: 16px;
+}
+.btn-border {
+  color: #35558f;
+  border: 1px solid #35558f !important;
+
+  &:focus {
+    background-color: #254277;
+    color: #fff !important;
+  }
+  &:hover {
+    background: #35558f;
+    color: #fff !important;
+  }
+}
+.btn-border-orange {
+  color: #f97d00;
+  border: 1px solid #f97d00 !important;
+
+  &:focus,
+  &:hover {
+    background-color: #fff2e5;
+    color: #f97d00 !important;
+  }
+
+  &:active {
+    background-color: #f97d00;
+    color: #fff !important;
+  }
+}
+.btn-orange,
+.btn-blue {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: 0.3s;
+
+  &:hover {
+    color: #fff;
+    &:before {
+      opacity: 1;
+    }
+  }
+
+  &:before {
+    transition: 0.3s;
+    opacity: 0;
+    content: "";
+    position: absolute;
+    border-radius: 6px;
+    top: -3px;
+    right: -3px;
+    bottom: -3px;
+    left: -3px;
+  }
+}
+.btn-orange {
+  max-width: 220px;
+  background-color: #f97d00;
+  font-weight: 500;
+
+  &:active,
+  &:focus {
+    background-color: #e77400;
+    color: #fff;
+  }
+
+  &:before {
+    border: 1px solid #e77400;
+  }
+}
+.btn-blue {
+  max-width: 160px;
+  background-color: #35558f;
+  @include med;
+
+  &:active,
+  &:focus {
+    background-color: #254277;
+    color: #fff;
+  }
+
+  &:before {
+    border: 1px solid #35558f;
+  }
+}
+
+.btn-blue-link {
+  color: #35558f;
+  font-size: 16px;
+  text-decoration: underline;
+
+  @include roman();
+
+  &:hover {
+    color: #35558f;
+    text-decoration: none;
+  }
+}
+
+.bold {
+  font-weight: $font-weight-bold;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+.btn-link-orange {
+  position: relative;
+  display: inline-block;
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #f97d00;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.3s;
+  }
+  &:hover {
+    &:before {
+      transform-origin: bottom left;
+      transform: scaleX(1);
+      transition: transform 0.3s;
+    }
+  }
+}

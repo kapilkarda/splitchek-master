@@ -1,0 +1,130 @@
+.answer {
+  padding-top: 110px;
+  padding-bottom: 250px;
+  position: relative;
+  display: flex;
+  @media (max-width: 991px) {
+    padding-bottom: 60px;
+  }
+  @media (max-width: 575px) {
+    padding-bottom: 30px;
+    padding-top: 70px;
+  }
+  a {
+    transition: 0.3s;
+    color: #0b0212;
+    @include med;
+    font-weight: 400;
+    line-height: 28px;
+    font-size: 18px !important;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    &:before {
+      content: url("images/icons/you_can.svg");
+      position: absolute;
+      left: -92px;
+      top: 60px;
+      @media (max-width: 1306px) {
+        left: -46px;
+        top: -4px;
+      }
+      @media (max-width: 1040px) {
+        left: 0;
+      }
+      @media (max-width: 992px) {
+        top: -36px;
+        left: 50px;
+      }
+      @media (max-width: 991px) {
+        top: -36px;
+        left: 0;
+      }
+      @media (max-width: 767px) {
+        left: -80px;
+      }
+      @media (max-width: 694px) {
+        content: url("images/icons/you_can-small.svg");
+        top: 130px;
+        left: 90px;
+      }
+      @media (max-width: 575px) {
+        top: 165px;
+      }
+      @media (max-width: 440px) {
+        left: 10px;
+      }
+    }
+    h3 {
+      margin-bottom: 16px;
+      @media (max-width: 575px) {
+        margin-bottom: 25px;
+      }
+    }
+    p {
+      max-width: 450px;
+      color: #0b0212;
+      font-size: 22px;
+      line-height: 32px;
+      text-align: center;
+      margin-bottom: 120px;
+
+      @media (max-width: 767px) {
+        font-size: 18px;
+      }
+      @media (max-width: 575px) {
+        margin-bottom: 100px;
+      }
+
+      @include roman();
+
+      span {
+        @include bold();
+      }
+    }
+  }
+  &__img {
+    margin-bottom: 22px;
+    min-height: 50px;
+  }
+  &__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    svg {
+      transition: 0.3s;
+    }
+    cursor: pointer;
+    a {
+      color: #f97d00;
+    }
+    svg * {
+      fill: #f97d00;
+    }
+    #Rectangle-Copy-12,
+    #Rectangle {
+      stroke: #f97d00;
+    }
+    @media (max-width: 991px) {
+      margin-bottom: 80px;
+    }
+    @media (max-width: 575px) {
+      margin-bottom: 60px;
+    }
+    p {
+      max-width: 219px;
+      text-align: center;
+      color: #0b0212;
+      @include roman;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 28px;
+      margin-bottom: 0;
+    }
+  }
+}

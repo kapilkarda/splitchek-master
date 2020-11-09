@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>play_circle_outline-24px</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="shopping-on-splitchek-copy" transform="translate(-1048.000000, -336.000000)" fill="#F97D00" fill-rule="nonzero">
+            <g id="video" transform="translate(720.000000, 128.000000)">
+                <g id="play_circle_outline-24px" transform="translate(328.000000, 208.000000)">
+                    <path d="M28.16,44.48 L43.104,33.28 C43.968,32.64 43.968,31.36 43.104,30.72 L28.16,19.52 C27.104,18.72 25.6,19.488 25.6,20.8 L25.6,43.2 C25.6,44.512 27.104,45.28 28.16,44.48 Z M32,0 C14.336,0 0,14.336 0,32 C0,49.664 14.336,64 32,64 C49.664,64 64,49.664 64,32 C64,14.336 49.664,0 32,0 Z M32,57.6 C17.888,57.6 6.4,46.112 6.4,32 C6.4,17.888 17.888,6.4 32,6.4 C46.112,6.4 57.6,17.888 57.6,32 C57.6,46.112 46.112,57.6 32,57.6 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

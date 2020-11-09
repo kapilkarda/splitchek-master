@@ -1,0 +1,43 @@
+.scroll-div {
+  margin-left: -10px;
+  margin-right: -10px;
+  .ss-content {
+    padding: 0 10px;
+  }
+}
+
+.ss-container {
+  &:hover,
+  &:active {
+    &:after {
+      display: block;
+    }
+
+    .ss-scroll {
+      opacity: 1;
+    }
+  }
+
+  // &:after {
+  //   content: "";
+  //   display: none;
+  //   position: absolute;
+  //   top: 0;
+  //   right: 7px;
+  //   width: 4px;
+  //   height: 100%;
+  //   background-color: #e8ebf2;
+  // }
+
+  .ss-wrapper {
+    .ss-content {
+      overflow-y: scroll;
+    }
+  }
+  .ss-scroll {
+    background: #afbbd4;
+    width: 4px;
+    border-radius: 0;
+    margin-left: 8px;
+  }
+}

@@ -1,0 +1,65 @@
+.timeline {
+  padding-left: 16px;
+
+  // .timeline__line
+
+  &__line {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 4px;
+    height: calc(100% - 25px);
+
+    background-color: theme-color("light-gray");
+  }
+
+  // .timeline__list
+
+  // &__list {
+  // }
+
+  // .timeline__item
+
+  // &__item {
+  // }
+
+  // .timeline__date
+
+  &__date {
+    position: relative;
+    display: inline-block;
+    padding-left: 17px;
+    font-size: 14px;
+    margin-bottom: 8px;
+
+    color: theme-color("gray");
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -22px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+
+      background-color: theme-color("light-gray");
+    }
+  }
+
+  // .timeline__date--active
+
+  &__date--active {
+    color: theme-color("orange");
+
+    &:before {
+      background-color: theme-color("orange");
+    }
+  }
+
+  // .timeline__card
+
+  &__card {
+    margin-bottom: 24px;
+  }
+}

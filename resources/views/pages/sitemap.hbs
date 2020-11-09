@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {{> ../common/head }}
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.17.1/themes/prism-twilight.css" rel="stylesheet" />
+  <style>
+    .no-underline {
+      text-decoration: none !important;
+    }
+  </style>
+</head>
+<body class="sitemap">
+  <div class="container pt-24">
+    <div class="mb-3">
+      <div class="text-3xl font-bold">
+        Project Sitemap
+      </div>
+      <div class="text-gray-700">
+        {{ sitemap.length }} page(s) found.
+      </div>
+    </div>
+    <div>
+      <ul class="flex flex-wrap -mx-1">
+        {{#each sitemap }}
+        <li class="w-1/2 md:w-1/3 xl:w-1/4 px-1 mb-2">
+          <a href="{{ url }}"
+            class="block py-3 px-4 rounded border text-gray-600 hover:bg-indigo-600 hover:border-indigo-700 hover:text-white no-underline"
+            style="transition: all 0.12s ease;">
+            <div>{{ title }}</div>
+            <p class="text-sm text-gray-500">{{description}}</p>
+            <div><small class="font-thin">{{ url }}</small></div>
+          </a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.17.1/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

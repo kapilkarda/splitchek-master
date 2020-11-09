@@ -1,0 +1,90 @@
+.modal.left .modal-dialog,
+.modal.right .modal-dialog {
+  position: fixed;
+  top: 0;
+  margin: auto;
+  width: 520px;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
+}
+
+.modal.left .modal-content,
+.modal.right .modal-content {
+  height: 100%;
+  overflow-y: auto;
+  border-radius: 0;
+  padding: 0;
+
+  .modal-header {
+    padding: 0 32px;
+    height: 88px;
+
+    box-shadow: $shadow-card;
+
+    @include media-breakpoint-down(md) {
+      padding: 0 16px;
+    }
+  }
+
+  .modal-body {
+    width: 100%;
+    height: calc(100% - 80px);
+    padding: 24px 34px 80px;
+
+    @include media-breakpoint-down(md) {
+      padding: 24px 24px 80px;
+    }
+  }
+
+  .modal-footer {
+    padding: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 80px;
+
+    box-shadow: $shadow-card2;
+  }
+}
+
+/*Left*/
+.modal.left.fade .modal-dialog {
+  left: -520px;
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+  transition: opacity 0.3s linear, left 0.3s ease-out;
+
+  @include media-breakpoint-down(md) {
+    left: -100%;
+  }
+}
+
+.modal.left.fade.show .modal-dialog {
+  left: 0;
+}
+
+/*Right*/
+.modal.right.fade .modal-dialog {
+  right: -520px;
+  -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+  transition: opacity 0.3s linear, right 0.3s ease-out;
+
+  @include media-breakpoint-down(md) {
+    right: -100%;
+  }
+}
+
+.modal.right.fade.show .modal-dialog {
+  right: 0;
+}

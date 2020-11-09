@@ -1,0 +1,66 @@
+/** Import Bootstrap functions */
+@import "../../../node_modules/bootstrap/scss/functions";
+
+//* fonts-family
+$font-family-base: "Neue Haas Grotesk Display Pro", sans-serif;
+$font-family-custom: "Noteworthy - Bold", sans-serif;
+
+$font-weight-normal: normal !default;
+$font-weight-medium: 500 !default;
+$font-weight-bold: bold !default;
+
+// Box shadows
+$shadow-card: 0 2px 4px 1px rgba(11, 2, 18, 0.08);
+$shadow-card2: 0 0 4px 1px rgba(11, 2, 18, 0.08);
+$shadow-search: 1px 1px 4px 1px rgba(11, 2, 18, 0.08);
+$shadow-search2: -3px 3px 8px 0 rgba(11, 2, 18, 0.08);
+
+// Animation timings
+// $animation-elastic: cubic-bezier(0.63, 0.62, 0.48, 1.3);
+
+/** Customise Bootstrap variables here */
+// Refer to https://bit.ly/2uIqqvR
+// It is strongly recommended to tweak bootstrap variable rather than overriding them in css
+
+// Example of customising primary bootstrap brand colours
+$theme-colors: (
+  "white": #fff,
+  "black": #000,
+  "light-gray": #e8ebf2,
+  "light-gray2": #f8f9fb,
+  "light-gray3": #eef3fd,
+  "gray": #828282,
+  "blue": #315293,
+  "blue2": #35558f,
+  "blue3": #254277,
+  "blue4": #335491,
+  "blue5": #2f5095,
+  "light-blue": #99a9c9,
+  "dark-blue": #0b0212,
+  "orange": #f97d00,
+  "light-orange": #feecd9,
+  "red": #f70e31,
+  "green": #4fcec4,
+);
+// then in code: theme-color("$this-color")
+// then in code rgb: rgba(theme-color("$this-color"), 0.95);
+
+//* Transitions
+$transition-slow: 0.5s ease-in-out;
+$transition-fast: 0.3s ease-in-out;
+$transition-veryfast: 0.1s ease-in-out;
+
+//* Grid
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1260px,
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1170px,
+);

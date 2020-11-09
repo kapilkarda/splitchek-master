@@ -1,0 +1,24 @@
+.lg-backdrop {
+  background-color: transparent;
+}
+
+.lg-toolbar,
+.lg-actions .lg-next,
+.lg-actions .lg-prev {
+  background-color: theme-color("light-gray");
+}
+
+#lg-counter,
+.lg-actions .lg-prev,
+.lg-actions .lg-next,
+.lg-fullscreen,
+.lg-autoplay-button,
+.lg-toolbar .lg-download,
+.lg-toolbar .lg-close,
+.lg-toolbar .lg-icon {
+  color: theme-color("blue3");
+
+  &:hover {
+    color: theme-color("black");
+  }
+}

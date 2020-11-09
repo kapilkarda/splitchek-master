@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>circle-regular</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="register-hashtag-error" transform="translate(-448.000000, -1039.000000)" fill="#F77D0E" fill-rule="nonzero">
+            <g id="Register-hashtag" transform="translate(360.000000, 64.000000)">
+                <g id="circle-regular" transform="translate(88.000000, 975.000000)">
+                    <path d="M9,0 C4.02822581,0 0,4.02822581 0,9 C0,13.9717742 4.02822581,18 9,18 C13.9717742,18 18,13.9717742 18,9 C18,4.02822581 13.9717742,0 9,0 Z M9,16.2580645 C4.98991935,16.2580645 1.74193548,13.0100806 1.74193548,9 C1.74193548,4.98991935 4.98991935,1.74193548 9,1.74193548 C13.0100806,1.74193548 16.2580645,4.98991935 16.2580645,9 C16.2580645,13.0100806 13.0100806,16.2580645 9,16.2580645 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
